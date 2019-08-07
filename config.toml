@@ -1,5 +1,5 @@
 languageCode = "en-us"
-title = "heisenberg-blog"
+title = "Natrium Theme"
 theme = "hugo-natrium-theme"
 preserveTaxonomyNames = true
 rssLimit = 10
@@ -34,7 +34,7 @@ pygmentsStyle = "native"
     description = ""
 
     [params.logo]
-    url = "static/images/head.png"
+    url = "logo.png"
     width = 50
     height = 50
     alt = "Logo"
