@@ -71,7 +71,7 @@ func main() {
 - M:N模型.每个用户线程对应多个内核空间线程,同时也可以一个内核空间线程对应多个用户空间线程,使用任意个内核模型管理任意个goroutine,但缺点是调度的复杂性
 - go 使用的是第三种模型,Scheduler调度器公平高效合理的将goroutine分配到相应的线程上
 
-![image](static/../../../../static/images/20190807-grountine.png)
+<!-- ![image](static/../../../../static/images/20190807-grountine.png) -->
 - M: 操作系统的内核空间线程
 - G: goroutine对象
 - P: 代表调度的上下文,可以把它看做一个局部的调度器,使go代码在一个线程上跑,它是实现从N:1到N:M映射的关键,一般256个
