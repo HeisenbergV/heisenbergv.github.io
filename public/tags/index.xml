@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Temple</title>
+    <title>Tags on Blog</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on Temple</description>
+    <description>Recent content in Tags on Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>your@email.com (Temple Theme)</managingEditor>
-    <webMaster>your@email.com (Temple Theme)</webMaster>
-    <copyright>(c) 2017 - 2018 Aos Dabbagh -- All rights reserved.</copyright>
+    <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
+    <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
+    <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
     <lastBuildDate>Wed, 07 Aug 2019 15:50:19 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +17,7 @@
       <title>go</title>
       <link>/tags/go/</link>
       <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
-      <author>your@email.com (Temple Theme)</author>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
       <guid>/tags/go/</guid>
       <description></description>
     </item>

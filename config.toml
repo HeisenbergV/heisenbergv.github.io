@@ -1,8 +1,8 @@
 baseURL = "/"
-title = "Temple"
+title = "Blog"
 theme = "temple"
 # If not set, it will not appear. Otherwise it will show below your footer links
-copyright = "(c) 2017 - 2018 Aos Dabbagh -- All rights reserved."
+copyright = "(c) 2018 - 2019 HeisebergV -- All rights reserved."
 
 # Enables Chroma-based syntax highlighting with theme "friendly"
 # See https://xyproto.github.io/splash/docs/ for other theme options
@@ -16,14 +16,9 @@ pygmentsCodeFences = true
   topmenu = "categories"
 
 # Builds a list page for each category given
-[taxonomies]
-  tag = "tags"
-  category = "categories"
 
 [author]
-  name = "Temple Theme"
-  github = "github"
-  email = "your@email.com"
-  gaid = "Your Google Analytics ID"
-  twitter = "twitterID"
-  medium = "mediumUsername"
+  name = "heisenberg"
+  github = "heisenbergV"
+  email = "zuojxin@hotmail.com"
+  twitter = "Vdemoot"
