@@ -70,14 +70,11 @@ func main() {
 - 	1:1模型.1个内核空间线程运行一个用户空间线程,充分利用了多核系统的优势但上下文切换非常慢,因为每一次调度都会在用户态和内核态之间切换.
 - M:N模型.每个用户线程对应多个内核空间线程,同时也可以一个内核空间线程对应多个用户空间线程,使用任意个内核模型管理任意个goroutine,但缺点是调度的复杂性
 - go 使用的是第三种模型,Scheduler调度器公平高效合理的将goroutine分配到相应的线程上
-
-
-![image](https://note.youdao.com/yws/public/resource/1330a577e4cd2251cc07c8eaa40a5e1d/xmlnote/8FA2DF425A884888B2F5BB6AD38A6E8F/6468)
-
+![image](static/../../../../static/images/20190807-grountine)
 - M: 操作系统的内核空间线程
 - G: goroutine对象
 - P: 代表调度的上下文,可以把它看做一个局部的调度器,使go代码在一个线程上跑,它是实现从N:1到N:M映射的关键,一般256个
-![image](static/../../../../static/images/head.png)
+
 当执行 go test() 会发生什么？
 - go test() ; go test() 创建2个 goroutine 
 
