@@ -1,7 +1,28 @@
 languageCode = "en-us"
-title = "HeisenbergX"
-theme = "hyde"
+title = "heisenberg"
+theme = "temple"
+pygmentsStyle = "friendly"
+# If true, Chroma will highlight GitHub-style code fences in addition to
+# highlight shortcodes
+pygmentsCodeFences = true
 
 [params]
-    description = "这里是HeisenbergX的个人博客"
-    themeColor = "theme-base-08" # for hyde theme
+  # Enables the topmenu, which pulls from categories
+  topmenu = "categories"
+
+  # Enables custom date format (optional, the default is MM-DD-YYYY)
+  # For reference to date and time templating, see:
+  # https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference
+  dateformatpretty = "2006-01-02"
+
+
+# Builds a list page for each category given
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[author]
+  name = "heisenberg"
+  github = "zuojxin"
+  email = "zuojxin@hotmail.com"
+  twitter = "twitterID"

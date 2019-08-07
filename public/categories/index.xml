@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on HeisenbergX</title>
+    <title>Categories on heisenberg</title>
     <link>/categories/</link>
-    <description>Recent content in Categories on HeisenbergX</description>
+    <description>Recent content in Categories on heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
+    <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
+    <lastBuildDate>Wed, 07 Aug 2019 14:30:36 +0800</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>test</title>
+      <link>/categories/test/</link>
+      <pubDate>Wed, 07 Aug 2019 14:30:36 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>计算机</title>
+      <link>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+      <pubDate>Wed, 07 Aug 2019 14:30:36 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

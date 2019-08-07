@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on HeisenbergX</title>
+    <title>Tags on heisenberg</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on HeisenbergX</description>
+    <description>Recent content in Tags on heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
+    <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
+    <lastBuildDate>Wed, 07 Aug 2019 14:30:36 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>test</title>
+      <link>/tags/test/</link>
+      <pubDate>Wed, 07 Aug 2019 14:30:36 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/tags/test/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
