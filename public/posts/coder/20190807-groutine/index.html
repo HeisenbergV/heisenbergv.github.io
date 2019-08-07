@@ -484,33 +484,31 @@ code, kbd, pre, samp {
 
 <li><p>如何使用:  go test()   在函数前加go关键字 就可以以新协程来启动test()函数
 为什么说协程无线程安全问题: 协程是协作式本身无线程安全问题,但go runtime的scheduler会将多个goroutine分配到不同线程,才会出问题</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">var</span> s <span style="color:#902000">int</span>
 
-<pre><code>var s int
-
-func test() {
-	for i := 0; i &lt; 10000; i++ {
-		s++
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">test</span>() {
+	<span style="color:#007020;font-weight:bold">for</span> i <span style="color:#666">:=</span> <span style="color:#40a070">0</span>; i &lt; <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span> {
+		s<span style="color:#666">++</span>
 	}
 }
 
-func main() {
-	runtime.GOMAXPROCS(1) //这里可以暂时先暂时理解为一个限定只用一个线程
-	var wg sync.WaitGroup //用于等待所有协程都完成
-	wg.Add(2)
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	runtime.<span style="color:#06287e">GOMAXPROCS</span>(<span style="color:#40a070">1</span>) <span style="color:#60a0b0;font-style:italic">//这里可以暂时先暂时理解为一个限定只用一个线程
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">var</span> wg sync.WaitGroup <span style="color:#60a0b0;font-style:italic">//用于等待所有协程都完成
+</span><span style="color:#60a0b0;font-style:italic"></span>	wg.<span style="color:#06287e">Add</span>(<span style="color:#40a070">2</span>)
 
-	go func() {
-		defer wg.Done() //程序退出的时候执行
-		test()
+	<span style="color:#007020;font-weight:bold">go</span> <span style="color:#007020;font-weight:bold">func</span>() {
+		<span style="color:#007020;font-weight:bold">defer</span> wg.<span style="color:#06287e">Done</span>() <span style="color:#60a0b0;font-style:italic">//程序退出的时候执行
+</span><span style="color:#60a0b0;font-style:italic"></span>		<span style="color:#06287e">test</span>()
 	}()
 
-	go func() {
-		defer wg.Done() //程序退出的时候执行
-		test()
+	<span style="color:#007020;font-weight:bold">go</span> <span style="color:#007020;font-weight:bold">func</span>() {
+		<span style="color:#007020;font-weight:bold">defer</span> wg.<span style="color:#06287e">Done</span>() <span style="color:#60a0b0;font-style:italic">//程序退出的时候执行
+</span><span style="color:#60a0b0;font-style:italic"></span>		<span style="color:#06287e">test</span>()
 	}()
-	wg.Wait() //等待所有协程的完成
-	fmt.Println(s)
-}
-</code></pre></li>
+	wg.<span style="color:#06287e">Wait</span>() <span style="color:#60a0b0;font-style:italic">//等待所有协程的完成
+</span><span style="color:#60a0b0;font-style:italic"></span>	fmt.<span style="color:#06287e">Println</span>(s)
+}</code></pre></div></li>
 </ul>
 
 <h2 id="调度器-scheduler">调度器(Scheduler)</h2>
@@ -529,14 +527,11 @@ func main() {
 </ul>
 
 <p><img src="static/../../../../static/images/coder-2019080701.png" alt="image" /></p>
-
-<pre><code>func test(){
-    fmt.Println(&quot;a&quot;)
-    time.sleep(time.Seconds * 2)//休眠2秒
-    fmt.Println(&quot;b&quot;)
-}
-</code></pre>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">test</span>(){
+    fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;a&#34;</span>)
+    time.<span style="color:#06287e">sleep</span>(time.Seconds <span style="color:#666">*</span> <span style="color:#40a070">2</span>)<span style="color:#60a0b0;font-style:italic">//休眠2秒
+</span><span style="color:#60a0b0;font-style:italic"></span>    fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;b&#34;</span>)
+}</code></pre></div>
 <ul>
 <li><p>加入队列</p>
 
@@ -555,29 +550,27 @@ func main() {
 </ul></li>
 
 <li><p>当M执行某一个goroutine时候如果发生了阻塞操作,M会阻塞,如果当前localqueue有一些可运行的G,Scheduler会把这个线程M从P中摘除(detach),然后再创建一个新的操作系统的线程(如果有空闲的线程可用就复用空闲线程)来服务于这个P</p>
-
-<pre><code>func hello() {
-	defer wg.Done()
-	fmt.Println(&quot;a&quot;)
-	time.Sleep(time.Second * 4)
-	fmt.Println(&quot;b&quot;)
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">hello</span>() {
+	<span style="color:#007020;font-weight:bold">defer</span> wg.<span style="color:#06287e">Done</span>()
+	fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;a&#34;</span>)
+	time.<span style="color:#06287e">Sleep</span>(time.Second <span style="color:#666">*</span> <span style="color:#40a070">4</span>)
+	fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;b&#34;</span>)
 }
 
-func hello2() {
-	defer wg.Done()
-	fmt.Println(&quot;c&quot;)
-	time.Sleep(time.Second * 4)
-	fmt.Println(&quot;d&quot;)
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">hello2</span>() {
+	<span style="color:#007020;font-weight:bold">defer</span> wg.<span style="color:#06287e">Done</span>()
+	fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;c&#34;</span>)
+	time.<span style="color:#06287e">Sleep</span>(time.Second <span style="color:#666">*</span> <span style="color:#40a070">4</span>)
+	fmt.<span style="color:#06287e">Println</span>(<span style="color:#4070a0">&#34;d&#34;</span>)
 }
 
-func main() {
-	runtime.GOMAXPROCS(1) //限制只有一个P
-	wg.Add(2)
-	go hello()
-	go hello2()
-	wg.Wait()
-}
-</code></pre></li>
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	runtime.<span style="color:#06287e">GOMAXPROCS</span>(<span style="color:#40a070">1</span>) <span style="color:#60a0b0;font-style:italic">//限制只有一个P
+</span><span style="color:#60a0b0;font-style:italic"></span>	wg.<span style="color:#06287e">Add</span>(<span style="color:#40a070">2</span>)
+	<span style="color:#007020;font-weight:bold">go</span> <span style="color:#06287e">hello</span>()
+	<span style="color:#007020;font-weight:bold">go</span> <span style="color:#06287e">hello2</span>()
+	wg.<span style="color:#06287e">Wait</span>()
+}</code></pre></div></li>
 
 <li><p>刚才摘除P后的M 运行完成阻塞的goroutine后怎么办？他会继续第3步骤里的事情,拿别人的东西</p></li>
 
