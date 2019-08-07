@@ -1,25 +1,41 @@
+baseurl = "https://example.org/"
 languageCode = "en-us"
-title = "heisenberg"
-theme = "temple"
-pygmentsStyle = "friendly"
-# If true, Chroma will highlight GitHub-style code fences in addition to
-# highlight shortcodes
-pygmentsCodeFences = true
+title = "heisenberg-blog"
+theme = "hugo-natrium-theme"
+preserveTaxonomyNames = true
+rssLimit = 10
+paginate = 10
+pygmentsCodefences = true
+pygmentsStyle = "native"
+
+[taxonomies]
+    category = "categories"  
+    tag = "tags"
+
+[permalinks]
+    post = "/:slug/"
+    page = "/:slug/"
+
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = -110
+    
+[[menu.main]]
+    name = "Tags"
+    url = "/tags"
+    weight = -120
+
+[[menu.main]]
+    name = "Categories"
+    url = "/categories"
+    weight = -130
 
 [params]
-  # Enables the topmenu, which pulls from categories
-  topmenu = "categories"
+    description = ""
 
-  # Enables custom date format (optional, the default is MM-DD-YYYY)
-  # For reference to date and time templating, see:
-  # https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference
-  dateformatpretty = "2006-01-02"
-
-
-# Builds a list page for each category given
-
-[author]
-  name = "heisenberg"
-  github = "zuojxin"
-  email = "zuojxin@hotmail.com"
-  twitter = "Vdemoot"
+    [params.logo]
+    url = "static/images/head.png"
+    width = 50
+    height = 50
+    alt = "Logo"
