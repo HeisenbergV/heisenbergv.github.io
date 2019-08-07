@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Natrium Theme</title>
-    <link>/categories/</link>
-    <description>Recent content in Categories on Natrium Theme</description>
+    <title>Categories on Temple</title>
+    <link>https://example.com/categories/</link>
+    <description>Recent content in Categories on Temple</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <managingEditor>your@email.com (Temple Theme)</managingEditor>
+    <webMaster>your@email.com (Temple Theme)</webMaster>
+    <copyright>(c) 2017 - 2018 Aos Dabbagh -- All rights reserved.</copyright>
     <lastBuildDate>Wed, 07 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>coder</title>
-      <link>/categories/coder/</link>
+      <link>https://example.com/categories/coder/</link>
       <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
-      
-      <guid>/categories/coder/</guid>
+      <author>your@email.com (Temple Theme)</author>
+      <guid>https://example.com/categories/coder/</guid>
       <description></description>
     </item>
     

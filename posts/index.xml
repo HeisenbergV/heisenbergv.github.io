@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Natrium Theme</title>
-    <link>/posts/</link>
-    <description>Recent content in Posts on Natrium Theme</description>
+    <title>Posts on Temple</title>
+    <link>https://example.com/posts/</link>
+    <description>Recent content in Posts on Temple</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <managingEditor>your@email.com (Temple Theme)</managingEditor>
+    <webMaster>your@email.com (Temple Theme)</webMaster>
+    <copyright>(c) 2017 - 2018 Aos Dabbagh -- All rights reserved.</copyright>
     <lastBuildDate>Wed, 07 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Goroutine</title>
-      <link>/posts/coder/20190807-groutine/</link>
+      <link>https://example.com/posts/coder/20190807-groutine/</link>
       <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
-      
-      <guid>/posts/coder/20190807-groutine/</guid>
+      <author>your@email.com (Temple Theme)</author>
+      <guid>https://example.com/posts/coder/20190807-groutine/</guid>
       <description>并发与并行  并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能有一条指令执行,但多个进程指令被快速的轮换执行,宏观看起来是并行的,微观是cpu在不断的快速切换.(操作系统)  线程安全问题  协作式调度: 当线程终止或阻塞是发生调度 =&amp;gt; &amp;ldquo;主动让出&amp;rdquo; 抢占式调度: 允许逻辑上将可继续运行的线程在运行过程中暂停的调度方式 =&amp;gt; &amp;ldquo;被迫让出&amp;rdquo; 脏数据原因: 抢占式调度被迫让出cpu控制权,一个行为可能有多个指令组合而成 多指令在执行过程中被中断,导致未执行完整出现脏数据. 举例:  i= 0, 线程1 执行 i++,线程 2 也执行 i++, 想要的结果是2 当程序 1 将 i 值读取出来并运算后改为写入的时候,系统抢占式把控制权给个程序 2 程序 2 完整的执行完了 i++,随后系统将控制权交回给程序 1,此时的程序 1 并不知道自己被打断了,也不知道 i 已经被修改,还把之前计算好的值写入,最后把之前的2给覆盖了结果变成了1.
  被打断是因为抢占式使用时间到了后被迫交还cpu 值篡改是因为读取i和写入i是两个指令不是一个原子操作   Coroutine(协程)特点 一种用户态的轻量级线程  轻量级线程(由于线程创建时需要向操作系统申请资源,并且在销毁时将资源归还,因此它的创建和销毁的开销比较大,内存消耗更低,一般是2kb vs 1mb) 是语言层面的任务,非系统级别的(由语言层面虚拟机或者go runtime等 进行创建),切换更高效 多个协程可能在一个或多个线程上运行.依靠调度器分配 协作式: 非抢占式(协作)在关键时刻(阻塞,任务完成等)将cpu让给其他线程 同一线程上的多个协程的切换是无线程安全问题的  Goroutine  概念: goroutine是go语言中的协程 如何使用: go test() 在函数前加go关键字 就可以以新协程来启动test()函数 为什么说协程无线程安全问题: 协程是协作式本身无线程安全问题,但go runtime的scheduler会将多个goroutine分配到不同线程,才会出问题</description>
     </item>
