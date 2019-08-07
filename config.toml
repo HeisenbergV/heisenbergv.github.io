@@ -16,7 +16,11 @@ pygmentsCodeFences = true
   topmenu = "categories"
 
 # Builds a list page for each category given
-
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  series = "series"
+  
 [author]
   name = "heisenberg"
   github = "heisenbergV"
