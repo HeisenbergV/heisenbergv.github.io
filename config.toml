@@ -1,0 +1,4 @@
+theme = "hugo-theme-casper"
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "测试 zuojxin"
