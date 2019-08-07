@@ -1,4 +1,7 @@
-theme = "hugo-theme-casper"
-baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "测试 zuojxin"
+title = "HeisenbergX"
+theme = "hyde"
+
+[params]
+    description = "这里是HeisenbergX的个人博客"
+    themeColor = "theme-base-08" # for hyde theme
