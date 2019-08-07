@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on heisenberg-blog</title>
-    <link>https://example.org/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on heisenberg-blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 07 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>coder</title>
-      <link>https://example.org/categories/coder/</link>
+      <link>/categories/coder/</link>
       <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
       
-      <guid>https://example.org/categories/coder/</guid>
+      <guid>/categories/coder/</guid>
       <description></description>
     </item>
     
