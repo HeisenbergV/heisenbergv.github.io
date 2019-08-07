@@ -3,48 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://heisenbergv.github.io/categories/</loc>
+    <loc>localhost/categories/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/posts/coder/20190807-groutine/</loc>
+    <loc>localhost/posts/coder/20190807-groutine/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/posts/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/tags/</loc>
+    <loc>localhost/posts/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/</loc>
+    <loc>localhost/tags/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/categories/coder/</loc>
+    <loc>localhost/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/tags/go/</loc>
+    <loc>localhost/categories/coder/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/about/</loc>
+    <loc>localhost/tags/go/</loc>
+    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/about/</loc>
     <priority>0</priority>
   </url>
   

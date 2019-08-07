@@ -1,4 +1,4 @@
-baseURL = "https://heisenbergv.github.io/"
+baseURL = "localhost/"
 title = "Temple"
 theme = "temple"
 # If not set, it will not appear. Otherwise it will show below your footer links
