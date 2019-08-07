@@ -8,26 +8,26 @@
     <language>en-us</language>
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
     <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
-    <lastBuildDate>Wed, 07 Aug 2019 14:30:36 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>test</title>
-      <link>/categories/test/</link>
-      <pubDate>Wed, 07 Aug 2019 14:30:36 +0800</pubDate>
+      <title>coder</title>
+      <link>/categories/coder/</link>
+      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/test/</guid>
+      <guid>/categories/coder/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>计算机</title>
-      <link>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
-      <pubDate>Wed, 07 Aug 2019 14:30:36 +0800</pubDate>
+      <title>read</title>
+      <link>/categories/read/</link>
+      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
+      <guid>/categories/read/</guid>
       <description></description>
     </item>
     
