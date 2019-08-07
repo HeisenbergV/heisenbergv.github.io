@@ -17,12 +17,9 @@ pygmentsCodeFences = true
 
 
 # Builds a list page for each category given
-[taxonomies]
-  tag = "tags"
-  category = "categories"
 
 [author]
   name = "heisenberg"
   github = "zuojxin"
   email = "zuojxin@hotmail.com"
-  twitter = "twitterID"
+  twitter = "Vdemoot"
