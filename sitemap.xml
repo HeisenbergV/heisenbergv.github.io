@@ -33,6 +33,12 @@
   </url>
   
   <url>
+    <loc>/categories/thinker/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/winner/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
     <priority>0</priority>
@@ -46,6 +52,11 @@
   
   <url>
     <loc>/posts/winner/20190808-%E5%9F%BA%E9%87%91/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/thinker/20190808-siu/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
   </url>
   
