@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "Blog"
+title = "Heisenberg-Blog"
 theme = "temple"
 # If not set, it will not appear. Otherwise it will show below your footer links
 copyright = "(c) 2018 - 2019 HeisebergV -- All rights reserved."
