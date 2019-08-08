@@ -3,20 +3,66 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/reader/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/winner/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E5%9F%BA%E9%87%91/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/winner/20190808-%E5%9F%BA%E9%87%91/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/reader/20190808-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
   </url>
   
   <url>
@@ -25,19 +71,7 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/series/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>

@@ -8,10 +8,28 @@
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
     <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
-    <lastBuildDate>Wed, 07 Aug 2019 15:50:19 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2019 15:50:19 +0800</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>reader</title>
+      <link>/categories/reader/</link>
+      <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/reader/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>winner</title>
+      <link>/categories/winner/</link>
+      <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/winner/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>coder</title>
