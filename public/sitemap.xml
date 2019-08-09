@@ -4,32 +4,43 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/learner/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E6%95%B0%E5%AD%A6/</loc>
+    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/learner/20190809-math/</loc>
+    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
   </url>
   
   <url>
@@ -67,12 +78,6 @@
   </url>
   
   <url>
-    <loc>/tags/%E6%95%B0%E5%AD%A6/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
     <priority>0</priority>
@@ -80,11 +85,6 @@
   
   <url>
     <loc>/posts/reader/20190808-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/learner/20190809-math/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
   </url>
   
