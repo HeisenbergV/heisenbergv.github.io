@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>learner on Heisenberg-Blog</title>
+    <link>/categories/learner/</link>
+    <description>Recent content in learner on Heisenberg-Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
+    <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
+    <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
+    <lastBuildDate>Thu, 08 Aug 2019 15:50:19 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/learner/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>线性代数</title>
+      <link>/posts/learner/20190809-math/</link>
+      <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/posts/learner/20190809-math/</guid>
+      <description>test</description>
+    </item>
+    
+  </channel>
+</rss>
