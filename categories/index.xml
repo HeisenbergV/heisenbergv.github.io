@@ -14,38 +14,11 @@
     
     
     <item>
-      <title>learner</title>
-      <link>/categories/learner/</link>
+      <title>lighter</title>
+      <link>/categories/lighter/</link>
       <pubDate>Thu, 15 Aug 2019 11:40:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/learner/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>coder</title>
-      <link>/categories/coder/</link>
-      <pubDate>Thu, 15 Aug 2019 10:40:19 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/coder/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reader</title>
-      <link>/categories/reader/</link>
-      <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/reader/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>thinker</title>
-      <link>/categories/thinker/</link>
-      <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/thinker/</guid>
+      <guid>/categories/lighter/</guid>
       <description></description>
     </item>
     
@@ -55,6 +28,15 @@
       <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
       <guid>/categories/winner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>coder</title>
+      <link>/categories/coder/</link>
+      <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/coder/</guid>
       <description></description>
     </item>
     

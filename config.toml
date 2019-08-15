@@ -26,3 +26,5 @@ pygmentsCodeFences = true
   github = "heisenbergV"
   email = "zuojxin@hotmail.com"
   twitter = "Vdemoot"
+  
+dateformatpretty = "2010-01-01"

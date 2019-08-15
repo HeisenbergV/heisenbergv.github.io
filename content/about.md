@@ -1,7 +1,3 @@
----
-date: 2019-08-07T15:50:19+08:00
----
-
 ##### 勉强生存 与死无异
 
 
@@ -11,4 +7,4 @@ date: 2019-08-07T15:50:19+08:00
 - email:  zuojxin@hotmail.com
 - twitter:  @Vdemoot
 
-###### 本站使用github pages + hugo, theme为 [temple](https://github.com/aos/temple)
+###### 本站使用github pages + [hugo](https://github.com/gohugoio/hugo), theme: [temple](https://github.com/aos/temple)
