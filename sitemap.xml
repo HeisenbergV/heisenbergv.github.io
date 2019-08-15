@@ -4,31 +4,71 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/learner/</loc>
-    <lastmod>2019-08-09T15:50:19+08:00</lastmod>
+    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/learner/20190815-%E9%92%A2%E7%90%B4%E7%BB%83%E4%B9%A01/</loc>
+    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/series/</loc>
+    <lastmod>2019-08-15T10:40:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/coder/</loc>
+    <lastmod>2019-08-15T10:40:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/go/</loc>
+    <lastmod>2019-08-15T10:40:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/coder/20190815-slice/</loc>
+    <lastmod>2019-08-15T10:40:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/series/%E6%B7%B1%E5%85%A5go/</loc>
+    <lastmod>2019-08-15T10:40:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -96,30 +136,6 @@
   <url>
     <loc>/posts/coder/20190807-groutine/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/series/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/coder/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/go/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/series/ss/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

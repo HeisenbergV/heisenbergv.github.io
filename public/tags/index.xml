@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Heisenberg-Blog</title>
+    <title>Tags on Heisenberg</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on Heisenberg-Blog</description>
+    <description>Recent content in Tags on Heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
     <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
-    <lastBuildDate>Fri, 09 Aug 2019 15:50:19 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 11:40:19 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>钢琴入门</title>
+      <link>/tags/%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Thu, 15 Aug 2019 11:40:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/tags/%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>/tags/go/</link>
+      <pubDate>Thu, 15 Aug 2019 10:40:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/tags/go/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>数学</title>
@@ -37,15 +55,6 @@
       <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
       <guid>/tags/%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>/tags/go/</link>
-      <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/tags/go/</guid>
       <description></description>
     </item>
     
