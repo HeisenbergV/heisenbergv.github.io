@@ -1,5 +1,5 @@
-hugo 
 rm -r public
+hugo 
 rm favicon.ico
 rm -r js
 rm -r series

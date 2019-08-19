@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Heisenberg</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on Heisenberg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
+    <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
+    <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
+    <lastBuildDate>Thu, 15 Aug 2019 11:40:19 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>lighter</title>
+      <link>/categories/lighter/</link>
+      <pubDate>Thu, 15 Aug 2019 11:40:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/lighter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>winner</title>
+      <link>/categories/winner/</link>
+      <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/winner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>coder</title>
+      <link>/categories/coder/</link>
+      <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/categories/coder/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
