@@ -14,6 +14,15 @@
     
     
     <item>
+      <title>学习流程</title>
+      <link>/posts/lighter/20190821-study_program/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      <author>zuojxin@hotmail.com (heisenberg)</author>
+      <guid>/posts/lighter/20190821-study_program/</guid>
+      <description>func main() { new Thread(question) while { startLearn(知识) } } func question(){ while(getQuestion()) { 询问 网上搜索 书籍 } } // error 表示遇到问题 func startLearn(知识) { while(知识) { if(error) { addQuestionQueue(error) continue } 完成一次学习进度 归纳总结 if(需要实践吗) { while(实践) { if(error) { addQuestionQueue(error) continue } 完成实践 continue } } else { 脑海模拟 } 完善总结 break } }</description>
+    </item>
+    
+    <item>
       <title>暗时间</title>
       <link>/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</link>
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
