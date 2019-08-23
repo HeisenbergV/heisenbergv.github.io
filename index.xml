@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Heisenberg</title>
-    <link>https://heisenbergv.github.io/</link>
+    <link>https://heisenbergv.github.io</link>
     <description>Recent content on Heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
