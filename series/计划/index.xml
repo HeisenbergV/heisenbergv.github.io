@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>计划 on Heisenberg</title>
-    <link>/series/%E8%AE%A1%E5%88%92/</link>
+    <link>https://heisenbergv.github.io/series/%E8%AE%A1%E5%88%92/</link>
     <description>Recent content in 计划 on Heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
@@ -10,15 +10,15 @@
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
     <lastBuildDate>Fri, 23 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="/series/%E8%AE%A1%E5%88%92/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://heisenbergv.github.io/series/%E8%AE%A1%E5%88%92/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>19年下半年计划</title>
-      <link>/posts/lighter/2019-plan/</link>
+      <link>https://heisenbergv.github.io/posts/lighter/2019-plan/</link>
       <pubDate>Fri, 23 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/posts/lighter/2019-plan/</guid>
+      <guid>https://heisenbergv.github.io/posts/lighter/2019-plan/</guid>
       <description> 学习理财： 年化率达到15-20%，投资收益超越工资
  《小狗钱钱》 《解读基金》 《聪明的投资人》 《巴菲特致股东的信》  读书： 不言而喻
  《百年孤独》 《暗时间》 《别做正常的傻瓜》 《稀缺》 《人性的优点》  学习技术： 涨工资, 技术负责人

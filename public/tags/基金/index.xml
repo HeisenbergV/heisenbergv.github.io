@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>基金 on Heisenberg</title>
-    <link>/tags/%E5%9F%BA%E9%87%91/</link>
+    <link>https://heisenbergv.github.io/tags/%E5%9F%BA%E9%87%91/</link>
     <description>Recent content in 基金 on Heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
@@ -10,15 +10,15 @@
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
     <lastBuildDate>Thu, 08 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="/tags/%E5%9F%BA%E9%87%91/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://heisenbergv.github.io/tags/%E5%9F%BA%E9%87%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>基金入门</title>
-      <link>/posts/winner/20190808-%E5%9F%BA%E9%87%91/</link>
+      <link>https://heisenbergv.github.io/posts/winner/20190808-%E5%9F%BA%E9%87%91/</link>
       <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/posts/winner/20190808-%E5%9F%BA%E9%87%91/</guid>
+      <guid>https://heisenbergv.github.io/posts/winner/20190808-%E5%9F%BA%E9%87%91/</guid>
       <description>复利 利用上一次的本息和(本金加利息)，当做下一轮的本金， F=P(1+i)^n F:最终的资产 本金和利息的和 P: 初始资金 i:利率 n：持有期限 假设年利率是15%，本金10000元，5年后取出 10000*(1+0.15)^5 ≈ 20114
 复利的思想是好的积极的， 但结果不一定如预期(未来无法预料)
 投资的种类  股票： 债券 基金 银行理财 其他  画图对比投资不同点

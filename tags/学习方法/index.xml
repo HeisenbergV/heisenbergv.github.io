@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>学习方法 on Heisenberg</title>
-    <link>/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</link>
+    <link>https://heisenbergv.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</link>
     <description>Recent content in 学习方法 on Heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
@@ -10,24 +10,24 @@
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
     <lastBuildDate>Wed, 21 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://heisenbergv.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>学习流程</title>
-      <link>/posts/lighter/20190821-study_program/</link>
+      <link>https://heisenbergv.github.io/posts/lighter/20190821-study_program/</link>
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/posts/lighter/20190821-study_program/</guid>
+      <guid>https://heisenbergv.github.io/posts/lighter/20190821-study_program/</guid>
       <description>func main() { new Thread(question) while { startLearn(知识) } } func question(){ while(getQuestion()) { 询问 网上搜索 书籍 } } // error 表示遇到问题 func startLearn(知识) { while(知识) { if(error) { addQuestionQueue(error) continue } 完成一次学习进度 归纳总结 if(需要实践吗) { while(实践) { if(error) { addQuestionQueue(error) continue } 完成实践 continue } } else { 脑海模拟 } 完善总结 break } }</description>
     </item>
     
     <item>
       <title>暗时间</title>
-      <link>/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</link>
+      <link>https://heisenbergv.github.io/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</link>
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</guid>
+      <guid>https://heisenbergv.github.io/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</guid>
       <description>学习方面 最近看《暗时间》这本书，感觉很不错。
 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死记硬背。
 只有当进入沉浸状态学习效率才会提高，并且不被其他因素中断。 最后将学到的知识进行归纳，或者讲给别人听，加深巩固知识。 学习过程或者做一件事情的过程，如果能记录进度，知道自己还差多少完成，心里就会有所期待。
