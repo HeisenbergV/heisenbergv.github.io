@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "localhost/"
 title = "Heisenberg"
 theme = "temple"
 # If not set, it will not appear. Otherwise it will show below your footer links
@@ -10,7 +10,6 @@ pygmentsStyle = "friendly"
 # If true, Chroma will highlight GitHub-style code fences in addition to
 # highlight shortcodes
 pygmentsCodeFences = true
-
 [params]
   # Enables the topmenu, which pulls from categories
   topmenu = "categories"

@@ -3,133 +3,144 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/categories/</loc>
+    <loc>localhost/posts/lighter/2019-plan/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost/categories/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/posts/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/series/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/categories/lighter/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/series/%E8%AE%A1%E5%88%92/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/tags/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>localhost/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/lighter/</loc>
-    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2019-08-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/lighter/20190821-study_program/</loc>
+    <loc>localhost/posts/lighter/20190821-study_program/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</loc>
+    <loc>localhost/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/series/</loc>
+    <loc>localhost/series/%E5%BC%B9%E7%90%B4/</loc>
     <lastmod>2019-08-15T11:40:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/series/%E5%BC%B9%E7%90%B4/</loc>
+    <loc>localhost/tags/%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2019-08-15T11:40:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2019-08-15T11:40:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/lighter/20190815-%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/</loc>
+    <loc>localhost/posts/lighter/20190815-%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/</loc>
     <lastmod>2019-08-15T11:40:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/winner/</loc>
+    <loc>localhost/categories/winner/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/%E5%9F%BA%E9%87%91/</loc>
+    <loc>localhost/tags/%E5%9F%BA%E9%87%91/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/posts/winner/20190808-%E5%9F%BA%E9%87%91/</loc>
+    <loc>localhost/posts/winner/20190808-%E5%9F%BA%E9%87%91/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/lighter/20190808-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/series/%E8%AF%BB%E4%B9%A6/</loc>
+    <loc>localhost/tags/%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
     <lastmod>2019-08-08T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/posts/coder/20190807-groutine/</loc>
+    <loc>localhost/posts/lighter/20190808-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>localhost/series/%E8%AF%BB%E4%B9%A6/</loc>
+    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/posts/coder/20190807-groutine/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/coder/</loc>
-    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/go/</loc>
+    <loc>localhost/categories/coder/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/series/%E6%B7%B1%E5%85%A5go/</loc>
+    <loc>localhost/tags/go/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>localhost/series/%E6%B7%B1%E5%85%A5go/</loc>
+    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/about/</loc>
     <priority>0</priority>
   </url>
   

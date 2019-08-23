@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Heisenberg</title>
-    <link>/categories/</link>
+    <link>localhost/categories/</link>
     <description>Recent content in Categories on Heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
     <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
-    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="localhost/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>lighter</title>
-      <link>/categories/lighter/</link>
-      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      <link>localhost/categories/lighter/</link>
+      <pubDate>Fri, 23 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/lighter/</guid>
+      <guid>localhost/categories/lighter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>winner</title>
-      <link>/categories/winner/</link>
+      <link>localhost/categories/winner/</link>
       <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/winner/</guid>
+      <guid>localhost/categories/winner/</guid>
       <description></description>
     </item>
     
     <item>
       <title>coder</title>
-      <link>/categories/coder/</link>
+      <link>localhost/categories/coder/</link>
       <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>/categories/coder/</guid>
+      <guid>localhost/categories/coder/</guid>
       <description></description>
     </item>
     
