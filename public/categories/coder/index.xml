@@ -8,19 +8,10 @@
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
     <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
-    <lastBuildDate>Fri, 23 Aug 2019 17:20:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 15:50:19 +0800</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/categories/coder/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>test</title>
-      <link>https://heisenbergv.github.io/posts/coder/20190823-test/</link>
-      <pubDate>Fri, 23 Aug 2019 17:20:00 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>https://heisenbergv.github.io/posts/coder/20190823-test/</guid>
-      <description>test</description>
-    </item>
     
     <item>
       <title>Goroutine</title>

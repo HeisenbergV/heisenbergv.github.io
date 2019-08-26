@@ -3,61 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://heisenbergv.github.io/posts/lighter/2019-plan/</loc>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://heisenbergv.github.io/categories/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://heisenbergv.github.io/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://heisenbergv.github.io/posts/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
+    <lastmod>2019-08-23T15:50:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://heisenbergv.github.io/series/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/tags/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/categories/coder/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/tags/test/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/series/test/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/posts/coder/20190823-test/</loc>
-    <lastmod>2019-08-23T17:20:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/posts/lighter/2019-plan/</loc>
     <lastmod>2019-08-23T15:50:19+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -73,14 +44,15 @@
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
+    <loc>https://heisenbergv.github.io/tags/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/posts/lighter/20190821-study_program/</loc>
+    <loc>https://heisenbergv.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2019-08-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -123,25 +95,14 @@
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/tags/%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/posts/lighter/20190808-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/series/%E8%AF%BB%E4%B9%A6/</loc>
-    <lastmod>2019-08-08T15:50:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://heisenbergv.github.io/posts/coder/20190807-groutine/</loc>
     <lastmod>2019-08-07T15:50:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://heisenbergv.github.io/categories/coder/</loc>
+    <lastmod>2019-08-07T15:50:19+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
