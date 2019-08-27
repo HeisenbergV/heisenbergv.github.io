@@ -8,19 +8,10 @@
     <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
     <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
     <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 15:50:19 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Aug 2019 15:50:19 +0800</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>coder</title>
-      <link>https://heisenbergv.github.io/categories/coder/</link>
-      <pubDate>Tue, 27 Aug 2019 15:50:19 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>https://heisenbergv.github.io/categories/coder/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>lighter</title>
@@ -32,11 +23,11 @@
     </item>
     
     <item>
-      <title>winner</title>
-      <link>https://heisenbergv.github.io/categories/winner/</link>
-      <pubDate>Thu, 08 Aug 2019 15:50:19 +0800</pubDate>
+      <title>coder</title>
+      <link>https://heisenbergv.github.io/categories/coder/</link>
+      <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
       <author>zuojxin@hotmail.com (heisenberg)</author>
-      <guid>https://heisenbergv.github.io/categories/winner/</guid>
+      <guid>https://heisenbergv.github.io/categories/coder/</guid>
       <description></description>
     </item>
     
