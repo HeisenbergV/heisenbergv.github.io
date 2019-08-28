@@ -1,29 +1,64 @@
-baseURL = "https://heisenbergv.github.io/"
-title = "Heisenberg"
-theme = "temple"
-# If not set, it will not appear. Otherwise it will show below your footer links
-copyright = "(c) 2018 - 2019 HeisebergV -- All rights reserved."
+baseURL                   = "https://heisenbergv.github.io/"
+builddrafts                = false
+languageCode               = "zn-Hans"
+canonifyurls               = true
+contentdir                 = "content"
+layoutdir                  = "layouts"
+publishdir                 = "public"
+enableEmoji                = true
+hasCJKLanguage             = true
+summaryLength              = 200
+Paginate                   = 3
+theme                      = "AllinOne"
+title                      = "Heisenberg"
 
-# Enables Chroma-based syntax highlighting with theme "friendly"
-# See https://xyproto.github.io/splash/docs/ for other theme options
-pygmentsStyle = "friendly"
-# If true, Chroma will highlight GitHub-style code fences in addition to
-# highlight shortcodes
-pygmentsCodeFences = true
-[params]
-  # Enables the topmenu, which pulls from categories
-  topmenu = "categories"
+pygmentsuseclasses         = true
 
-# Builds a list page for each category given
+
+[permalinks]
+  blog                     = "blog/:year-:month/:slug/"
+
+
 [taxonomies]
-  tag = "tags"
-  category = "categories"
-  series = "series"
+  tag                      = "tags"
+  series                   = "series"
+  category                 = "categories"
+
+
+  [[menu.main]]
+    name                   = "About"
+    weight                 = -100
+    identifier             = "about"
+    url                    = "about/"  
+ 
+
+[params]
+  faviconfile              = "img/zuo.jpg"               # from static/
+  avatar                   = "img/zuo.jpg"             # path to image in static dir e.g img/avatar.png 
+  author                   = "heisenberg"
+  description              = ["勉强生存 与死无异"]           # appears in the site header when set to a non-empty string
+
+  latestpostscount         = 5                             # how many posts to display on the home page
+  bloggroupby              = 'month'
+  dateform                 = "Jan 2, 2006"
+  dateformfull             = "2006-01-02  Monday  15:04:05"
+  noshowreadtime           = false                         # if true, don't show "<x> minutes read" in posts
+
+  # slides
+  slidesDirPath            = "themes/AllinOne/static/img/header-slides"    # path to image in local dir (path for hugo)
+  slidesDirPathURL         = "img/header-slides"    # path to image in static dir (for static pages)
+
+  # highlighting 
+  highlightjs              = true
+
+  # latex
+  katex                    = true
+
+  # links
+  email                    = "zuojxin@hotmail.com"
+  github                   = "//github.com/heisenbergv"
+  twitter                  = "//twitter.com/Vdemoot" 
+  include_rss              = true                          # include RSS <link> tag in <head> and show RSS icon
   
-[author]
-  name = "heisenberg"
-  github = "heisenbergV/heisenbergv.github.io"
-  email = "zuojxin@hotmail.com"
-  twitter = "Vdemoot"
-  
-dateformatpretty = "2010-01-01"
+  # analytics
+  # googleAnalytics          = "your-google-analytic-id"

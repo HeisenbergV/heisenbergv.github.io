@@ -5,9 +5,7 @@
     <link>https://heisenbergv.github.io/categories/</link>
     <description>Recent content in Categories on Heisenberg</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>zuojxin@hotmail.com (heisenberg)</managingEditor>
-    <webMaster>zuojxin@hotmail.com (heisenberg)</webMaster>
-    <copyright>(c) 2018 - 2019 HeisebergV -- All rights reserved.</copyright>
+    <language>zn-Hans</language>
     <lastBuildDate>Tue, 27 Aug 2019 15:50:19 +0800</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +15,7 @@
       <title>coder</title>
       <link>https://heisenbergv.github.io/categories/coder/</link>
       <pubDate>Tue, 27 Aug 2019 15:50:19 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
+      
       <guid>https://heisenbergv.github.io/categories/coder/</guid>
       <description></description>
     </item>
@@ -26,7 +24,7 @@
       <title>lighter</title>
       <link>https://heisenbergv.github.io/categories/lighter/</link>
       <pubDate>Fri, 23 Aug 2019 15:50:19 +0800</pubDate>
-      <author>zuojxin@hotmail.com (heisenberg)</author>
+      
       <guid>https://heisenbergv.github.io/categories/lighter/</guid>
       <description></description>
     </item>
