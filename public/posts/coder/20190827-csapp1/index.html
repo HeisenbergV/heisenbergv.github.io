@@ -3,8 +3,8 @@
 <head>
   
   <meta charset="utf-8">
-  <title>Tags</title>
-  <meta name="description" content="Tags">
+  <title>CSAPP(1) - 信息的表示和处理</title>
+  <meta name="description" content="CSAPP(1) - 信息的表示和处理">
   <meta name="author" content="heisenberg">
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -356,8 +356,6 @@ code, kbd, pre, samp {
 
   
   
-  <link href="https://heisenbergv.github.io/tags/index.xml" rel="alternate" type="application/rss+xml" title="Heisenberg Feed" />
-  
 
   <meta name="generator" content="Hugo 0.56.3" />
 
@@ -414,38 +412,609 @@ code, kbd, pre, samp {
     <div class="pure-u-1-24 pure-u-md-5-24"></div>
 </div>
 
+
 <div class="pure-g">
   <div class="pure-u-1-24 pure-u-md-5-24"></div>
   <div class="pure-u-11-12 pure-u-md-7-12">
-    <p class="posts-name">Tags:</p>
-    <div class="post-content">
-      <ul class="posts">
+    <div class="post">
+
+      <div class="post-title">
+        <p class="footnote">
+          
+          <time datetime="2019-08-27 15:50:19 &#43;0800 CST">
+            
+              08-27-2019
+            
+          </time>
+          
         
         
-        <li>
-          <a href="go">go</a>
-          <span>&#40;1&#41;</span>
-        </li>
+        |
         
-        <li>
-          <a href="%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95">学习方法</a>
-          <span>&#40;1&#41;</span>
-        </li>
         
-        <li>
-          <a href="%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a>
-          <span>&#40;1&#41;</span>
-        </li>
+        tags: [ <a href="https://heisenbergv.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a> ]
         
-        <li>
-          <a href="%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8">钢琴入门</a>
-          <span>&#40;1&#41;</span>
-        </li>
+
         
-      </ul>
+        categories: [ <a href="https://heisenbergv.github.io/categories/coder">coder</a> ]
+        
+
+        
+        series: [ <a href="https://heisenbergv.github.io/series/csapp">CSAPP</a> ]
+        
+        </p>
+      </div>
+
+      <div class="post-content">
+        
+        
+
+<h3 id="计算机存的什么">计算机存的什么</h3>
+
+<p>&emsp;&emsp;计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。
+每个字节都有一个唯一的数字来标识，也就是地址（address）。每个计算机都有一个字长（word size），也就是常说的64位操作系统，32位操作系统。字长决定了虚拟地址空间的大小，
+比如32位有4GB的内存空间，64位则是16EB（1TB = 1024GB，1 EB = 1,024 PB = 1,048,576 TB）。</p>
+
+<h3 id="原码-反码-补码">原码，反码，补码</h3>
+
+<p>计算机存储的是二进制，现实中数字有正负之分，二进制如果想表示正负数怎么办呢？
+为了解决<strong>正负数问题</strong>于是有了 <strong>原码</strong> ，原码的表示方式是：<strong>第一位不再表示有效位，而是符号位，0代表正数，1代表负数</strong></p>
+
+<p>[1001] 这个8位二进制，本该表示 十进制的9，现在他表示为 -1，第一位（1）是符号位，后面的才是真正的值。</p>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>正数</th>
+<th>二进制</th>
+<th>负数</th>
+<th>二进制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>+0</td>
+<td>0000</td>
+<td>-0</td>
+<td>1000</td>
+</tr>
+
+<tr>
+<td>+1</td>
+<td>0001</td>
+<td>-1</td>
+<td>1001</td>
+</tr>
+
+<tr>
+<td>+2</td>
+<td>0010</td>
+<td>-2</td>
+<td>1010</td>
+</tr>
+
+<tr>
+<td>+3</td>
+<td>0011</td>
+<td>-3</td>
+<td>1011</td>
+</tr>
+
+<tr>
+<td>+4</td>
+<td>0100</td>
+<td>-4</td>
+<td>1100</td>
+</tr>
+
+<tr>
+<td>+5</td>
+<td>0101</td>
+<td>-5</td>
+<td>1101</td>
+</tr>
+
+<tr>
+<td>+6</td>
+<td>0110</td>
+<td>-6</td>
+<td>1110</td>
+</tr>
+
+<tr>
+<td>+7</td>
+<td>0111</td>
+<td>-7</td>
+<td>1111</td>
+</tr>
+</tbody>
+</table>
+
+<p>现在计算机可以存储负数了，我们进行运算操作：</p>
+
+<ul>
+<li>十进制：1+1 = 2 ； 二进制则是：0001+0001 = 0010</li>
+<li>十进制：-1 + （-1） = -2 ； 二进制则是： 1001 + 1001 = 10010 第一位符号位仍然是1 仍然表示 - ，结果是-2</li>
+<li>十进制：1 + （-1） = 0；二进制则是：0001+1001 = 1010 结果是-2</li>
+</ul>
+
+<p>从上面计算看出，当出现正负数相加的时候，结果会出现问题。 虽然原码表示了正负数，运算却有问题。
+为了解决<strong>正负数相加问题</strong>于是有了<strong>反码</strong>，反码的表示方式是：<strong>正数的反码是其本身，负数的反码是在其原码的基础上，符号位不变，其余各位取反</strong></p>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>正数</th>
+<th>二进制</th>
+<th>负数</th>
+<th>二进制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>+0</td>
+<td>0000</td>
+<td>-0</td>
+<td>1111</td>
+</tr>
+
+<tr>
+<td>+1</td>
+<td>0001</td>
+<td>-1</td>
+<td>1110</td>
+</tr>
+
+<tr>
+<td>+2</td>
+<td>0010</td>
+<td>-2</td>
+<td>1101</td>
+</tr>
+
+<tr>
+<td>+3</td>
+<td>0011</td>
+<td>-3</td>
+<td>1100</td>
+</tr>
+
+<tr>
+<td>+4</td>
+<td>0100</td>
+<td>-4</td>
+<td>1011</td>
+</tr>
+
+<tr>
+<td>+5</td>
+<td>0101</td>
+<td>-5</td>
+<td>1010</td>
+</tr>
+
+<tr>
+<td>+6</td>
+<td>0110</td>
+<td>-6</td>
+<td>1001</td>
+</tr>
+
+<tr>
+<td>+7</td>
+<td>0111</td>
+<td>-7</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+
+<p>现在我们看看正负数相加：</p>
+
+<ul>
+<li>十进制：1 + （-1） = 0；二进制则是：0001+1110 = 1111 ，正好对应反码表里的 -0</li>
+</ul>
+
+<p>这样就解决了正负数相加的问题，但现在还有一个问题： 0 有两种表示方式：0000和1111，现实中0是不分正负的，计算机也需要解决，否则判断是否为0还需要判断两次（+0和-0）。为了解决<strong>0有两种表示类型</strong> 于是有了 <strong>补码</strong>，补码的表示方式是：<strong>正数的补码就是其本身，
+负数的补码是在其原码的基础上，符号位不变，其余各位取反， 最后+1（负数反码+1）</strong></p>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>正数</th>
+<th>二进制</th>
+<th>负数</th>
+<th>二进制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>+0</td>
+<td>0000</td>
+<td>-0</td>
+<td>0000</td>
+</tr>
+
+<tr>
+<td>+1</td>
+<td>0001</td>
+<td>-1</td>
+<td>1111</td>
+</tr>
+
+<tr>
+<td>+2</td>
+<td>0010</td>
+<td>-2</td>
+<td>1110</td>
+</tr>
+
+<tr>
+<td>+3</td>
+<td>0011</td>
+<td>-3</td>
+<td>1101</td>
+</tr>
+
+<tr>
+<td>+4</td>
+<td>0100</td>
+<td>-4</td>
+<td>1100</td>
+</tr>
+
+<tr>
+<td>+5</td>
+<td>0101</td>
+<td>-5</td>
+<td>1011</td>
+</tr>
+
+<tr>
+<td>+6</td>
+<td>0110</td>
+<td>-6</td>
+<td>1010</td>
+</tr>
+
+<tr>
+<td>+7</td>
+<td>0111</td>
+<td>-7</td>
+<td>1001</td>
+</tr>
+
+<tr>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>-8</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>原本1111表示-0，+1后： 1111+0001 = 10000，补位后溢出不计入，所以最终结果是0000</li>
+<li>1000没有人用，于是就给了-8</li>
+</ul>
+
+<p>现在正负0的二进制形式都为0000，并且还多出了一个表示数字-8
+再来计算一下正负数相加：</p>
+
+<ul>
+<li>十进制：1 + （-1） = 0；二进制则是：0001+1111 = 10000 ，溢出不计入，最终结果0000</li>
+</ul>
+
+<h3 id="运算溢出">运算溢出</h3>
+
+<p>如果存储大小为4位，取值范围就是[1000, 0111] -8 ~ 7。</p>
+
+<p>正溢出：</p>
+
+<ul>
+<li>十进制：5+5 = 10， 二进制0101+0101 = 1010（十进制结果-6），因为溢出导致将原来符号位的0改成了1，结果变成了负数。</li>
+</ul>
+
+<p>负溢出：</p>
+
+<ul>
+<li>十进制-5 + （-5）=-10，二进制1011+1011 = 0110（十进制结果6），溢出位不计入，最终因为溢出导致将原来符号位的1改成了0，结果变成了正数</li>
+</ul>
+
+<h3 id="有符号与无符号的转换">有符号与无符号的转换</h3>
+
+<p>如果去掉符号位，就只能表示正数，因此多了一个表示位，增加了最大值。原码[1000，01111] 的范围是-8 ~ 7，去掉符号位的话就是[0000，1111] 0~15。在c语言中整型加上unsigned来表示无符号整数。</p>
+
+<p>无符号转换成有符号公式：
+$$
+x=\begin{cases}
+x,\quad x&lt; 2^w/2 \<br />
+x-2^w,\quad x\geq 2^w/2
+\end{cases}
+$$</p>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>十进制</th>
+<th>无符号</th>
+<th>有符号</th>
+<th>最终十进制结果</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>0001</td>
+<td>0001</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>1111</td>
+<td>1111</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+
+<p>有符号转换成无符号公式：</p>
+
+<p>$$
+x=\begin{cases}
+x+2^w,\quad x&lt; 0 \<br />
+x,\quad x\geq 0
+\end{cases}
+$$</p>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>十进制</th>
+<th>有符号</th>
+<th>无符号</th>
+<th>最终十进制结果</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>0001</td>
+<td>0001</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>-8</td>
+<td>1000</td>
+<td>1000</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>-1</td>
+<td>1001</td>
+<td>1111</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="扩展与截断数字">扩展与截断数字</h3>
+
+<h4 id="扩展-例如从-4位-到-8位">扩展（例如从 4位 到 8位）</h4>
+
+<ul>
+<li>无符号数：加 0</li>
+</ul>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>转换前的十进制</th>
+<th>4位</th>
+<th>8位</th>
+<th>转换后的十进制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>0001</td>
+<td>0000，0001</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>1111</td>
+<td>0000，1111</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>有符号数：加符号位</li>
+</ul>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>转换前的十进制</th>
+<th>4位</th>
+<th>8位</th>
+<th>转换后的十进制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-1</td>
+<td>1001</td>
+<td>1111，0001</td>
+<td>-1</td>
+</tr>
+
+<tr>
+<td>-8</td>
+<td>1000</td>
+<td>1111，1000</td>
+<td>-8</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="截取">截取：</h4>
+
+<p>如果将w位转为k位，其中w&gt;k，则取后k位，移除 高位 w ~ k 的位。例如 8位 到 4位：则移除前4位，保留后4位。</p>
+
+<ul>
+<li>无符号数：直接保留后四位</li>
+</ul>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>转换前的十进制</th>
+<th>8位</th>
+<th>4位</th>
+<th>转换后的十进制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>17</td>
+<td>0001，0001</td>
+<td>0001</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>255</td>
+<td>1111，1111</td>
+<td>1111</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>有符号数：保留后四位，第一位表示符号位（结果是补码）</li>
+</ul>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>转换前的十进制</th>
+<th>8位</th>
+<th>4位</th>
+<th>转换后的十进制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-9</td>
+<td>1000，1001</td>
+<td>1001</td>
+<td>-7</td>
+</tr>
+
+<tr>
+<td>-15</td>
+<td>1000，1111</td>
+<td>1111</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="浮点数的表示">浮点数的表示</h3>
+
+<p>原码，反码，补码，可以进行整数的运算和存储了，但小数如何表示。</p>
+
+<h3 id="大小端">大小端</h3>
+
+<p>数据在内存中的存储顺序方式有大小端之分。</p>
+
+<p>举例：如果int类型的x 存储在0x100的位置，十六进制表示：0x01234567 ，根据大小端有两种不同存储方式：</p>
+
+<ul>
+<li>大端： 按照最高有效位（这里是01）到最低有效位的顺序存储</li>
+</ul>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>0x100</th>
+<th>0x200</th>
+<th>0x300</th>
+<th>0x400</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>01</td>
+<td>23</td>
+<td>45</td>
+<td>67</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>小端：按照最低有效位（这里是67）到最高有效位的顺序存储</li>
+</ul>
+
+<table class='pure-table pure-table-striped'>
+<thead>
+<tr>
+<th>0x100</th>
+<th>0x200</th>
+<th>0x300</th>
+<th>0x400</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>67</td>
+<td>45</td>
+<td>23</td>
+<td>01</td>
+</tr>
+</tbody>
+</table>
+
+<p>一般在应用层开发无需在意大小端，字节顺序不可见。只有在网络传输的时候，大端机器传输给小端机器，或者反过来时，才会有大小端转换问题。</p>
+
+<h3 id="参考">参考</h3>
+
+<p><a href="https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html">张子秋的博客</a></p>
+
+<p><a href="https://www.zhihu.com/question/20159860/answer/71256667">插画-李俊达的回答 - 知乎</a></p>
+
+<p><a href="https://wdxtub.com/csapp/thin-csapp-1/2016/04/16/">读薄csapp</a></p>
+
+          
+      </div>
+
     </div>
   </div>
   <div class="pure-u-1-24 pure-u-md-5-24"></div>
+</div>
+<p></p>
+
 <div class="footer pure-g">
   <div class="pure-u-1-24 pure-u-md-5-24"></div>
   <div class="pure-u-11-12 pure-u-md-7-12">
@@ -478,8 +1047,6 @@ code, kbd, pre, samp {
 
         </ul>
         <a href="#" class="pure-menu-link pull-right" id="gototop-btn">↑↑</a>
-        
-        <a href="https://heisenbergv.github.io/tags/index.xml" class="pure-menu-link pull-right">RSS</a>
         
         
       </div>
