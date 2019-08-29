@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>计划 on Heisenberg</title>
+    <title>计划 on Blackburn Theme Demo</title>
     <link>https://heisenbergv.github.io/series/%E8%AE%A1%E5%88%92/</link>
-    <description>Recent content in 计划 on Heisenberg</description>
+    <description>Recent content in 计划 on Blackburn Theme Demo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zn-Hans</language>
+    <language>zh-cn</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
     <lastBuildDate>Fri, 23 Aug 2019 15:50:19 +0800</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/series/%E8%AE%A1%E5%88%92/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +18,13 @@
       <pubDate>Fri, 23 Aug 2019 15:50:19 +0800</pubDate>
       
       <guid>https://heisenbergv.github.io/posts/lighter/2019-plan/</guid>
-      <description>学习理财： 年化率达到15-20%，投资收益超越工资 《小狗钱钱》 《穷爸爸富爸爸》 《解读基金》 《好好赚钱》 《指数基金投资指南》 《股票大作手回忆录》 《巴比伦最富有的人》 《滚雪球》 《聪明的投资者》 《穷查理宝典》 《战胜华尔街》 《漫步华尔街》 《财报就像一本故事书》 《巴菲特的护城河》 《投资最重要的事》 读书： 不言而喻 《百年孤独》 《暗时间》 《别做正常的傻瓜》 《稀缺》 《人性的优点》 学习技术： 涨工资, 技术负责人 《深入理</description>
+      <description> 学习理财： 年化率达到15-20%，投资收益超越工资
+ 《小狗钱钱》 《穷爸爸富爸爸》 《解读基金》 《好好赚钱》 《指数基金投资指南》 《股票大作手回忆录》 《巴比伦最富有的人》 《滚雪球》 《聪明的投资者》 《穷查理宝典》 《战胜华尔街》 《漫步华尔街》 《财报就像一本故事书》 《巴菲特的护城河》 《投资最重要的事》  读书： 不言而喻
+ 《百年孤独》 《暗时间》 《别做正常的傻瓜》 《稀缺》 《人性的优点》  学习技术： 涨工资, 技术负责人
+ 《深入理解计算机系统》 《编码》 go进阶  学习写作： 巩固学习成果，提高表达能力，记录收获
+ 写博客 每月至少2篇  学习钢琴： 自我安慰，学习古典
+ 学完《成人钢琴自学教程》 学习《钢琴上的古典音乐》  数学 抽象思维，提高思考，辅助投资与计算机领域
+ 可汗学院公开课：基础代数 线性代数 统计学入门  update  2019-08-27  读完 《好好赚钱》  2019-08-26  完成 可汗学院公开课：基础代数 增加理财书籍目录 增加统计学 去掉 微积分  2019-08-22  完成《暗时间》 完成《解读基金》  2019-8-01  《小狗钱钱》 《百年孤独》   </description>
     </item>
     
   </channel>
