@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>计算机 on Blackburn Theme Demo</title>
+    <title>计算机 on heisenberg blog</title>
     <link>https://heisenbergv.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
-    <description>Recent content in 计算机 on Blackburn Theme Demo</description>
+    <description>Recent content in 计算机 on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 15:50:19 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>CSAPP(1) - 信息的表示和处理</title>
-      <link>https://heisenbergv.github.io/posts/coder/20190827-csapp1/</link>
-      <pubDate>Tue, 27 Aug 2019 15:50:19 +0800</pubDate>
+      <link>https://heisenbergv.github.io/post/coder/20190827-csapp1/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/posts/coder/20190827-csapp1/</guid>
-      <description>计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯一的数字来标识，也就是地址（address）。每个计算机都有一个字长（word size），也就是常说的64位操作系统，32位操作系统。字长决定了虚拟地址空间的大小， 比如32位有4GB的内存空间，64位则是16EB（1TB = 1024GB，1 EB = 1,024 PB = 1,048,576 TB）。
-整数 原码，反码，补码 计算机存储的是二进制，现实中数字有正负之分，二进制如果想表示正负数怎么办呢？ 为了解决正负数问题于是有了 原码 ，原码的表示方式是：第一位不再表示有效位，而是符号位，0代表正数，1代表负数
-[1001] 这个8位二进制，本该表示 十进制的9，现在他表示为 -1，第一位（1）是符号位，后面的才是真正的值。
-   正数 二进制 负数 二进制     +0 0000 -0 1000   +1 0001 -1 1001   +2 0010 -2 1010   +3 0011 -3 1011   +4 0100 -4 1100   +5 0101 -5 1101   +6 0110 -6 1110   +7 0111 -7 1111    现在计算机可以存储负数了，我们进行运算操作：</description>
+      <guid>https://heisenbergv.github.io/post/coder/20190827-csapp1/</guid>
+      <description>计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯</description>
     </item>
     
   </channel>

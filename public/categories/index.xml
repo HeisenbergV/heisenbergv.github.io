@@ -1,34 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Blackburn Theme Demo</title>
-    <link>https://heisenbergv.github.io/categories/</link>
-    <description>Recent content in Categories on Blackburn Theme Demo</description>
+    <title>Categories on </title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="https://heisenbergv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>coder</title>
-      <link>https://heisenbergv.github.io/categories/coder/</link>
-      <pubDate>Tue, 27 Aug 2019 15:50:19 +0800</pubDate>
-      
-      <guid>https://heisenbergv.github.io/categories/coder/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lighter</title>
-      <link>https://heisenbergv.github.io/categories/lighter/</link>
-      <pubDate>Fri, 23 Aug 2019 15:50:19 +0800</pubDate>
-      
-      <guid>https://heisenbergv.github.io/categories/lighter/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>

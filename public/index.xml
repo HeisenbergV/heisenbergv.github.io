@@ -1,90 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blackburn Theme Demo</title>
-    <link>https://heisenbergv.github.io/</link>
-    <description>Recent content on Blackburn Theme Demo</description>
+    <title></title>
+    <link>/</link>
+    <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 27 Aug 2019 15:50:19 +0800</lastBuildDate>
     
-	<atom:link href="https://heisenbergv.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>CSAPP(1) - 信息的表示和处理</title>
-      <link>https://heisenbergv.github.io/posts/coder/20190827-csapp1/</link>
-      <pubDate>Tue, 27 Aug 2019 15:50:19 +0800</pubDate>
-      
-      <guid>https://heisenbergv.github.io/posts/coder/20190827-csapp1/</guid>
-      <description>计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯一的数字来标识，也就是地址（address）。每个计算机都有一个字长（word size），也就是常说的64位操作系统，32位操作系统。字长决定了虚拟地址空间的大小， 比如32位有4GB的内存空间，64位则是16EB（1TB = 1024GB，1 EB = 1,024 PB = 1,048,576 TB）。
-整数 原码，反码，补码 计算机存储的是二进制，现实中数字有正负之分，二进制如果想表示正负数怎么办呢？ 为了解决正负数问题于是有了 原码 ，原码的表示方式是：第一位不再表示有效位，而是符号位，0代表正数，1代表负数
-[1001] 这个8位二进制，本该表示 十进制的9，现在他表示为 -1，第一位（1）是符号位，后面的才是真正的值。
-   正数 二进制 负数 二进制     +0 0000 -0 1000   +1 0001 -1 1001   +2 0010 -2 1010   +3 0011 -3 1011   +4 0100 -4 1100   +5 0101 -5 1101   +6 0110 -6 1110   +7 0111 -7 1111    现在计算机可以存储负数了，我们进行运算操作：</description>
-    </item>
-    
-    <item>
-      <title>19年下半年计划</title>
-      <link>https://heisenbergv.github.io/posts/lighter/2019-plan/</link>
-      <pubDate>Fri, 23 Aug 2019 15:50:19 +0800</pubDate>
-      
-      <guid>https://heisenbergv.github.io/posts/lighter/2019-plan/</guid>
-      <description> 学习理财： 年化率达到15-20%，投资收益超越工资
- 《小狗钱钱》 《穷爸爸富爸爸》 《解读基金》 《好好赚钱》 《指数基金投资指南》 《股票大作手回忆录》 《巴比伦最富有的人》 《滚雪球》 《聪明的投资者》 《穷查理宝典》 《战胜华尔街》 《漫步华尔街》 《财报就像一本故事书》 《巴菲特的护城河》 《投资最重要的事》  读书： 不言而喻
- 《百年孤独》 《暗时间》 《别做正常的傻瓜》 《稀缺》 《人性的优点》  学习技术： 涨工资, 技术负责人
- 《深入理解计算机系统》 《编码》 go进阶  学习写作： 巩固学习成果，提高表达能力，记录收获
- 写博客 每月至少2篇  学习钢琴： 自我安慰，学习古典
- 学完《成人钢琴自学教程》 学习《钢琴上的古典音乐》  数学 抽象思维，提高思考，辅助投资与计算机领域
- 可汗学院公开课：基础代数 线性代数 统计学入门  update  2019-08-27  读完 《好好赚钱》  2019-08-26  完成 可汗学院公开课：基础代数 增加理财书籍目录 增加统计学 去掉 微积分  2019-08-22  完成《暗时间》 完成《解读基金》  2019-8-01  《小狗钱钱》 《百年孤独》   </description>
-    </item>
-    
-    <item>
-      <title>暗时间</title>
-      <link>https://heisenbergv.github.io/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</link>
-      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://heisenbergv.github.io/posts/lighter/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</guid>
-      <description>学习方面 最近看《暗时间》这本书，感觉很不错。
-投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死记硬背。
-只有当进入沉浸状态学习效率才会提高，并且不被其他因素中断。 最后将学到的知识进行归纳，或者讲给别人听，加深巩固知识。 学习过程或者做一件事情的过程，如果能记录进度，知道自己还差多少完成，心里就会有所期待。
-学以致用才是最终目的
-实际时间 投入的时间*效率 才是真实的学习时间，不加以思索的学习，容易遗忘，效果低。
-暗时间 吃饭，睡觉，公交等 这些碎片时间，进行思考刚学的知识。
-沉浸状态 当所有心思都专注在这一件事上，这时候的效率是最高的。
-中断 当专注某一件事的时候，突然被外界干扰，或者思绪突然想到了其他事情上。 如同计算机线程之间的切换，多个事情同时处理需要上下文的切换，会造成性能损耗。 专注突然被打断，再次重新专注需要时间
-归纳知识 记笔记，或者写博客，按照自己思路将知识描述总结到文本中，加深印象。 建立索引，经常回顾，忘记时也能快速查到。
-讲给别人听 这里的讲给别人，也可以是设想讲给别人听， 费曼学习法，大致意思就是将学到的知识，总结成按自己的理解思路进行描述出来，讲述给别人。 这样会更清楚的意识到自己理解了多少，哪里讲述的不清，说明哪里理解的不到位然后重新总结， 反复归纳总结，讲述，直到清晰表达出要点。
-进度 当下载一个软件，能知道下载的进度，这样就能等下去，知道还有多久完成。 学习也一样，如果一直学，没有止境会给人心里感觉很徒劳。 可以将学习某一个知识，进行分段，比如将知识点分成几块，每天完成多少，大约1个月就能完成全部。 明确的目标事半功倍</description>
-    </item>
-    
-    <item>
-      <title>钢琴入门练习</title>
-      <link>https://heisenbergv.github.io/posts/lighter/20190815-%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/</link>
-      <pubDate>Thu, 15 Aug 2019 11:40:19 +0800</pubDate>
-      
-      <guid>https://heisenbergv.github.io/posts/lighter/20190815-%E9%92%A2%E7%90%B4%E5%85%A5%E9%97%A8%E7%BB%83%E4%B9%A0/</guid>
-      <description>练习曲1 提取码: gu7d</description>
-    </item>
-    
-    <item>
-      <title>Goroutine</title>
-      <link>https://heisenbergv.github.io/posts/coder/20190807-groutine/</link>
-      <pubDate>Wed, 07 Aug 2019 15:50:19 +0800</pubDate>
-      
-      <guid>https://heisenbergv.github.io/posts/coder/20190807-groutine/</guid>
-      <description>并发与并行  并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能有一条指令执行,但多个进程指令被快速的轮换执行,宏观看起来是并行的,微观是cpu在不断的快速切换.(操作系统)  线程安全问题  协作式调度: 当线程终止或阻塞是发生调度 =&amp;gt; &amp;ldquo;主动让出&amp;rdquo; 抢占式调度: 允许逻辑上将可继续运行的线程在运行过程中暂停的调度方式 =&amp;gt; &amp;ldquo;被迫让出&amp;rdquo; 脏数据原因: 抢占式调度被迫让出cpu控制权,一个行为可能有多个指令组合而成 多指令在执行过程中被中断,导致未执行完整出现脏数据. 举例:  i= 0, 线程1 执行 i++,线程 2 也执行 i++, 想要的结果是2 当程序 1 将 i 值读取出来并运算后改为写入的时候,系统抢占式把控制权给个程序 2 程序 2 完整的执行完了 i++,随后系统将控制权交回给程序 1,此时的程序 1 并不知道自己被打断了,也不知道 i 已经被修改,还把之前计算好的值写入,最后把之前的2给覆盖了结果变成了1.
- 被打断是因为抢占式使用时间到了后被迫交还cpu 值篡改是因为读取i和写入i是两个指令不是一个原子操作   Coroutine(协程)特点 一种用户态的轻量级线程  轻量级线程(由于线程创建时需要向操作系统申请资源,并且在销毁时将资源归还,因此它的创建和销毁的开销比较大,内存消耗更低,一般是2kb vs 1mb) 是语言层面的任务,非系统级别的(由语言层面虚拟机或者go runtime等 进行创建),切换更高效 多个协程可能在一个或多个线程上运行.依靠调度器分配 协作式: 非抢占式(协作)在关键时刻(阻塞,任务完成等)将cpu让给其他线程 同一线程上的多个协程的切换是无线程安全问题的  Goroutine  概念: goroutine是go语言中的协程 如何使用: go test() 在函数前加go关键字 就可以以新协程来启动test()函数 为什么说协程无线程安全问题: 协程是协作式本身无线程安全问题,但go runtime的scheduler会将多个goroutine分配到不同线程,才会出问题</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://heisenbergv.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://heisenbergv.github.io/about/</guid>
-      <description> 勉强生存，与死无异 本站使用github pages + hugo, theme: AllinOne </description>
-    </item>
     
   </channel>
 </rss>
