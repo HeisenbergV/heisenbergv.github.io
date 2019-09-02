@@ -6,19 +6,10 @@
     <description>Recent content in csapp on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/tags/csapp/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>CSAPP(2) - 程序的机器级表示</title>
-      <link>https://heisenbergv.github.io/post/coder/20190902-csapp2/</link>
-      <pubDate>Mon, 02 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://heisenbergv.github.io/post/coder/20190902-csapp2/</guid>
-      <description>test</description>
-    </item>
     
     <item>
       <title>CSAPP(1) - 信息的表示和处理</title>
