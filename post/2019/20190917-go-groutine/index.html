@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-09-17T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-17T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2270">
+<meta itemprop="wordCount" content="2203">
 
 
 
@@ -147,7 +147,6 @@
 <li><a href="#coroutine-协程-特点">Coroutine(协程)特点</a></li>
 <li><a href="#goroutine">Goroutine</a></li>
 <li><a href="#调度器-scheduler">调度器(Scheduler)</a></li>
-<li><a href="#总结">总结</a></li>
 <li><a href="#参考">参考</a></li>
 </ul></li>
 </ul>
@@ -373,21 +372,15 @@
 <li><p>Go运行时系统并没有内核调度器的中断能力(只有系统有),它只能通过向运行时间过长的G中设置抢占flag的方法温柔的让运行的G自己主动让出M的执行权,这里也说明了即使是抢占了但也不会出现线程不安全,因为他不是被突然中断的,而是执行完检测到flag再中断的.</p></li>
 </ul>
 
-<h2 id="总结">总结</h2>
-
-<ul>
-<li>go scheduler 公平高效合理的分配goroutine</li>
-<li>goroutine不会有线程安全问题,但go使用了M:N模型,所以也需要关注线程安全问题.</li>
-</ul>
-
 <h2 id="参考">参考</h2>
 
-<ul>
-<li><a href="https://blog.csdn.net/u010853261/article/details/84790392">惜暮 blog</a></li>
-<li><a href="http://morsmachine.dk/go-scheduler">Morsing&rsquo;s Blog</a></li>
-<li><a href="https://github.com/k2huang/blogpost/blob/master/golang/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/Go%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6.md">k2huang blog</a></li>
-<li><a href="https://github.com/k2huang/blogpost/blob/master/golang/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/Go%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6.md">图片引自 k2huang blog</a></li>
-</ul>
+<p><a href="https://blog.csdn.net/u010853261/article/details/84790392">惜暮 blog</a></p>
+
+<p><a href="http://morsmachine.dk/go-scheduler">Morsing&rsquo;s Blog</a></p>
+
+<p><a href="https://github.com/k2huang/blogpost/blob/master/golang/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/Go%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6.md">k2huang blog</a></p>
+
+<p><a href="https://github.com/k2huang/blogpost/blob/master/golang/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/Go%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6.md">图片引自 k2huang blog</a></p>
 
     </div>
 
@@ -406,7 +399,7 @@
   
   <p class="copyright-item">
     <span class="item-title">许可协议</span>
-    <span class="item-content">本博客所有文章除特别声明外，均采用<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a>许可协议。转载请注明出处！</span>
+    <span class="item-content">除特别声明外文章，均采用<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> 转载请注明出处</span>
   </p>
 </div>
 <footer class="post-footer">
@@ -419,7 +412,7 @@
             <span class="prev-text nav-default">Go Channel</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/2019/20190915-csapp3/">
+        <a class="next" href="/post/2019/20190923-csapp3/">
             <span class="next-text nav-default">读CSAPP(3) - 存储器层次结构</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>

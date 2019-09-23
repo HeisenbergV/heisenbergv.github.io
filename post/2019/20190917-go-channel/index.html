@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-09-17T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-17T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2536">
+<meta itemprop="wordCount" content="2397">
 
 
 
@@ -151,7 +151,6 @@
 <ul>
 <li><a href="#数据结构">数据结构</a></li>
 <li><a href="#主要函数功能">主要函数功能</a></li>
-<li><a href="#demo调试">demo调试</a></li>
 </ul></li>
 <li><a href="#参考">参考</a></li>
 </ul></li>
@@ -687,11 +686,9 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//伪代码
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span>
 	<span class="k">if</span> <span class="nx">close</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close&#34;</span><span class="p">)</span>
 		<span class="k">return</span>
@@ -765,11 +762,9 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//伪代码
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(){</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(){</span>
 	<span class="k">if</span> <span class="nx">sg</span><span class="o">:=</span> <span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
 		<span class="k">if</span> <span class="nx">buff</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
 			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span>
@@ -848,81 +843,13 @@
 </div></li>
 </ul>
 
-<h3 id="demo调试">demo调试</h3>
-
-<ul>
-<li><p>调试查看chan变量的结构值</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">run</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">a</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;send: &#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
-	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">a</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;send ok: &#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">channelFunc1</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
-	<span class="k">go</span> <span class="nf">run</span><span class="p">(</span><span class="nx">ch</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-	<span class="c1">//buff  1
-</span><span class="c1"></span>	<span class="c1">//sendq  go run
-</span><span class="c1"></span>	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;sss: &#34;</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;sss: &#34;</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;sss: &#34;</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">run2</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">ch</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">channelFunc2</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="k">go</span> <span class="nf">run2</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
-	<span class="c1">// recvq  go run2
-</span><span class="c1"></span>	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
-
 <h2 id="参考">参考</h2>
 
-<p><a href="https://books.studygolang.com/gopl-zh/">go语言圣经</a>
-<a href="https://my.oschina.net/renhc/blog/2246871">恋恋美食 blog</a>
-<a href="https://draveness.me/">draveness blog</a></p>
+<p><a href="https://books.studygolang.com/gopl-zh/">go语言圣经</a></p>
+
+<p><a href="https://my.oschina.net/renhc/blog/2246871">恋恋美食 blog</a></p>
+
+<p><a href="https://draveness.me/">draveness blog</a></p>
 
     </div>
 
@@ -941,7 +868,7 @@
   
   <p class="copyright-item">
     <span class="item-title">许可协议</span>
-    <span class="item-content">本博客所有文章除特别声明外，均采用<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a>许可协议。转载请注明出处！</span>
+    <span class="item-content">除特别声明外文章，均采用<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> 转载请注明出处</span>
   </p>
 </div>
 <footer class="post-footer">
