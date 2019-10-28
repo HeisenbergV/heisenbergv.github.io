@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="heisenberg" /><meta name="description" content="虚拟内存系统 计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address） 早期计算机使" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="heisenberg" /><meta name="description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="读CSAPP(4) - 虚拟内存" />
-<meta property="og:description" content="虚拟内存系统 计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address） 早期计算机使" />
+<meta property="og:description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://heisenbergv.github.io/post/2019/20190928-csapp4/" />
 <meta property="article:published_time" content="2019-09-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-28T00:00:00+00:00" />
 <meta itemprop="name" content="读CSAPP(4) - 虚拟内存">
-<meta itemprop="description" content="虚拟内存系统 计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address） 早期计算机使">
+<meta itemprop="description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全">
 
 
 <meta itemprop="datePublished" content="2019-09-28T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-28T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="3021">
+<meta itemprop="wordCount" content="3166">
 
 
 
 <meta itemprop="keywords" content="csapp," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="读CSAPP(4) - 虚拟内存"/>
-<meta name="twitter:description" content="虚拟内存系统 计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address） 早期计算机使"/>
+<meta name="twitter:description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -157,10 +157,9 @@
 <li><a href="#让虚拟内存系统更健壮">让虚拟内存系统更健壮</a>
 <ul>
 <li><a href="#缓存方式">缓存方式</a></li>
-<li><a href="#tlb加速翻译">TLB加速翻译</a></li>
 <li><a href="#多级页表">多级页表</a></li>
+<li><a href="#tlb加速翻译">TLB加速翻译</a></li>
 </ul></li>
-<li><a href="#动态内存分配">动态内存分配</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -169,13 +168,13 @@
     <div class="post-content">
       
 
+<p>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。
+进程运行过程不再加载全部数据，而是中只保留当前运行需要的数据在内存中。为了让MMU更高效加入了tlb，缓存映射关系，还利用多级页表降低页表内存占用有了 。</p>
+
 <h2 id="虚拟内存系统">虚拟内存系统</h2>
 
-<p>计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address）</p>
-
-<p><img src="../../../img/csapp-vm01.png" alt="image" /></p>
-
-<p>早期计算机使用物理寻址方式，这样的坏处是</p>
+<p>计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address）
+早期计算机使用物理寻址方式，这样的坏处是</p>
 
 <ul>
 <li>系统中多个进程所使用的内存，进程之间容易互相读写数据造成各种问题</li>
@@ -218,11 +217,13 @@
 <li>缓存未命中需要知道此虚拟页在磁盘的什么地方进行缓存替换操作</li>
 </ul>
 
-<p>整个页表数据结构由操作系统进行负责维护，以及在磁盘与主存之间来回传送页，进行替换的时候需要向系统内核发送一个缺页异常，内核会做一些处理。</p>
+<p>整个页表数据结构由操作系统进行负责维护，以及在磁盘与主存之间来回传送页，进行替换的时候需要向系统内核发送一个缺页异常，内核会做一些处理。
+PTE负责把虚拟页映射到磁盘或者物理页上，假设需要两个数据：</p>
 
-<p>PTE负责把虚拟页映射到磁盘或者物理页上，假设需要两个数据：
-- 地址字段：存放映射的地址
-- 有效位：判断此页是否被缓存</p>
+<ul>
+<li>地址字段：存放映射的地址</li>
+<li>有效位：判断此页是否被缓存</li>
+</ul>
 
 <p><img src="../../../img/csapp-vm04.png" alt="image" /></p>
 
@@ -295,42 +296,33 @@
 当物理内存缓存未命中由磁盘提供缓存服务，而磁盘比物理内存慢10w倍。所以物理内存的未命中代价开销要比高速缓存未命中大得多，而且读取磁盘中一个扇区的第一个字节时间开销比读这个扇区中连续字节要慢大约10w倍。所以：</p>
 
 <ul>
-<li>物理页有更大的尺寸 4KB~2MB：为了不命中处罚和访问第一个字节的开销</li>
-<li>全相连?：由于不命中处罚，</li>
-<li>缓存替换策略更复杂？：不命中的时候替换进行替换页，替换错了还会出现缓存未命中，所以开销也会很大，需要更强大的替换算法（由操作系统提供）</li>
-<li>写回而不是直写？</li>
+<li>物理页有更大的尺寸 4KB ~ 2MB：为了不命中处罚和访问第一个字节的开销</li>
+<li>全相连：由于不命中处罚，任何虚拟页都可以放置在任何物理页中</li>
+<li>缓存替换策略更复杂：不命中的时候替换进行替换页，替换错了还会出现缓存未命中，所以开销也会很大，需要更强大的替换算法（由操作系统提供）</li>
+<li>写回而不是直写：访问磁盘很慢，所以需要一个修改位标记是否被修改，没有被修改就无需在替换的时候写入磁盘。</li>
 </ul>
-
-<h3 id="tlb加速翻译">TLB加速翻译</h3>
-
-<p>为了加速翻译 Translation Lookaside Buffer(TLB)，可以理解为页表在处理芯片上的缓存</p>
-
-<ol>
-<li>第1步 cpu产生一个虚拟地址</li>
-<li>第2，3步mmu从tlb取出对应PTE</li>
-<li>第4步将这个虚拟地址翻译成物理内存地址 然后发送到高速缓存/主存</li>
-<li>返回数据</li>
-</ol>
-
-<p>如果tlb不命中，则需要从高速缓存/主存取出相应PTE，存放到tlb，可能会覆盖已有tlb条目</p>
-
-<p><img src="../../../img/csapp-vm10.png" alt="image" /></p>
 
 <h3 id="多级页表">多级页表</h3>
 
-<p>32位操作系统就需要管理 $2^{32}$ 字节的内存地址</p>
+<blockquote>
+<p>32位操作系统就需要管理 $2^{32}$ 字节的虚拟内存地址 4GB</p>
 
 <p>假设一个PTE需要4KB（$2 ^ {12}$ 字节），一共需要：$2^{32}$ * $2^{-12}$ = $2^{20}$ 个PTE</p>
 
 <p>假设一条PTE记录有4个字节（$2^2$），一共需要 $2^{20}$ * $2^2$ = $2^{22}$字节 = 4MB</p>
 
-<p>每个进程都需要有一个单独页表，如果是64位那内存都放不下了，多级页表避免把全部页表都保存在内存中，减少了内存开销。</p>
+<p>不分页情况下用4MB覆盖全部虚拟内存地址，也就是每个进程都有4MB的页表</p>
+</blockquote>
 
-<p>如果没有多级的话，按照上面计算需要$2^{20}$个页表才能映射全部物理内存从 PTE 0 ~ PTE $2^{20}$
-下图是个两级页表，第一级页表每个PTE映射一个片（chunk）大小为$2^{10}$字节（可以理解为一个页表）。
-二级页表中的每个PTE映射一个4KB的VP
-这样的话就可以 映射 $2^{10}$ * chunk（1024字节） = 4GB
-这样看来多级页表好像跟非多级效果一样，但节省了用不到的地址空间。下图多级情况下只用到了0~4MB,4MB ~ 8MB, 还有末尾的 4MB，一共12MB+3个1级PTE（4KB）</p>
+<p>多级页表主要从两部分降低内存：</p>
+
+<ol>
+<li>如果一级页表中的一个PTE为空，那么对应的二级页表就不会存在</li>
+<li>只有一级页表存在于主存中，虚拟内存系统可以按需创建，调入或调出二级页表</li>
+</ol>
+
+<p>下图中，第一级页表每个PTE映射一个片（chunk）大小为$2^{10}$字节（可以理解为一个页表）。
+这样计算下来，一级页表总共4KB， 二级页表共1024个chunk，但中只用到了3个也就是 3*4KB = 12KB。</p>
 
 <p><img src="../../../img/csapp-vm11.png" alt="image" /></p>
 
@@ -338,9 +330,22 @@
 
 <p><img src="../../../img/csapp-vm12.png" alt="image" /></p>
 
-<h2 id="动态内存分配">动态内存分配</h2>
+<p>虽然多级页表用空间换时间，但TLB和局部性让他并不比单级慢很多</p>
 
-<p>更新中。</p>
+<h3 id="tlb加速翻译">TLB加速翻译</h3>
+
+<p>为了加速翻译 Translation Lookaside Buffer(TLB)，可以理解为页表在处理芯片上的缓存</p>
+
+<ol>
+<li>第1步 cpu产生一个虚拟地址</li>
+<li>第2，3步MMU从TLB取出对应PTE</li>
+<li>第4步将这个虚拟地址翻译成物理内存地址 然后发送到高速缓存/主存</li>
+<li>返回数据</li>
+</ol>
+
+<p>如果TLB不命中，则需要从高速缓存/主存取出相应PTE，存放到TLB，可能会覆盖已有TLB条目</p>
+
+<p><img src="../../../img/csapp-vm10.png" alt="image" /></p>
 
     </div>
 
