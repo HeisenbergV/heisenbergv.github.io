@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>lighter on heisenberg blog</title>
@@ -6,10 +6,19 @@
     <description>Recent content in lighter on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 23 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/categories/lighter/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2020年计划</title>
+      <link>https://heisenbergv.github.io/post/2020/2020-plan/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/post/2020/2020-plan/</guid>
+      <description>理财 《股票大作手回忆录》 《巴比伦最富有的人》 《滚雪球》 《聪明的投资者》 《穷查理宝典》 《战胜华尔街》 《漫步华尔街》 《财报就像一本故事书》 《巴菲</description>
+    </item>
     
     <item>
       <title>钢琴入门练习</title>
