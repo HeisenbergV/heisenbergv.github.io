@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.1 with theme even" />
+<meta name="generator" content="Hugo 0.56.3 with theme even" />
 
 
 <link rel="canonical" href="https://heisenbergv.github.io/post/2019/20190903-go-race-condition/" />
@@ -34,7 +34,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.6eb09ed45a88bd339269c14515d2a11f2e0afdadbdd763d83f9b5c797166b081.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -46,13 +47,16 @@
 <meta property="article:modified_time" content="2019-09-03T00:00:00+00:00" />
 <meta itemprop="name" content="Go 竞态问题">
 <meta itemprop="description" content="定义 单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源">
+
+
 <meta itemprop="datePublished" content="2019-09-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2502">
+<meta itemprop="wordCount" content="2499">
 
 
 
-<meta itemprop="keywords" content="go," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="go," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go 竞态问题"/>
 <meta name="twitter:description" content="定义 单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源"/>
 
@@ -136,30 +140,37 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#heading">定义</a></li>
-    <li><a href="#heading-1">如何避免竞态条件</a></li>
-    <li><a href="#-">题外话: 空结构体</a></li>
-    <li><a href="#heading-2">防止竞态条件</a></li>
-    <li><a href="#heading-3">总结</a></li>
-    <li><a href="#heading-4">参考</a></li>
-  </ul>
+<ul>
+<li>
+<ul>
+<li><a href="#定义">定义</a></li>
+<li><a href="#如何避免竞态条件">如何避免竞态条件</a></li>
+<li><a href="#题外话-空结构体">题外话: 空结构体</a></li>
+<li><a href="#防止竞态条件">防止竞态条件</a></li>
+<li><a href="#总结">总结</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h2 id="heading">定义</h2>
+      
+
+<h2 id="定义">定义</h2>
+
 <ul>
 <li>单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源</li>
 <li>多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源</li>
 </ul>
-<h2 id="heading-1">如何避免竞态条件</h2>
+
+<h2 id="如何避免竞态条件">如何避免竞态条件</h2>
+
 <ul>
-<li>变量只读</li>
-</ul>
+<li><p>变量只读</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -184,11 +195,10 @@
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
-</span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//下面两种获取map信息的方式
-</span><span class="c1"></span><span class="c1">//懒汉获取方式,有则获取无则加载: 会有读写错乱情况
+</span><span class="c1">//懒汉获取方式,有则获取无则加载: 会有读写错乱情况
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">loadmap</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="mi">2</span>
 <span class="p">}</span>
@@ -211,16 +221,14 @@
 
 <span class="kd">func</span> <span class="nf">getmap</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">maps</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>私有化变量</li>
-</ul>
+</div></li>
+
+<li><p>私有化变量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -247,31 +255,30 @@
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span> <span class="c1">//用于等待所有协程都完成
 </span><span class="c1"></span>
-<span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">defer</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">(</span><span class="p">)</span>
-	<span class="p">}</span><span class="p">(</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">add</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+	<span class="p">}()</span>
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
 		<span class="nx">a</span><span class="o">++</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">raceFunc1</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">raceFunc1</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-	<span class="k">go</span> <span class="nf">add</span><span class="p">(</span><span class="p">)</span>
-	<span class="k">go</span> <span class="nf">add</span><span class="p">(</span><span class="p">)</span>
+	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
+	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
 
-	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok: &#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>Channel 靠通信同步数据而不是靠共享内存</li>
-</ul>
+</div></li>
+
+<li><p>Channel 靠通信同步数据而不是靠共享内存</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -295,7 +302,7 @@
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//使用channel 将a设置为goroutine的局部变量
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span>
 
-<span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">add</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">a</span> <span class="o">:=</span> <span class="mi">0</span>
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
 		<span class="nx">a</span><span class="o">++</span>
@@ -303,23 +310,25 @@
 	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">a</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">raceFunc1</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">raceFunc1</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">ch</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
-	<span class="k">go</span> <span class="nf">add</span><span class="p">(</span><span class="p">)</span>
-	<span class="k">go</span> <span class="nf">add</span><span class="p">(</span><span class="p">)</span>
+	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
+	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
 
 	<span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">ch</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok: &#34;</span><span class="p">,</span> <span class="nx">v1</span><span class="o">+</span><span class="nx">v2</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><h2 id="-">题外话: 空结构体</h2>
-<ul>
-<li>如何表达: struct{}是个 &lsquo;空结构体类型&rsquo;, 和结构体不一样; struct{}{}是空结构体的值</li>
+</div></li>
 </ul>
+
+<h2 id="题外话-空结构体">题外话: 空结构体</h2>
+
+<ul>
+<li><p>如何表达: struct{}是个 &lsquo;空结构体类型&rsquo;, 和结构体不一样; struct{}{}是空结构体的值</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -344,59 +353,55 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">    <span class="c1">//定义方式:
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>
-    <span class="nx">ss</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//定义方式:
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+<span class="nx">ss</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+<span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span>
     
-    <span class="c1">//未初始化的空结构体, go会默认初始化成 struct{}{}类型
-</span><span class="c1"></span>    <span class="c1">//并且 空结构体的 值 只有 struct{}{} 其他都不行
-</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">ss</span><span class="p">)</span> <span class="c1">// {}
+<span class="c1">//未初始化的空结构体, go会默认初始化成 struct{}{}类型
+</span><span class="c1">//并且 空结构体的 值 只有 struct{}{} 其他都不行
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">ss</span><span class="p">)</span> <span class="c1">// {}
 </span><span class="c1"></span>    
-    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span> <span class="p">=</span> <span class="kc">nil</span> <span class="c1">//error
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">//error
+<span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span> <span class="p">=</span> <span class="kc">nil</span> <span class="c1">//error
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">//error
 </span><span class="c1"></span>    
-    <span class="c1">//比较
-</span><span class="c1"></span>    <span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span> <span class="c1">// 或者写成 var a struct{}
-</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">a</span> <span class="o">==</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span> <span class="p">{</span> <span class="c1">//不能用 nil或者0等
-</span><span class="c1"></span>    	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;11111&#34;</span><span class="p">)</span> <span class="c1">// print
-</span><span class="c1"></span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;22222&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// {}
-</span><span class="c1"></span>    <span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span> 
-    <span class="nx">b</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">)</span> <span class="c1">// true
-</span></code></pre></td></tr></table>
+<span class="c1">//比较
+</span><span class="c1"></span><span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span> <span class="c1">// 或者写成 var a struct{}
+</span><span class="c1"></span><span class="k">if</span> <span class="nx">a</span> <span class="o">==</span> <span class="kd">struct</span><span class="p">{}{}</span> <span class="p">{</span> <span class="c1">//不能用 nil或者0等
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;11111&#34;</span><span class="p">)</span> <span class="c1">// print
+</span><span class="c1"></span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;22222&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// {}
+</span><span class="c1"></span><span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span> 
+<span class="nx">b</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">)</span> <span class="o">//</span> <span class="kc">true</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>空结构体的内存占用是0</li>
-</ul>
+</div></li>
+
+<li><p>空结构体的内存占用是0</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>
-<span class="nb">println</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Sizeof</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="p">)</span> <span class="c1">// 0
-</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+<span class="nb">println</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Sizeof</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span> <span class="o">//</span> <span class="mi">0</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>
-<p>用途</p>
+</div></li>
+
+<li><p>用途</p>
+
 <ul>
 <li>字典: 当我们想处理一些数据是否存在于字典的时候,我们只想关注key是否存在,value是不必要的,这时候可以用: map[string] struct{}</li>
 <li>信号: 当我们用channel来阻塞或者当一个信号触发的时候,我们只关注是否阻塞了,是否触发了,不在意传输的是什么信息: make(chan struct{})</li>
-</ul>
-</li>
-<li>
-<p>举例</p>
-</li>
-</ul>
+</ul></li>
+
+<li><p>举例</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -417,46 +422,46 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//字典
-</span><span class="c1"></span><span class="nx">m</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">)</span>
+</span><span class="c1"></span><span class="nx">m</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">struct</span><span class="p">{})</span>
 	
-<span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">[</span><span class="s">&#34;hello&#34;</span><span class="p">]</span><span class="p">;</span> <span class="nx">ok</span> <span class="p">{</span>
+<span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">[</span><span class="s">&#34;hello&#34;</span><span class="p">];</span> <span class="nx">ok</span> <span class="p">{</span>
 	<span class="nb">println</span><span class="p">(</span><span class="s">&#34;yes&#34;</span><span class="p">)</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 	<span class="nb">println</span><span class="p">(</span><span class="s">&#34;no&#34;</span><span class="p">)</span>
 <span class="p">}</span>
     
 <span class="c1">//信号
-</span><span class="c1"></span><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">)</span>
-<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>
-<span class="p">}</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+<span class="p">}()</span>
 
 <span class="o">&lt;-</span><span class="nx">ch</span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>ch:=make(chan struct{}, 100) 定义了有缓冲区的channel, 但缓冲区的内存大小依旧是0, cap(ch) 为100</li>
-<li>s := [100]struct{}{} 数组大小为100,占内存为0</li>
+</div></li>
+
+<li><p>ch:=make(chan struct{}, 100) 定义了有缓冲区的channel, 但缓冲区的内存大小依旧是0, cap(ch) 为100</p></li>
+
+<li><p>s := [100]struct{}{} 数组大小为100,占内存为0</p></li>
 </ul>
-<h2 id="heading-2">防止竞态条件</h2>
+
+<h2 id="防止竞态条件">防止竞态条件</h2>
+
 <ul>
-<li>
-<p>临界区(critical section):在Lock和Unlock之间的代码段中的内容可以随便读取或者修改不会有竞态问题</p>
-</li>
-<li>
-<p>一个只能为1和0的信号量叫做二元信号量(binary semaphore)</p>
+<li><p>临界区(critical section):在Lock和Unlock之间的代码段中的内容可以随便读取或者修改不会有竞态问题</p></li>
+
+<li><p>一个只能为1和0的信号量叫做二元信号量(binary semaphore)</p>
+
 <ul>
 <li>生产消费模式</li>
 <li>可以设置访问数量</li>
-<li>官方扩展包支持:go get golang.org/x/sync/semaphore</li>
-</ul>
-</li>
-</ul>
+
+<li><p>官方扩展包支持:go get golang.org/x/sync/semaphore</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -472,36 +477,32 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">
-<span class="kd">var</span> <span class="p">(</span>
-	<span class="nx">sema</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="c1">//同一时刻 只能一个线程访问
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">sema</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="mi">1</span><span class="p">)</span><span class="c1">//同一时刻 只能一个线程访问
 </span><span class="c1"></span>	<span class="nx">balance</span> <span class="kt">int</span>
 <span class="p">)</span>
 
 <span class="kd">func</span> <span class="nf">Add</span><span class="p">(</span><span class="nx">amount</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">sema</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>  <span class="c1">//写入成功 或者 失败阻塞住
+	<span class="nx">sema</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>  <span class="c1">//写入成功 或者 失败阻塞住
 </span><span class="c1"></span>	<span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span>
 	<span class="o">&lt;-</span><span class="nx">sema</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">Get</span><span class="p">(</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-	<span class="nx">seam</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>
-	<span class="k">defer</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="o">&lt;-</span><span class="nx">seam</span> <span class="p">}</span><span class="p">(</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">Get</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">seam</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span> <span class="o">&lt;-</span><span class="nx">seam</span> <span class="p">}()</span>
 	<span class="k">return</span> <span class="nx">balance</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>sync.Mutex互斥锁</li>
-</ul>
+</div></li>
+</ul></li>
+
+<li><p>sync.Mutex互斥锁</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -525,49 +526,42 @@
 <span class="p">)</span>
 
 <span class="kd">func</span> <span class="nf">Add</span><span class="p">(</span><span class="nx">amount</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
 	<span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span>
-	<span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">Get</span><span class="p">(</span><span class="p">)</span> <span class="kt">int</span><span class="p">{</span>
-	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span><span class="p">}</span><span class="p">(</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">Get</span><span class="p">()</span> <span class="kt">int</span><span class="p">{</span>
+	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()}()</span>
 	<span class="k">return</span> <span class="nx">balance</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>sync.RWMutex读写锁
+</div></li>
+
+<li><p>sync.RWMutex读写锁</p>
+
 <ul>
 <li>如果只需要读取变量的状态，不修改变量,我们并发运行事实上是安全的，只要在运行的时候没有修改操作即可。在这种场景下我们需要一种特殊类型的锁，其允许多个只读操作并行执行，但写操作会完全互斥: 多读单写锁(multiple readers, single writer lock)</li>
 <li>适用场景:RWMutex只有当获得锁的大部分goroutine都是读操作, RWMutex需要更复杂的内部记录，所以比mutex慢些</li>
-<li>与Mutex比较
+
+<li><p>与Mutex比较</p>
+
 <ul>
-<li>
-<p>RWMutex是基于Mutex的，在Mutex的基础之上增加了读、写的信号量，并使用了类似引用计数的读锁数量</p>
-</li>
-<li>
-<p>读锁与读锁兼容，读锁与写锁互斥，写锁与写锁互斥，只有在锁释放后才可以继续申请互斥的锁</p>
-</li>
-</ul>
-</li>
-<li>使用
+<li><p>RWMutex是基于Mutex的，在Mutex的基础之上增加了读、写的信号量，并使用了类似引用计数的读锁数量</p></li>
+
+<li><p>读锁与读锁兼容，读锁与写锁互斥，写锁与写锁互斥，只有在锁释放后才可以继续申请互斥的锁</p></li>
+</ul></li>
+
+<li><p>使用</p>
+
 <ul>
-<li>
-<p>Lock()和Unlock()用于申请和释放写锁</p>
-</li>
-<li>
-<p>RLock()和RUnlock()用于申请和释放读锁</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<li><p>Lock()和Unlock()用于申请和释放写锁</p></li>
+
+<li><p>RLock()和RUnlock()用于申请和释放读锁</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -585,34 +579,34 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">    <span class="kd">var</span> <span class="p">(</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
 	<span class="nx">rw</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span> 
 	<span class="nx">balance</span> <span class="kt">int</span>
-    <span class="p">)</span>
+<span class="p">)</span>
     
-    <span class="kd">func</span> <span class="nf">Add</span><span class="p">(</span><span class="nx">amount</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">rw</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">Add</span><span class="p">(</span><span class="nx">amount</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">rw</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
 	<span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span>
-	<span class="nx">rw</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span>
-    <span class="p">}</span>
+	<span class="nx">rw</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+<span class="p">}</span>
     
-    <span class="kd">func</span> <span class="nf">Get</span><span class="p">(</span><span class="p">)</span> <span class="kt">int</span><span class="p">{</span>
-	<span class="nx">rw</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="nx">rw</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span><span class="p">}</span><span class="p">(</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">Get</span><span class="p">()</span> <span class="kt">int</span><span class="p">{</span>
+	<span class="nx">rw</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span><span class="nx">rw</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()}()</span>
 	<span class="k">return</span> <span class="nx">balance</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>sync.Once惰性初始化
+</div></li>
+</ul></li>
+</ul></li>
+
+<li><p>sync.Once惰性初始化</p>
+
 <ul>
-<li>判空后进行初始化操作,但多协程情况下容易出现竞态条件导致初始化多次</li>
-</ul>
-</li>
-</ul>
+<li><p>判空后进行初始化操作,但多协程情况下容易出现竞态条件导致初始化多次</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -666,10 +660,10 @@
 
 <span class="c1">// Concurrency-safe.
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">Icon</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">image</span><span class="p">.</span><span class="nx">Image</span> <span class="p">{</span>
-	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+	<span class="k">defer</span> <span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
 	<span class="k">if</span> <span class="nx">icons</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nf">loadIcons</span><span class="p">(</span><span class="p">)</span>
+		<span class="nf">loadIcons</span><span class="p">()</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="nx">icons</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
 <span class="p">}</span>
@@ -678,21 +672,21 @@
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">mu</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
 <span class="kd">var</span> <span class="nx">icons</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">image</span><span class="p">.</span><span class="nx">Image</span>
 <span class="kd">func</span> <span class="nf">Icon</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">image</span><span class="p">.</span><span class="nx">Image</span> <span class="p">{</span>
-	<span class="nx">mu</span><span class="p">.</span><span class="nf">RLock</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">mu</span><span class="p">.</span><span class="nf">RLock</span><span class="p">()</span>
 	<span class="k">if</span> <span class="nx">icons</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="nx">icon</span> <span class="o">:=</span> <span class="nx">icons</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
-		<span class="nx">mu</span><span class="p">.</span><span class="nf">RUnlock</span><span class="p">(</span><span class="p">)</span>
+		<span class="nx">mu</span><span class="p">.</span><span class="nf">RUnlock</span><span class="p">()</span>
 		<span class="k">return</span> <span class="nx">icon</span>
 	<span class="p">}</span>
-	<span class="nx">mu</span><span class="p">.</span><span class="nf">RUnlock</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">mu</span><span class="p">.</span><span class="nf">RUnlock</span><span class="p">()</span>
 
-    <span class="c1">// acquire an exclusive lock
-</span><span class="c1"></span>	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">(</span><span class="p">)</span>
+<span class="c1">// acquire an exclusive lock
+</span><span class="c1"></span>	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
 	<span class="k">if</span> <span class="nx">icons</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">// NOTE: must recheck for nil
-</span><span class="c1"></span>		<span class="nf">loadIcons</span><span class="p">(</span><span class="p">)</span>
+</span><span class="c1"></span>		<span class="nf">loadIcons</span><span class="p">()</span>
 	<span class="p">}</span>
 	<span class="nx">icon</span> <span class="o">:=</span> <span class="nx">icons</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
-	<span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
 	<span class="k">return</span> <span class="nx">icon</span>
 <span class="p">}</span>
 
@@ -703,20 +697,20 @@
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">Icon</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">image</span><span class="p">.</span><span class="nx">Image</span> <span class="p">{</span>
 	<span class="nx">loadIconsOnce</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">loadIcons</span><span class="p">)</span>
 	<span class="k">return</span> <span class="nx">icons</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>原子操作
+</div></li>
+</ul></li>
+
+<li><p>原子操作</p>
+
 <ul>
 <li>原子操作由底层硬件支持，而锁则由操作系统提供的API实现。若实现相同的功能，通常会更有效率</li>
-<li>支持增或减、比较并交换、载入、存储、交换</li>
-</ul>
-</li>
-</ul>
+
+<li><p>支持增或减、比较并交换、载入、存储、交换</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -734,7 +728,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//注意int关键字应该是 type int int64
-</span><span class="c1"></span><span class="c1">//int 8字节, int32 4字节, int64 8字节 但int和int64操作一样但类型是不同的
+</span><span class="c1">//int 8字节, int32 4字节, int64 8字节 但int和int64操作一样但类型是不同的
 </span><span class="c1"></span><span class="kd">var</span>  <span class="nx">counter</span> <span class="kt">int32</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="c1">//加法
 </span><span class="c1"></span><span class="nx">atomic</span><span class="p">.</span><span class="nf">AddInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -742,26 +736,26 @@
 </span><span class="c1"></span><span class="nx">atomic</span><span class="p">.</span><span class="nf">AddInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1">//比较并交换, 当counter的值和第二个参数(counter的旧值)不一致 会返回false 交换失败
 </span><span class="c1"></span><span class="nx">atomic</span><span class="p">.</span><span class="nf">CompareAndSwapInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="c1">//counter = 12
-</span><span class="c1"></span><span class="c1">//载入(读取)
+</span><span class="c1">//载入(读取)
 </span><span class="c1"></span><span class="nx">v</span><span class="o">:=</span><span class="nx">atomic</span><span class="p">.</span><span class="nf">LoadInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">)</span>
 <span class="c1">//写入
 </span><span class="c1"></span><span class="nx">atomic</span><span class="p">.</span><span class="nf">StoreInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
 <span class="c1">//交换
-</span><span class="c1"></span><span class="nx">atomic</span><span class="p">.</span><span class="nf">SwapInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="nx">atomic</span><span class="p">.</span><span class="nf">SwapInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>自旋锁
+</div></li>
+</ul></li>
+
+<li><p>自旋锁</p>
+
 <ul>
 <li>线程获取锁的时候，如果锁被其他线程持有，则当前线程将循环等待，直到获取到锁。</li>
 <li>自旋锁等待期间，线程的状态不会改变，线程一直是用户态并且是活动的(active)。</li>
-<li>自旋锁如果持有锁的时间太长，则会导致其它等待获取锁的线程耗尽CPU</li>
-</ul>
-</li>
-</ul>
+
+<li><p>自旋锁如果持有锁的时间太长，则会导致其它等待获取锁的线程耗尽CPU</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -777,39 +771,41 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">spinLock</span> <span class="kt">uint32</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">sl</span> <span class="o">*</span><span class="nx">spinLock</span><span class="p">)</span> <span class="nf">Lock</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">for</span> <span class="p">!</span><span class="nx">atomic</span><span class="p">.</span><span class="nf">CompareAndSwapUint32</span><span class="p">(</span><span class="p">(</span><span class="o">*</span><span class="kt">uint32</span><span class="p">)</span><span class="p">(</span><span class="nx">sl</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">runtime</span><span class="p">.</span><span class="nf">Gosched</span><span class="p">(</span><span class="p">)</span> <span class="c1">//用于让出CPU时间片
+<span class="kd">func</span> <span class="p">(</span><span class="nx">sl</span> <span class="o">*</span><span class="nx">spinLock</span><span class="p">)</span> <span class="nf">Lock</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">!</span><span class="nx">atomic</span><span class="p">.</span><span class="nf">CompareAndSwapUint32</span><span class="p">((</span><span class="o">*</span><span class="kt">uint32</span><span class="p">)(</span><span class="nx">sl</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">runtime</span><span class="p">.</span><span class="nf">Gosched</span><span class="p">()</span> <span class="c1">//用于让出CPU时间片
 </span><span class="c1"></span>	<span class="p">}</span>
 <span class="p">}</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">sl</span> <span class="nf">ck</span><span class="p">(</span><span class="p">)</span><span class="nx">和RUnlock</span><span class="p">(</span><span class="p">)</span><span class="nx">spinLock</span><span class="p">)</span> <span class="nf">Unlock</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">atomic</span><span class="p">.</span><span class="nf">StoreUint32</span><span class="p">(</span><span class="p">(</span><span class="o">*</span><span class="kt">uint32</span><span class="p">)</span><span class="p">(</span><span class="nx">sl</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">sl</span> <span class="nf">ck</span><span class="p">()</span><span class="nx">和RUnlock</span><span class="p">()</span><span class="nx">spinLock</span><span class="p">)</span> <span class="nf">Unlock</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">atomic</span><span class="p">.</span><span class="nf">StoreUint32</span><span class="p">((</span><span class="o">*</span><span class="kt">uint32</span><span class="p">)(</span><span class="nx">sl</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="kd">func</span> <span class="nf">NewSpinLock</span><span class="p">(</span><span class="p">)</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Locker</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">NewSpinLock</span><span class="p">()</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Locker</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">lock</span> <span class="nx">spinLock</span>
 	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">lock</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>互斥锁与自旋锁比较
+</div></li>
+</ul></li>
+
+<li><p>互斥锁与自旋锁比较</p>
+
 <ul>
-<li>
-<p>互斥锁适合用于临界区持锁时间比较长的操作</p>
+<li><p>互斥锁适合用于临界区持锁时间比较长的操作</p>
+
 <ul>
 <li>临界区有IO操作</li>
 <li>临界区代码复杂或者循环量大</li>
 <li>临界区竞争非常激烈</li>
-<li>单核处理器</li>
+<li>单核处理器
+<br /></li>
+</ul></li>
+
+<li><p>至于自旋锁就主要用在临界区持锁时间非常短且CPU资源不紧张的情况下，自旋锁一般用于多核的服务器, 互斥锁开销比自旋锁高，但长时间的锁定自旋锁会占用cpu资源</p></li>
+</ul></li>
 </ul>
-</li>
-<li>
-<p>至于自旋锁就主要用在临界区持锁时间非常短且CPU资源不紧张的情况下，自旋锁一般用于多核的服务器, 互斥锁开销比自旋锁高，但长时间的锁定自旋锁会占用cpu资源</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="heading-3">总结</h2>
+
+<h2 id="总结">总结</h2>
+
 <ul>
 <li>优先防止竞态条件发生</li>
 <li>channel通信代替共享内存</li>
@@ -818,8 +814,11 @@
 <li>读写频繁用互斥锁</li>
 <li>临界区无io操作,执行快,执行频率高,可以使用自旋锁</li>
 </ul>
-<h2 id="heading-4">参考</h2>
+
+<h2 id="参考">参考</h2>
+
 <p><a href="https://docs.hacknode.org/gopl-zh/ch9/ch9.html">go语言圣经</a></p>
+
 <blockquote>
 <p>借真理之力在我有生之年得以征服世界。 &ndash; 《v字仇杀队》</p>
 </blockquote>
@@ -930,7 +929,10 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
   <script type="text/javascript">
     window.MathJax = {
       tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
