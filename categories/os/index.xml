@@ -6,10 +6,19 @@
     <description>Recent content in os on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 05 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/categories/os/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>动手写操作系统-1</title>
+      <link>https://heisenbergv.github.io/post/2020/20200405-os1/</link>
+      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/post/2020/20200405-os1/</guid>
+      <description>docker安装xv6环境 我使用docker进行环境搭建，构建自己的image，方便部署，之后换电脑也无需重复安装各种工具。 我的image:</description>
+    </item>
     
     <item>
       <title>动手写操作系统-0</title>
@@ -18,15 +27,6 @@
       
       <guid>https://heisenbergv.github.io/post/2020/20200405-os0/</guid>
       <description>准备 根据MIT 6.828学习路线，来写操作系统。 23个课程，10个Lab 参考文档 xv6 文档 xv6源码 vx6源码分析 LEC 1 (rtm): Introduction and examples (handouts: xv6 book) Preparation: Read chapter 1 of the</description>
-    </item>
-    
-    <item>
-      <title>动手写操作系统-1</title>
-      <link>https://heisenbergv.github.io/post/2020/20200405-os1/</link>
-      <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://heisenbergv.github.io/post/2020/20200405-os1/</guid>
-      <description>docker安装xv6环境 我使用docker进行环境搭建，构建自己的image，方便部署，之后换电脑也无需重复安装各种工具。 我的image:</description>
     </item>
     
   </channel>
