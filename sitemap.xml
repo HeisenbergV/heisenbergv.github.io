@@ -20,19 +20,13 @@
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/categories/coder/</loc>
+    <loc>https://heisenbergv.github.io/categories/code/</loc>
     <lastmod>2020-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://heisenbergv.github.io/</loc>
-    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/categories/os/</loc>
     <lastmod>2020-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -77,15 +71,21 @@
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/post/2020/2020-0305-kafka/</loc>
-    <lastmod>2020-03-03T00:00:00+00:00</lastmod>
+    <loc>https://heisenbergv.github.io/categories/read/</loc>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://heisenbergv.github.io/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/tags/kafka/</loc>
-    <lastmod>2020-03-03T00:00:00+00:00</lastmod>
+    <loc>https://heisenbergv.github.io/tags/%E9%98%85%E8%AF%BB/</loc>
+    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
