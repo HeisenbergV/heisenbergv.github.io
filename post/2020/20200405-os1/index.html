@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2020-04-06T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-04-06T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="364">
+<meta itemprop="wordCount" content="409">
 
 
 
@@ -157,20 +157,20 @@
 <h2 id="docker安装xv6环境">docker安装xv6环境</h2>
 
 <p>我使用docker进行环境搭建，构建自己的image，方便部署，之后换电脑也无需重复安装各种工具。
-我的image: <code>docker pull zuojxin/xv6</code></p>
+我的image: <code>docker pull zuojxin/xv6</code>。image太大了，应该是可以优化的</p>
 
 <h2 id="docker-简单命令">docker 简单命令</h2>
 
 <ul>
-<li>创建自己的docker：docker build -t <orige_name>/<image_name>:<tag></li>
-<li>安装镜像：docker pull <image_name><br /></li>
-<li>删除镜像：docker rmi <image_name></li>
-<li>删除容器：docker rm <container_name></li>
+<li>创建自己的docker：docker build -t orige_name/image_name:tag</li>
+<li>安装镜像：docker pull image_name<br /></li>
+<li>删除镜像：docker rmi image_name</li>
+<li>删除容器：docker rm container_name</li>
 <li>查看已安装镜像：docker images</li>
-<li>启动镜像容器： docker run -t -i <image_name:tag></li>
-<li>保存容器：docker commit <container_id> <image_name></li>
-<li>上传镜像：docker push <image_name:tag><br /></li>
-<li>本地文件拷贝到docker容器：docker cp 文件 <container_id>:容器内路径</li>
+<li>启动镜像容器： docker run -t -i image_name:tag</li>
+<li>保存容器：docker commit container_id image_name</li>
+<li>上传镜像：docker push image_name:tag<br /></li>
+<li>本地文件拷贝到docker容器：docker cp 文件 container_id:容器内路径</li>
 <li>精简image大小：<a href="http://www.dockerinfo.net/3328.html">http://www.dockerinfo.net/3328.html</a></li>
 <li>清理docker缓存：<a href="https://blog.fundebug.com/2018/01/10/how-to-clean-docker-disk/">https://blog.fundebug.com/2018/01/10/how-to-clean-docker-disk/</a></li>
 </ul>
@@ -184,13 +184,15 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> ubuntu</span><span class="err">
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> debian</span><span class="err">
 </span><span class="err"></span>LABEL xv6 &lt;zuojxin@docker.com&gt;<span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update<span class="err">
-</span><span class="err"></span><span class="k">RUN</span> <span class="nb">echo</span> y <span class="p">|</span> apt-get install git<span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get -y install git build-essential gdb-multiarch qemu-system-misc gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get -y install git build-essential gdb-multiarch qemu-system-misc <span class="se">\
+</span><span class="se"></span>    gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu <span class="err">
+</span><span class="err"></span>    <span class="err">
 </span><span class="err"></span><span class="k">RUN</span> git clone https://github.com/HeisenbergV/xv6-riscv-fall19</code></pre></td></tr></table>
 </div>
 </div>
