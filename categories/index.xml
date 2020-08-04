@@ -6,7 +6,7 @@
     <description>Recent content in Categories on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 06 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,18 +14,27 @@
     <item>
       <title>code</title>
       <link>https://heisenbergv.github.io/categories/code/</link>
-      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://heisenbergv.github.io/categories/code/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>read</title>
-      <link>https://heisenbergv.github.io/categories/read/</link>
+      <title>xv6</title>
+      <link>https://heisenbergv.github.io/categories/xv6/</link>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/categories/xv6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>阅读</title>
+      <link>https://heisenbergv.github.io/categories/%E9%98%85%E8%AF%BB/</link>
       <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/categories/read/</guid>
+      <guid>https://heisenbergv.github.io/categories/%E9%98%85%E8%AF%BB/</guid>
       <description></description>
     </item>
     
@@ -35,15 +44,6 @@
       <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://heisenbergv.github.io/categories/%E6%9D%82%E6%8A%80/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>思绪</title>
-      <link>https://heisenbergv.github.io/categories/%E6%80%9D%E7%BB%AA/</link>
-      <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://heisenbergv.github.io/categories/%E6%80%9D%E7%BB%AA/</guid>
       <description></description>
     </item>
     

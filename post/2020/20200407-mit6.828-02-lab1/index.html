@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>暗时间 - heisenberg blog</title>
+  <title>MIT6.828-02-Lab1.Util - heisenberg blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="heisenberg" /><meta name="description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="heisenberg" /><meta name="description" content="知识点 Util 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， ke" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.56.3 with theme even" />
 
 
-<link rel="canonical" href="https://heisenbergv.github.io/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/" />
+<link rel="canonical" href="https://heisenbergv.github.io/post/2020/20200407-mit6.828-02-lab1/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,26 +39,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="暗时间" />
-<meta property="og:description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死" />
+<meta property="og:title" content="MIT6.828-02-Lab1.Util" />
+<meta property="og:description" content="知识点 Util 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， ke" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://heisenbergv.github.io/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/" />
-<meta property="article:published_time" content="2019-08-22T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-08-22T00:00:00+00:00" />
-<meta itemprop="name" content="暗时间">
-<meta itemprop="description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死">
+<meta property="og:url" content="https://heisenbergv.github.io/post/2020/20200407-mit6.828-02-lab1/" />
+<meta property="article:published_time" content="2020-04-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-07T00:00:00+00:00" />
+<meta itemprop="name" content="MIT6.828-02-Lab1.Util">
+<meta itemprop="description" content="知识点 Util 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， ke">
 
 
-<meta itemprop="datePublished" content="2019-08-22T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-08-22T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="705">
+<meta itemprop="datePublished" content="2020-04-07T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-04-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="252">
 
 
 
-<meta itemprop="keywords" content="方法," />
+<meta itemprop="keywords" content="操作系统,xv6," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="暗时间"/>
-<meta name="twitter:description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死"/>
+<meta name="twitter:title" content="MIT6.828-02-Lab1.Util"/>
+<meta name="twitter:description" content="知识点 Util 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， ke"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -125,12 +125,13 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">暗时间</h1>
+      <h1 class="post-title">MIT6.828-02-Lab1.Util</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-08-22 </span>
+        <span class="post-time"> 2020-04-07 </span>
         <div class="post-category">
-            <a href="/categories/%E9%98%85%E8%AF%BB/"> 阅读 </a>
+            <a href="/categories/code/"> code </a>
+            <a href="/categories/xv6/"> xv6 </a>
             </div>
         
       </div>
@@ -143,15 +144,14 @@
 <ul>
 <li>
 <ul>
-<li><a href="#学习方面">学习方面</a>
+<li><a href="#知识点">知识点</a></li>
+<li><a href="#util">Util</a>
 <ul>
-<li><a href="#实际时间">实际时间</a></li>
-<li><a href="#暗时间">暗时间</a></li>
-<li><a href="#沉浸状态">沉浸状态</a></li>
-<li><a href="#中断">中断</a></li>
-<li><a href="#归纳知识">归纳知识</a></li>
-<li><a href="#讲给别人听">讲给别人听</a></li>
-<li><a href="#进度">进度</a></li>
+<li><a href="#sleep">sleep</a></li>
+<li><a href="#pingpong">pingpong</a></li>
+<li><a href="#primes">primes</a></li>
+<li><a href="#find">find</a></li>
+<li><a href="#xargs">xargs</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -161,58 +161,76 @@
     <div class="post-content">
       
 
-<h2 id="学习方面">学习方面</h2>
+<h2 id="知识点">知识点</h2>
 
-<p>最近看《暗时间》这本书，感觉很不错。</p>
+<h2 id="util">Util</h2>
 
-<p>投入的时间≠<a href="#实际时间">实际时间</a>，要用高效的方法学习，充分利用<a href="#暗时间">暗时间</a>，学习过程要不断思考推断，而不是一味的死记硬背。</p>
+<p>每一个Lab对应一个git 分支，本实验分支为 <code>util</code>，主要是实现5个shell小程序。在 <code>xv6-riscv-fall19</code>项目里， <code>kernel</code>是内核， <code>user</code>是用户态程序， 代码写到<code>user</code>里，然后再Makefile <code>UPROGS</code>变量中加入的相应名称即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">UPROGS</span><span class="o">=</span><span class="se">\
+</span><span class="se"></span>	<span class="nv">$U</span>/_sleep<span class="se">\
+</span><span class="se"></span>	<span class="nv">$U</span>/_pingpong<span class="se">\
+</span><span class="se"></span>	<span class="nv">$U</span>/_primes<span class="se">\
+</span><span class="se"></span>	<span class="nv">$U</span>/_find<span class="se">\
+</span><span class="se"></span>	<span class="nv">$U</span>/_xargs<span class="se">\
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>我的代码都在 <a href="https://github.com/HeisenbergV/xv6-riscv-fall19/tree/util/user">这里</a></p>
 
-<p>只有当进入<a href="#沉浸状态">沉浸状态</a>学习效率才会提高，并且不被其他因素<a href="##中断">中断</a>。
-最后将学到的知识进行<a href="##归纳知识">归纳</a>，或者<a href="#讲给别人听">讲给别人听</a>，加深巩固知识。
-学习过程或者做一件事情的过程，如果能<a href="##进度">记录进度</a>，知道自己还差多少完成，心里就会有所期待。</p>
+<h3 id="sleep">sleep</h3>
 
-<p>学以致用才是最终目的</p>
+<p><code>kernel/sysproc.c</code> 提供了<code>sleep</code>接口，只需要进行一次系统调用即可。</p>
 
-<h3 id="实际时间">实际时间</h3>
+<p><strong>出现的问题</strong>：程序写完，但在执行命令的时候总是卡死，目前还不知道什么原因</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;usage: sleep seconds </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+    <span class="n">exit</span><span class="p">();</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="pingpong">pingpong</h3>
 
-<p>投入的时间*效率 才是真实的学习时间，不加以思索的学习，容易遗忘，效果低。</p>
+<h3 id="primes">primes</h3>
 
-<h3 id="暗时间">暗时间</h3>
+<h3 id="find">find</h3>
 
-<p>吃饭，睡觉，公交等 这些碎片时间，进行思考刚学的知识。</p>
-
-<h3 id="沉浸状态">沉浸状态</h3>
-
-<p>当所有心思都专注在这一件事上，这时候的效率是最高的。</p>
-
-<h3 id="中断">中断</h3>
-
-<p>当专注某一件事的时候，突然被外界干扰，或者思绪突然想到了其他事情上。
-如同计算机线程之间的切换，多个事情同时处理需要上下文的切换，会造成性能损耗。
-专注突然被打断，再次重新专注需要时间</p>
-
-<h3 id="归纳知识">归纳知识</h3>
-
-<p>记笔记，或者写博客，按照自己思路将知识描述总结到文本中，加深印象。
-建立索引，经常回顾，忘记时也能快速查到。</p>
-
-<h3 id="讲给别人听">讲给别人听</h3>
-
-<p>这里的讲给别人，也可以是设想讲给别人听，
-费曼学习法，大致意思就是将学到的知识，总结成按自己的理解思路进行描述出来，讲述给别人。
-这样会更清楚的意识到自己理解了多少，哪里讲述的不清，说明哪里理解的不到位然后重新总结，
-反复归纳总结，讲述，直到清晰表达出要点。</p>
-
-<h3 id="进度">进度</h3>
-
-<p>当下载一个软件，能知道下载的进度，这样就能等下去，知道还有多久完成。
-学习也一样，如果一直学，没有止境会给人心里感觉很徒劳。
-可以将学习某一个知识，进行分段，比如将知识点分成几块，每天完成多少，大约1个月就能完成全部。
-明确的目标事半功倍</p>
-
-<blockquote>
-<p>痛苦的秘密在于有闲工夫担心自己是否幸福。  &ndash; 萧伯纳</p>
-</blockquote>
+<h3 id="xargs">xargs</h3>
 
     </div>
 
@@ -224,7 +242,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2019-08-22
+        2020-04-07
         
     </span>
   </p>
@@ -236,16 +254,13 @@
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/%E6%96%B9%E6%B3%95/">方法</a>
+          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a href="/tags/xv6/">xv6</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/2019/20190815-piano/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">钢琴入门练习</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/2019/2019-plan/">
-            <span class="next-text nav-default">2019年下半年计划</span>
+        
+        <a class="next" href="/post/2020/20200406-mit6.828-01/">
+            <span class="next-text nav-default">MIT6.828-01.环境搭建</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -258,10 +273,10 @@
     <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitment = new Gitment({
-        id: '2019-08-22 00:00:00 \x2b0000 UTC',
-        title: '暗时间',
+        id: '2020-04-07 00:00:00 \x2b0000 UTC',
+        title: 'MIT6.828-02-Lab1.Util',
         link: decodeURI(location.href),
-        desc: '学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死',
+        desc: '知识点 Util 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， ke',
         owner: 'heisenbergv',
         repo: 'heisenbergv.github.io',
         oauth: {

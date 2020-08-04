@@ -3,49 +3,68 @@
   
   <url>
     <loc>https://heisenbergv.github.io/categories/</loc>
-    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://heisenbergv.github.io/post/2020/20200407-mit6.828-02-lab1/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://heisenbergv.github.io/post/</loc>
-    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://heisenbergv.github.io/tags/</loc>
-    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://heisenbergv.github.io/categories/code/</loc>
-    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://heisenbergv.github.io/</loc>
-    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/post/2020/20200405-os1/</loc>
+    <loc>https://heisenbergv.github.io/tags/xv6/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://heisenbergv.github.io/categories/xv6/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/</loc>
     <lastmod>2020-04-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2020-04-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/post/2020/20200405-os0/</loc>
+    <loc>https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/</loc>
     <lastmod>2020-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -71,7 +90,7 @@
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/categories/read/</loc>
+    <loc>https://heisenbergv.github.io/tags/%E5%B0%8F%E8%AF%B4/</loc>
     <lastmod>2020-02-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -84,7 +103,7 @@
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/tags/%E9%98%85%E8%AF%BB/</loc>
+    <loc>https://heisenbergv.github.io/categories/%E9%98%85%E8%AF%BB/</loc>
     <lastmod>2020-02-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -164,13 +183,7 @@
   </url>
   
   <url>
-    <loc>https://heisenbergv.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2019-08-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://heisenbergv.github.io/categories/%E6%80%9D%E7%BB%AA/</loc>
+    <loc>https://heisenbergv.github.io/tags/%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2019-08-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

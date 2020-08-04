@@ -6,15 +6,24 @@
     <description>Recent content in Tags on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 06 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>xv6</title>
+      <link>https://heisenbergv.github.io/tags/xv6/</link>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/tags/xv6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>操作系统</title>
       <link>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
-      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
@@ -39,11 +48,11 @@
     </item>
     
     <item>
-      <title>阅读</title>
-      <link>https://heisenbergv.github.io/tags/%E9%98%85%E8%AF%BB/</link>
+      <title>小说</title>
+      <link>https://heisenbergv.github.io/tags/%E5%B0%8F%E8%AF%B4/</link>
       <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E9%98%85%E8%AF%BB/</guid>
+      <guid>https://heisenbergv.github.io/tags/%E5%B0%8F%E8%AF%B4/</guid>
       <description></description>
     </item>
     
@@ -66,11 +75,11 @@
     </item>
     
     <item>
-      <title>学习方法</title>
-      <link>https://heisenbergv.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</link>
+      <title>方法</title>
+      <link>https://heisenbergv.github.io/tags/%E6%96%B9%E6%B3%95/</link>
       <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</guid>
+      <guid>https://heisenbergv.github.io/tags/%E6%96%B9%E6%B3%95/</guid>
       <description></description>
     </item>
     

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>暗时间 - heisenberg blog</title>
+  <title>MIT6.828-00.开始 - heisenberg blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="heisenberg" /><meta name="description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="heisenberg" /><meta name="description" content="前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我会根据这个课程记录我的学习与实践 我写的所有代码都会上" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.56.3 with theme even" />
 
 
-<link rel="canonical" href="https://heisenbergv.github.io/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/" />
+<link rel="canonical" href="https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,26 +39,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="暗时间" />
-<meta property="og:description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死" />
+<meta property="og:title" content="MIT6.828-00.开始" />
+<meta property="og:description" content="前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我会根据这个课程记录我的学习与实践 我写的所有代码都会上" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://heisenbergv.github.io/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/" />
-<meta property="article:published_time" content="2019-08-22T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-08-22T00:00:00+00:00" />
-<meta itemprop="name" content="暗时间">
-<meta itemprop="description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死">
+<meta property="og:url" content="https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/" />
+<meta property="article:published_time" content="2020-04-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-05T00:00:00+00:00" />
+<meta itemprop="name" content="MIT6.828-00.开始">
+<meta itemprop="description" content="前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我会根据这个课程记录我的学习与实践 我写的所有代码都会上">
 
 
-<meta itemprop="datePublished" content="2019-08-22T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-08-22T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="705">
+<meta itemprop="datePublished" content="2020-04-05T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-04-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="123">
 
 
 
-<meta itemprop="keywords" content="方法," />
+<meta itemprop="keywords" content="操作系统,xv6," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="暗时间"/>
-<meta name="twitter:description" content="学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死"/>
+<meta name="twitter:title" content="MIT6.828-00.开始"/>
+<meta name="twitter:description" content="前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我会根据这个课程记录我的学习与实践 我写的所有代码都会上"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -125,12 +125,13 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">暗时间</h1>
+      <h1 class="post-title">MIT6.828-00.开始</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-08-22 </span>
+        <span class="post-time"> 2020-04-05 </span>
         <div class="post-category">
-            <a href="/categories/%E9%98%85%E8%AF%BB/"> 阅读 </a>
+            <a href="/categories/code/"> code </a>
+            <a href="/categories/xv6/"> xv6 </a>
             </div>
         
       </div>
@@ -143,16 +144,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#学习方面">学习方面</a>
-<ul>
-<li><a href="#实际时间">实际时间</a></li>
-<li><a href="#暗时间">暗时间</a></li>
-<li><a href="#沉浸状态">沉浸状态</a></li>
-<li><a href="#中断">中断</a></li>
-<li><a href="#归纳知识">归纳知识</a></li>
-<li><a href="#讲给别人听">讲给别人听</a></li>
-<li><a href="#进度">进度</a></li>
-</ul></li>
+<li><a href="#前言">前言</a></li>
+<li><a href="#主要学习的资料">主要学习的资料</a></li>
+<li><a href="#进度目录">进度目录</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -161,58 +155,95 @@
     <div class="post-content">
       
 
-<h2 id="学习方面">学习方面</h2>
+<h2 id="前言">前言</h2>
 
-<p>最近看《暗时间》这本书，感觉很不错。</p>
+<p>写一个操作系统一直是我的梦想，<a href="https://pdos.csail.mit.edu/6.828/2019/">MIT 6.828-2019fall</a>是最好的课程之一。我会根据这个课程记录我的学习与实践</p>
 
-<p>投入的时间≠<a href="#实际时间">实际时间</a>，要用高效的方法学习，充分利用<a href="#暗时间">暗时间</a>，学习过程要不断思考推断，而不是一味的死记硬背。</p>
+<p>我写的所有代码都会上传至<a href="https://github.com/HeisenbergV/xv6-riscv-fall19">github</a></p>
 
-<p>只有当进入<a href="#沉浸状态">沉浸状态</a>学习效率才会提高，并且不被其他因素<a href="##中断">中断</a>。
-最后将学到的知识进行<a href="##归纳知识">归纳</a>，或者<a href="#讲给别人听">讲给别人听</a>，加深巩固知识。
-学习过程或者做一件事情的过程，如果能<a href="##进度">记录进度</a>，知道自己还差多少完成，心里就会有所期待。</p>
+<h2 id="主要学习的资料">主要学习的资料</h2>
 
-<p>学以致用才是最终目的</p>
+<p><a href="https://pdos.csail.mit.edu/6.828/2019/">官方讲义</a></p>
 
-<h3 id="实际时间">实际时间</h3>
+<p><a href="https://th0ar.gitbooks.io/xv6-chinese/content/content/chapter0.html">xv6 文档</a></p>
 
-<p>投入的时间*效率 才是真实的学习时间，不加以思索的学习，容易遗忘，效果低。</p>
+<p><a href="https://github.com/HeisenbergV/xv6-riscv-fall19/tree/xv6-riscv-fall19/kernel">xv6源码</a></p>
 
-<h3 id="暗时间">暗时间</h3>
+<p><a href="https://blog.csdn.net/qq_25426415/category_6684908.html">vx6源码分析</a></p>
 
-<p>吃饭，睡觉，公交等 这些碎片时间，进行思考刚学的知识。</p>
+<p>其他参考：</p>
 
-<h3 id="沉浸状态">沉浸状态</h3>
+<p><a href="https://blog.csdn.net/bysui/category_6232831.html">https://blog.csdn.net/bysui/category_6232831.html</a></p>
 
-<p>当所有心思都专注在这一件事上，这时候的效率是最高的。</p>
+<p><a href="https://www.cnblogs.com/fatsheep9146/category/769143.html">https://www.cnblogs.com/fatsheep9146/category/769143.html</a></p>
 
-<h3 id="中断">中断</h3>
+<h2 id="进度目录">进度目录</h2>
 
-<p>当专注某一件事的时候，突然被外界干扰，或者思绪突然想到了其他事情上。
-如同计算机线程之间的切换，多个事情同时处理需要上下文的切换，会造成性能损耗。
-专注突然被打断，再次重新专注需要时间</p>
+<p>LEC 1:
+<a href="/post/2020/20200406-mit6.828-01">环境搭建</a> &amp; <a href="/post/2020/20200407-mit6.828-lab1">Lab1:Util</a></p>
 
-<h3 id="归纳知识">归纳知识</h3>
+<!-- 
+LEC 2 (fk): Dynamic memory allocation (allocators) Preparation: 5.1 (Pointers and addresses) through 5.6 (Pointer arrays) and 6.4 (pointers to structures), and 8.7 (Storage Allocator) by Kernighan and Ritchie (K&R)
 
-<p>记笔记，或者写博客，按照自己思路将知识描述总结到文本中，加深印象。
-建立索引，经常回顾，忘记时也能快速查到。</p>
+LEC 3 (TAs): C and gdb (pointers example) Preparation: Read 2.9 (Bitwise operators) by K&R Assignment: Lab sh: Simple shell
 
-<h3 id="讲给别人听">讲给别人听</h3>
+LEC 4 (rtm): Isolation & system call entry/exit Preparation: Read "Chapter 2: Operating system organization"
 
-<p>这里的讲给别人，也可以是设想讲给别人听，
-费曼学习法，大致意思就是将学到的知识，总结成按自己的理解思路进行描述出来，讲述给别人。
-这样会更清楚的意识到自己理解了多少，哪里讲述的不清，说明哪里理解的不到位然后重新总结，
-反复归纳总结，讲述，直到清晰表达出要点。</p>
+LEC 5 (fk): Virtual memory (1) Preparation: Read "Chapter 3: Page Tables" Assignment: Lab alloc: Memory allocator
 
-<h3 id="进度">进度</h3>
+Lab2 shell DUE: 6.828: email us a paragraph with project proposal
 
-<p>当下载一个软件，能知道下载的进度，这样就能等下去，知道还有多久完成。
-学习也一样，如果一直学，没有止境会给人心里感觉很徒劳。
-可以将学习某一个知识，进行分段，比如将知识点分成几块，每天完成多少，大约1个月就能完成全部。
-明确的目标事半功倍</p>
+LEC 6 (ab): Virtual memory (2) (slides)
 
-<blockquote>
-<p>痛苦的秘密在于有闲工夫担心自己是否幸福。  &ndash; 萧伯纳</p>
-</blockquote>
+LEC 7 (fk): System calls, interrupts, exceptions Preparation: Read "Traps and device drivers" and the related xv6 source files Assignment: Lab lazy: Lazy allocation
+
+Lab3 alloc
+
+LEC 8 (ab): Multiprocessors and locking (slides) Preparation: Read "Locking" with spinlock.c oct 1 oct 2
+
+LEC 9 (rtm): Processes and switching Preparation: Read "Scheduling" up to "Sleep and wakeup" and proc.c, swtch.S Assignment: Lab cow: Copy-on-write fork oct 3
+
+Lab4 lazy DUE: 6.828: project proposal oct 4
+
+LEC 10 (rtm): sleep&wakeup Preparation: Read remainder of "Scheduling", and corresponding parts of proc.c oct 8 oct 9
+
+LEC 11 (TAs): Calling conventions and stack frames RISC-V Assignment: Lab syscall: Uthread & alarm oct 10
+
+Lab5 cow
+
+LEC 12 (fk): File systems Preparation: Read bio.c, fs.c, sysfile.c, file.c and "File system" except for the logging sections oct 17
+
+Lab6 syscall
+
+LEC 13 (fk): Crash recovery Preparation: Read log.c and the logging sections of "File system" Assignment: Lab lock: Parallelism/locking oct 24 oct 25
+
+LEC 14 (rtm): File system performance and fast crash recovery Preparation: Read Journaling the Linux ext2fs Filesystem (1998) Assignment: Lab fs: File system oct 31 nov 1 Lab7 lock DUE: 6.828: Report project status
+
+LEC 15 (ab): Virtual Memory (3) (slides) Preparation: Read Virtual Memory Primitives for User Programs (1991) nov 5 nov 6
+
+LEC 16 (rtm): OS Organization Preparation: Read Exokernel (1995), FAQ Homework 1 due: HW exokernel question Assignment: Lab mmap: Mmap nov 7
+
+Lab8 fs
+
+LEC 17 (ab): OS and Networking Preparation: Read Receive Livelock (1996) Homework 2 due: HW livelock question Assignment: Lab net: Network stack nov 14
+
+Lab9 mmap DUE: 6.828: Report project status nov 15
+
+LEC 18 (fk): Kernels and HLL Preparation: Read the Biscuit paper (2018), FAQ Homework 3 due: HW Biscuit question nov 19 nov 20
+
+LEC 19 (ab): Scalable locks (slides) (code) Preparation: Read Non-scalable locks paper (2012), FAQ Homework 4 due: ticket lock question nov 21 nov 22
+
+LEC 20 (rtm): RCU notes, 2018 slides Preparation: Read RCU paper (2013), FAQ Homework 5 due: RCU question
+
+LEC 21 (ab): Virtual Machines (1) (slides) Preparation: Read Software vs Hardware Virtualization (2006) or Disco? Homework 6 due: VM question
+
+Lab10 net
+
+LEC 22: 6.828 project demos in class dec 10 dec 11 LAST DAY OF CLASSES
+
+LEC 23: 6.828 project demos in class
+
+Lab11 syscall through mmap. practice: previous years' quizzes. -->
 
     </div>
 
@@ -224,7 +255,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2019-08-22
+        2020-04-05
         
     </span>
   </p>
@@ -236,16 +267,17 @@
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/%E6%96%B9%E6%B3%95/">方法</a>
+          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+          <a href="/tags/xv6/">xv6</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/2019/20190815-piano/">
+        <a class="prev" href="/post/2020/20200406-mit6.828-01/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">钢琴入门练习</span>
+            <span class="prev-text nav-default">MIT6.828-01.环境搭建</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/2019/2019-plan/">
-            <span class="next-text nav-default">2019年下半年计划</span>
+        <a class="next" href="/post/2020/20200401-go-context/">
+            <span class="next-text nav-default">源码阅读 - go Context</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -258,10 +290,10 @@
     <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       var gitment = new Gitment({
-        id: '2019-08-22 00:00:00 \x2b0000 UTC',
-        title: '暗时间',
+        id: '2020-04-05 00:00:00 \x2b0000 UTC',
+        title: 'MIT6.828-00.开始',
         link: decodeURI(location.href),
-        desc: '学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死',
+        desc: '前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我会根据这个课程记录我的学习与实践 我写的所有代码都会上',
         owner: 'heisenbergv',
         repo: 'heisenbergv.github.io',
         oauth: {
