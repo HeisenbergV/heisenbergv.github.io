@@ -1,95 +1,105 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on heisenberg blog</title>
-    <link>https://heisenbergv.github.io/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <copyright>©2020 heisenberg.</copyright>
     <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://heisenbergv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>xv6</title>
-      <link>https://heisenbergv.github.io/tags/xv6/</link>
+      <link>/tags/xv6/</link>
       <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/xv6/</guid>
+      <guid>/tags/xv6/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>操作系统</title>
-      <link>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <link>/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>go</title>
-      <link>https://heisenbergv.github.io/tags/go/</link>
+      <link>/tags/go/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/go/</guid>
+      <guid>/tags/go/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>源码</title>
-      <link>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</link>
+      <link>/tags/%E6%BA%90%E7%A0%81/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</guid>
+      <guid>/tags/%E6%BA%90%E7%A0%81/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>小说</title>
-      <link>https://heisenbergv.github.io/tags/%E5%B0%8F%E8%AF%B4/</link>
+      <link>/tags/%E5%B0%8F%E8%AF%B4/</link>
       <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E5%B0%8F%E8%AF%B4/</guid>
+      <guid>/tags/%E5%B0%8F%E8%AF%B4/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>csapp</title>
-      <link>https://heisenbergv.github.io/tags/csapp/</link>
+      <link>/tags/csapp/</link>
       <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/csapp/</guid>
+      <guid>/tags/csapp/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>音乐</title>
-      <link>https://heisenbergv.github.io/tags/%E9%9F%B3%E4%B9%90/</link>
+      <link>/tags/%E9%9F%B3%E4%B9%90/</link>
       <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E9%9F%B3%E4%B9%90/</guid>
+      <guid>/tags/%E9%9F%B3%E4%B9%90/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>方法</title>
-      <link>https://heisenbergv.github.io/tags/%E6%96%B9%E6%B3%95/</link>
+      <link>/tags/%E6%96%B9%E6%B3%95/</link>
       <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E6%96%B9%E6%B3%95/</guid>
+      <guid>/tags/%E6%96%B9%E6%B3%95/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>计划</title>
-      <link>https://heisenbergv.github.io/tags/%E8%AE%A1%E5%88%92/</link>
+      <link>/tags/%E8%AE%A1%E5%88%92/</link>
       <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/tags/%E8%AE%A1%E5%88%92/</guid>
+      <guid>/tags/%E8%AE%A1%E5%88%92/</guid>
       <description></description>
+      
     </item>
     
   </channel>

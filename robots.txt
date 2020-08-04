@@ -1,2 +1,3 @@
 User-agent: *
-Sitemap: https://heisenbergv.github.io/sitemap.xml
+Disallow: 
+Sitemap: /sitemap.xml

@@ -1,201 +1,38 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>MIT6.828-01.环境搭建 - heisenberg blog</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-
-<meta name="author" content="heisenberg" /><meta name="description" content="概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima" /><meta name="keywords" content="Hugo, theme, even" />
-
-
-
-
-
-
-<meta name="generator" content="Hugo 0.56.3 with theme even" />
-
-
-<link rel="canonical" href="https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-<link href="/sass/main.min.6eb09ed45a88bd339269c14515d2a11f2e0afdadbdd763d83f9b5c797166b081.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
-
-
-<meta property="og:title" content="MIT6.828-01.环境搭建" />
-<meta property="og:description" content="概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/" />
-<meta property="article:published_time" content="2020-04-06T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-04-06T00:00:00+00:00" />
-<meta itemprop="name" content="MIT6.828-01.环境搭建">
-<meta itemprop="description" content="概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima">
-
-
-<meta itemprop="datePublished" content="2020-04-06T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-04-06T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="433">
-
-
-
-<meta itemprop="keywords" content="操作系统,xv6," />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="MIT6.828-01.环境搭建"/>
-<meta name="twitter:description" content="概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima"/>
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">heisenberg</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="/">
-        <li class="mobile-menu-item">主页</li>
-      </a><a href="/post/">
-        <li class="mobile-menu-item">归档</li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">标签</li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">分类</li>
-      </a><a href="/about/">
-        <li class="mobile-menu-item">关于</li>
-      </a>
-  </ul>
-</nav>
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">heisenberg</a>
-</div>
-
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="/">主页</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/post/">归档</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">标签</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">分类</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/about/">关于</a>
-      </li>
-  </ul>
-</nav>
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <article class="post">
-    
-    <header class="post-header">
-      <h1 class="post-title">MIT6.828-01.环境搭建</h1>
-
-      <div class="post-meta">
-        <span class="post-time"> 2020-04-06 </span>
-        <div class="post-category">
-            <a href="/categories/code/"> code </a>
-            <a href="/categories/xv6/"> xv6 </a>
-            </div>
-        
-      </div>
-    </header>
-
-    <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#概述">概述</a>
-<ul>
-<li><a href="#6-s081-目标">6.S081 目标</a></li>
-</ul></li>
-<li><a href="#环境搭建">环境搭建</a>
-<ul>
-<li><a href="#docker-简单命令">docker 简单命令</a></li>
-<li><a href="#dockerfile">Dockerfile</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
-</div>
-    <div class="post-content">
-      
-
-<h2 id="概述">概述</h2>
-
-<h3 id="6-s081-目标">6.S081 目标</h3>
-
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.62.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>MIT6.828 - 01.环境搭建&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="MIT6.828 - 01.环境搭建" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/about/">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">MIT6.828 - 01.环境搭建</h1><p class="article date">2020-04-06</p></section><article class="article markdown-body"><h2 id="heading">概述</h2>
+<h3 id="6s081-">6.S081 目标</h3>
 <ul>
 <li>理解操作系统设计与实现</li>
 <li>掌握扩展迷你操作系统的实践经验</li>
 <li>掌握编写系统软件的经验</li>
 </ul>
-
-<h2 id="环境搭建">环境搭建</h2>
-
+<h2 id="heading-1">环境搭建</h2>
 <p>我使用docker进行环境搭建，构建自己的image，方便部署，之后换电脑也无需重复安装各种工具。
 我的image: <code>docker pull zuojxin/xv6</code> (image太大了，应该是可以优化的)</p>
-
-<h3 id="docker-简单命令">docker 简单命令</h3>
-
+<h3 id="docker-">docker 简单命令</h3>
 <ul>
 <li>创建自己的docker：docker build -t orige_name/image_name:tag</li>
-<li>安装镜像：docker pull image_name<br /></li>
+<li>安装镜像：docker pull image_name</li>
 <li>删除镜像：docker rmi image_name</li>
 <li>删除容器：docker rm container_name</li>
 <li>查看已安装镜像：docker images</li>
 <li>启动镜像容器： docker run -t -i image_name:tag</li>
 <li>保存容器：docker commit container_id image_name</li>
-<li>上传镜像：docker push image_name:tag<br /></li>
+<li>上传镜像：docker push image_name:tag</li>
 <li>本地文件拷贝到docker容器：docker cp 文件 container_id:容器内路径</li>
-<li>精简image大小：<a href="http://www.dockerinfo.net/3328.html">http://www.dockerinfo.net/3328.html</a></li>
-<li>清理docker缓存：<a href="https://blog.fundebug.com/2018/01/10/how-to-clean-docker-disk/">https://blog.fundebug.com/2018/01/10/how-to-clean-docker-disk/</a></li>
+<li>精简image大小：http://www.dockerinfo.net/3328.html</li>
+<li>清理docker缓存：https://blog.fundebug.com/2018/01/10/how-to-clean-docker-disk/</li>
 </ul>
-
 <h3 id="dockerfile">Dockerfile</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -205,155 +42,21 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> debian</span><span class="err">
-</span><span class="err"></span>LABEL xv6 &lt;zuojxin@docker.com&gt;<span class="err">
+</span><span class="err"></span><span class="k">LABEL</span> xv6 &lt;zuojxin@docker.com&gt;<span class="err">
 </span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="err">
 </span><span class="err"></span><span class="k">RUN</span> apt-get -y install git build-essential gdb-multiarch qemu-system-misc <span class="se">\
 </span><span class="se"></span>    gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu <span class="err">
 </span><span class="err"></span>    <span class="err">
-</span><span class="err"></span><span class="k">RUN</span> git clone https://github.com/HeisenbergV/xv6-riscv-fall19</code></pre></td></tr></table>
+</span><span class="err"></span><span class="k">RUN</span> git clone https://github.com/HeisenbergV/xv6-riscv-fall19<span class="err">
+</span></code></pre></td></tr></table>
 </div>
-</div>
-    </div>
+</div></article><section class="article labels"><a class="category" href=/categories/code/>code</a><a class="category" href=/categories/xv6/>xv6</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a><a class="tag" href=/tags/xv6/>xv6</a></section></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200407-mit6.828-02-lab1/"><span class="iconfont icon-article"></span>MIT6.828 - 02-Lab1.Util</a></p><p><a class="link" href="/post/2020/20200405-mit6.828-00/"><span class="iconfont icon-article"></span>MIT6.828 - 00.开始</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2020 heisenberg.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
+        <script
+            type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
 
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">heisenberg</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">
-        2020-04-06
-        
-    </span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content">除特别声明外文章，均采用<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> 转载请注明出处</span>
-  </p>
-</div>
-<footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-          <a href="/tags/xv6/">xv6</a>
-          </div>
-      <nav class="post-nav">
-        <a class="prev" href="/post/2020/20200407-mit6.828-02-lab1/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">MIT6.828-02-Lab1.Util</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/2020/20200405-mit6.828-00/">
-            <span class="next-text nav-default">MIT6.828-00.开始</span>
-            <span class="next-text nav-mobile">下一篇</span>
-            <i class="iconfont icon-right"></i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-        </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-      var gitment = new Gitment({
-        id: '2020-04-06 00:00:00 \x2b0000 UTC',
-        title: 'MIT6.828-01.环境搭建',
-        link: decodeURI(location.href),
-        desc: '概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima',
-        owner: 'heisenbergv',
-        repo: 'heisenbergv.github.io',
-        oauth: {
-          client_id: '70335a4af07c4a97b79b',
-          client_secret: '6c0684397ec265598fead8d27242c273d151bd1e'
-        }
-      });
-      gitment.render('comments-gitment');
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
-
-  
-
-  
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="zuojxin@hotmail.com" class="iconfont icon-email" title="email"></a>
-      <a href="https://twitter.com/Vdemoot" class="iconfont icon-twitter" title="twitter"></a>
-      <a href="https://github.com/HeisenbergV/heisenbergv.github.io" class="iconfont icon-github" title="github"></a>
-  <a href="https://heisenbergv.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
-  </span>
-
-  
-
-  <span class="copyright-year">
-    &copy; 
-    2019 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">heisenberg</span>
-  </span>
-</div>
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-
-
-
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-      TeX: {equationNumbers: {autoNumber: "AMS"}},
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
-
-
-
-<script id="baidu_push">
-  (function(){
-    if (window.location.hostname === 'localhost') return;
-    var bp = document.createElement('script'); bp.async = true;
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-  })();
-</script>
-
-
-
-
-</body>
 </html>

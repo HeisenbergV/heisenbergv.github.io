@@ -1,494 +1,153 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>读CSAPP(4) - 虚拟内存 - heisenberg blog</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-
-<meta name="author" content="heisenberg" /><meta name="description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全" /><meta name="keywords" content="Hugo, theme, even" />
-
-
-
-
-
-
-<meta name="generator" content="Hugo 0.56.3 with theme even" />
-
-
-<link rel="canonical" href="https://heisenbergv.github.io/post/2019/20190928-csapp4/" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-<link href="/sass/main.min.6eb09ed45a88bd339269c14515d2a11f2e0afdadbdd763d83f9b5c797166b081.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
-
-
-<meta property="og:title" content="读CSAPP(4) - 虚拟内存" />
-<meta property="og:description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://heisenbergv.github.io/post/2019/20190928-csapp4/" />
-<meta property="article:published_time" content="2019-09-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-09-28T00:00:00+00:00" />
-<meta itemprop="name" content="读CSAPP(4) - 虚拟内存">
-<meta itemprop="description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全">
-
-
-<meta itemprop="datePublished" content="2019-09-28T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-09-28T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="3164">
-
-
-
-<meta itemprop="keywords" content="csapp,操作系统," />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="读CSAPP(4) - 虚拟内存"/>
-<meta name="twitter:description" content="虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全"/>
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">heisenberg</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="/">
-        <li class="mobile-menu-item">主页</li>
-      </a><a href="/post/">
-        <li class="mobile-menu-item">归档</li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">标签</li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">分类</li>
-      </a><a href="/about/">
-        <li class="mobile-menu-item">关于</li>
-      </a>
-  </ul>
-</nav>
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">heisenberg</a>
-</div>
-
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="/">主页</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/post/">归档</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">标签</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">分类</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/about/">关于</a>
-      </li>
-  </ul>
-</nav>
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <article class="post">
-    
-    <header class="post-header">
-      <h1 class="post-title">读CSAPP(4) - 虚拟内存</h1>
-
-      <div class="post-meta">
-        <span class="post-time"> 2019-09-28 </span>
-        <div class="post-category">
-            <a href="/categories/code/"> code </a>
-            </div>
-        
-      </div>
-    </header>
-
-    <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#虚拟内存系统">虚拟内存系统</a>
-<ul>
-<li><a href="#页表">页表</a></li>
-<li><a href="#页表项">页表项</a></li>
-</ul></li>
-<li><a href="#映射流程">映射流程</a></li>
-<li><a href="#虚拟内存系统带来的优势">虚拟内存系统带来的优势</a>
-<ul>
-<li><a href="#权限控制">权限控制</a></li>
-<li><a href="#节省内存">节省内存</a></li>
-<li><a href="#内存管理更加方便">内存管理更加方便</a></li>
-</ul></li>
-<li><a href="#让虚拟内存系统更健壮">让虚拟内存系统更健壮</a>
-<ul>
-<li><a href="#缓存方式">缓存方式</a></li>
-<li><a href="#多级页表">多级页表</a></li>
-<li><a href="#tlb加速翻译">TLB加速翻译</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
-</div>
-    <div class="post-content">
-      
-
-<p>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.62.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>读CSAPP(4) - 虚拟内存&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="读CSAPP(4) - 虚拟内存" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/about/">About</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">读CSAPP(4) - 虚拟内存</h1><p class="article date">2019-09-28</p></section><article class="article markdown-body"><p>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。
 进程运行过程不再加载全部数据，而是只保留当前运行需要的数据在内存中。为了让MMU更高效加入了TLB，缓存映射关系，还利用多级页表降低页表内存占用有了</p>
-
-<h2 id="虚拟内存系统">虚拟内存系统</h2>
-
+<h2 id="heading">虚拟内存系统</h2>
 <p>计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address）
 早期计算机使用物理寻址方式，这样的坏处是</p>
-
 <ul>
 <li>系统中多个进程所使用的内存，进程之间容易互相读写数据造成各种问题</li>
 <li>每个进程内存分布不同，管理不便</li>
 <li>进程中暂无用处的数据也会被加载，进程过多就会导致内存不够用</li>
 </ul>
-
 <p>现代处理器使用虚拟寻址（Virtual Address），利用虚拟地址映射成物理地址再进行访问，解决了上面的主要问题。既然需要地址转换，这就需要内存管理单元（Memory Management Unit，MMU）和页表（Page Table，PT）来处理</p>
-
 <ul>
 <li>因为每个进程都有统一的访问方式，这样进程之间也不会互相影响</li>
 <li>内存管理更加简单，每个进程看起来都在独享全部内存</li>
 <li>节省内存空间，利用内存分页，物理内存中只保留进程当前活动区域，并根据需要在磁盘和主存之间来回传送数据</li>
 </ul>
-
-<p><img src="../../../img/csapp-vm02.png" alt="image" /></p>
-
-<h3 id="页表">页表</h3>
-
+<p><img  src="../../../img/csapp-vm02.png"
+        alt="image"/></p>
+<h3 id="heading-1">页表</h3>
 <p>虚拟内存系统将虚拟内存分割成一个个大小相同的虚拟页（Virtual Page，VP），类似的物理内存也被分割成物理页（Physical Page，PP）大小和VP相同，物理页也被称为叶帧（Page Frame）。
 页表其实就是一个数组，每个元素称为页表项（Page Table Entry，PTE），PTE负责把虚拟页映射到磁盘或者物理页上。</p>
-
 <p>任意时刻虚拟页面的集合都分为三个不想交的子集：</p>
-
 <ul>
 <li>未分配的：VM系统还未分配的页，物理内存，磁盘都没有与之关联的数据（图中0，3）</li>
 <li>已分配已缓存的：已分配到了物理内存中（图中1，4，6）</li>
 <li>已分配未缓存：数据块存在于磁盘中，还未被加载到内存（图中2，5，7）</li>
 </ul>
-
-<p><img src="../../../img/csapp-vm03.png" alt="image" /></p>
-
-<h3 id="页表项">页表项</h3>
-
+<p><img  src="../../../img/csapp-vm03.png"
+        alt="image"/></p>
+<h3 id="heading-2">页表项</h3>
 <p>当MMU从PTE获取物理内存地址，要根据PTE知道：</p>
-
 <ul>
 <li>虚拟页是否被缓存了</li>
 <li>缓存命中需要知道具体存在于哪个物理内存页中</li>
 <li>缓存未命中需要知道此虚拟页在磁盘的什么地方进行缓存替换操作</li>
 </ul>
-
 <p>整个页表数据结构由操作系统进行负责维护，以及在磁盘与主存之间来回传送页，进行替换的时候需要向系统内核发送一个缺页异常，内核会做一些处理。
 PTE负责把虚拟页映射到磁盘或者物理页上，假设需要两个数据：</p>
-
 <ul>
 <li>地址字段：存放映射的地址</li>
 <li>有效位：判断此页是否被缓存</li>
 </ul>
-
-<p><img src="../../../img/csapp-vm04.png" alt="image" /></p>
-
+<p><img  src="../../../img/csapp-vm04.png"
+        alt="image"/></p>
 <p>有了这两个字段就可以进行判断：</p>
-
 <ul>
 <li>设置了有效位，地址字段不为空：数据缓存在物理内存页中，地址字段为物理页的起始位置</li>
 <li>没有设置有效位，地址字段为空：此虚拟页还未被分配</li>
 <li>没有设置有效位，地址字段不为空：虚拟页被分配，但还未缓存到物理内存中，只在磁盘上，地址字段指向该虚拟页在磁盘上的起始位置</li>
 </ul>
-
-<h2 id="映射流程">映射流程</h2>
-
+<h2 id="heading-3">映射流程</h2>
 <p>虚拟地址有两部分VPN+VPO。MMU利用VPN找到对应的PTE， 例如 VPN 0 对应 PTE 0，找到PTE后，PTE中的有效位决定是否有效，是否需要缺页处理。
 如果有效，则得到其中的PPN，使用PPN+VPO 得到最终的物理内存地址</p>
-
-<p><img src="../../../img/csapp-vm07.png" alt="image" /></p>
-
+<p><img  src="../../../img/csapp-vm07.png"
+        alt="image"/></p>
 <p>页面命中，cpu硬件流程：</p>
-
-<p><img src="../../../img/csapp-vm08.png" alt="image" /></p>
-
+<p><img  src="../../../img/csapp-vm08.png"
+        alt="image"/></p>
 <p>缺页流程，页面命中完全由硬件处理，处理缺页需要硬件和操作系统内核协作完成：</p>
-
-<p><img src="../../../img/csapp-vm09.png" alt="image" /></p>
-
-<h2 id="虚拟内存系统带来的优势">虚拟内存系统带来的优势</h2>
-
-<h3 id="权限控制">权限控制</h3>
-
+<p><img  src="../../../img/csapp-vm09.png"
+        alt="image"/></p>
+<h2 id="heading-4">虚拟内存系统带来的优势</h2>
+<h3 id="heading-5">权限控制</h3>
 <p>每个PTE（页表项）高位部分存储了表示权限的位，MMU通过检查这些位来进行权限控制（sup表示进程是否必须运行在内核（超级管理员）模式下才能运行）。
 如果违反了权限cpu会触发一个 一般保护故障，将控制传给内核的异常处理程序，linux shell一般称之为段错误（segmentation fault）
-<img src="../../../img/csapp-vm06.png" alt="image" /></p>
-
-<h3 id="节省内存">节省内存</h3>
-
+<img  src="../../../img/csapp-vm06.png"
+        alt="image"/></p>
+<h3 id="heading-6">节省内存</h3>
 <p>MMU根据虚拟地址读取页表，发现设置了有效位，表明缓存命中，地址字段存储了物理页地址，就可以找到数据在物理内存中的位置，这是页命中，相对的就会触发缺页异常（缓存不命中 page fault）：
 （见上图）</p>
-
 <ol>
 <li>MMU读取页表想获得VP1地址的时候发现未设置有效位，缓存未命中，只存在于磁盘，并触发一个缺页异常</li>
 <li>缺页异常会调用内核中的缺页异常处理程序，该程序选择一个牺牲页，将其复制回磁盘（页面调出），取消设置PTE的有效位</li>
 <li>异常处理程序再把磁盘上的VP1复制到物理内存中（页面调入），设置有效位</li>
 <li>将指令重新发到MMU，再次执行的时候就可以命中了</li>
 </ol>
-
 <p>上述中磁盘与物理内存中传送页的活动叫交换（swapping）或者页面调度（paging），当不命中的时候才进行换页操作这种策略称为按需页面调度（demand paging）
 空间局部性和工作集导致效率高，如果不高说明发生了 抖动（thrashing）</p>
-
-<h3 id="内存管理更加方便">内存管理更加方便</h3>
-
+<h3 id="heading-7">内存管理更加方便</h3>
 <p>进程看起来就可以独享整个计算机空间了，因为在进程眼里全部虚拟内存都可以使用，所以每个进程也需要有自己的页表来进行映射，操作系统为每个进程都提供了一个独立的页表。</p>
-
-<p><img src="../../../img/csapp-vm05.png" alt="image" /></p>
-
+<p><img  src="../../../img/csapp-vm05.png"
+        alt="image"/></p>
 <p>这样做有很多好处：</p>
-
 <ul>
 <li>简化链接器：每个进程都有独立空间，数据段相同，这样的一致性，简化了链接器的设计与实现</li>
 <li>简化加载：把目标文件（可执行文件和共享对象文件）中的.text和.data节加载到一个新创建的进程中，Linux加载器为代码和数据段分配虚拟页，把他们标记为无效的（即未被缓存的），将页表条目指向目标文件中适当的位置。整个行为加载器不会从磁盘复制内容到内存，而是靠虚拟内存系统的按需页面调度来处理</li>
 <li>简化共享：每个进程有了独立地址空间，一致性的处理方式，让多个进程之间共享一些内核库更加简单（如上图）</li>
 <li>简化内存分配：页表进行了和物理内存的映射，所以在分配内存的时候不需要考虑连续个物理页空间，可以随机分配</li>
 </ul>
-
-<h2 id="让虚拟内存系统更健壮">让虚拟内存系统更健壮</h2>
-
-<h3 id="缓存方式">缓存方式</h3>
-
+<h2 id="heading-8">让虚拟内存系统更健壮</h2>
+<h3 id="heading-9">缓存方式</h3>
 <p>在存储器章节说过，梯形存储体系中，本层存储器是为上一层提供缓存的，当高速缓存未命中由物理内存提供缓存服务，物理内存比高速缓存慢10倍。
 当物理内存缓存未命中由磁盘提供缓存服务，而磁盘比物理内存慢10w倍。所以物理内存的未命中代价开销要比高速缓存未命中大得多，而且读取磁盘中一个扇区的第一个字节时间开销比读这个扇区中连续字节要慢大约10w倍。所以：</p>
-
 <ul>
 <li>物理页有更大的尺寸 4KB ~ 2MB：为了不命中处罚和访问第一个字节的开销</li>
 <li>全相连：由于不命中处罚，任何虚拟页都可以放置在任何物理页中</li>
 <li>缓存替换策略更复杂：不命中的时候替换进行替换页，替换错了还会出现缓存未命中，所以开销也会很大，需要更强大的替换算法（由操作系统提供）</li>
 <li>写回而不是直写：访问磁盘很慢，所以需要一个修改位标记是否被修改，没有被修改就无需在替换的时候写入磁盘。</li>
 </ul>
-
-<h3 id="多级页表">多级页表</h3>
-
+<h3 id="heading-10">多级页表</h3>
 <blockquote>
 <p>32位操作系统就需要管理 $2^{32}$ 字节的虚拟内存地址 4GB</p>
-
+</blockquote>
+<blockquote>
 <p>假设一个PTE需要4KB（$2 ^ {12}$ 字节），一共需要：$2^{32}$ * $2^{-12}$ = $2^{20}$ 个PTE</p>
-
+</blockquote>
+<blockquote>
 <p>假设一条PTE记录有4个字节（$2^2$），一共需要 $2^{20}$ * $2^2$ = $2^{22}$字节 = 4MB</p>
-
+</blockquote>
+<blockquote>
 <p>不分页情况下用4MB覆盖全部虚拟内存地址，也就是每个进程都有4MB的页表</p>
 </blockquote>
-
 <p>多级页表主要从两部分降低内存：</p>
-
 <ol>
 <li>如果一级页表中的一个PTE为空，那么对应的二级页表就不会存在</li>
 <li>只有一级页表存在于主存中，虚拟内存系统可以按需创建，调入或调出二级页表</li>
 </ol>
-
 <p>下图中，第一级页表每个PTE映射一个片（chunk）大小为$2^{10}$字节（可以理解为一个页表）。
 这样计算下来，一级页表总共4KB， 二级页表共1024个chunk，但中只用到了3个也就是 3*4KB = 12KB。</p>
-
-<p><img src="../../../img/csapp-vm11.png" alt="image" /></p>
-
+<p><img  src="../../../img/csapp-vm11.png"
+        alt="image"/></p>
 <p>下图展示了多级页表情况下整个映射过程，一级一级的索引到最终物理内存地址</p>
-
-<p><img src="../../../img/csapp-vm12.png" alt="image" /></p>
-
+<p><img  src="../../../img/csapp-vm12.png"
+        alt="image"/></p>
 <p>虽然多级页表用空间换时间，但TLB和局部性让他并不比单级慢很多</p>
-
-<h3 id="tlb加速翻译">TLB加速翻译</h3>
-
+<h3 id="tlb">TLB加速翻译</h3>
 <p>为了加速翻译 Translation Lookaside Buffer(TLB)，可以理解为页表在处理芯片上的缓存</p>
-
 <ol>
 <li>第1步 cpu产生一个虚拟地址</li>
 <li>第2，3步MMU从TLB取出对应PTE</li>
 <li>第4步将这个虚拟地址翻译成物理内存地址 然后发送到高速缓存/主存</li>
 <li>返回数据</li>
 </ol>
-
 <p>如果TLB不命中，则需要从高速缓存/主存取出相应PTE，存放到TLB，可能会覆盖已有TLB条目</p>
+<p><img  src="../../../img/csapp-vm10.png"
+        alt="image"/></p>
+</article><section class="article labels"><a class="category" href=/categories/code/>code</a><a class="tag" href=/tags/csapp/>csapp</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/"><span class="iconfont icon-article"></span>百年孤独</a></p><p><a class="link" href="/post/2019/20190923-csapp3/"><span class="iconfont icon-article"></span>读CSAPP(3) - 存储器层次结构</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2020 heisenberg.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
+        <script
+            type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
 
-<p><img src="../../../img/csapp-vm10.png" alt="image" /></p>
-
-    </div>
-
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">heisenberg</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">
-        2019-09-28
-        
-    </span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content">除特别声明外文章，均采用<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> 转载请注明出处</span>
-  </p>
-</div>
-<footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/csapp/">csapp</a>
-          <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-          </div>
-      <nav class="post-nav">
-        <a class="prev" href="/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">百年孤独</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/2019/20190923-csapp3/">
-            <span class="next-text nav-default">读CSAPP(3) - 存储器层次结构</span>
-            <span class="next-text nav-mobile">下一篇</span>
-            <i class="iconfont icon-right"></i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-        </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-      var gitment = new Gitment({
-        id: '2019-09-28 00:00:00 \x2b0000 UTC',
-        title: '读CSAPP(4) - 虚拟内存',
-        link: decodeURI(location.href),
-        desc: '虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全',
-        owner: 'heisenbergv',
-        repo: 'heisenbergv.github.io',
-        oauth: {
-          client_id: '70335a4af07c4a97b79b',
-          client_secret: '6c0684397ec265598fead8d27242c273d151bd1e'
-        }
-      });
-      gitment.render('comments-gitment');
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
-
-  
-
-  
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="zuojxin@hotmail.com" class="iconfont icon-email" title="email"></a>
-      <a href="https://twitter.com/Vdemoot" class="iconfont icon-twitter" title="twitter"></a>
-      <a href="https://github.com/HeisenbergV/heisenbergv.github.io" class="iconfont icon-github" title="github"></a>
-  <a href="https://heisenbergv.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
-  </span>
-
-  
-
-  <span class="copyright-year">
-    &copy; 
-    2019 - 
-    2020
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">heisenberg</span>
-  </span>
-</div>
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-
-
-
-<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-      TeX: {equationNumbers: {autoNumber: "AMS"}},
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
-
-
-
-<script id="baidu_push">
-  (function(){
-    if (window.location.hostname === 'localhost') return;
-    var bp = document.createElement('script'); bp.async = true;
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-  })();
-</script>
-
-
-
-
-</body>
 </html>

@@ -1,149 +1,165 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on heisenberg blog</title>
-    <link>https://heisenbergv.github.io/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <copyright>©2020 heisenberg.</copyright>
     <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://heisenbergv.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>MIT6.828-02-Lab1.Util</title>
-      <link>https://heisenbergv.github.io/post/2020/20200407-mit6.828-02-lab1/</link>
+      <title>MIT6.828 - 02-Lab1.Util</title>
+      <link>/post/2020/20200407-mit6.828-02-lab1/</link>
       <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200407-mit6.828-02-lab1/</guid>
-      <description>Util 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， kerne</description>
+      <guid>/post/2020/20200407-mit6.828-02-lab1/</guid>
+      <description>实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， ke</description>
+      
     </item>
     
     <item>
-      <title>MIT6.828-01.环境搭建</title>
-      <link>https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/</link>
+      <title>MIT6.828 - 01.环境搭建</title>
+      <link>/post/2020/20200406-mit6.828-01/</link>
       <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/</guid>
+      <guid>/post/2020/20200406-mit6.828-01/</guid>
       <description>概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima</description>
+      
     </item>
     
     <item>
-      <title>MIT6.828-00.开始</title>
-      <link>https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/</link>
+      <title>MIT6.828 - 00.开始</title>
+      <link>/post/2020/20200405-mit6.828-00/</link>
       <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/</guid>
-      <description>前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我会根据这个课程记录我的学习与实践 我写的所有代码都会上</description>
+      <guid>/post/2020/20200405-mit6.828-00/</guid>
+      <description>前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的git</description>
+      
     </item>
     
     <item>
       <title>源码阅读 - go Context</title>
-      <link>https://heisenbergv.github.io/post/2020/20200401-go-context/</link>
+      <link>/post/2020/20200401-go-context/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200401-go-context/</guid>
+      <guid>/post/2020/20200401-go-context/</guid>
       <description>Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理</description>
+      
     </item>
     
     <item>
       <title>百年孤独</title>
-      <link>https://heisenbergv.github.io/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</link>
+      <link>/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</link>
       <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</guid>
+      <guid>/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</guid>
       <description>第一章 简要 一个叫 何塞·阿尔卡蒂奥·布恩迪亚 的人，从吉卜赛人 梅尔吉亚德斯，一个诚实善良的人手中换来各种新奇未见过的道具：磁铁，放大镜等。 他天马</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(4) - 虚拟内存</title>
-      <link>https://heisenbergv.github.io/post/2019/20190928-csapp4/</link>
+      <link>/post/2019/20190928-csapp4/</link>
       <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190928-csapp4/</guid>
+      <guid>/post/2019/20190928-csapp4/</guid>
       <description>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(3) - 存储器层次结构</title>
-      <link>https://heisenbergv.github.io/post/2019/20190923-csapp3/</link>
+      <link>/post/2019/20190923-csapp3/</link>
       <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190923-csapp3/</guid>
+      <guid>/post/2019/20190923-csapp3/</guid>
       <description>了解硬件 随机访问存储器（Random-Access Memory，RAM） RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比D</description>
+      
     </item>
     
     <item>
       <title>Go Channel</title>
-      <link>https://heisenbergv.github.io/post/2019/20190917-go-channel/</link>
+      <link>/post/2019/20190917-go-channel/</link>
       <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190917-go-channel/</guid>
+      <guid>/post/2019/20190917-go-channel/</guid>
       <description>如何使用 channel在&amp;lt;-左边 表示向channel发送数据 channel在&amp;lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha</description>
+      
     </item>
     
     <item>
       <title>Go Groutine</title>
-      <link>https://heisenbergv.github.io/post/2019/20190917-go-groutine/</link>
+      <link>/post/2019/20190917-go-groutine/</link>
       <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190917-go-groutine/</guid>
+      <guid>/post/2019/20190917-go-groutine/</guid>
       <description>并发与并行 并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(2) - 程序性能优化</title>
-      <link>https://heisenbergv.github.io/post/2019/20190909-csapp2/</link>
+      <link>/post/2019/20190909-csapp2/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190909-csapp2/</guid>
+      <guid>/post/2019/20190909-csapp2/</guid>
       <description>高效的程序需要做到 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可</description>
+      
     </item>
     
     <item>
       <title>Go 竞态问题</title>
-      <link>https://heisenbergv.github.io/post/2019/20190903-go-race-condition/</link>
+      <link>/post/2019/20190903-go-race-condition/</link>
       <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190903-go-race-condition/</guid>
+      <guid>/post/2019/20190903-go-race-condition/</guid>
       <description>定义 单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(1) - 信息的表示和处理</title>
-      <link>https://heisenbergv.github.io/post/2019/20190827-csapp1/</link>
+      <link>/post/2019/20190827-csapp1/</link>
       <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190827-csapp1/</guid>
+      <guid>/post/2019/20190827-csapp1/</guid>
       <description>计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯</description>
+      
     </item>
     
     <item>
       <title>钢琴入门练习</title>
-      <link>https://heisenbergv.github.io/post/2019/20190815-piano/</link>
+      <link>/post/2019/20190815-piano/</link>
       <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190815-piano/</guid>
+      <guid>/post/2019/20190815-piano/</guid>
       <description>练习曲1 提取码: gu7d</description>
+      
     </item>
     
     <item>
       <title>暗时间</title>
-      <link>https://heisenbergv.github.io/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</link>
+      <link>/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</link>
       <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</guid>
+      <guid>/post/2019/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</guid>
       <description>学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死</description>
+      
     </item>
     
     <item>
       <title>2019年下半年计划</title>
-      <link>https://heisenbergv.github.io/post/2019/2019-plan/</link>
+      <link>/post/2019/2019-plan/</link>
       <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/2019-plan/</guid>
+      <guid>/post/2019/2019-plan/</guid>
       <description>理财 《小狗钱钱》 《穷爸爸富爸爸》 《解读基金》 《好好赚钱》 《指数基金投资指南》 读书 《百年孤独》 《暗时间》 《稀缺》 《别做正常的傻瓜》 技术 csapp 8.2</description>
+      
     </item>
     
   </channel>

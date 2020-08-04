@@ -1,77 +1,85 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>操作系统 on heisenberg blog</title>
-    <link>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <link>/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
     <description>Recent content in 操作系统 on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <copyright>©2020 heisenberg.</copyright>
     <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>MIT6.828-02-Lab1.Util</title>
-      <link>https://heisenbergv.github.io/post/2020/20200407-mit6.828-02-lab1/</link>
+      <title>MIT6.828 - 02-Lab1.Util</title>
+      <link>/post/2020/20200407-mit6.828-02-lab1/</link>
       <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200407-mit6.828-02-lab1/</guid>
-      <description>Util 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， kerne</description>
+      <guid>/post/2020/20200407-mit6.828-02-lab1/</guid>
+      <description>实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个shell小程序。在 xv6-riscv-fall19项目里， ke</description>
+      
     </item>
     
     <item>
-      <title>MIT6.828-01.环境搭建</title>
-      <link>https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/</link>
+      <title>MIT6.828 - 01.环境搭建</title>
+      <link>/post/2020/20200406-mit6.828-01/</link>
       <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/</guid>
+      <guid>/post/2020/20200406-mit6.828-01/</guid>
       <description>概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima</description>
+      
     </item>
     
     <item>
-      <title>MIT6.828-00.开始</title>
-      <link>https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/</link>
+      <title>MIT6.828 - 00.开始</title>
+      <link>/post/2020/20200405-mit6.828-00/</link>
       <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/</guid>
-      <description>前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我会根据这个课程记录我的学习与实践 我写的所有代码都会上</description>
+      <guid>/post/2020/20200405-mit6.828-00/</guid>
+      <description>前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的git</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(4) - 虚拟内存</title>
-      <link>https://heisenbergv.github.io/post/2019/20190928-csapp4/</link>
+      <link>/post/2019/20190928-csapp4/</link>
       <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190928-csapp4/</guid>
+      <guid>/post/2019/20190928-csapp4/</guid>
       <description>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(3) - 存储器层次结构</title>
-      <link>https://heisenbergv.github.io/post/2019/20190923-csapp3/</link>
+      <link>/post/2019/20190923-csapp3/</link>
       <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190923-csapp3/</guid>
+      <guid>/post/2019/20190923-csapp3/</guid>
       <description>了解硬件 随机访问存储器（Random-Access Memory，RAM） RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比D</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(2) - 程序性能优化</title>
-      <link>https://heisenbergv.github.io/post/2019/20190909-csapp2/</link>
+      <link>/post/2019/20190909-csapp2/</link>
       <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190909-csapp2/</guid>
+      <guid>/post/2019/20190909-csapp2/</guid>
       <description>高效的程序需要做到 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可</description>
+      
     </item>
     
     <item>
       <title>读CSAPP(1) - 信息的表示和处理</title>
-      <link>https://heisenbergv.github.io/post/2019/20190827-csapp1/</link>
+      <link>/post/2019/20190827-csapp1/</link>
       <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2019/20190827-csapp1/</guid>
+      <guid>/post/2019/20190827-csapp1/</guid>
       <description>计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯</description>
+      
     </item>
     
   </channel>

@@ -1,59 +1,65 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on heisenberg blog</title>
-    <link>https://heisenbergv.github.io/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <copyright>©2020 heisenberg.</copyright>
     <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://heisenbergv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>code</title>
-      <link>https://heisenbergv.github.io/categories/code/</link>
+      <link>/categories/code/</link>
       <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/categories/code/</guid>
+      <guid>/categories/code/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>xv6</title>
-      <link>https://heisenbergv.github.io/categories/xv6/</link>
+      <link>/categories/xv6/</link>
       <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/categories/xv6/</guid>
+      <guid>/categories/xv6/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>阅读</title>
-      <link>https://heisenbergv.github.io/categories/%E9%98%85%E8%AF%BB/</link>
+      <link>/categories/%E9%98%85%E8%AF%BB/</link>
       <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/categories/%E9%98%85%E8%AF%BB/</guid>
+      <guid>/categories/%E9%98%85%E8%AF%BB/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>杂技</title>
-      <link>https://heisenbergv.github.io/categories/%E6%9D%82%E6%8A%80/</link>
+      <link>/categories/%E6%9D%82%E6%8A%80/</link>
       <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/categories/%E6%9D%82%E6%8A%80/</guid>
+      <guid>/categories/%E6%9D%82%E6%8A%80/</guid>
       <description></description>
+      
     </item>
     
     <item>
       <title>动态</title>
-      <link>https://heisenbergv.github.io/categories/%E5%8A%A8%E6%80%81/</link>
+      <link>/categories/%E5%8A%A8%E6%80%81/</link>
       <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/categories/%E5%8A%A8%E6%80%81/</guid>
+      <guid>/categories/%E5%8A%A8%E6%80%81/</guid>
       <description></description>
+      
     </item>
     
   </channel>
