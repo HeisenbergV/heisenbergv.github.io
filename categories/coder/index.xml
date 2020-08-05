@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>coder on heisenberg blog</title>
@@ -6,27 +6,45 @@
     <description>Recent content in coder on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 01 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://heisenbergv.github.io/categories/coder/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>go Context</title>
+      <title>动手写操作系统-1</title>
+      <link>https://heisenbergv.github.io/post/2020/20200405-os1/</link>
+      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/post/2020/20200405-os1/</guid>
+      <description>docker安装xv6环境 我使用docker进行环境搭建，构建自己的image，方便部署，之后换电脑也无需重复安装各种工具。 我的image:</description>
+    </item>
+    
+    <item>
+      <title>动手写操作系统-0</title>
+      <link>https://heisenbergv.github.io/post/2020/20200405-os0/</link>
+      <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/post/2020/20200405-os0/</guid>
+      <description>准备 根据MIT 6.828学习路线，来写操作系统。 23个课程，10个Lab 参考文档 xv6 文档 xv6源码 vx6源码分析 LEC 1 (rtm): Introduction and examples (handouts: xv6 book) Preparation: Read chapter 1 of the</description>
+    </item>
+    
+    <item>
+      <title>源码阅读 - go Context</title>
       <link>https://heisenbergv.github.io/post/2020/20200401-go-context/</link>
       <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://heisenbergv.github.io/post/2020/20200401-go-context/</guid>
-      <description>干什么的 可以跟踪多个goroutine 利用信号停止他们 案例 利用context 做trace 利用context对多个goroutine进行信号停</description>
+      <description>Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理</description>
     </item>
     
     <item>
-      <title>分布式</title>
-      <link>https://heisenbergv.github.io/post/2020/20200306-%E5%88%86%E5%B8%83%E5%BC%8F/</link>
-      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      <title>Kafka</title>
+      <link>https://heisenbergv.github.io/post/2020/2020-0305-kafka/</link>
+      <pubDate>Tue, 03 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://heisenbergv.github.io/post/2020/20200306-%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
-      <description>GFS</description>
+      <guid>https://heisenbergv.github.io/post/2020/2020-0305-kafka/</guid>
+      <description>安全问题 性能 容错 可扩展性 易用性 恢复 数据一致性</description>
     </item>
     
     <item>
