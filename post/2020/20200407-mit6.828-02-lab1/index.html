@@ -168,8 +168,8 @@ pingpong:</code></pre></td></tr></table>
 </div>
 <h2 id="primes">primes</h2>
 
-<p>程序需求：父线程将 2 ~ 35 数字输入<code>pipe</code>，<code>fork</code>的子进程如同一个递归操作，将2打印，并再次利用此子进程将其余不能被2整除的数字输入到<code>pipe</code>，子进程再次将3打印，并将无法被3整除的数字输入<code>pipe</code>，以此类推，直至最后一个数字。
-最后打印出来的结果将都会是素数，<a href="https://swtch.com/~rsc/thread/">这篇文章</a>解释了这个模型。利用管道，一层层过滤无效数据</p>
+<p>程序需求：父线程将 2 ~ 35 数字输入<code>pipe</code>，<code>fork</code>的子进程如同一个递归操作，将第一个数字打印，并将其余不能被这个数字整除的输入到<code>pipe</code>，不断重复操作，直至最后一个数字。
+最后打印出来的结果将都会是素数。<a href="https://swtch.com/~rsc/thread/">这篇文章</a>解释了这个模型。利用管道，和递归，一层层过滤无效数据。 需要注意的是xv6的fd有限，范围为0~15，所以需要将不用的fd close</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-txt" data-lang="txt"><span class="lnt"> 1
@@ -202,6 +202,16 @@ pingpong:</code></pre></td></tr></table>
 最后打印的结果为：2，3，5，7，11 全部为素数</code></pre></td></tr></table>
 </div>
 </div>
+<p>子进程主要做三件事：</p>
+
+<ol>
+<li>输出第一个</li>
+<li>过滤，符合要求的发送到新的pipe</li>
+<li>让子进程继续重复操作</li>
+</ol>
+
+<p>将2，3对调 可以让两个进程读写同时进行</p>
+
 <h5 id="primes-c">primes.c:</h5>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -241,22 +251,52 @@ pingpong:</code></pre></td></tr></table>
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> 
-<span class="nf">is_primes_num</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">){</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">number</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">number</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-            <span class="n">flag</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-            <span class="k">break</span><span class="p">;</span>
+<span class="kt">void</span>
+<span class="nf">filter</span><span class="p">(</span><span class="kt">int</span> <span class="n">out</span><span class="p">,</span> <span class="kt">int</span> <span class="n">input</span><span class="p">){</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">div</span><span class="p">;</span>
+    <span class="c1">//1. 输出第一个
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">div</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="n">exit</span><span class="p">();</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;prime %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">div</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="n">pipe</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+
+    <span class="c1">//3. 让子进程继续重复操作
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()){</span>
+        <span class="n">filter</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//2. 过滤，符合要求的发送到新的pipe
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">))){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">div</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="c1">//flag==0 is primes number
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">flag</span><span class="p">;</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">out</span><span class="p">);</span>
+
+    <span class="n">wait</span><span class="p">();</span>
+    <span class="n">exit</span><span class="p">();</span>
 <span class="p">}</span>
 
 <span class="kt">int</span> 
@@ -264,20 +304,16 @@ pingpong:</code></pre></td></tr></table>
     <span class="kt">int</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
     <span class="n">pipe</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 
-    <span class="kt">int</span> <span class="n">number</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">fork</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-        <span class="k">while</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">number</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">is_primes_num</span><span class="p">(</span><span class="n">number</span><span class="p">))</span>
-                <span class="n">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;prime %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">number</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()){</span>
+        <span class="n">filter</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">35</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
         <span class="p">}</span>
+        <span class="n">wait</span><span class="p">();</span>
+        <span class="n">exit</span><span class="p">();</span>
     <span class="p">}</span>
-    <span class="k">else</span><span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">35</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-            <span class="n">write</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">exit</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
