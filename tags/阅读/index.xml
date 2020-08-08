@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>阅读 on heisenberg blog</title>
@@ -18,6 +18,15 @@
       
       <guid>https://heisenbergv.github.io/post/2020/20200210-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</guid>
       <description>第一章 简要 一个叫 何塞·阿尔卡蒂奥·布恩迪亚 的人，从吉卜赛人 梅尔吉亚德斯，一个诚实善良的人手中换来各种新奇未见过的道具：磁铁，放大镜等。 他天马</description>
+    </item>
+    
+    <item>
+      <title>稀缺</title>
+      <link>https://heisenbergv.github.io/post/2020/20200111-%E7%A8%80%E7%BC%BA/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/post/2020/20200111-%E7%A8%80%E7%BC%BA/</guid>
+      <description>稀缺 越缺什么 越在意什么 就会越专注 但也会因此对其他事物产生消极状态 无论是有关工作还是娱乐，只要时间有限，我们都会尽量将其利用得淋漓尽致。我们将</description>
     </item>
     
   </channel>
