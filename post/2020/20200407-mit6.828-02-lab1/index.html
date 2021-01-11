@@ -4,12 +4,12 @@
 <meta name="supported-color-schemes" content="light dark"><title>MIT6.828 - 02-Lab1.Util&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.6f427d140348e397256101d58c9b7ece56604e83532d366af9e519b66632ba5c517f326890e8173afd3679a994db8ace.css" integrity="sha384-b0J9FANI45clYQHVjJt&#43;zlZgToNTLTZq&#43;eUZtmYyulxRfzJokOgXOv02eamU24rO"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="MIT6.828 - 02-Lab1.Util" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/about/">About</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">靡不有初 鲜克有终</span></div></section><section id="content"><div class="article-container"><section class="article header">
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">靡不有初 鲜克有终</span></div></section><section id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">MIT6.828 - 02-Lab1.Util</h1><p class="article date">2020-04-07</p></section><article class="article markdown-body">
 
 <h2 id="实验说明">实验说明</h2>
 
-<p>每一个Lab对应一个git 分支，本实验分支为 <code>util</code>，主要是实现5个shell小程序。在 <code>xv6-riscv-fall19</code>项目里， <code>kernel</code>是内核， <code>user</code>是用户态程序， 代码写到<code>user</code>里，然后再Makefile <code>UPROGS</code>变量中加入的相应名称即可：</p>
+<p>每一个Lab对应一个git 分支，本实验分支为 <code>util</code>，主要是实现5个命令程序。在 <code>xv6-riscv-fall19</code>项目里， <code>kernel</code>是内核， <code>user</code>是用户态程序， 代码写到<code>user</code>里，然后再Makefile <code>UPROGS</code>变量中加入的相应名称即可：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="lnt">1
@@ -29,7 +29,7 @@
 </span></code></pre></td></tr></table>
 </div>
 </div>
-<p>我的代码都在 <a href="https://github.com/HeisenbergV/xv6-riscv-fall19/tree/util/user">这里</a></p>
+<p>我的实验代码都在 <a href="https://github.com/HeisenbergV/xv6-riscv-fall19/">自己fork的仓库里</a></p>
 
 <p>执行<code>make grade</code>会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：</p>
 <div class="highlight"><div class="chroma">
@@ -319,13 +319,178 @@ pingpong:</code></pre></td></tr></table>
 </div>
 <h2 id="find">find</h2>
 
+<p>程序需求：输入文件名称，用递归方式遍历目录及其子目录，打印出：路径+名称。比如<code>find d.txt</code>打印<code>a/b/c/d.txt</code>。</p>
+
+<p>主要思路：部分代码可以直接用<code>ls.c</code>的，利用递归遍历<code>dir</code>，名字相同则输出，不用的fd要close掉，因为xv6范围是0~15</p>
+
+<h5 id="find-c">find.c</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;kernel/stat.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;kernel/fs.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+
+<span class="kt">char</span><span class="o">*</span> 
+<span class="nf">fmtname</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="c1">// Find first character after last slash.
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">path</span><span class="o">+</span><span class="n">strlen</span><span class="p">(</span><span class="n">path</span><span class="p">);</span> <span class="n">p</span> <span class="o">&gt;=</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="n">p</span> <span class="o">!=</span> <span class="sc">&#39;/&#39;</span><span class="p">;</span> <span class="n">p</span><span class="o">--</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">++</span><span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="kt">void</span>
+<span class="nf">find</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">stat</span> <span class="n">st</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">fmtname</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;%s </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">if</span> <span class="p">((</span><span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;find: cannot open %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">fstat</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">st</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;find: cannot stat %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
+        <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">T_DIR</span><span class="p">){</span>
+        <span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">512</span><span class="p">],</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">dirent</span> <span class="n">de</span><span class="p">;</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">path</span><span class="p">);</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">buf</span><span class="o">+</span><span class="n">strlen</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+    <span class="o">*</span><span class="n">p</span><span class="o">++</span> <span class="o">=</span> <span class="sc">&#39;/&#39;</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">de</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">de</span><span class="p">))</span> <span class="o">==</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">de</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">de</span><span class="p">.</span><span class="n">inum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">continue</span><span class="p">;</span>
+
+        <span class="n">memmove</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">de</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">DIRSIZ</span><span class="p">);</span>
+        <span class="n">p</span><span class="p">[</span><span class="n">DIRSIZ</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">de</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">continue</span><span class="p">;</span>
+     
+        <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">de</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;..&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">continue</span><span class="p">;</span>
+
+        <span class="n">find</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#34;params error&#34;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">find</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="n">exit</span><span class="p">();</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="xargs">xargs</h2>
 
+<p>&hellip;.</p>
+
+<h5 id="xargs-c">xargs.c</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"></code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="参考">参考</h2>
 
-<p><a href="https://blog.csdn.net/jason314/article/details/5640969">fork</a></p>
+<p><a href="https://blog.csdn.net/jason314/article/details/5640969">linux-fork()</a></p>
 </article><section class="article labels"><a class="category" href=/categories/code/>code</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a><a class="tag" href=/tags/xv6/>xv6</a></section></div>
-<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200406-mit6.828-01/"><span class="iconfont icon-article"></span>MIT6.828 - 01.环境搭建</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200409-mit6.828-03-lab2/"><span class="iconfont icon-article"></span>MIT6.828 - 03-Lab2.shell</a></p><p><a class="link" href="/post/2020/20200406-mit6.828-01/"><span class="iconfont icon-article"></span>MIT6.828 - 01.环境搭建</a></p></section></div></section><section id="footer"><div class="footer-wrap">
     <p class="copyright">©2020 heisenberg</p>
     <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
