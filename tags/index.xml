@@ -6,7 +6,7 @@
     <description>Recent content in Tags on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>©2020 heisenberg</copyright>
+    <copyright>©2021 heisenberg</copyright>
     <lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -23,9 +23,19 @@
     </item>
     
     <item>
+      <title>源码</title>
+      <link>/tags/%E6%BA%90%E7%A0%81/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/%E6%BA%90%E7%A0%81/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>go-micro</title>
       <link>/tags/go-micro/</link>
-      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/go-micro/</guid>
       <description></description>
@@ -35,7 +45,7 @@
     <item>
       <title>微服务</title>
       <link>/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
-      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
       <description></description>
@@ -48,16 +58,6 @@
       <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/%E7%AE%97%E6%B3%95/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>xv6</title>
-      <link>/tags/xv6/</link>
-      <pubDate>Thu, 09 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/xv6/</guid>
       <description></description>
       
     </item>
@@ -83,21 +83,11 @@
     </item>
     
     <item>
-      <title>源码</title>
-      <link>/tags/%E6%BA%90%E7%A0%81/</link>
-      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E6%BA%90%E7%A0%81/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>小说</title>
-      <link>/tags/%E5%B0%8F%E8%AF%B4/</link>
+      <title>读书</title>
+      <link>/tags/%E8%AF%BB%E4%B9%A6/</link>
       <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/%E5%B0%8F%E8%AF%B4/</guid>
+      <guid>/tags/%E8%AF%BB%E4%B9%A6/</guid>
       <description></description>
       
     </item>
@@ -113,21 +103,11 @@
     </item>
     
     <item>
-      <title>音乐</title>
-      <link>/tags/%E9%9F%B3%E4%B9%90/</link>
-      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E9%9F%B3%E4%B9%90/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>方法</title>
-      <link>/tags/%E6%96%B9%E6%B3%95/</link>
+      <title>学习</title>
+      <link>/tags/%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/%E6%96%B9%E6%B3%95/</guid>
+      <guid>/tags/%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
       
     </item>

@@ -6,7 +6,7 @@
     <description>Recent content in Posts on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>©2020 heisenberg</copyright>
+    <copyright>©2021 heisenberg</copyright>
     <lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
@@ -179,16 +179,6 @@
       
       <guid>/post/2019/20190827-csapp1/</guid>
       <description>计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯</description>
-      
-    </item>
-    
-    <item>
-      <title>钢琴入门练习</title>
-      <link>/post/2019/20190815-piano/</link>
-      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2019/20190815-piano/</guid>
-      <description>练习曲1 提取码: gu7d</description>
       
     </item>
     

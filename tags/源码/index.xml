@@ -6,11 +6,21 @@
     <description>Recent content in 源码 on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>©2020 heisenberg</copyright>
-    <lastBuildDate>Wed, 01 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <copyright>©2021 heisenberg</copyright>
+    <lastBuildDate>Tue, 02 Jun 2020 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/tags/%E6%BA%90%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go-micro 源码阅读-Server</title>
+      <link>/post/2020/20200602-gomicro1/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/20200602-gomicro1/</guid>
+      <description>根据上一篇的用例，看一看sum如何调用num服务的，num服务如何提供服务的 Server num服务启动挂载api。 挂载 1 2 3 4 5 6 type Server interface { //... Handle(Handler) error NewHandler(interface{}, ...HandlerOption) Handler</description>
+      
+    </item>
     
     <item>
       <title>源码阅读 - go Context</title>
