@@ -18,7 +18,7 @@
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/post/2021/20210105-tcpudp/</guid>
-      <description>TCP/IP 模型 应用层将数据传递给运输层，运输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物</description>
+      <description>TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物</description>
       
     </item>
     

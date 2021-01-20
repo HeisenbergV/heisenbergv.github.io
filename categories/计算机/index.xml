@@ -18,7 +18,7 @@
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/post/2021/20210105-tcpudp/</guid>
-      <description>TCP/IP 模型 应用层将数据传递给运输层，运输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物</description>
+      <description>TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物</description>
       
     </item>
     
@@ -39,6 +39,16 @@
       
       <guid>/post/2020/20200601-gomicro0/</guid>
       <description>整体架构 概述 go-micro使得构建微服务更加简便，它将每个模块以interface呈现，只要实现了每个模块的interface，就能制定属</description>
+      
+    </item>
+    
+    <item>
+      <title>算法-0</title>
+      <link>/post/algo/helloalgo/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/algo/helloalgo/</guid>
+      <description>前言 开始刷LeetCode题，这里记录我刷题过程。 代码都在我的: github 我的: leetcode 顺序： 按tag刷，难度从低到高 学习资料 https://labuladong.gitbook.io/algo/</description>
       
     </item>
     
