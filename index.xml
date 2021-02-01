@@ -13,11 +13,11 @@
     
     
     <item>
-      <title>grpc-go 源码-grpc server</title>
-      <link>/post/2021/202101019-grpc-server/</link>
+      <title>grpc-go</title>
+      <link>/post/2021/202101019-grpc/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/2021/202101019-grpc-server/</guid>
+      <guid>/post/2021/202101019-grpc/</guid>
       <description>grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务</description>
       
     </item>
