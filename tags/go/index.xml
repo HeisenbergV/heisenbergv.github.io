@@ -7,20 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>©2021 heisenberg</copyright>
-    <lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Apr 2020 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>go 函数调用</title>
-      <link>/post/2020/20200501-go-func/</link>
-      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2020/20200501-go-func/</guid>
-      <description>参数传递 ** go的所有参数传递，都是值传递不存在引用传递。 ** 接口实现 1 2 3 4 5 6 7 8 9 10 type Cat struct { } func Hello(c Cat){ } func main(){ c := Cat{} Hello(c) } 1 2 3 4 5 6 7 8 9 10 type</description>
-      
-    </item>
     
     <item>
       <title>源码阅读 - go Context</title>
