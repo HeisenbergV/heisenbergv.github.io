@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.56.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Go Channel&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.6f427d140348e397256101d58c9b7ece56604e83532d366af9e519b66632ba5c517f326890e8173afd3679a994db8ace.css" integrity="sha384-b0J9FANI45clYQHVjJt&#43;zlZgToNTLTZq&#43;eUZtmYyulxRfzJokOgXOv02eamU24rO"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>Go Channel&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Go Channel" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">Go Channel</h1><p class="article date">2019-09-17</p></section><article class="article markdown-body">
-
-<h2 id="如何使用">如何使用</h2>
-
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Go Channel</h1><p class="article date">2019-09-17</p></section><article class="article markdown-body"><h2 id="如何使用">如何使用</h2>
 <ul>
 <li>channel在&lt;-左边 表示向channel发送数据</li>
 <li>channel在&lt;-右边 表示从channel接收数据</li>
-
-<li><p>close(channelName) 关闭一个channel</p>
+<li>close(channelName) 关闭一个channel</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -33,22 +30,19 @@
 <span class="c1">//接收数据: 读
 </span><span class="c1"></span><span class="nx">data</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">channel</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
-<span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h2 id="channel的关闭">Channel的关闭</h2>
-
+</div><h2 id="channel的关闭">Channel的关闭</h2>
 <ul>
 <li>关闭一个未初始化(nil) 的 channel 会产生 panic</li>
 <li>重复关闭同一个 channel 会产生 panic</li>
 <li>向一个已关闭的 channel 中发送消息会产生 panic</li>
-
-<li><p>从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值</p>
+<li>从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -95,20 +89,17 @@
 			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;receive %s\n&#34;</span><span class="p">,</span> <span class="nx">chStr</span><span class="p">)</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h2 id="缓冲区">缓冲区</h2>
-
+</div><h2 id="缓冲区">缓冲区</h2>
 <ul>
 <li>make创建通道时,指定通道的大小时,称为有缓冲通道,反之无缓冲区</li>
-
-<li><p>无缓冲区或者缓冲区用完,写入一次,就要等待对方读取一次,否则无法继续写入阻塞住,同理读取不出来也会阻塞住</p>
+<li>无缓冲区或者缓冲区用完,写入一次,就要等待对方读取一次,否则无法继续写入阻塞住,同理读取不出来也会阻塞住</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -123,14 +114,15 @@
 <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">2</span>
 <span class="c1">// ch &lt;- 3 //阻塞
 </span><span class="c1"></span><span class="nx">a</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>可以用len函数查看channel的已用大小, 用cap查看channel的缓存大小</p>
+</div><ul>
+<li>可以用len函数查看channel的已用大小, 用cap查看channel的缓存大小</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -139,18 +131,16 @@
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//1
-</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="o">//</span><span class="mi">2</span></code></pre></td></tr></table>
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//2
+</span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h2 id="单向通道">单向通道</h2>
-
+</div><h2 id="单向通道">单向通道</h2>
 <ul>
-<li><p>为了限制channel滥用,禁止其进行读取或者写入操作,让函数具有更高的单一原则,封装性</p>
+<li>为了限制channel滥用,禁止其进行读取或者写入操作,让函数具有更高的单一原则,封装性</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -211,18 +201,16 @@
 </span><span class="c1"></span>	<span class="k">go</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">naturals</span><span class="p">)</span>          <span class="c1">//写入
 </span><span class="c1"></span>	<span class="k">go</span> <span class="nf">squarer</span><span class="p">(</span><span class="nx">squares</span><span class="p">,</span> <span class="nx">naturals</span><span class="p">)</span> <span class="c1">//将刚才写入的变成只读的,传参进去, 中间转换层
 </span><span class="c1"></span>	<span class="nf">printer</span><span class="p">(</span><span class="nx">squares</span><span class="p">)</span>              <span class="c1">//只读
-</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h2 id="作用">作用</h2>
-
+</div><h2 id="作用">作用</h2>
 <ul>
-<li><p>同步: 依靠阻塞的特性 做多个goroutine之间的锁</p>
+<li>同步: 依靠阻塞的特性 做多个goroutine之间的锁</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -253,14 +241,15 @@
 <span class="p">}</span>
 
 <span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span>
-<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>定时器</p>
+</div><ul>
+<li>定时器</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -290,7 +279,7 @@
 <span class="c1">//输出: 差两秒
 </span><span class="c1">// 2019-06-24 16:03:34.011947 +0800 CST m=+0.000201381
 </span><span class="c1">// 2019-06-24 16:03:36.015244 +0800 CST m=+2.003571991
-</span><span class="c1">//延迟执行
+</span><span class="c1"></span>    <span class="c1">//延迟执行
 </span><span class="c1"></span><span class="nx">time</span><span class="p">.</span><span class="nf">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
 <span class="p">})</span>
@@ -301,14 +290,15 @@
 		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;tick at&#34;</span><span class="p">,</span> <span class="nx">tick</span><span class="p">)</span>
 	<span class="p">}</span>
 <span class="p">}()</span>
-    </code></pre></td></tr></table>
+    
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>通信: Channel是goroutine之间通信的通道,用于goroutine之间发消息和接收消息</p>
+</div><ul>
+<li>通信: Channel是goroutine之间通信的通道,用于goroutine之间发消息和接收消息</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -341,20 +331,21 @@
 		<span class="nx">cake</span><span class="p">.</span><span class="nx">state</span> <span class="p">=</span> <span class="s">&#34;iced&#34;</span>
 		<span class="nx">iced</span> <span class="o">&lt;-</span> <span class="nx">cake</span> <span class="c1">// icer never touches this cake again
 </span><span class="c1"></span>	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>Select多路复用(I/O多路复用，I/O就是指的我们网络I/O,多路指多个TCP连接(或多个Channel)，复用指复用一个或少量线程。串起来理解就是很多个网络I/O复用一个或少量的线程来处理这些连接)</p>
-
+</div><ul>
+<li>Select多路复用(I/O多路复用，I/O就是指的我们网络I/O,多路指多个TCP连接(或多个Channel)，复用指复用一个或少量线程。串起来理解就是很多个网络I/O复用一个或少量的线程来处理这些连接)
 <ul>
 <li>对channel的read, write,close, 超时事件等进行监听,</li>
 <li>同时触发事件会随机执行一个</li>
-
-<li><p>阻塞在多个channel上，对多个channel的读/写事件进行监控</p>
+<li>阻塞在多个channel上，对多个channel的读/写事件进行监控</li>
+</ul>
+</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -409,18 +400,14 @@
 	<span class="k">for</span> <span class="p">{</span>
 
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul></li>
-</ul>
-
-<h2 id="内部细节">内部细节</h2>
-
+</div><h2 id="内部细节">内部细节</h2>
 <h3 id="数据结构">数据结构</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -455,26 +442,25 @@
 
 <span class="kd">type</span> <span class="nx">waitq</span> <span class="nx">sudog</span><span class="p">{</span><span class="c1">//对G的封装
 </span><span class="c1"></span>    
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ul>
+</div><ul>
 <li>channel 的主要组成有：
-
 <ul>
 <li>一个环形数组实现的循环队列, 用于存储消息元素</li>
 <li>recvq和sendq两个链表实现的 goroutine 等待队列, 用于存储阻塞在 recv 和 send 操作上的 goroutine</li>
 <li>一个互斥锁，用于各个属性变动的同步</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="主要函数功能">主要函数功能</h3>
-
 <ul>
-<li><p>makechan: 开辟一快连续内存区域存储消息元素</p>
+<li>makechan: 开辟一快连续内存区域存储消息元素</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -495,20 +481,21 @@
 	<span class="nx">c</span><span class="p">.</span><span class="nx">elemtype</span> <span class="p">=</span> <span class="nx">元素类型</span>
 	<span class="nx">c</span><span class="p">.</span><span class="nx">dataqsiz</span> <span class="p">=</span> <span class="nx">size</span>
 	<span class="k">return</span> <span class="nx">c</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>send  chan&lt;-</p>
-
+</div><ul>
+<li>send  chan&lt;-
 <ul>
 <li>如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时直接从recvq取出G,并把数据写入，最后把该G唤醒</li>
 <li>如果缓冲区中有空余位置，将数据写入缓冲区</li>
-
-<li><p>如果缓冲区中没有空余位置，将待发送数据写入G，将当前G加入sendq，进入睡眠，等待被读goroutine唤醒；</p>
+<li>如果缓冲区中没有空余位置，将待发送数据写入G，将当前G加入sendq，进入睡眠，等待被读goroutine唤醒；</li>
+</ul>
+</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -557,26 +544,26 @@
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
 	<span class="nx">sendq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul></li>
-
-<li><p>recv  &lt;-chan</p>
-
+</div><ul>
+<li>recv  &lt;-chan
 <ul>
 <li>sendq不为空 获取链表的头一个first_g
-
 <ul>
 <li>缓存无数据,将first_g消息复制给当前请求的g,并激活first_g</li>
 <li>缓存有数据, 缓存队列 出列消息给当前请求的g,并将first_g数据加入缓存队列,first_g激活</li>
-</ul></li>
+</ul>
+</li>
 <li>缓存队列有数据将数据出队 复制给当前请求的g</li>
-
-<li><p>缓存队列无数据将调用此chan的当前g加入recvq链表并设置休眠</p>
+<li>缓存队列无数据将调用此chan的当前g加入recvq链表并设置休眠</li>
+</ul>
+</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -641,15 +628,15 @@
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
 	<span class="nx">recvq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul></li>
-
-<li><p>close: 设置关闭符号为1,唤醒recvq和sendq的g</p>
+</div><ul>
+<li>close: 设置关闭符号为1,唤醒recvq和sendq的g</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -684,18 +671,13 @@
 	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
 		<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h2 id="参考">参考</h2>
-
-<p><a href="https://books.studygolang.com/gopl-zh/">go语言圣经</a></p>
-
-<p><a href="https://my.oschina.net/renhc/blog/2246871">恋恋美食 blog</a></p>
-
-<p><a href="https://draveness.me/">draveness blog</a></p>
+</div><h2 id="参考">参考</h2>
+<p><a href="https://books.studygolang.com/gopl-zh/"target="_blank">go语言圣经</a></p>
+<p><a href="https://my.oschina.net/renhc/blog/2246871"target="_blank">恋恋美食 blog</a></p>
+<p><a href="https://draveness.me/"target="_blank">draveness blog</a></p>
 </article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/go/>go</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2019/20190923-csapp3/"><span class="iconfont icon-article"></span>读CSAPP(3) - 存储器层次结构</a></p><p><a class="link" href="/post/2019/20190917-go-groutine/"><span class="iconfont icon-article"></span>Go Groutine</a></p></section></div></section><section id="footer"><div class="footer-wrap">
     <p class="copyright">©2021 heisenberg</p>

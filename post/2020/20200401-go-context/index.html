@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.56.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>源码阅读 - go Context&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.6f427d140348e397256101d58c9b7ece56604e83532d366af9e519b66632ba5c517f326890e8173afd3679a994db8ace.css" integrity="sha384-b0J9FANI45clYQHVjJt&#43;zlZgToNTLTZq&#43;eUZtmYyulxRfzJokOgXOv02eamU24rO"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>源码阅读 - go Context&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="源码阅读 - go Context" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">源码阅读 - go Context</h1><p class="article date">2020-04-01</p></section><article class="article markdown-body">
-
-<h2 id="context有什么用">Context有什么用</h2>
-
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">源码阅读 - go Context</h1><p class="article date">2020-04-01</p></section><article class="article markdown-body"><h2 id="context有什么用">Context有什么用</h2>
 <p>当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理时间过长超过了3秒，那么继续执行显然是没必要且浪费资源。这时候就需要一个能终止他们的操作，而go没有提供类似 <code>goroutineID</code>这样的变量来记录goroutine状态。官方认为这样非常容易被滥用。所以Context就为此而来。</p>
-
 <ol>
 <li>利用 channel/select ，以信号的方式来通知需要停止的goroutine</li>
-
-<li><p>可以为Context记录一个key/value 来包含一些请求相关的信息</p>
+<li>可以为Context记录一个key/value 来包含一些请求相关的信息</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -53,6 +49,7 @@
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
+</span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">B</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
@@ -90,15 +87,14 @@
 </span><span class="c1"></span>	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
 	<span class="nf">cancle</span><span class="p">()</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;end&#34;</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ol>
+<span class="p">}</span>
 
-<h2 id="源码分析">源码分析</h2>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="源码分析">源码分析</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -113,13 +109,13 @@
 	<span class="nf">Done</span><span class="p">()</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{}</span>
 	<span class="nf">Err</span><span class="p">()</span> <span class="kt">error</span>
 	<span class="nf">Value</span><span class="p">(</span><span class="nx">key</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kd">interface</span><span class="p">{}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>context包对外提供了5个api：</p>
+</div><p>context包对外提供了5个api：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -134,18 +130,17 @@
 <span class="kd">func</span> <span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">Context</span><span class="p">,</span> <span class="nx">timeout</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span> <span class="p">(</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">CancelFunc</span><span class="p">)</span>
 
 <span class="kd">func</span> <span class="nf">Background</span><span class="p">()</span> <span class="nx">Context</span>
-<span class="kd">func</span> <span class="nf">TODO</span><span class="p">()</span> <span class="nx">Context</span></code></pre></td></tr></table>
+<span class="kd">func</span> <span class="nf">TODO</span><span class="p">()</span> <span class="nx">Context</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><code>type emptyCtx int</code>
+</div><p><code>type emptyCtx int</code>
 官方实现了一个默认结构，其实现的每一个api都不做任何逻辑，都返回空值。
 还实现了String函数来打印实例名称。这个结构体虽然不做任何操作，但却非常重要，
 <code>emptyCtx</code>实例出<code>background</code>和<code>todo</code> 对外提供Background() 和TODO()</p>
-
 <p>这两个实例除了名称不同，其他都一模一样。对于此代码里有官方注释</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -160,43 +155,38 @@
 </span><span class="c1">// parameter).
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">TODO</span><span class="p">()</span> <span class="nx">Context</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nx">todo</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>每一个Context都可以根据这三个api派生出n个子context。
+</div><p>每一个Context都可以根据这三个api派生出n个子context。
 对于派生子context，是一个树状结构，最初由根节点(比如backgroud)，不断用提供的with api创建出一个个子context，每一个子contetxt又能创建出n个子context。</p>
-
 <p>当对一个context进行打印：
 他的打印顺序是对String()做递归操作从根节点开始到自身将所有String()返回的字符串拼接</p>
-
 <p><code>Value()</code>
 也是一个递归操作，从当前节点开始判断key是否相同，是则返回结果，否就查询父节点，直到找到结果，或查询到根节点返回nil</p>
-
 <p>WithCancel/Timeout/deadline本质上都是一样的操作，都返回了一个cancelFunc，执行这个函数指针，可以发起一个停止信号，停止所有child context</p>
-
 <p>timeout达到指定时间间隔执行停止信号，deadline到达某一时间点执行停止信号</p>
-
 <p>timeout也是调用了deadline函数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">Context</span><span class="p">,</span> <span class="nx">timeout</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span> <span class="p">(</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">CancelFunc</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="nf">WithDeadline</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="nx">timeout</span><span class="p">))</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>关键说说WithCancel
+</div><p>关键说说WithCancel
 他的执行顺序是</p>
-
 <ol>
-<li><p>先找到父节点中最近的那个为cancel或者timer的ctx，如果没找到则表示当前节点就是第一个cancel类型ctx，创建个goroutine来等待父节点的cancel</p>
+<li>先找到父节点中最近的那个为cancel或者timer的ctx，如果没找到则表示当前节点就是第一个cancel类型ctx，创建个goroutine来等待父节点的cancel</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -225,18 +215,17 @@
 			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">false</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>如果找到了父节点，就把当前节点加入到父节点的字典里，以便父节点控制全部子节点，key是ctx地址，value是struct{}，struct{}不占字节所以这样写，也相当于set结构体。
-这里加了锁，是为了保障在多个goroutine中对同一个cxt做with操作，防止race</p></li>
+</div><ol start="2">
+<li>如果找到了父节点，就把当前节点加入到父节点的字典里，以便父节点控制全部子节点，key是ctx地址，value是struct{}，struct{}不占字节所以这样写，也相当于set结构体。
+这里加了锁，是为了保障在多个goroutine中对同一个cxt做with操作，防止race</li>
 </ol>
-
 <p>最后无论是定时器的达到时间，还是主动取消，都是相同的操作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -262,9 +251,11 @@
 </span><span class="lnt">24
 </span><span class="lnt">25
 </span><span class="lnt">26
+</span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cancelCtx</span><span class="p">)</span> <span class="nf">cancel</span><span class="p">(</span><span class="nx">removeFromParent</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-go" data-lang="go">
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cancelCtx</span><span class="p">)</span> <span class="nf">cancel</span><span class="p">(</span><span class="nx">removeFromParent</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;context: internal error: missing cancel error&#34;</span><span class="p">)</span>
 	<span class="p">}</span>
@@ -289,21 +280,18 @@
 	<span class="k">if</span> <span class="nx">removeFromParent</span> <span class="p">{</span>
 		<span class="nf">removeChild</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>会给done写入，这样就让所有在select Done()的地方都触发,
+</div><p>会给done写入，这样就让所有在select Done()的地方都触发,
 之后会对当前ctx全部child做同样操作，这里做了加锁操作，也是为了防止多个goroutine里对同一个ctx执行cancel</p>
-
 <h2 id="总结">总结</h2>
-
 <p>只用cancelCtx，emptyCtx，timerCtx三个结构，简洁的代码实现了一个 goroutine之间的上下文。
 对于打印和value() 操作的是当前-根节点的ctx</p>
-
 <p>context利用channel当做信号对多goroutine之间发起cancel操作</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -316,7 +304,8 @@
 	<span class="nx">timer</span> <span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Timer</span> <span class="c1">// Under cancelCtx.mu.
 </span><span class="c1"></span>
 	<span class="nx">deadline</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div></article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/go/>go</a><a class="tag" href=/tags/%E6%BA%90%E7%A0%81/>源码</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200405-mit6.828-00/"><span class="iconfont icon-article"></span>MIT6.828 - 00.开始</a></p><p><a class="link" href="/post/2020/20200210-book-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/"><span class="iconfont icon-article"></span>百年孤独</a></p></section></div></section><section id="footer"><div class="footer-wrap">

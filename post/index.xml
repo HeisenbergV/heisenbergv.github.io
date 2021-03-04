@@ -33,12 +33,12 @@
     </item>
     
     <item>
-      <title>算法-0</title>
-      <link>/post/algo/helloalgo/</link>
+      <title>go 函数调用</title>
+      <link>/post/2020/20200501-go-func/</link>
       <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/algo/helloalgo/</guid>
-      <description>前言 开始刷LeetCode题，这里记录我刷题过程。 代码都在我的: github 我的: leetcode 顺序： 按tag刷，难度从低到高 学习资料 https://labuladong.gitbook.io/algo/</description>
+      <guid>/post/2020/20200501-go-func/</guid>
+      <description>参数传递 ** go的所有参数传递，都是值传递不存在引用传递。 ** 接口实现 1 2 3 4 5 6 7 8 9 10 type Cat struct { } func Hello(c Cat){ } func main(){ c := Cat{} Hello(c) } 1 2 3 4 5 6 7 8 9 10 type</description>
       
     </item>
     

@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.56.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>grpc-go&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.6f427d140348e397256101d58c9b7ece56604e83532d366af9e519b66632ba5c517f326890e8173afd3679a994db8ace.css" integrity="sha384-b0J9FANI45clYQHVjJt&#43;zlZgToNTLTZq&#43;eUZtmYyulxRfzJokOgXOv02eamU24rO"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>grpc-go&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="grpc-go" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">grpc-go</h1><p class="article date">2021-01-19</p></section><article class="article markdown-body">
-
-<h1 id="grpc-server">grpc Server</h1>
-
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">grpc-go</h1><p class="article date">2021-01-19</p></section><article class="article markdown-body"><h1 id="grpc-server">grpc Server</h1>
 <p>本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。</p>
-
 <h2 id="使用方式">使用方式</h2>
-
 <p>使用方式很简单，生成pb，注册建立服务，就可以等待请求了</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -53,16 +48,13 @@
     <span class="c1">//3. 开启服务端
 </span><span class="c1"></span>    <span class="c1">//阻塞
 </span><span class="c1"></span>    <span class="nx">gRpcServer</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">lis</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="建立grpc-server流程">建立grpc server流程</h2>
-
+</div><h2 id="建立grpc-server流程">建立grpc server流程</h2>
 <h3 id="newserver">NewServer</h3>
-
 <p>NewServer进行创建一个grpc服务，初始化一些参数。还可以进行<code>函数选项模式</code>，来传递初始化的配置。
 默认情况下会建立一个以下参数的grpc服务：</p>
-
 <ol>
 <li>接受数据最大4M</li>
 <li>发送数据最大2g</li>
@@ -70,14 +62,12 @@
 <li>读和写缓存1mb</li>
 <li>默认一个请求一个goroutine</li>
 </ol>
-
 <h4 id="numserverworkers">numServerWorkers</h4>
-
 <p>numServerWorkers设定了开启多少个工作协程，如果没设置，则来了一条消息就会处理创建一个goroutine。
 如果设置了，会将<code>请求消息</code>进行分发给这多个worker</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -118,22 +108,19 @@
 			<span class="p">}()</span>
 		<span class="p">}</span>
 	<span class="p">})</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="注册函数">注册函数</h3>
-
+</div><h3 id="注册函数">注册函数</h3>
 <p>利用反射，将具体实现的结构体和与之对应的函数存储到 grpcServer的<code>services</code>变量中</p>
-
 <ul>
 <li>key: 结构体名称 （一般在pb文件里会根据proto生成）</li>
 <li>value: 函数信息（调用函数的指针，函数名称，Metadata）</li>
 </ul>
-
 <p>将函数信息存储后，来了一个请求根据请求信息，找到指定的函数，进行调用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -230,15 +217,14 @@
 		<span class="nx">info</span><span class="p">.</span><span class="nx">streams</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">StreamName</span><span class="p">]</span> <span class="p">=</span> <span class="nx">d</span>
 	<span class="p">}</span>
 	<span class="nx">s</span><span class="p">.</span><span class="nx">services</span><span class="p">[</span><span class="nx">sd</span><span class="p">.</span><span class="nx">ServiceName</span><span class="p">]</span> <span class="p">=</span> <span class="nx">info</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="监听">监听</h3>
-
+</div><h3 id="监听">监听</h3>
 <p>当客户端建立连接，会为其单独创建一个goroutine进行后续的数据传输</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -259,11 +245,10 @@
 		<span class="p">}()</span>
     <span class="p">}</span>
     <span class="c1">//...
-</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="处理一个grpc请求的流程">处理一个grpc请求的流程</h2>
-
+</div><h2 id="处理一个grpc请求的流程">处理一个grpc请求的流程</h2>
 <ol>
 <li>建立连接</li>
 <li>创建goroutine处理连接</li>
@@ -271,21 +256,20 @@
 <li>创建新的goroutine，将http2传输信息 进行处理</li>
 <li>经过http2_server.go:455中的处理，从tcp层读取数据进行解析，最后执行此处传递过去的函数指针</li>
 <li>根据请求信息，找到指定函数。最后进行调用注册的应用层业务
-
 <ol>
 <li>找到字典里对应的执行函数</li>
 <li>如果没找到，则判断unknownStreamDesc 执行，这个一般用来自定义路由</li>
 <li>判断一元，还是流</li>
 <li>执行函数</li>
 <li>将结果写回给对方</li>
-</ol></li>
+</ol>
+</li>
 <li>移除连接</li>
 </ol>
-
 <h3 id="code">code</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -416,27 +400,25 @@
 		<span class="k">return</span>
     <span class="p">}</span>
     <span class="o">...</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="解析请求头数据的细节">解析请求头数据的细节</h2>
-
+</div><h2 id="解析请求头数据的细节">解析请求头数据的细节</h2>
 <ol>
 <li>读取底层tcp数据，最后进行解析</li>
 <li>解析头数据</li>
 <li>根据解析后的头数据，进行一系列的设置
-
 <ol>
 <li>设置：超时的ctx</li>
 <li>设置：metadata 存入context中</li>
-</ol></li>
+</ol>
+</li>
 <li>执行函数指针</li>
 </ol>
-
 <p>http2从tcp将数据报转换成http2认识的具体数据。之后grpc将http2的数据封装成grpc用到的stream结构中，还有一些参数<code>timeout</code>、<code>content-type</code>等封装到stream中的ctx中，到这里为止还没有对具体的请求数据做任何操作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -655,26 +637,29 @@
         <span class="c1">//自定义的metadata在这里处理
 </span><span class="c1"></span>		<span class="nx">d</span><span class="p">.</span><span class="nf">addMetadata</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="解析请求数据的细节">解析请求数据的细节</h2>
-
+</div><h2 id="解析请求数据的细节">解析请求数据的细节</h2>
 <ol>
-<li>利用反射注册的函数，进行调用，参数传递，传递解析方式，但不会调用</li>
-
-<li><p>调用到pb里注册的函数，在_TspService_Hello_Handler中进行具体处理</p>
-
+<li>
+<p>利用反射注册的函数，进行调用，参数传递，传递解析方式，但不会调用</p>
+</li>
+<li>
+<p>调用到pb里注册的函数，在_TspService_Hello_Handler中进行具体处理</p>
 <ol>
 <li>解析请求信息</li>
 <li>调用拦截器</li>
 <li>拦截器过滤后，进行最终的函数调用</li>
-</ol></li>
-
-<li><p>源码</p>
+</ol>
+</li>
+<li>
+<p>源码</p>
+</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -757,7 +742,7 @@
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">processUnaryRPC</span><span class="p">(</span><span class="nx">t</span> <span class="nx">transport</span><span class="p">.</span><span class="nx">ServerTransport</span><span class="p">,</span> <span class="nx">stream</span> <span class="o">*</span><span class="nx">transport</span><span class="p">.</span><span class="nx">Stream</span><span class="p">,</span> <span class="nx">info</span> <span class="o">*</span><span class="nx">serviceInfo</span><span class="p">,</span> <span class="nx">md</span> <span class="o">*</span><span class="nx">MethodDesc</span><span class="p">,</span> <span class="nx">trInfo</span> <span class="o">*</span><span class="nx">traceInfo</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">df</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
-    <span class="c1">//根据content-type 获取解析器，进行解析
+        <span class="c1">//根据content-type 获取解析器，进行解析
 </span><span class="c1"></span>		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">getCodec</span><span class="p">(</span><span class="nx">stream</span><span class="p">.</span><span class="nf">ContentSubtype</span><span class="p">()).</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 			<span class="k">return</span> <span class="nx">status</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="nx">codes</span><span class="p">.</span><span class="nx">Internal</span><span class="p">,</span> <span class="s">&#34;grpc: error unmarshalling request: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 		<span class="p">}</span>
@@ -779,65 +764,62 @@
 			<span class="nx">trInfo</span><span class="p">.</span><span class="nx">tr</span><span class="p">.</span><span class="nf">LazyLog</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">payload</span><span class="p">{</span><span class="nx">sent</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">msg</span><span class="p">:</span> <span class="nx">v</span><span class="p">},</span> <span class="kc">true</span><span class="p">)</span>
 		<span class="p">}</span>
 		<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
+    <span class="p">}</span>
  
-<span class="nx">ctx</span> <span class="o">:=</span> <span class="nf">NewContextWithServerTransportStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">.</span><span class="nf">Context</span><span class="p">(),</span> <span class="nx">stream</span><span class="p">)</span>
-<span class="c1">//利用反射进行函数调用
-</span><span class="c1">//info.serviceImpl函数， ctx函数的第一个参数（metadata等信息），df请求数据（protobuf的解析）
-</span><span class="c1">//s.opts.unaryInt 拦截器
+    <span class="nx">ctx</span> <span class="o">:=</span> <span class="nf">NewContextWithServerTransportStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">.</span><span class="nf">Context</span><span class="p">(),</span> <span class="nx">stream</span><span class="p">)</span>
+    <span class="c1">//利用反射进行函数调用
+</span><span class="c1"></span>    <span class="c1">//info.serviceImpl函数， ctx函数的第一个参数（metadata等信息），df请求数据（protobuf的解析）
+</span><span class="c1"></span>    <span class="c1">//s.opts.unaryInt 拦截器
 </span><span class="c1"></span>	<span class="nx">reply</span><span class="p">,</span> <span class="nx">appErr</span> <span class="o">:=</span> <span class="nx">md</span><span class="p">.</span><span class="nf">Handler</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">serviceImpl</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">,</span> <span class="nx">df</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">opts</span><span class="p">.</span><span class="nx">unaryInt</span><span class="p">)</span>
 
 	<span class="nx">opts</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">transport</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span><span class="nx">Last</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span>
 
-<span class="c1">//发送结果给请求方
+    <span class="c1">//发送结果给请求方
 </span><span class="c1"></span>	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">sendResponse</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">reply</span><span class="p">,</span> <span class="nx">cp</span><span class="p">,</span> <span class="nx">opts</span><span class="p">,</span> <span class="nx">comp</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 	
 	<span class="p">}</span>
 
 	<span class="k">return</span> <span class="nx">err</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ol>
-
-<h1 id="metadata">Metadata</h1>
-
+</div><h1 id="metadata">Metadata</h1>
 <p>Metadata是在一次 RPC 调用过程中关于这次调用的信息。 是 key-value的形式。其中 key 是 string 类型， value是[]string。</p>
-
 <blockquote>
 <p>Metadata 对于 gRPC 本身来说透明， 它使得 client 和 server 能为对方提供本次调用的信息。就像一次 http 请求的 RequestHeader 和 ResponseHeader，http header 的生命周期是一次 http 请求， Metadata 的生命周期则是一次 RPC 调用</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//grpc的结构
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">MD</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span></code></pre></td></tr></table>
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">MD</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="使用">使用</h3>
-
+</div><h3 id="使用">使用</h3>
 <ul>
-<li><p>发送方</p>
+<li>发送方</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">dd</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">Pairs</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">,</span> <span class="s">&#34;world&#34;</span><span class="p">)</span>
-<span class="nx">ctx</span> <span class="p">=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">NewOutgoingContext</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">dd</span><span class="p">)</span>
-<span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Hello</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">pb</span><span class="p">.</span><span class="nx">HelloRequest</span><span class="p">{</span><span class="nx">Msg</span><span class="p">:</span> <span class="s">&#34;fff&#34;</span><span class="p">})</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-go" data-lang="go">    <span class="nx">dd</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">Pairs</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">,</span> <span class="s">&#34;world&#34;</span><span class="p">)</span>
+    <span class="nx">ctx</span> <span class="p">=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">NewOutgoingContext</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">dd</span><span class="p">)</span>
+    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Hello</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">pb</span><span class="p">.</span><span class="nx">HelloRequest</span><span class="p">{</span><span class="nx">Msg</span><span class="p">:</span> <span class="s">&#34;fff&#34;</span><span class="p">})</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>接收方</p>
+</div><ul>
+<li>接收方</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -845,36 +827,27 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">server</span><span class="p">)</span> <span class="nf">Hello</span><span class="p">(</span><span class="nx">c</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">p</span> <span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">HelloRequest</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">pb</span><span class="p">.</span><span class="nx">HelloResponse</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">md</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">FromIncomingContext</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">md</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">))</span>
-<span class="p">}</span></code></pre></td></tr></table>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">md</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h3 id="注意事项">注意事项</h3>
-
+</div><h3 id="注意事项">注意事项</h3>
 <p>metadata本意是用来描述调用的信息的：协议的格式、调用方的请求方式、参数、非业务相关信息等。数据相关的不要用metadata进行存储。这样可以在不进行解析传输数据的情况下，依靠metadata进行一些逻辑处理，比如根据metatdata判断数据解析的方式、一些中间服务根据metadata信息，进行面向服务的操作。</p>
-
 <h1 id="拦截器">拦截器</h1>
-
 <p>拦截器（Interceptor） 类似于 HTTP 应用的中间件（Middleware），能够让你在真正调用 RPC 方法前，进行身份认证、日志、限流、异常捕获、参数校验等通用操作，和 Python 的装饰器（Decorator） 的作用基本相同。</p>
-
 <p>客户端发起请求前做一些验证，服务端处理消息前做过滤
 grpc服务端和客户端都提供了interceptor功能</p>
-
 <ul>
 <li>client：发起请求前做统一处理</li>
 <li>server：收到请求，进入具体执行函数之前，对请求做统一处理</li>
 </ul>
-
 <blockquote>
 <p>调用方式类似链表、调用一个后再调用下一个节点</p>
 </blockquote>
-
 <h3 id="grpc源码">grpc源码</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -927,7 +900,8 @@ grpc服务端和客户端都提供了interceptor功能</p>
 	<span class="p">}</span>
 
 	<span class="nx">s</span><span class="p">.</span><span class="nx">opts</span><span class="p">.</span><span class="nx">unaryInt</span> <span class="p">=</span> <span class="nx">chainedInt</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div></article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/grpc/>grpc</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2021/20210105-tcpudp/"><span class="iconfont icon-article"></span>计算机网络-传输层</a></p></section></div></section><section id="footer"><div class="footer-wrap">
