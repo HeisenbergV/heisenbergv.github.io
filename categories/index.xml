@@ -6,18 +6,18 @@
     <description>Recent content in Categories on heisenberg blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>©2020 heisenberg</copyright>
-    <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <copyright>©2021 heisenberg</copyright>
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>code</title>
-      <link>/categories/code/</link>
-      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      <title>计算机</title>
+      <link>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>/categories/code/</guid>
+      <guid>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
       <description></description>
       
     </item>
@@ -28,16 +28,6 @@
       <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>/categories/%E9%98%85%E8%AF%BB/</guid>
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>杂技</title>
-      <link>/categories/%E6%9D%82%E6%8A%80/</link>
-      <pubDate>Fri, 23 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/%E6%9D%82%E6%8A%80/</guid>
       <description></description>
       
     </item>

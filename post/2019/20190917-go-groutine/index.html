@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.62.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark"><title>Go Groutine&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Go Groutine" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">靡不有初 鲜克有终</span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">Go Groutine</h1><p class="article date">2019-09-17</p></section><article class="article markdown-body"><h2 id="heading">并发与并行</h2>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Go Groutine</h1><p class="article date">2019-09-17</p></section><article class="article markdown-body"><h2 id="并发与并行">并发与并行</h2>
 <ul>
 <li>并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器)</li>
 <li>并发(concurrency): 指在同一时刻只能有一条指令执行,但多个进程指令被快速的轮换执行,宏观看起来是并行的,微观是cpu在不断的快速切换.(操作系统)</li>
 </ul>
-<h2 id="heading-1">线程安全问题</h2>
+<h2 id="线程安全问题">线程安全问题</h2>
 <ul>
 <li>协作式调度: 当线程终止或阻塞是发生调度 =&gt; &ldquo;主动让出&rdquo;</li>
 <li>抢占式调度: 允许逻辑上将可继续运行的线程在运行过程中暂停的调度方式 =&gt; &ldquo;被迫让出&rdquo;</li>
@@ -26,7 +26,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="coroutine">Coroutine(协程)特点</h2>
+<h2 id="coroutine协程特点">Coroutine(协程)特点</h2>
 <p>一种用户态的轻量级线程</p>
 <ul>
 <li>轻量级线程(由于线程创建时需要向操作系统申请资源,并且在销毁时将资源归还,因此它的创建和销毁的开销比较大,内存消耗更低,一般是2kb vs 1mb)</li>
@@ -72,32 +72,32 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">s</span> <span class="kt">int</span>
 
-<span class="kd">func</span> <span class="nf">test</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
 		<span class="nx">s</span><span class="o">++</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">runtime</span><span class="p">.</span><span class="nf">GOMAXPROCS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//这里可以暂时先暂时理解为一个限定只用一个线程
 </span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span> <span class="c1">//用于等待所有协程都完成
 </span><span class="c1"></span>	<span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-	<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">(</span><span class="p">)</span> <span class="c1">//程序退出的时候执行
-</span><span class="c1"></span>		<span class="nf">test</span><span class="p">(</span><span class="p">)</span>
-	<span class="p">}</span><span class="p">(</span><span class="p">)</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> <span class="c1">//程序退出的时候执行
+</span><span class="c1"></span>		<span class="nf">test</span><span class="p">()</span>
+	<span class="p">}()</span>
 
-	<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">(</span><span class="p">)</span> <span class="c1">//程序退出的时候执行
-</span><span class="c1"></span>		<span class="nf">test</span><span class="p">(</span><span class="p">)</span>
-	<span class="p">}</span><span class="p">(</span><span class="p">)</span>
-	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">(</span><span class="p">)</span> <span class="c1">//等待所有协程的完成
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> <span class="c1">//程序退出的时候执行
+</span><span class="c1"></span>		<span class="nf">test</span><span class="p">()</span>
+	<span class="p">}()</span>
+	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span> <span class="c1">//等待所有协程的完成
 </span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="scheduler">调度器(Scheduler)</h2>
+</div><h2 id="调度器scheduler">调度器(Scheduler)</h2>
 <p>高级语言对内核线程的封装实现通常有三种线程调度模型:</p>
 <ul>
 <li>N:1模型.N个用户空间线程在1个内核空间线程上运行,优势是上下文切换非常快但无法利用多核系统的优点.</li>
@@ -127,7 +127,7 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">test</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">test</span><span class="p">(){</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">)</span>
 	<span class="nx">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Seconds</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="c1">//休眠2秒
 </span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b&#34;</span><span class="p">)</span>
@@ -180,26 +180,26 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">(</span><span class="p">)</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">hello</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">)</span>
 	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">hello2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">(</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">hello2</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;c&#34;</span><span class="p">)</span>
 	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;d&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">runtime</span><span class="p">.</span><span class="nf">GOMAXPROCS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//限制只有一个P
 </span><span class="c1"></span>	<span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-	<span class="k">go</span> <span class="nf">hello</span><span class="p">(</span><span class="p">)</span>
-	<span class="k">go</span> <span class="nf">hello2</span><span class="p">(</span><span class="p">)</span>
-	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">(</span><span class="p">)</span>
+	<span class="k">go</span> <span class="nf">hello</span><span class="p">()</span>
+	<span class="k">go</span> <span class="nf">hello2</span><span class="p">()</span>
+	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -221,14 +221,14 @@
 <p>Go运行时系统并没有内核调度器的中断能力(只有系统有),它只能通过向运行时间过长的G中设置抢占flag的方法温柔的让运行的G自己主动让出M的执行权,这里也说明了即使是抢占了但也不会出现线程不安全,因为他不是被突然中断的,而是执行完检测到flag再中断的.</p>
 </li>
 </ul>
-<h2 id="heading-2">参考</h2>
+<h2 id="参考">参考</h2>
 <p><a href="https://blog.csdn.net/u010853261/article/details/84790392"target="_blank">惜暮 blog</a></p>
-<p><a href="http://morsmachine.dk/go-scheduler"target="_blank">Morsing's Blog</a></p>
+<p><a href="http://morsmachine.dk/go-scheduler"target="_blank">Morsing&rsquo;s Blog</a></p>
 <p><a href="https://github.com/k2huang/blogpost/blob/master/golang/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/Go%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6.md"target="_blank">k2huang blog</a></p>
 <p><a href="https://github.com/k2huang/blogpost/blob/master/golang/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/Go%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6.md"target="_blank">图片引自 k2huang blog</a></p>
-</article><section class="article labels"><a class="category" href=/categories/code/>code</a><a class="tag" href=/tags/go/>go</a></section></div>
+</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/go/>go</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2019/20190917-go-channel/"><span class="iconfont icon-article"></span>Go Channel</a></p><p><a class="link" href="/post/2019/20190909-csapp2/"><span class="iconfont icon-article"></span>读CSAPP(2) - 程序性能优化</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2020 heisenberg</p>
+    <p class="copyright">©2021 heisenberg</p>
     <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
         target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>

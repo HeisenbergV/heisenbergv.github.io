@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.62.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark"><title>读CSAPP(3) - 存储器层次结构&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="读CSAPP(3) - 存储器层次结构" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">靡不有初 鲜克有终</span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">读CSAPP(3) - 存储器层次结构</h1><p class="article date">2019-09-23</p></section><article class="article markdown-body"><h2 id="heading">了解硬件</h2>
-<h3 id="random-access-memoryram">随机访问存储器（Random-Access Memory，RAM）</h3>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">读CSAPP(3) - 存储器层次结构</h1><p class="article date">2019-09-23</p></section><article class="article markdown-body"><h2 id="了解硬件">了解硬件</h2>
+<h3 id="随机访问存储器random-access-memoryram">随机访问存储器（Random-Access Memory，RAM）</h3>
 <p>RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比DRAM更快，价格也更高。
 SRAM用于高速缓存存储器，可以在cpu芯片上，也可以在片下。DRAM用来作为主存以及
 图形系统的帧缓冲区。无论哪种RAM一旦断电，所有信息都会丢失。</p>
-<h3 id="heading-1">磁盘存储</h3>
+<h3 id="磁盘存储">磁盘存储</h3>
 <p>磁盘存储数据的数量级更大，比RAM大得多，但读取信息要比DRAM慢10w倍，比SRAM慢100w倍。
 磁盘分为机械硬盘和固态硬盘，机械硬盘的读写速度要低于固态硬盘，但价格低廉。</p>
-<h3 id="heading-2">总线</h3>
+<h3 id="总线">总线</h3>
 <p><img  src="../../../img/csapp-bus.png"
         alt="image"/></p>
-<h4 id="ioio">IO总线：例如，鼠标键盘，图形卡，磁盘等设备连接的称为io总线</h4>
+<h4 id="io总线例如鼠标键盘图形卡磁盘等设备连接的称为io总线">IO总线：例如，鼠标键盘，图形卡，磁盘等设备连接的称为io总线</h4>
 <p>cpu使用内存映射I/O技术（memory-mapped I/O）来向I/O设备发起命令</p>
 <ul>
 <li>使用内存映射技术向io设备发起命令</li>
@@ -24,7 +24,7 @@ SRAM用于高速缓存存储器，可以在cpu芯片上，也可以在片下。D
 <li>DMA传送完毕，磁盘控制器用中断方式通知cpu</li>
 <li>cpu接收到中断信号，从内存读取缓存的数据</li>
 </ul>
-<h2 id="heading-3">局部性</h2>
+<h2 id="局部性">局部性</h2>
 <p>一个好的程序应该有良好的局部性，这样可以使得效率更快</p>
 <ul>
 <li>时间局部性：被引用过一次的内存，很可能在不久的将来再次被引用多次</li>
@@ -43,11 +43,11 @@ SRAM用于高速缓存存储器，可以在cpu芯片上，也可以在片下。D
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">sumvec</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">)</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">sumvec</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">[</span><span class="n">N</span><span class="p">])</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">i</span> <span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">+</span><span class="o">+</span><span class="p">)</span>
-        <span class="n">sum</span><span class="o">+</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">sum</span><span class="o">+=</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
     
     <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
 <span class="p">}</span>
@@ -81,22 +81,22 @@ SRAM用于高速缓存存储器，可以在cpu芯片上，也可以在片下。D
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">sumarray1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">]</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">)</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">sumarray1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">i</span> <span class="p">,</span><span class="n">j</span> <span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="p">;</span><span class="n">i</span> <span class="o">+</span><span class="o">+</span><span class="p">)</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="p">;</span><span class="n">j</span> <span class="o">+</span><span class="o">+</span><span class="p">)</span>
-            <span class="n">sum</span><span class="o">+</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="p">;</span><span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="p">;</span><span class="n">j</span> <span class="o">++</span><span class="p">)</span>
+            <span class="n">sum</span><span class="o">+=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
     
     <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">sumarray2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">]</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">sumarray2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">i</span> <span class="p">,</span><span class="n">j</span> <span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span><span class="n">i</span> <span class="o">+</span><span class="o">+</span><span class="p">)</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="p">;</span><span class="n">j</span> <span class="o">+</span><span class="o">+</span><span class="p">)</span>
-            <span class="n">sum</span><span class="o">+</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span><span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">M</span> <span class="p">;</span><span class="n">j</span> <span class="o">++</span><span class="p">)</span>
+            <span class="n">sum</span><span class="o">+=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
 
     <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
 <span class="p">}</span>
@@ -107,13 +107,13 @@ SRAM用于高速缓存存储器，可以在cpu芯片上，也可以在片下。D
 sumarray1有空间局部性，sumarry2则没有。
 这个二维数组存储在内存的顺序是一行行的存储，也就是按照行来读就会按序读取，按列读取就会跳着读。
 空间局部性的临近读取，导致最终sumarry1更高效。</p>
-<h3 id="heading-4">局部性总结</h3>
+<h3 id="局部性总结">局部性总结</h3>
 <ul>
 <li>重复引用相同变量的程序有良好的时间局部性</li>
 <li>在内存中大跨度跳来跳去的程序，空间局部性会很差</li>
 <li>cpu取指执行的时候，循环遍历有好的空间局部性和时间局部性。循环体越小，循环次数越多，局部性越好</li>
 </ul>
-<h2 id="heading-5">存储结构</h2>
+<h2 id="存储结构">存储结构</h2>
 <p><img  src="../../../img/csapp-store.png"
         alt="image"/></p>
 <table>
@@ -201,16 +201,16 @@ sumarray1有空间局部性，sumarry2则没有。
 </table>
 <p>下一层的存储器都是为上一层做缓存的，如果想要获取某个数据对象d，在k层则是缓存命中，如果没有则需要去k+1层查询，查询到后放入k层。
 如果这时候k层数据已满就会可能覆盖现在的存储空间块，有专门的替换策略来将新数据替换原先数据。这种多级存储体系将几种存储技术结合起来，更好的解决存储器大容量、高速度和低成本这三者之间的矛盾</p>
-<h3 id="heading-6">缓存不命中</h3>
+<h3 id="缓存不命中">缓存不命中</h3>
 <p>当前存储器中获取不到数据，则需要向下级进行获取，这就是缓存不命中，主要有三种：</p>
 <ul>
 <li>强制性不命中（Cold/compulsory Miss）：当缓存区域没有任何数据的时候（冷缓存），这时候获取任何数据都是不命中的，这是无法避免的</li>
 <li>冲突性不命中（conflict miss）：如果k层容纳4个数据块， k+1层容纳12个，放置策略导致k+1层的0，4，8，12位置的数据都会放入k层的0块位置，不同cache由于index相同互相替换</li>
 <li>容量失效(Capacity Miss)：有限的容量放不下大的缓存内容，被替换出去的下次再被访问，无法命中</li>
 </ul>
-</article><section class="article labels"><a class="category" href=/categories/code/>code</a><a class="tag" href=/tags/csapp/>csapp</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
+</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2019/20190928-csapp4/"><span class="iconfont icon-article"></span>读CSAPP(4) - 虚拟内存</a></p><p><a class="link" href="/post/2019/20190917-go-channel/"><span class="iconfont icon-article"></span>Go Channel</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2020 heisenberg</p>
+    <p class="copyright">©2021 heisenberg</p>
     <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
         target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>

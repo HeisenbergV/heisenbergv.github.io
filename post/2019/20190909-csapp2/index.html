@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.62.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark"><title>读CSAPP(2) - 程序性能优化&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="读CSAPP(2) - 程序性能优化" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">靡不有初 鲜克有终</span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">读CSAPP(2) - 程序性能优化</h1><p class="article date">2019-09-09</p></section><article class="article markdown-body"><h2 id="heading">高效的程序需要做到</h2>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">读CSAPP(2) - 程序性能优化</h1><p class="article date">2019-09-09</p></section><article class="article markdown-body"><h2 id="高效的程序需要做到">高效的程序需要做到</h2>
 <ol>
 <li>合适的数据结构与算法</li>
 <li>编写出编译器能够有效优化以转换成高效可执行代码的源码。</li>
 <li>将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理</li>
 </ol>
 <p>本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。</p>
-<h2 id="heading-1">编译器的优化限制</h2>
-<h3 id="heading-2">内存别名的使用</h3>
+<h2 id="编译器的优化限制">编译器的优化限制</h2>
+<h3 id="内存别名的使用">内存别名的使用</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -30,13 +30,13 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">twiddle1</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="n">xp</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">yp</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="o">*</span><span class="n">xp</span> <span class="o">+</span><span class="o">=</span> <span class="o">*</span><span class="n">yp</span><span class="p">;</span>
-	<span class="o">*</span><span class="n">xp</span> <span class="o">+</span><span class="o">=</span> <span class="o">*</span><span class="n">yp</span><span class="p">;</span>
+	<span class="o">*</span><span class="n">xp</span> <span class="o">+=</span> <span class="o">*</span><span class="n">yp</span><span class="p">;</span>
+	<span class="o">*</span><span class="n">xp</span> <span class="o">+=</span> <span class="o">*</span><span class="n">yp</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">twiddle2</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="n">xp</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">yp</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="o">*</span><span class="n">xp</span> <span class="o">+</span><span class="o">=</span> <span class="mi">2</span><span class="o">*</span> <span class="o">*</span><span class="n">yp</span><span class="p">;</span>
+	<span class="o">*</span><span class="n">xp</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span> <span class="o">*</span><span class="n">yp</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -54,19 +54,19 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">twiddle1</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="n">xp</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">yp</span><span class="p">)</span><span class="p">{</span>
-	<span class="o">*</span><span class="n">xp</span> <span class="o">+</span><span class="o">=</span> <span class="o">*</span><span class="n">xp</span><span class="p">;</span>
-	<span class="o">*</span><span class="n">xp</span> <span class="o">+</span><span class="o">=</span> <span class="o">*</span><span class="n">xp</span><span class="p">;</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">twiddle1</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="n">xp</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">yp</span><span class="p">){</span>
+	<span class="o">*</span><span class="n">xp</span> <span class="o">+=</span> <span class="o">*</span><span class="n">xp</span><span class="p">;</span>
+	<span class="o">*</span><span class="n">xp</span> <span class="o">+=</span> <span class="o">*</span><span class="n">xp</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">twiddle2</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="n">xp</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">yp</span><span class="p">)</span><span class="p">{</span>
-	<span class="o">*</span><span class="n">xp</span> <span class="o">+</span><span class="o">=</span> <span class="mi">2</span><span class="o">*</span> <span class="o">*</span><span class="n">xp</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">twiddle2</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="n">xp</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">yp</span><span class="p">){</span>
+	<span class="o">*</span><span class="n">xp</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span> <span class="o">*</span><span class="n">xp</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>代码则可以写成上面这样，这时候两个函数的意义就不同了，twiddle1将<em>xp增加了4倍，twiddle2将</em>xp增加了3倍。
 两个指针指向同一个内存地址，称之为：内存别名使用，编译器必须假设不同指针可能指向相同地址，限制了优化策略</p>
-<h3 id="heading-3">函数调用</h3>
+<h3 id="函数调用">函数调用</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -80,14 +80,14 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">long</span> <span class="nf">f</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">long</span> <span class="nf">f</span><span class="p">();</span>
 
-<span class="kt">long</span> <span class="nf">func1</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
-	<span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">long</span> <span class="nf">func1</span><span class="p">(){</span>
+	<span class="k">return</span> <span class="n">f</span><span class="p">()</span> <span class="o">+</span> <span class="n">f</span><span class="p">()</span> <span class="o">+</span> <span class="n">f</span><span class="p">()</span> <span class="o">+</span> <span class="n">f</span><span class="p">()</span>
 <span class="p">}</span>
 
-<span class="kt">long</span> <span class="nf">func2</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
-	<span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">long</span> <span class="nf">func2</span><span class="p">(){</span>
+	<span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">f</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -101,8 +101,8 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">long</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kt">long</span> <span class="nf">f</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
-	<span class="k">return</span> <span class="n">counter</span> <span class="o">+</span><span class="o">+</span><span class="p">;</span>
+<span class="kt">long</span> <span class="nf">f</span><span class="p">(){</span>
+	<span class="k">return</span> <span class="n">counter</span> <span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -111,7 +111,7 @@
 <blockquote>
 <p>用内联函数减少开销，也对展开代码做了优化。</p>
 </blockquote>
-<h2 id="heading-4">对一段代码的优化案例</h2>
+<h2 id="对一段代码的优化案例">对一段代码的优化案例</h2>
 <p>下面程序是将元素累加，之后我们对combine1函数进行一步步优化</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -138,30 +138,30 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">get_vec_element</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="kt">long</span> <span class="n">index</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">|</span><span class="o">|</span> <span class="n">index</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">v</span><span class="o">-</span><span class="o">&gt;</span><span class="n">len</span><span class="p">)</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">get_vec_element</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="kt">long</span> <span class="n">index</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">){</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">len</span><span class="p">)</span>
 		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">v</span><span class="o">-</span><span class="o">&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
 	<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">long</span> <span class="nf">vec_length</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">)</span><span class="p">{</span>
-	<span class="k">return</span> <span class="n">v</span><span class="o">-</span><span class="o">&gt;</span><span class="n">len</span><span class="p">;</span>
+<span class="kt">long</span> <span class="nf">vec_length</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">){</span>
+	<span class="k">return</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">len</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">combine1</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="p">{</span>
+<span class="kt">void</span> <span class="nf">combine1</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">){</span>
 	<span class="kt">long</span> <span class="n">i</span><span class="p">;</span>
 	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>
 	<span class="p">{</span>
 		<span class="n">data_t</span> <span class="n">val</span><span class="p">;</span>
-		<span class="n">get_vec_element</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">)</span><span class="p">;</span>
+		<span class="n">get_vec_element</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
 		<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="o">*</span><span class="n">dest</span> <span class="o">+</span> <span class="n">val</span><span class="p">;</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="1-">1. 消除循环的低效率</h3>
+</div><h3 id="1-消除循环的低效率">1. 消除循环的低效率</h3>
 <p>将幂等函数移动出循环</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -178,20 +178,20 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine2</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine2</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">){</span>
 	<span class="kt">long</span> <span class="n">i</span><span class="p">;</span>
 	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span>
+	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>
 	<span class="p">{</span>
 		<span class="n">data_t</span> <span class="n">val</span><span class="p">;</span>
-		<span class="n">get_vec_element</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">)</span><span class="p">;</span>
+		<span class="n">get_vec_element</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
 		<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="o">*</span><span class="n">dest</span> <span class="o">+</span> <span class="n">val</span><span class="p">;</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="2-">2. 减少过程调用</h3>
+</div><h3 id="2-减少过程调用">2. 减少过程调用</h3>
 <p>get_vec_element中对边界检查，虽然很有用，但在本例中能明显看出所有引用都是合法，可以去除</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -207,19 +207,19 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine3</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine3</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">){</span>
 	<span class="kt">long</span> <span class="n">i</span><span class="p">;</span>
 	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-</span><span class="o">&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
-</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span>
+	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
+</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>
 	<span class="p">{</span>
-		<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="o">*</span><span class="n">dest</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+		<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="o">*</span><span class="n">dest</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="3-">3. 消除不必要的内存引用</h3>
+</div><h3 id="3-消除不必要的内存引用">3. 消除不必要的内存引用</h3>
 <p>combine3将计算值累积在指针dest位置，每次循环都会进行三步操作</p>
 <ol>
 <li>读取dest值</li>
@@ -247,14 +247,14 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine4</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine4</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">){</span>
 	<span class="kt">long</span> <span class="n">i</span><span class="p">;</span>
 	<span class="n">data_t</span> <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-</span><span class="o">&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
-</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span>
+	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
+</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>
 	<span class="p">{</span>
-		<span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+		<span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 	<span class="p">}</span>
 	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
 <span class="p">}</span>
@@ -262,7 +262,7 @@
 </div>
 </div><p>编译器应该也会帮我们优化成combine4的形式，但由于内存别名的使用，可能会有不同行为。
 比如 *dest引用的是data的地址，那结果会有区别，所以不会优化。</p>
-<h3 id="4-">4. 循环展开</h3>
+<h3 id="4-循环展开">4. 循环展开</h3>
 <p>增加每次循环迭代计算的元素数量，减少迭代次数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -279,21 +279,21 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine5</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine5</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">){</span>
 	<span class="kt">long</span> <span class="n">i</span><span class="p">;</span>
 	<span class="n">data_t</span> <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-</span><span class="o">&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
-</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
+	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
+</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span> <span class="p">)</span>
 	<span class="p">{</span>
-		<span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">;</span>
+		<span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
 	<span class="p">}</span>
 	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>编译器一般会帮助我们进行循环展开操作，只要优化等级3或更高。</p>
-<h3 id="5-">5. 提高并行性</h3>
+<h3 id="5-提高并行性">5. 提高并行性</h3>
 <p>在代码层面，下面三行是一条条按序执行，但cpu发现a和b的赋值操作是互不影响的，会同时执行a和b，这种现象叫做：指令级并行。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -325,16 +325,16 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine6</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">combine6</span><span class="p">(</span><span class="n">vec_ptr</span> <span class="n">v</span><span class="p">,</span> <span class="n">data_t</span> <span class="o">*</span><span class="n">dest</span><span class="p">){</span>
 	<span class="kt">long</span> <span class="n">i</span><span class="p">;</span>
 	<span class="n">data_t</span> <span class="n">acc0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 	<span class="n">data_t</span> <span class="n">acc1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 	<span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="n">vec_length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-</span><span class="o">&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
-</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
+	<span class="n">data_t</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span> <span class="c1">//获取首地址
+</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span> <span class="p">)</span>
 	<span class="p">{</span>
-		<span class="n">acc0</span> <span class="o">=</span> <span class="n">acc0</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
-		<span class="n">acc1</span> <span class="o">=</span> <span class="n">acc1</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">;</span>
+		<span class="n">acc0</span> <span class="o">=</span> <span class="n">acc0</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">acc1</span> <span class="o">=</span> <span class="n">acc1</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
 	<span class="p">}</span>
 	<span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="n">acc0</span> <span class="o">+</span> <span class="n">acc1</span><span class="p">;</span>
 <span class="p">}</span>
@@ -345,8 +345,8 @@
 <blockquote>
 <p>循环展开的数量并不是越多效率越高，循环的变量一旦超过可用寄存器数量，效率反而会更慢。</p>
 </blockquote>
-<h3 id="6-">6. 分支预测</h3>
-<h4 id="heading-5">案例</h4>
+<h3 id="6-分支预测">6. 分支预测</h3>
+<h4 id="案例">案例</h4>
 <p><a href="https://zhuanlan.zhihu.com/p/22469702"target="_blank">代码引用-婉儿飞飞</a></p>
 <p>下面代码，对数组值大于等于128的进行求和。求和前进行排序要比不进行排序直接求和效率要高3倍左右。</p>
 <div class="highlight"><div class="chroma">
@@ -388,46 +388,46 @@
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="c1">// 随机产生整数，用分区函数填充，以避免出现分桶不均
 </span><span class="c1"></span>    <span class="k">const</span> <span class="kt">unsigned</span> <span class="n">arraySize</span> <span class="o">=</span> <span class="mi">32768</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="n">arraySize</span><span class="p">]</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="n">arraySize</span><span class="p">];</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">arraySize</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">c</span><span class="p">)</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">rand</span><span class="p">(</span><span class="p">)</span> <span class="o">%</span> <span class="mi">256</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">arraySize</span><span class="p">;</span> <span class="o">++</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">256</span><span class="p">;</span>
 
     <span class="c1">// !!! 排序后下面的Loop运行将更快
-</span><span class="c1"></span>    <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">arraySize</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">arraySize</span><span class="p">);</span>
 
     <span class="c1">// 测试部分
-</span><span class="c1"></span>    <span class="n">clock_t</span> <span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="n">clock_t</span> <span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
     <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="c1">// 主要计算部分，选一半元素参与计算
-</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">arraySize</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">c</span><span class="p">)</span>
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">arraySize</span><span class="p">;</span> <span class="o">++</span><span class="n">c</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">128</span><span class="p">)</span>
-                <span class="n">sum</span> <span class="o">+</span><span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">128</span><span class="p">)</span>
+                <span class="n">sum</span> <span class="o">+=</span> <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">];</span>
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="kt">double</span> <span class="n">elapsedTime</span> <span class="o">=</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">clock</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">elapsedTime</span> <span class="o">=</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
 
-    <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">elapsedTime</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">sum = </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">sum</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">elapsedTime</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;sum = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>cpu对分支进行预测，猜测下一步走哪个分支。如果猜对，cpu不会暂停一直运行，猜错，就要停止-回滚-热启动。
 cpu根据历史进行猜测下一步走向。有序的数组，预测判断条件的结果更加准确，无序数组无法预测，命中率低，导致效率低。</p>
-<h4 id="heading-6">优化方案</h4>
+<h4 id="优化方案">优化方案</h4>
 <ol>
 <li>如果可以的话移除分支</li>
 </ol>
@@ -439,14 +439,14 @@ cpu根据历史进行猜测下一步走向。有序的数组，预测判断条�
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">//用位运算 替换 if判断
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="mi">128</span><span class="p">)</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">31</span><span class="p">;</span>
-<span class="n">sum</span> <span class="o">+</span><span class="o">=</span> <span class="o">~</span><span class="n">t</span> <span class="o">&amp;</span> <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="p">;</span>
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">-</span> <span class="mi">128</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">;</span>
+<span class="n">sum</span> <span class="o">+=</span> <span class="o">~</span><span class="n">t</span> <span class="o">&amp;</span> <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">];</span>
 </code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>提高分支的可预测性，比如上面先排序</li>
 </ol>
-<h3 id="heading-7">优化总结</h3>
+<h3 id="优化总结">优化总结</h3>
 <ul>
 <li>消除函数调用</li>
 <li>消除不必要的内存引用</li>
@@ -454,11 +454,11 @@ cpu根据历史进行猜测下一步走向。有序的数组，预测判断条�
 <li>提高指令并行</li>
 <li>提高分支的预测性</li>
 </ul>
-<h3 id="heading-8">参考</h3>
+<h3 id="参考">参考</h3>
 <p><a href="https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array/11227902#11227902"target="_blank">stackoverflow-分支预测</a></p>
-</article><section class="article labels"><a class="category" href=/categories/code/>code</a><a class="tag" href=/tags/csapp/>csapp</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
+</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2019/20190917-go-groutine/"><span class="iconfont icon-article"></span>Go Groutine</a></p><p><a class="link" href="/post/2019/20190903-go-race-condition/"><span class="iconfont icon-article"></span>Go 竞态问题</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2020 heisenberg</p>
+    <p class="copyright">©2021 heisenberg</p>
     <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
         target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>

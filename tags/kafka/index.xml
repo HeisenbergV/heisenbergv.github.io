@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kafka on heisenberg blog</title>
+    <link>https://heisenbergv.github.io/tags/kafka/</link>
+    <description>Recent content in kafka on heisenberg blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 03 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://heisenbergv.github.io/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kafka</title>
+      <link>https://heisenbergv.github.io/post/2020/2020-0305-kafka/</link>
+      <pubDate>Tue, 03 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://heisenbergv.github.io/post/2020/2020-0305-kafka/</guid>
+      <description>安全问题 性能 容错 可扩展性 易用性 恢复 数据一致性</description>
+    </item>
+    
+  </channel>
+</rss>

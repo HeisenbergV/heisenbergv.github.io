@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.56.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>go-micro 概述&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.6f427d140348e397256101d58c9b7ece56604e83532d366af9e519b66632ba5c517f326890e8173afd3679a994db8ace.css" integrity="sha384-b0J9FANI45clYQHVjJt&#43;zlZgToNTLTZq&#43;eUZtmYyulxRfzJokOgXOv02eamU24rO"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="go-micro 概述" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">go-micro 概述</h1><p class="article date">2020-06-01</p></section><article class="article markdown-body">
+
+<h1 id="整体架构">整体架构</h1>
+
+<p><img src="../../../img/2020/gomicro-01.png" alt="image" /></p>
+
+<h2 id="概述">概述</h2>
+
+<p>go-micro使得构建微服务更加简便，它将每个模块以interface呈现，只要实现了每个模块的interface，就能制定属于自己的微服务</p>
+
+<ul>
+<li>Service： 是一个微服务的核心，所有模块都由他来调度管理</li>
+<li>Client：提供对外请求 http，rpc，mq等</li>
+<li>Server：对外提供服务 可以接受http，rpc，mq等</li>
+<li>Broker：无论是Client还是Server都靠Broker模块来进行消息队列的发送与接受</li>
+<li>Transport：定义传输协议</li>
+<li>Codec：解码器</li>
+<li>Registry：服务注册与发现</li>
+<li>Selector：服务选择的逻辑，负载均衡策略等</li>
+</ul>
+
+<p>每个模块各司其职，并且只要实现了模块提供的接口，就能以插件的方式替换</p>
+
+<h2 id="启动流程">启动流程</h2>
+
+<ul>
+<li>NewService</li>
+</ul>
+
+<p>创建一个service，并会创建默认的rpc client和rpc server。
+一个默认的http Transport，http broker，mdns registry，cache selector
+codec如果不设置，会提供默认的几种解码器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go">	<span class="nx">DefaultCodecs</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="nx">codec</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">{</span>
+		<span class="s">&#34;application/grpc&#34;</span><span class="p">:</span>         <span class="nx">grpc</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+		<span class="s">&#34;application/grpc+json&#34;</span><span class="p">:</span>    <span class="nx">grpc</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+		<span class="s">&#34;application/grpc+proto&#34;</span><span class="p">:</span>   <span class="nx">grpc</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+		<span class="s">&#34;application/protobuf&#34;</span><span class="p">:</span>     <span class="nx">proto</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+		<span class="s">&#34;application/json&#34;</span><span class="p">:</span>         <span class="nx">json</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+		<span class="s">&#34;application/json-rpc&#34;</span><span class="p">:</span>     <span class="nx">jsonrpc</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+		<span class="s">&#34;application/proto-rpc&#34;</span><span class="p">:</span>    <span class="nx">protorpc</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+		<span class="s">&#34;application/octet-stream&#34;</span><span class="p">:</span> <span class="nx">raw</span><span class="p">.</span><span class="nx">NewCodec</span><span class="p">,</span>
+	<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li><p>Init
+初始化一些参数</p></li>
+
+<li><p>RegisterHandler
+如果需要对外提供api服务，在这里注册</p></li>
+
+<li><p>Run
+启动服务，最终调用的是 <code>server.Start()</code></p></li>
+</ul>
+
+<p>利用<a href="https://halls-of-valhalla.org/beta/articles/functional-options-pattern-in-go,54/">函数选项模式</a>，在创建阶段和Init阶段都可以进行参数的设置，在client模块进行函数调用的时候也可以设置。</p>
+
+<h2 id="插件">插件</h2>
+
+<p>只要实现了模块对应的接口，就能在创建service的时候进行替换原有的模块，或者在环境变量中设置</p>
+
+<h1 id="创建一个用例">创建一个用例</h1>
+
+<p><a href="https://github.com/HeisenbergV/gomicro-example">源码地址</a></p>
+
+<p>我创建了3个服务，<code>num-one</code>返回数字1，<code>num-two</code>返回数字2，<code>sum</code> rpc请求两个服务获取数字，并将其累加结果打印。</p>
+
+<h2 id="开发前工具">开发前工具</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"></pre></td>
+<td class="lntd">
+<pre class="chroma"></pre></td></tr></table>
+</div>
+</div></article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%9E%B6%E6%9E%84/>架构</a></section></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200602-gomicro1/"><span class="iconfont icon-article"></span>go-micro 源码阅读-Server</a></p><p><a class="link" href="/post/algo/helloalgo/"><span class="iconfont icon-article"></span>算法-0</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2021 heisenberg</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
+        <script
+            type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
+
+</html>

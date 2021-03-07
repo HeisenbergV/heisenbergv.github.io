@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>计算机 on heisenberg blog</title>
+    <link>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+    <description>Recent content in 计算机 on heisenberg blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2021 heisenberg</copyright>
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>grpc-go</title>
+      <link>/post/2021/202101019-grpc/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021/202101019-grpc/</guid>
+      <description>grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务</description>
+      
+    </item>
+    
+    <item>
+      <title>计算机网络-传输层</title>
+      <link>/post/2021/20210105-tcpudp/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021/20210105-tcpudp/</guid>
+      <description>TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物</description>
+      
+    </item>
+    
+    <item>
+      <title>MIT6.828 - 03-Lab2.shell</title>
+      <link>/post/2020/20200409-mit6.828-03-lab2/</link>
+      <pubDate>Thu, 09 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/20200409-mit6.828-03-lab2/</guid>
+      <description>实验说明 写一个简易版的 shell 进行系统调用 原文</description>
+      
+    </item>
+    
+    <item>
+      <title>MIT6.828 - 02-Lab1.Util</title>
+      <link>/post/2020/20200407-mit6.828-02-lab1/</link>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/20200407-mit6.828-02-lab1/</guid>
+      <description>实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel</description>
+      
+    </item>
+    
+    <item>
+      <title>MIT6.828 - 01.环境搭建</title>
+      <link>/post/2020/20200406-mit6.828-01/</link>
+      <pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/20200406-mit6.828-01/</guid>
+      <description>概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima</description>
+      
+    </item>
+    
+    <item>
+      <title>MIT6.828 - 00.开始</title>
+      <link>/post/2020/20200405-mit6.828-00/</link>
+      <pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/20200405-mit6.828-00/</guid>
+      <description>前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的git</description>
+      
+    </item>
+    
+    <item>
+      <title>源码阅读 - go Context</title>
+      <link>/post/2020/20200401-go-context/</link>
+      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/20200401-go-context/</guid>
+      <description>Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理</description>
+      
+    </item>
+    
+    <item>
+      <title>读CSAPP(4) - 虚拟内存</title>
+      <link>/post/2019/20190928-csapp4/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/20190928-csapp4/</guid>
+      <description>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全</description>
+      
+    </item>
+    
+    <item>
+      <title>读CSAPP(3) - 存储器层次结构</title>
+      <link>/post/2019/20190923-csapp3/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/20190923-csapp3/</guid>
+      <description>了解硬件 随机访问存储器（Random-Access Memory，RAM） RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比D</description>
+      
+    </item>
+    
+    <item>
+      <title>Go Channel</title>
+      <link>/post/2019/20190917-go-channel/</link>
+      <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/20190917-go-channel/</guid>
+      <description>如何使用 channel在&amp;lt;-左边 表示向channel发送数据 channel在&amp;lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha</description>
+      
+    </item>
+    
+    <item>
+      <title>Go Groutine</title>
+      <link>/post/2019/20190917-go-groutine/</link>
+      <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/20190917-go-groutine/</guid>
+      <description>并发与并行 并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能</description>
+      
+    </item>
+    
+    <item>
+      <title>读CSAPP(2) - 程序性能优化</title>
+      <link>/post/2019/20190909-csapp2/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/20190909-csapp2/</guid>
+      <description>高效的程序需要做到 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可</description>
+      
+    </item>
+    
+    <item>
+      <title>Go 竞态问题</title>
+      <link>/post/2019/20190903-go-race-condition/</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/20190903-go-race-condition/</guid>
+      <description>定义 单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源</description>
+      
+    </item>
+    
+    <item>
+      <title>读CSAPP(1) - 信息的表示和处理</title>
+      <link>/post/2019/20190827-csapp1/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/20190827-csapp1/</guid>
+      <description>计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯</description>
+      
+    </item>
+    
+  </channel>
+</rss>

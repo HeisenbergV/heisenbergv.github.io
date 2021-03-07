@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>grpc on heisenberg blog</title>
+    <link>/tags/grpc/</link>
+    <description>Recent content in grpc on heisenberg blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2021 heisenberg</copyright>
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>grpc-go</title>
+      <link>/post/2021/202101019-grpc/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021/202101019-grpc/</guid>
+      <description>grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务</description>
+      
+    </item>
+    
+  </channel>
+</rss>

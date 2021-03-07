@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.62.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark"><title>Go Channel&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Go Channel" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">靡不有初 鲜克有终</span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">Go Channel</h1><p class="article date">2019-09-17</p></section><article class="article markdown-body"><h2 id="heading">如何使用</h2>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Go Channel</h1><p class="article date">2019-09-17</p></section><article class="article markdown-body"><h2 id="如何使用">如何使用</h2>
 <ul>
 <li>channel在&lt;-左边 表示向channel发送数据</li>
 <li>channel在&lt;-右边 表示从channel接收数据</li>
@@ -33,7 +33,7 @@
 <span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="channel">Channel的关闭</h2>
+</div><h2 id="channel的关闭">Channel的关闭</h2>
 <ul>
 <li>关闭一个未初始化(nil) 的 channel 会产生 panic</li>
 <li>重复关闭同一个 channel 会产生 panic</li>
@@ -72,10 +72,10 @@
 		<span class="nx">channel</span> <span class="o">&lt;-</span> <span class="s">&#34;hello&#34;</span>
 		<span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
 		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;channel is closed.&#34;</span><span class="p">)</span>
-	<span class="p">}</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
+	<span class="p">}(</span><span class="nx">channel</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">channalFunc2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">channalFunc2</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 	<span class="k">go</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
 
@@ -92,7 +92,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-1">缓冲区</h2>
+</div><h2 id="缓冲区">缓冲区</h2>
 <ul>
 <li>make创建通道时,指定通道的大小时,称为有缓冲通道,反之无缓冲区</li>
 <li>无缓冲区或者缓冲区用完,写入一次,就要等待对方读取一次,否则无法继续写入阻塞住,同理读取不出来也会阻塞住</li>
@@ -130,11 +130,11 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span><span class="p">)</span> <span class="c1">//1
-</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span><span class="p">)</span> <span class="c1">//2
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//1
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//2
 </span></code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-2">单向通道</h2>
+</div><h2 id="单向通道">单向通道</h2>
 <ul>
 <li>为了限制channel滥用,禁止其进行读取或者写入操作,让函数具有更高的单一原则,封装性</li>
 </ul>
@@ -192,7 +192,7 @@
 	<span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">channalFunc3</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">channalFunc3</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">naturals</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
 	<span class="nx">squares</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
 	<span class="c1">//将读写函数分离
@@ -204,7 +204,7 @@
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-3">作用</h2>
+</div><h2 id="作用">作用</h2>
 <ul>
 <li>同步: 依靠阻塞的特性 做多个goroutine之间的锁</li>
 </ul>
@@ -228,20 +228,20 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
-	<span class="nx">sema</span>  <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="nx">sema</span>  <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="mi">1</span><span class="p">)</span>
 	<span class="nx">rece2</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="p">)</span>
 
-<span class="kd">func</span> <span class="nf">raceFunc2</span><span class="p">(</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-	<span class="nx">sema</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span><span class="p">{</span><span class="p">}</span>
+<span class="kd">func</span> <span class="nf">raceFunc2</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">sema</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
 	<span class="nx">rece2</span><span class="o">++</span>
 	<span class="nx">v</span> <span class="o">:=</span> <span class="nx">rece2</span>
 	<span class="o">&lt;-</span><span class="nx">sema</span>
 	<span class="k">return</span> <span class="nx">v</span>
 <span class="p">}</span>
 
-<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">(</span><span class="p">)</span>
-<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">(</span><span class="p">)</span>
+<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span>
+<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -271,25 +271,25 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
 <span class="nx">timer</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTimer</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
 <span class="o">&lt;-</span><span class="nx">timer</span><span class="p">.</span><span class="nx">C</span>
 
-<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
 <span class="c1">//输出: 差两秒
-</span><span class="c1"></span><span class="c1">// 2019-06-24 16:03:34.011947 +0800 CST m=+0.000201381
-</span><span class="c1"></span><span class="c1">// 2019-06-24 16:03:36.015244 +0800 CST m=+2.003571991
+</span><span class="c1">// 2019-06-24 16:03:34.011947 +0800 CST m=+0.000201381
+</span><span class="c1">// 2019-06-24 16:03:36.015244 +0800 CST m=+2.003571991
 </span><span class="c1"></span>    <span class="c1">//延迟执行
-</span><span class="c1"></span><span class="nx">time</span><span class="p">.</span><span class="nf">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
-<span class="p">}</span><span class="p">)</span>
+</span><span class="c1"></span><span class="nx">time</span><span class="p">.</span><span class="nf">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+<span class="p">})</span>
 	<span class="c1">//定时器，每隔1秒执行
 </span><span class="c1"></span><span class="nx">ticker</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTicker</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-	<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="nx">tick</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span> <span class="p">{</span>
 		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;tick at&#34;</span><span class="p">,</span> <span class="nx">tick</span><span class="p">)</span>
 	<span class="p">}</span>
-<span class="p">}</span><span class="p">(</span><span class="p">)</span>
+<span class="p">}()</span>
     
 </code></pre></td></tr></table>
 </div>
@@ -381,14 +381,14 @@
 			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;receive A &#34;</span><span class="p">)</span>
 		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
 			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;receive B &#34;</span><span class="p">)</span>
-		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span><span class="p">:</span>
+		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
 			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ss&#34;</span><span class="p">)</span>
 		<span class="k">default</span><span class="p">:</span>
 		    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;11111&#34;</span><span class="p">)</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-<span class="kd">func</span> <span class="nf">channalFunc5</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">channalFunc5</span><span class="p">()</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
 	<span class="k">go</span> <span class="nf">doWork</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
 	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
@@ -403,8 +403,8 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-4">内部细节</h2>
-<h3 id="heading-5">数据结构</h3>
+</div><h2 id="内部细节">内部细节</h2>
+<h3 id="数据结构">数据结构</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -454,7 +454,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="heading-6">主要函数功能</h3>
+<h3 id="主要函数功能">主要函数功能</h3>
 <ul>
 <li>makechan: 开辟一快连续内存区域存储消息元素</li>
 </ul>
@@ -521,16 +521,16 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span>
 	<span class="k">if</span> <span class="nx">close</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close&#34;</span><span class="p">)</span>
 		<span class="k">return</span>
 	<span class="p">}</span>
 	<span class="c1">//1.如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时
 </span><span class="c1"></span>	<span class="c1">//直接从recvq取出G,并把数据写入，最后把该G唤醒，结束发送过程
-</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">sg</span> <span class="o">:=</span> <span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">sg</span> <span class="o">:=</span> <span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
 		<span class="nx">sg</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="c1">//给此goroutine发消息
-</span><span class="c1"></span>		<span class="nx">sg</span><span class="p">.</span><span class="nf">ready</span><span class="p">(</span><span class="p">)</span>  <span class="c1">//唤醒
+</span><span class="c1"></span>		<span class="nx">sg</span><span class="p">.</span><span class="nf">ready</span><span class="p">()</span>  <span class="c1">//唤醒
 </span><span class="c1"></span>		<span class="k">return</span>
 	<span class="p">}</span>
 	<span class="c1">//2. 跳过2说明无接收方, 如果有缓冲区且不满的话则写入到缓冲区
@@ -540,7 +540,7 @@
 		<span class="k">return</span>
 	<span class="p">}</span>
 	<span class="c1">//3. 没空余位置或者没缓冲区, 将待发送数据写入到当前调用的G, 并加入sendq链表,进入休眠,等待被读方唤醒
-</span><span class="c1"></span>	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">(</span><span class="p">)</span>
+</span><span class="c1"></span>	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
 	<span class="nx">sendq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
@@ -597,17 +597,17 @@
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
-	<span class="k">if</span> <span class="nx">sg</span><span class="o">:=</span> <span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(){</span>
+	<span class="k">if</span> <span class="nx">sg</span><span class="o">:=</span> <span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
 		<span class="k">if</span> <span class="nx">buff</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
 			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span>
-			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">(</span><span class="p">)</span>
+			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
 			<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
 			<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
 			
 		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">(</span><span class="p">)</span>
-			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">(</span><span class="p">)</span>
+			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">()</span>
+			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
 			<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
 			<span class="nx">buff</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span><span class="p">)</span>
 			<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
@@ -617,14 +617,14 @@
 	<span class="p">}</span>
     
 	<span class="k">if</span> <span class="nx">qcount</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">(</span><span class="p">)</span>
+		<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">()</span>
 		<span class="nx">qcount</span><span class="o">--</span>
-		<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">(</span><span class="p">)</span>
+		<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
 		<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
 		<span class="k">return</span> <span class="kc">true</span>
 	<span class="p">}</span>
 	
-	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
 	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
 	<span class="nx">recvq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
@@ -655,7 +655,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">close</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">close</span><span class="p">(){</span>
 	<span class="k">if</span> <span class="kd">chan</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close of nil channel&#34;</span><span class="p">)</span>
 		<span class="k">return</span>
@@ -665,22 +665,22 @@
 		<span class="k">return</span>
 	<span class="p">}</span>
 	<span class="nx">close</span> <span class="p">=</span> <span class="mi">1</span>
-	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">(</span><span class="p">)</span><span class="p">;</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
 		<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
 	<span class="p">}</span>
-	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">(</span><span class="p">)</span><span class="p">;</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
 		<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
 	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="heading-7">参考</h2>
+</div><h2 id="参考">参考</h2>
 <p><a href="https://books.studygolang.com/gopl-zh/"target="_blank">go语言圣经</a></p>
 <p><a href="https://my.oschina.net/renhc/blog/2246871"target="_blank">恋恋美食 blog</a></p>
 <p><a href="https://draveness.me/"target="_blank">draveness blog</a></p>
-</article><section class="article labels"><a class="category" href=/categories/code/>code</a><a class="tag" href=/tags/go/>go</a></section></div>
+</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/go/>go</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2019/20190923-csapp3/"><span class="iconfont icon-article"></span>读CSAPP(3) - 存储器层次结构</a></p><p><a class="link" href="/post/2019/20190917-go-groutine/"><span class="iconfont icon-article"></span>Go Groutine</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2020 heisenberg</p>
+    <p class="copyright">©2021 heisenberg</p>
     <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
         target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>

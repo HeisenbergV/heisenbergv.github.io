@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>go 函数调用&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="go 函数调用" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div><div class="site slogan"><span class="title">自信人生二百年 会当击水三千里</span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">go 函数调用</h1><p class="article date">2020-05-01</p></section><article class="article markdown-body"><h2 id="参数传递">参数传递</h2>
+<p>** go的所有参数传递，都是值传递不存在引用传递。 **</p>
+<h2 id="接口实现">接口实现</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Cat</span> <span class="kd">struct</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">Hello</span><span class="p">(</span><span class="nx">c</span> <span class="nx">Cat</span><span class="p">){</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Cat</span><span class="p">{}</span>
+	<span class="nf">Hello</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Cat</span> <span class="kd">struct</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="nx">Cat</span><span class="p">)</span> <span class="nf">Hello</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="nx">c</span> <span class="o">:=</span> <span class="nx">Cat</span><span class="p">{}</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nf">Hello</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>两种写法无任何区别：</p>
+<ol>
+<li>底层汇编都一样（只是函数名不一样）</li>
+<li>调用流程和结果都一样
+只有在设计方面有区别</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-s" data-lang="s"><span class="s">&#34;&#34;</span><span class="n">.Hello</span> <span class="n">STEXT</span> <span class="n">nosplit</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span> <span class="n">args</span><span class="o">=</span><span class="mh">0x0</span> <span class="n">locals</span><span class="o">=</span><span class="mh">0x0</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">TEXT</span>	<span class="s">&#34;&#34;</span><span class="nf">.Hello</span><span class="p">(</span><span class="n">SB</span><span class="p">),</span> <span class="n">NOSPLIT</span><span class="o">|</span><span class="n">ABIInternal</span><span class="p">,</span> <span class="o">$</span><span class="m">0-0</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-2</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="o">$</span><span class="m">-2</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">FUNCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="n">gclocals</span>·<span class="m">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">FUNCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="n">gclocals</span>·<span class="m">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">FUNCDATA</span>	<span class="o">$</span><span class="m">2</span><span class="p">,</span> <span class="n">gclocals</span>·<span class="m">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">7</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">7</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">7</span><span class="p">)</span>	<span class="n">RET</span>
+	<span class="mh">0x0000</span> <span class="n">c3</span>                                               <span class="n">.
+</span><span class="n"></span><span class="s">&#34;&#34;</span><span class="n">.main</span> <span class="n">STEXT</span> <span class="n">size</span><span class="o">=</span><span class="m">48</span> <span class="n">args</span><span class="o">=</span><span class="mh">0x0</span> <span class="n">locals</span><span class="o">=</span><span class="mh">0x8</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">TEXT</span>	<span class="s">&#34;&#34;</span><span class="nf">.main</span><span class="p">(</span><span class="n">SB</span><span class="p">),</span> <span class="n">ABIInternal</span><span class="p">,</span> <span class="o">$</span><span class="m">8-0</span>
+	
+	<span class="mh">0x001b</span> <span class="m">00027</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">11</span><span class="p">)</span>	<span class="n">CALL</span>	<span class="s">&#34;&#34;</span><span class="nf">.Hello</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0020</span> <span class="m">00032</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="nf">MOVQ	</span><span class="p">(</span><span class="n">SP</span><span class="p">),</span> <span class="n">BP</span>
+	<span class="mh">0x0024</span> <span class="m">00036</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="n">ADDQ</span>	<span class="o">$</span><span class="m">8</span><span class="p">,</span> <span class="n">SP</span>
+	<span class="mh">0x0028</span> <span class="m">00040</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="n">RET</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="n">NOP</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-2</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">CALL</span>	<span class="nf">runtime.morestack_noctxt</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x002e</span> <span class="m">00046</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x002e</span> <span class="m">00046</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">JMP</span>	<span class="m">0</span>
+	<span class="mh">0x0000</span> <span class="m">65</span> <span class="m">48</span> <span class="m">8</span><span class="n">b</span> <span class="m">0</span><span class="n">c</span> <span class="m">25</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">48</span> <span class="m">3</span><span class="n">b</span> <span class="m">61</span> <span class="m">10</span> <span class="m">76</span> <span class="m">1</span><span class="n">a</span> <span class="m">48</span>  <span class="n">eH..</span>%<span class="n">....H</span><span class="p">;</span><span class="n">a.v.H</span>
+	<span class="mh">0x0010</span> <span class="m">83</span> <span class="n">ec</span> <span class="m">08</span> <span class="m">48</span> <span class="m">89</span> <span class="m">2</span><span class="n">c</span> <span class="m">24</span> <span class="m">48</span> <span class="m">8</span><span class="n">d</span> <span class="m">2</span><span class="n">c</span> <span class="m">24</span> <span class="n">e8</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>  <span class="n">...H.</span><span class="p">,</span><span class="o">$</span><span class="n">H.</span><span class="p">,</span><span class="o">$</span><span class="n">.....</span>
+	<span class="mh">0x0020</span> <span class="m">48</span> <span class="m">8</span><span class="n">b</span> <span class="m">2</span><span class="n">c</span> <span class="m">24</span> <span class="m">48</span> <span class="m">83</span> <span class="n">c4</span> <span class="m">08</span> <span class="n">c3</span> <span class="n">e8</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="n">eb</span> <span class="n">d0</span>  <span class="n">H.</span><span class="p">,</span><span class="o">$</span><span class="n">H...........</span>
+	<span class="n">rel</span> <span class="m">5+4</span> <span class="n">t</span><span class="o">=</span><span class="m">17</span> <span class="n">TLS</span><span class="m">+0</span>
+	<span class="n">rel</span> <span class="m">28+4</span> <span class="n">t</span><span class="o">=</span><span class="m">8</span> <span class="s">&#34;&#34;</span><span class="n">.Hello</span><span class="m">+0</span>
+	<span class="n">rel</span> <span class="m">42+4</span> <span class="n">t</span><span class="o">=</span><span class="m">8</span> <span class="n">runtime.morestack_noctxt</span><span class="m">+0</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-s" data-lang="s"><span class="s">&#34;&#34;</span><span class="n">.Cat.Hello</span> <span class="n">STEXT</span> <span class="n">nosplit</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span> <span class="n">args</span><span class="o">=</span><span class="mh">0x0</span> <span class="n">locals</span><span class="o">=</span><span class="mh">0x0</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">TEXT</span>	<span class="s">&#34;&#34;</span><span class="nf">.Cat.Hello</span><span class="p">(</span><span class="n">SB</span><span class="p">),</span> <span class="n">NOSPLIT</span><span class="o">|</span><span class="n">ABIInternal</span><span class="p">,</span> <span class="o">$</span><span class="m">0-0</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-2</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="o">$</span><span class="m">-2</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">FUNCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="n">gclocals</span>·<span class="m">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">FUNCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="n">gclocals</span>·<span class="m">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>	<span class="n">FUNCDATA</span>	<span class="o">$</span><span class="m">2</span><span class="p">,</span> <span class="n">gclocals</span>·<span class="m">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">7</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">7</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">7</span><span class="p">)</span>	<span class="n">RET</span>
+	<span class="mh">0x0000</span> <span class="n">c3</span>                                               <span class="n">.
+</span><span class="n"></span><span class="s">&#34;&#34;</span><span class="n">.main</span> <span class="n">STEXT</span> <span class="n">size</span><span class="o">=</span><span class="m">48</span> <span class="n">args</span><span class="o">=</span><span class="mh">0x0</span> <span class="n">locals</span><span class="o">=</span><span class="mh">0x8</span>
+	<span class="mh">0x0000</span> <span class="m">00000</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">TEXT</span>	<span class="s">&#34;&#34;</span><span class="nf">.main</span><span class="p">(</span><span class="n">SB</span><span class="p">),</span> <span class="n">ABIInternal</span><span class="p">,</span> <span class="o">$</span><span class="m">8-0</span>
+
+	<span class="mh">0x001b</span> <span class="m">00027</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">11</span><span class="p">)</span>	<span class="n">CALL</span>	<span class="s">&#34;&#34;</span><span class="nf">.Cat.Hello</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x0020</span> <span class="m">00032</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="nf">MOVQ	</span><span class="p">(</span><span class="n">SP</span><span class="p">),</span> <span class="n">BP</span>
+	<span class="mh">0x0024</span> <span class="m">00036</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="n">ADDQ</span>	<span class="o">$</span><span class="m">8</span><span class="p">,</span> <span class="n">SP</span>
+	<span class="mh">0x0028</span> <span class="m">00040</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="n">RET</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">12</span><span class="p">)</span>	<span class="n">NOP</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">1</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-2</span>
+	<span class="mh">0x0029</span> <span class="m">00041</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">CALL</span>	<span class="nf">runtime.morestack_noctxt</span><span class="p">(</span><span class="n">SB</span><span class="p">)</span>
+	<span class="mh">0x002e</span> <span class="m">00046</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">PCDATA</span>	<span class="o">$</span><span class="m">0</span><span class="p">,</span> <span class="o">$</span><span class="m">-1</span>
+	<span class="mh">0x002e</span> <span class="m">00046</span> <span class="p">(</span><span class="n">main.go</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>	<span class="n">JMP</span>	<span class="m">0</span>
+	<span class="mh">0x0000</span> <span class="m">65</span> <span class="m">48</span> <span class="m">8</span><span class="n">b</span> <span class="m">0</span><span class="n">c</span> <span class="m">25</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">48</span> <span class="m">3</span><span class="n">b</span> <span class="m">61</span> <span class="m">10</span> <span class="m">76</span> <span class="m">1</span><span class="n">a</span> <span class="m">48</span>  <span class="n">eH..</span>%<span class="n">....H</span><span class="p">;</span><span class="n">a.v.H</span>
+	<span class="mh">0x0010</span> <span class="m">83</span> <span class="n">ec</span> <span class="m">08</span> <span class="m">48</span> <span class="m">89</span> <span class="m">2</span><span class="n">c</span> <span class="m">24</span> <span class="m">48</span> <span class="m">8</span><span class="n">d</span> <span class="m">2</span><span class="n">c</span> <span class="m">24</span> <span class="n">e8</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>  <span class="n">...H.</span><span class="p">,</span><span class="o">$</span><span class="n">H.</span><span class="p">,</span><span class="o">$</span><span class="n">.....</span>
+	<span class="mh">0x0020</span> <span class="m">48</span> <span class="m">8</span><span class="n">b</span> <span class="m">2</span><span class="n">c</span> <span class="m">24</span> <span class="m">48</span> <span class="m">83</span> <span class="n">c4</span> <span class="m">08</span> <span class="n">c3</span> <span class="n">e8</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="n">eb</span> <span class="n">d0</span>  <span class="n">H.</span><span class="p">,</span><span class="o">$</span><span class="n">H...........</span>
+	<span class="n">rel</span> <span class="m">5+4</span> <span class="n">t</span><span class="o">=</span><span class="m">17</span> <span class="n">TLS</span><span class="m">+0</span>
+	<span class="n">rel</span> <span class="m">28+4</span> <span class="n">t</span><span class="o">=</span><span class="m">8</span> <span class="s">&#34;&#34;</span><span class="n">.Cat.Hello</span><span class="m">+0</span>
+	<span class="n">rel</span> <span class="m">42+4</span> <span class="n">t</span><span class="o">=</span><span class="m">8</span> <span class="n">runtime.morestack_noctxt</span><span class="m">+0</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Cat</span><span class="p">)</span> <span class="nf">Hello</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">Hello</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Cat</span><span class="p">){</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这俩也无区别。</p>
+<h2 id="总结">总结</h2>
+</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/go/>go</a></section></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2021/20210105-tcpudp/"><span class="iconfont icon-article"></span>计算机网络-传输层</a></p><p><a class="link" href="/post/2020/20200409-mit6.828-03-lab2/"><span class="iconfont icon-article"></span>MIT6.828 - 03-Lab2.shell</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2021 heisenberg</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
+        <script
+            type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
+
+</html>
