@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>源码 on heisenberg blog</title>
+    <title>源码 on heisenbug blog</title>
     <link>/tags/%E6%BA%90%E7%A0%81/</link>
-    <description>Recent content in 源码 on heisenberg blog</description>
+    <description>Recent content in 源码 on heisenbug blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>©2021 heisenberg</copyright>
+    <copyright>©2021 heisenbug</copyright>
     <lastBuildDate>Wed, 01 Apr 2020 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/tags/%E6%BA%90%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />

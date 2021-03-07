@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>读CSAPP(4) - 虚拟内存&nbsp;&ndash;&nbsp;heisenberg blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>读CSAPP(4) - 虚拟内存&nbsp;&ndash;&nbsp;heisenbug blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="读CSAPP(4) - 虚拟内存" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenberg blog</span></a></span>
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenbug blog</span></a></span>
         <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">读CSAPP(4) - 虚拟内存</h1><p class="article date">2019-09-28</p></section><article class="article markdown-body"><p>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。
 进程运行过程不再加载全部数据，而是只保留当前运行需要的数据在内存中。为了让MMU更高效加入了TLB，缓存映射关系，还利用多级页表降低页表内存占用有了</p>
@@ -143,7 +143,7 @@ PTE负责把虚拟页映射到磁盘或者物理页上，假设需要两个数�
         alt="image"/></p>
 </article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200210-book-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/"><span class="iconfont icon-article"></span>百年孤独</a></p><p><a class="link" href="/post/2019/20190923-csapp3/"><span class="iconfont icon-article"></span>读CSAPP(3) - 存储器层次结构</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2021 heisenberg</p>
+    <p class="copyright">©2021 heisenbug</p>
     <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
         target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
