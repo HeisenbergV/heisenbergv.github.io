@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.82.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>读CSAPP(3) - 存储器层次结构&nbsp;&ndash;&nbsp;heisenbug blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
+<meta name="supported-color-schemes" content="light dark"><title>读CSAPP(3) - 存储器层次结构&nbsp;&ndash;&nbsp;heisenbug blog</title><link rel="stylesheet" href="/css/core.min.ee3f1218fc11b89cd1e2b38a679ee8aa5369551b2543d8261ba1ccbd4e11bdd2d377383f1f6b9c668d8d3ac946339a62.css" integrity="sha384-7j8SGPwRuJzR4rOKZ57oqlNpVRslQ9gmG6HMvU4RvdLTdzg/H2ucZo2NOslGM5pi"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="读CSAPP(3) - 存储器层次结构" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenbug blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/categories/%e8%b5%84%e6%b2%bb%e9%80%9a%e9%89%b4/">资治通鉴</a><a class="nav item" href="/tags/">标签</a><a class="nav item" href="/categories/">类别</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank" rel="noopener noreferrer">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">读CSAPP(3) - 存储器层次结构</h1><p class="article date">2019-09-23</p></section><article class="article markdown-body"><h2 id="了解硬件">了解硬件</h2>
 <h3 id="随机访问存储器random-access-memoryram">随机访问存储器（Random-Access Memory，RAM）</h3>
 <p>RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比DRAM更快，价格也更高。
@@ -208,12 +208,14 @@ sumarray1有空间局部性，sumarry2则没有。
 <li>冲突性不命中（conflict miss）：如果k层容纳4个数据块， k+1层容纳12个，放置策略导致k+1层的0，4，8，12位置的数据都会放入k层的0块位置，不同cache由于index相同互相替换</li>
 <li>容量失效(Capacity Miss)：有限的容量放不下大的缓存内容，被替换出去的下次再被访问，无法命中</li>
 </ul>
-</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
+</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section>
+</div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2019/20190928-csapp4/"><span class="iconfont icon-article"></span>读CSAPP(4) - 虚拟内存</a></p><p><a class="link" href="/post/2019/20190917-go-channel/"><span class="iconfont icon-article"></span>Go Channel</a></p></section></div></section><section id="footer"><div class="footer-wrap">
     <p class="copyright">©2021 heisenbug</p>
     <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
+        target="_blank" rel="noopener noreferrer">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank" rel="noopener noreferrer">Notepadium</a></p></div>
+</section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
         <script
             type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
 
