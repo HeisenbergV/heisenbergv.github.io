@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>读书 on heisenbug blog</title>
+    <link>/categories/%E8%AF%BB%E4%B9%A6/</link>
+    <description>Recent content in 读书 on heisenbug blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2021 heisenbug</copyright>
+    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/categories/%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>资治通鉴 卷1-16</title>
+      <link>/post/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/1/</link>
+      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/1/</guid>
+      <description>卷一 司马光引孔子的话：&amp;ldquo;天尊地卑，乾坤定矣。卑高以陈，贵贱位矣。&amp;ldquo;认为君臣关系就像天地一样不能互换。如果不是桀、纣那</description>
+      
+    </item>
+    
+    <item>
+      <title>百年孤独</title>
+      <link>/post/2020/20200210-book-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</link>
+      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020/20200210-book-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</guid>
+      <description>第一章 简要 一个叫 何塞·阿尔卡蒂奥·布恩迪亚 的人，从吉卜赛人 梅尔吉亚德斯，一个诚实善良的人手中换来各种新奇未见过的道具：磁铁，放大镜等。 他天马</description>
+      
+    </item>
+    
+  </channel>
+</rss>

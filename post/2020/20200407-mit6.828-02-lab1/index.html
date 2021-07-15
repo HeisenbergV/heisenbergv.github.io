@@ -4,7 +4,7 @@
 <meta name="supported-color-schemes" content="light dark"><title>MIT6.828 - 02-Lab1.Util&nbsp;&ndash;&nbsp;heisenbug blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="MIT6.828 - 02-Lab1.Util" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">heisenbug blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/%e8%b5%84%e6%b2%bb%e9%80%9a%e9%89%b4/">资治通鉴</a><a class="nav item" href="/tags/">标签</a><a class="nav item" href="/categories/">类别</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">MIT6.828 - 02-Lab1.Util</h1><p class="article date">2020-04-07</p></section><article class="article markdown-body"><h2 id="实验说明">实验说明</h2>
 <p>每一个Lab对应一个git 分支，本实验分支为 <code>util</code>，主要是实现5个命令程序。在 <code>xv6-riscv-fall19</code>项目里， <code>kernel</code>是内核， <code>user</code>是用户态程序， 代码写到<code>user</code>里，然后再Makefile <code>UPROGS</code>变量中加入的相应名称即可：</p>
 <div class="highlight"><div class="chroma">
@@ -37,7 +37,6 @@
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">$ make qemu-gdb
@@ -48,10 +47,10 @@ OK (1.1s)
 sleep, makes syscall:
 $ make qemu-gdb
 OK (0.7s)
-pingpong:
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="sleep">sleep</h2>
+</div><p>执行 <code>make</code> 然后 <code>make qemu</code> 编译运行操作系统</p>
+<h2 id="sleep">sleep</h2>
 <p><code>kernel/sysproc.c</code> 提供了<code>sleep</code>接口，只需要进行一次系统调用即可。</p>
 <p>TODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因</p>
 <h5 id="sleepc">sleep.c:</h5>
@@ -456,14 +455,115 @@ pingpong:
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="xargs">xargs</h2>
-<p>&hellip;.</p>
-<h5 id="xargsc">xargs.c</h5>
+<p>程序需求：xargs执行后，从标准输出读取每一行，并为每一行运行一个命令，命令的参数是标准输出的内容
+举例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&gt; xargs echo bye
+hello too
+bye hello too
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="xargsc">xargs.c</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> 
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">buf2</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">32</span><span class="p">][</span><span class="mi">32</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">pass</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">pass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">n</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf2</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf2</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">argc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="n">buf</span><span class="p">[</span><span class="n">pos</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">buf2</span><span class="p">;</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span> <span class="o">||</span> <span class="o">*</span><span class="n">p</span> <span class="o">==</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+                <span class="n">pos</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">buf</span><span class="p">[</span><span class="n">pos</span><span class="p">];</span>
+            <span class="p">}</span> <span class="k">else</span>
+                <span class="o">*</span><span class="n">c</span><span class="o">++</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="n">pos</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">pass</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">wait</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span>
+            <span class="n">exec</span><span class="p">(</span><span class="n">pass</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pass</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;xargs: read error</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">exit</span><span class="p">();</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="参考">参考</h2>

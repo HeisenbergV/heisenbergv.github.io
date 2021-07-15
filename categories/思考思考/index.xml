@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>思考思考 on heisenbug blog</title>
+    <link>/categories/%E6%80%9D%E8%80%83%E6%80%9D%E8%80%83/</link>
+    <description>Recent content in 思考思考 on heisenbug blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2021 heisenbug</copyright>
+    <lastBuildDate>Sat, 10 Jul 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/categories/%E6%80%9D%E8%80%83%E6%80%9D%E8%80%83/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>中国哲学简史</title>
+      <link>/post/read/20210710/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/read/20210710/</guid>
+      <description>哲学家所说的宇宙是一切存在之全，相当于古代中国哲学家惠施所说的“大一”，其定义是“至大无外”。所以每个人、每个事物都应当看做宇宙的部分。当一</description>
+      
+    </item>
+    
+    <item>
+      <title>读读矛盾论</title>
+      <link>/post/read/20210613/</link>
+      <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/read/20210613/</guid>
+      <description>辩证法研究对象的本质自身中的矛盾 &amp;ndash; 列宁 从这句话得知矛盾是辩证法的核心。因为是核心，所以涉及许多方面和哲学问题：两种宇宙观、矛盾的普遍性、矛盾</description>
+      
+    </item>
+    
+    <item>
+      <title>管理什么的</title>
+      <link>/post/read/20210610/</link>
+      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/read/20210610/</guid>
+      <description>小团队的话，管理者个人开发能力过关，再加上分配工作合理就能有不错的效果。再进一步就是把项目规划好，在项目进展中及时纠正错误问题（计划、设计、</description>
+      
+    </item>
+    
+    <item>
+      <title>暗时间</title>
+      <link>/post/read/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</link>
+      <pubDate>Thu, 22 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/read/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</guid>
+      <description>学习方面 最近看《暗时间》这本书，感觉很不错。 投入的时间≠实际时间，要用高效的方法学习，充分利用暗时间，学习过程要不断思考推断，而不是一味的死</description>
+      
+    </item>
+    
+  </channel>
+</rss>
