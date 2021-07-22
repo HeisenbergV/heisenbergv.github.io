@@ -1,11 +1,107 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>读CSAPP(1) - 信息的表示和处理&nbsp;&ndash;&nbsp;zJxin Blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="读CSAPP(1) - 信息的表示和处理" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">zJxin Blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">标签</a><a class="nav item" href="/categories/">类别</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">读CSAPP(1) - 信息的表示和处理</h1><p class="article date">2019-08-27</p></section><article class="article markdown-body"><h2 id="计算机存的什么">计算机存的什么</h2>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>读CSAPP(1) - 信息的表示和处理 - zJxin Blog</title><meta name="Description" content="万物皆备于我 反身而行 乐莫大焉"><meta property="og:title" content="读CSAPP(1) - 信息的表示和处理" />
+<meta property="og:description" content="计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/post/2019/20190827-csapp1/" />
+<meta property="og:image" content="https://heisenbergv.github.io/logo.png"/>
+<meta property="article:published_time" content="2019-08-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heisenbergv.github.io/logo.png"/>
+
+<meta name="twitter:title" content="读CSAPP(1) - 信息的表示和处理"/>
+<meta name="twitter:description" content="计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/post/2019/20190827-csapp1/" /><link rel="prev" href="https://heisenbergv.github.io/post/read/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/" /><link rel="next" href="https://heisenbergv.github.io/post/2019/20190903-go-race-condition/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "读CSAPP(1) - 信息的表示和处理",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/post\/2019\/20190827-csapp1\/"
+        },"genre": "post","keywords": "操作系统","wordcount":  2681 ,
+        "url": "https:\/\/heisenbergv.github.io\/post\/2019\/20190827-csapp1\/","datePublished": "2019-08-27T00:00:00+00:00","dateModified": "2019-08-27T00:00:00+00:00","license": "©2021 zJxin","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin Blog">zJxin Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 主页 </a><a class="menu-item" href="/post/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin Blog">zJxin Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">主页</a><a class="menu-item" href="/post/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">读CSAPP(1) - 信息的表示和处理</h1><div class="content" id="content"><h2 id="计算机存的什么">计算机存的什么</h2>
 <p>计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。
 每个字节都有一个唯一的数字来标识，也就是地址（address）。每个计算机都有一个字长（word size），也就是常说的64位操作系统，32位操作系统。字长决定了虚拟地址空间的大小，
 比如32位有4GB的内存空间，64位则是16EB（1TB = 1024GB，1 EB = 1,024 PB = 1,048,576 TB）。</p>
@@ -413,13 +509,25 @@
 <li>M表示有效数字，大于等于1，小于2。</li>
 <li>E表示指数位</li>
 </ul>
-<p><img  src="../../../img/csapp-float.png"
-        alt="image"/></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/csapp-float.png"
+        data-srcset="../../../img/csapp-float.png, ../../../img/csapp-float.png 1.5x, ../../../img/csapp-float.png 2x"
+        data-sizes="auto"
+        alt="../../../img/csapp-float.png"
+        title="image" /></p>
 <p>M：二进制中M的第一位总是1，所以IEEE 754规定，这个数字可以忽略，在运算的时候再添上。这样对于32位浮点数，就有24位有效数字，64位则有53位。增加了表示范围
 E：E 是无符号的，如何表示负数，也就是 2^-n 这种形式？ 实际的E表示为 E = e - Baic。其中e是无符号数，Baic=2^(k-1)-1。以32位浮点数为例，e的范围在0~255，Baic = 127，E的范围就是-126~+127。</p>
 <h3 id="阶码e的值决定了-这个数是规格化非规格化或者特殊值">阶码（E）的值决定了 这个数是规格化，非规格化或者特殊值。</h3>
-<p><img  src="../../../img/csapp-float2.png"
-        alt="image"/></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/csapp-float2.png"
+        data-srcset="../../../img/csapp-float2.png, ../../../img/csapp-float2.png 1.5x, ../../../img/csapp-float2.png 2x"
+        data-sizes="auto"
+        alt="../../../img/csapp-float2.png"
+        title="image" /></p>
 <ul>
 <li>规格化：当阶码域不全为0时，或者不全为1时，得到真实值，再将有效数字M前加上第一位的1</li>
 <li>非规格化：阶码域全为0，小数域不再补上1，这样做是为了表示±0，以及接近于0的很小的数字</li>
@@ -474,20 +582,24 @@ E：E 是无符号的，如何表示负数，也就是 2^-n 这种形式？ 实�
 <h2 id="总结">总结</h2>
 <p>计算机内存有限，溢出是必须考虑的事情。整数用补码形式存放于计算机，便于进行数值计算。两个数进行计算，当超出类型的字节范围，就会有溢出问题，造成程序异常。一个数据的存放在内存的顺序有大小端之分。</p>
 <h2 id="参考">参考</h2>
-<p><a href="https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html"target="_blank">张子秋的博客</a></p>
-<p><a href="https://www.zhihu.com/question/20159860/answer/71256667"target="_blank">插画-李俊达的回答 - 知乎</a></p>
-<p><a href="https://wdxtub.com/csapp/thin-csapp-1/2016/04/16/"target="_blank">wdxtub 博客</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html"target="_blank">阮一峰 浮点数</a></p>
+<p><a href="https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html" target="_blank" rel="noopener noreffer">张子秋的博客</a></p>
+<p><a href="https://www.zhihu.com/question/20159860/answer/71256667" target="_blank" rel="noopener noreffer">插画-李俊达的回答 - 知乎</a></p>
+<p><a href="https://wdxtub.com/csapp/thin-csapp-1/2016/04/16/" target="_blank" rel="noopener noreffer">wdxtub 博客</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html" target="_blank" rel="noopener noreffer">阮一峰 浮点数</a></p>
 <blockquote>
 <p>痛苦分两种，一种毫无意义，一种让人更坚强。 &ndash; 《纸牌屋》</p>
 </blockquote>
-</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
-<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2019/20190903-go-race-condition/"><span class="iconfont icon-article"></span>Go 竞态问题</a></p><p><a class="link" href="/post/read/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/"><span class="iconfont icon-article"></span>暗时间</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2021 zJxin</p>
-    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
-        <script
-            type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
+</div><div id="comments"></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
 
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

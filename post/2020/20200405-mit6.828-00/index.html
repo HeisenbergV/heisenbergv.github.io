@@ -1,36 +1,195 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>MIT6.828 - 00.开始&nbsp;&ndash;&nbsp;zJxin Blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="MIT6.828 - 00.开始" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">zJxin Blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">标签</a><a class="nav item" href="/categories/">类别</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title">MIT6.828 - 00.开始</h1><p class="article date">2020-04-05</p></section><article class="article markdown-body"><h2 id="前言">前言</h2>
-<p>写一个操作系统一直是我的梦想，<a href="https://pdos.csail.mit.edu/6.828/2019/"target="_blank">MIT 6.828-2019fall</a>是最好的课程之一。我将记录学习的过程与实践，
-所有代码都会上传至我的<a href="https://github.com/HeisenbergV/xv6-riscv-fall19"target="_blank">github</a></p>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>MIT6.828 - 00.开始 - zJxin Blog</title><meta name="Description" content="万物皆备于我 反身而行 乐莫大焉"><meta property="og:title" content="MIT6.828 - 00.开始" />
+<meta property="og:description" content="前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的git" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/" />
+<meta property="og:image" content="https://heisenbergv.github.io/logo.png"/>
+<meta property="article:published_time" content="2020-04-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-05T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heisenbergv.github.io/logo.png"/>
+
+<meta name="twitter:title" content="MIT6.828 - 00.开始"/>
+<meta name="twitter:description" content="前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的git"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/post/2020/20200405-mit6.828-00/" /><link rel="prev" href="https://heisenbergv.github.io/post/2020/20200401-go-context/" /><link rel="next" href="https://heisenbergv.github.io/post/2020/20200406-mit6.828-01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MIT6.828 - 00.开始",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/post\/2020\/20200405-mit6.828-00\/"
+        },"genre": "post","keywords": "操作系统","wordcount":  117 ,
+        "url": "https:\/\/heisenbergv.github.io\/post\/2020\/20200405-mit6.828-00\/","datePublished": "2020-04-05T00:00:00+00:00","dateModified": "2020-04-05T00:00:00+00:00","license": "©2021 zJxin","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin Blog">zJxin Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 主页 </a><a class="menu-item" href="/post/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin Blog">zJxin Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">主页</a><a class="menu-item" href="/post/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">MIT6.828 - 00.开始</h1><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>写一个操作系统一直是我的梦想，<a href="https://pdos.csail.mit.edu/6.828/2019/" target="_blank" rel="noopener noreffer">MIT 6.828-2019fall</a>是最好的课程之一。我将记录学习的过程与实践，
+所有代码都会上传至我的<a href="https://github.com/HeisenbergV/xv6-riscv-fall19" target="_blank" rel="noopener noreffer">github</a></p>
 <h2 id="目录">目录</h2>
 <p>LEC 1:
-<a href="/post/2020/20200406-mit6.828-01">环境搭建</a> &amp; <a href="/post/2020/20200407-mit6.828-02-lab1">Lab1:Util</a></p>
+<a href="/post/2020/20200406-mit6.828-01" rel="">环境搭建</a> &amp; <a href="/post/2020/20200407-mit6.828-02-lab1" rel="">Lab1:Util</a></p>
 <h2 id="主要学习的资料">主要学习的资料</h2>
-<p><a href="https://pdos.csail.mit.edu/6.828/2019/"target="_blank">官方讲义</a></p>
-<p><a href="https://th0ar.gitbooks.io/xv6-chinese/content/content/chapter0.html"target="_blank">xv6 文档</a></p>
-<p><a href="https://github.com/HeisenbergV/xv6-riscv-fall19/tree/xv6-riscv-fall19/kernel"target="_blank">xv6源码</a></p>
-<p><a href="https://blog.csdn.net/qq_25426415/category_6684908.html"target="_blank">vx6源码分析</a></p>
+<p><a href="https://pdos.csail.mit.edu/6.828/2019/" target="_blank" rel="noopener noreffer">官方讲义</a></p>
+<p><a href="https://th0ar.gitbooks.io/xv6-chinese/content/content/chapter0.html" target="_blank" rel="noopener noreffer">xv6 文档</a></p>
+<p><a href="https://github.com/HeisenbergV/xv6-riscv-fall19/tree/xv6-riscv-fall19/kernel" target="_blank" rel="noopener noreffer">xv6源码</a></p>
+<p><a href="https://blog.csdn.net/qq_25426415/category_6684908.html" target="_blank" rel="noopener noreffer">vx6源码分析</a></p>
 <p>其他参考：</p>
 <p><a href="https://blog.mky.moe/">https://blog.mky.moe/</a></p>
 <p><a href="https://blog.csdn.net/bysui/category_6232831.html">https://blog.csdn.net/bysui/category_6232831.html</a></p>
 <p><a href="https://www.cnblogs.com/fatsheep9146/category/769143.html">https://www.cnblogs.com/fatsheep9146/category/769143.html</a></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<blockquote>
-</blockquote>
-</article><section class="article labels"><a class="category" href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a><a class="tag" href=/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a></section></div>
-<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/2020/20200406-mit6.828-01/"><span class="iconfont icon-article"></span>MIT6.828 - 01.环境搭建</a></p><p><a class="link" href="/post/2020/20200401-go-context/"><span class="iconfont icon-article"></span>源码阅读 - go Context</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2021 zJxin</p>
-    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
-        <script
-            type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
+<!-- 
+LEC 2 (fk): Dynamic memory allocation (allocators) Preparation: 5.1 (Pointers and addresses) through 5.6 (Pointer arrays) and 6.4 (pointers to structures), and 8.7 (Storage Allocator) by Kernighan and Ritchie (K&R)
 
+LEC 3 (TAs): C and gdb (pointers example) Preparation: Read 2.9 (Bitwise operators) by K&R Assignment: Lab sh: Simple shell
+
+LEC 4 (rtm): Isolation & system call entry/exit Preparation: Read "Chapter 2: Operating system organization"
+
+LEC 5 (fk): Virtual memory (1) Preparation: Read "Chapter 3: Page Tables" Assignment: Lab alloc: Memory allocator
+
+Lab2 shell DUE: 6.828: email us a paragraph with project proposal
+
+LEC 6 (ab): Virtual memory (2) (slides)
+
+LEC 7 (fk): System calls, interrupts, exceptions Preparation: Read "Traps and device drivers" and the related xv6 source files Assignment: Lab lazy: Lazy allocation
+
+Lab3 alloc
+
+LEC 8 (ab): Multiprocessors and locking (slides) Preparation: Read "Locking" with spinlock.c oct 1 oct 2
+
+LEC 9 (rtm): Processes and switching Preparation: Read "Scheduling" up to "Sleep and wakeup" and proc.c, swtch.S Assignment: Lab cow: Copy-on-write fork oct 3
+
+Lab4 lazy DUE: 6.828: project proposal oct 4
+
+LEC 10 (rtm): sleep&wakeup Preparation: Read remainder of "Scheduling", and corresponding parts of proc.c oct 8 oct 9
+
+LEC 11 (TAs): Calling conventions and stack frames RISC-V Assignment: Lab syscall: Uthread & alarm oct 10
+
+Lab5 cow
+
+LEC 12 (fk): File systems Preparation: Read bio.c, fs.c, sysfile.c, file.c and "File system" except for the logging sections oct 17
+
+Lab6 syscall
+
+LEC 13 (fk): Crash recovery Preparation: Read log.c and the logging sections of "File system" Assignment: Lab lock: Parallelism/locking oct 24 oct 25
+
+LEC 14 (rtm): File system performance and fast crash recovery Preparation: Read Journaling the Linux ext2fs Filesystem (1998) Assignment: Lab fs: File system oct 31 nov 1 Lab7 lock DUE: 6.828: Report project status
+
+LEC 15 (ab): Virtual Memory (3) (slides) Preparation: Read Virtual Memory Primitives for User Programs (1991) nov 5 nov 6
+
+LEC 16 (rtm): OS Organization Preparation: Read Exokernel (1995), FAQ Homework 1 due: HW exokernel question Assignment: Lab mmap: Mmap nov 7
+
+Lab8 fs
+
+LEC 17 (ab): OS and Networking Preparation: Read Receive Livelock (1996) Homework 2 due: HW livelock question Assignment: Lab net: Network stack nov 14
+
+Lab9 mmap DUE: 6.828: Report project status nov 15
+
+LEC 18 (fk): Kernels and HLL Preparation: Read the Biscuit paper (2018), FAQ Homework 3 due: HW Biscuit question nov 19 nov 20
+
+LEC 19 (ab): Scalable locks (slides) (code) Preparation: Read Non-scalable locks paper (2012), FAQ Homework 4 due: ticket lock question nov 21 nov 22
+
+LEC 20 (rtm): RCU notes, 2018 slides Preparation: Read RCU paper (2013), FAQ Homework 5 due: RCU question
+
+LEC 21 (ab): Virtual Machines (1) (slides) Preparation: Read Software vs Hardware Virtualization (2006) or Disco? Homework 6 due: VM question
+
+Lab10 net
+
+LEC 22: 6.828 project demos in class dec 10 dec 11 LAST DAY OF CLASSES
+
+LEC 23: 6.828 project demos in class
+
+Lab11 syscall through mmap. practice: previous years' quizzes. --><blockquote>
+</blockquote>
+</div><div id="comments"></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

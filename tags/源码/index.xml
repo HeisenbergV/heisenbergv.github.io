@@ -1,46 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>源码 on zJxin Blog</title>
-    <link>/tags/%E6%BA%90%E7%A0%81/</link>
-    <description>Recent content in 源码 on zJxin Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <copyright>©2021 zJxin</copyright>
-    <lastBuildDate>Wed, 21 Jul 2021 00:00:00 +0000</lastBuildDate>
-    
-        <atom:link href="/tags/%E6%BA%90%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>gin源码</title>
-      <link>/post/2021/20210721-gin/</link>
-      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2021/20210721-gin/</guid>
-      <description>gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息</description>
-      
-    </item>
-    
-    <item>
-      <title>grpc-go</title>
-      <link>/post/2021/202101019-grpc/</link>
-      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2021/202101019-grpc/</guid>
-      <description>grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务</description>
-      
-    </item>
-    
-    <item>
-      <title>源码阅读 - go Context</title>
-      <link>/post/2020/20200401-go-context/</link>
-      <pubDate>Wed, 01 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2020/20200401-go-context/</guid>
-      <description>Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理</description>
-      
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>源码 - 标签 - zJxin Blog</title>
+        <link>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</link>
+        <description>源码 - 标签 - zJxin Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><copyright>©2021 zJxin</copyright><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/" rel="self" type="application/rss+xml" /><item>
+    <title>gin源码</title>
+    <link>https://heisenbergv.github.io/post/2021/20210721-gin/</link>
+    <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/post/2021/20210721-gin/</guid>
+    <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息]]></description>
+</item><item>
+    <title>grpc-go</title>
+    <link>https://heisenbergv.github.io/post/2021/202101019-grpc/</link>
+    <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/post/2021/202101019-grpc/</guid>
+    <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
+</item><item>
+    <title>源码阅读 - go Context</title>
+    <link>https://heisenbergv.github.io/post/2020/20200401-go-context/</link>
+    <pubDate>Wed, 01 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/post/2020/20200401-go-context/</guid>
+    <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理]]></description>
+</item></channel>
 </rss>

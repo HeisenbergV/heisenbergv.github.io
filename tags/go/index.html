@@ -1,19 +1,115 @@
 <!DOCTYPE html>
-<html lang="zh-cn"><meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>go&nbsp;&ndash;&nbsp;zJxin Blog</title><link rel="stylesheet" href="/css/core.min.daec6aa8c5af09a40a2828fa69c3594fba68f4e24386a5a5aa55cbf5bd2f3ecb3400c80b1fd226b50f14036509465f66.css" integrity="sha384-2uxqqMWvCaQKKCj6acNZT7po9OJDhqWlqlXL9b0vPss0AMgLH9ImtQ8UA2UJRl9m"><link rel="alternate" type="application/rss+xml" href="/tags/go/index.xml" title="zJxin Blog" /><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="go" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">zJxin Blog</span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/"></a><a class="nav item" href="/tags/"></a><a class="nav item" href="/tags/">标签</a><a class="nav item" href="/categories/">类别</a><a class="nav item" href="https://github%2ecom/HeisenbergV"target="_blank">Github</a></nav></div></span></div></section><section id="content"><section class="article header"><h1>go</h1></section><ul class="note list"><li class="item"><a class="note" href="/post/2020/20200401-go-context/">
-            <p class="note title">源码阅读 - go Context</p><p class="note date">2020-04-01</p><p class="note content">Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理<span class="mldr">&mldr;</span></p></a><p class="note labels"><a class="category" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="tag" href="/tags/go/">go</a><a class="tag" href="/tags/%E6%BA%90%E7%A0%81/">源码</a></p></li><li class="item"><a class="note" href="/post/2019/20190917-go-channel/">
-            <p class="note title">Go Channel</p><p class="note date">2019-09-17</p><p class="note content">如何使用 channel在&lt;-左边 表示向channel发送数据 channel在&lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha<span class="mldr">&mldr;</span></p></a><p class="note labels"><a class="category" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="tag" href="/tags/go/">go</a></p></li><li class="item"><a class="note" href="/post/2019/20190917-go-groutine/">
-            <p class="note title">Go Groutine</p><p class="note date">2019-09-17</p><p class="note content">并发与并行 并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能<span class="mldr">&mldr;</span></p></a><p class="note labels"><a class="category" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="tag" href="/tags/go/">go</a></p></li><li class="item"><a class="note" href="/post/2019/20190903-go-race-condition/">
-            <p class="note title">Go 竞态问题</p><p class="note date">2019-09-03</p><p class="note content">定义 单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源<span class="mldr">&mldr;</span></p></a><p class="note labels"><a class="category" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><a class="tag" href="/tags/go/">go</a></p></li></ul></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2021 zJxin</p>
-    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p></div></section><script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-e/4/LvThKH1gwzXhdbY2AsjR3rm7LHWyhIG5C0jiRfn8AN2eTN5ILeztWw0H9jmN" crossorigin="anonymous"></script>
-        <script
-            type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script></body>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>go - 标签 - zJxin Blog</title><meta name="Description" content="万物皆备于我 反身而行 乐莫大焉"><meta property="og:title" content="go" />
+<meta property="og:description" content="万物皆备于我 反身而行 乐莫大焉" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://heisenbergv.github.io/tags/go/" />
+<meta property="og:image" content="https://heisenbergv.github.io/logo.png"/>
+<meta property="og:updated_time" content="2021-07-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heisenbergv.github.io/logo.png"/>
 
+<meta name="twitter:title" content="go"/>
+<meta name="twitter:description" content="万物皆备于我 反身而行 乐莫大焉"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/tags/go/" /><link rel="alternate" href="/tags/go/index.xml" type="application/rss+xml" title="zJxin Blog">
+    <link rel="feed" href="/tags/go/index.xml" type="application/rss+xml" title="zJxin Blog"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin Blog">zJxin Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 主页 </a><a class="menu-item" href="/post/"> 归档 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin Blog">zJxin Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">主页</a><a class="menu-item" href="/post/" title="">归档</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page archive"><h2 class="single-title animated pulse faster"><i class="fas fa-tag fa-fw"></i>&nbsp;go</h2><h3 class="group-title">2021</h3><article class="archive-item">
+                        <a href="/post/2021/20210721-gin/" class="archive-item-link">gin源码</a>
+                        <span class="archive-item-date">07-21</span>
+                    </article><h3 class="group-title">2020</h3><article class="archive-item">
+                        <a href="/post/2020/20200401-go-context/" class="archive-item-link">源码阅读 - go Context</a>
+                        <span class="archive-item-date">04-01</span>
+                    </article><h3 class="group-title">2019</h3><article class="archive-item">
+                        <a href="/post/2019/20190917-go-groutine/" class="archive-item-link">Go Groutine</a>
+                        <span class="archive-item-date">09-17</span>
+                    </article><article class="archive-item">
+                        <a href="/post/2019/20190917-go-channel/" class="archive-item-link">Go Channel</a>
+                        <span class="archive-item-date">09-17</span>
+                    </article><article class="archive-item">
+                        <a href="/post/2019/20190903-go-race-condition/" class="archive-item-link">Go 竞态问题</a>
+                        <span class="archive-item-date">09-03</span>
+                    </article></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>
