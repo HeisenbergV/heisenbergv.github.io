@@ -1,34 +1,29 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>源码 - Tag - LoveIt</title>
-        <link>https://example.com/tags/%E6%BA%90%E7%A0%81/</link>
-        <description>源码 - Tag - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://example.com/tags/%E6%BA%90%E7%A0%81/" rel="self" type="application/rss+xml" /><item>
+        <title>源码 - 标签 - zJxin</title>
+        <link>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</link>
+        <description>源码 - 标签 - zJxin</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/" rel="self" type="application/rss+xml" /><item>
     <title>gin源码</title>
-    <link>https://example.com/post/2021/20210721-gin/</link>
+    <link>https://heisenbergv.github.io/posts/2021/20210721-gin/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2021/20210721-gin/</guid>
-    <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息进行封装方便用户层使用等。本文基于 gin v1.7.2版本
-创建流程 一个Engine实例可以使用New 或者 Default进行创建，唯一区别就是Default默认增加了两个中间件：日志Logger(), panic捕获 Recovery()
-初始化会初始化以下内容：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  //gin.go  engine := &amp;Engine{ //默认的分组 	RouterGroup: RouterGroup{ Handlers: nil, basePath: &#34;/&#34;, root: true, }, FuncMap: template.FuncMap{}, RedirectTrailingSlash: true, RedirectFixedPath: false, HandleMethodNotAllowed: false, ForwardedByClientIP: true, RemoteIPHeaders: []string{&#34;X-Forwarded-For&#34;, &#34;X-Real-IP&#34;}, TrustedProxies: []string{&#34;0.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210721-gin/</guid>
+    <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息]]></description>
 </item><item>
     <title>grpc-go</title>
-    <link>https://example.com/post/2021/20210119-grpc/</link>
+    <link>https://heisenbergv.github.io/posts/2021/20210119-grpc/</link>
     <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2021/20210119-grpc/</guid>
-    <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。
-使用方式 使用方式很简单，生成pb，注册建立服务，就可以等待请求了
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  type Hello struct{ } func (h *Hello) Say(ctx context.Context, request pb.HelloRequest)(*pb.HelloResponse, error){ fmt.Println(request.Msg) return &amp;pb.HelloResponse{Msg: &#34;wwww&#34;}, nil } func main(){ lis, _ := net.Listen(&#34;tcp&#34;, &#34;127.0.0.1:8888&#34;) //1. 创建一个grpc服务器对象  gRpcServer := grpc.NewServer() //2. 注册pb函数  pb.RegisterHelloServiceServer(gRpcServer, &amp;Hello{}) //3. 开启服务端  //阻塞  gRpcServer.Serve(lis) }   建立grpc server流程 NewServer NewServer进行创建一个grpc服务，初始化一些参数。还可以进行函数选项模式，来传递初始化的配置。 默认情况下会建立一个以下参数的grpc服务：]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210119-grpc/</guid>
+    <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
 </item><item>
     <title>源码阅读 - go Context</title>
-    <link>https://example.com/post/2020/20200401-go-context/</link>
+    <link>https://heisenbergv.github.io/posts/2020/20200401-go-context/</link>
     <pubDate>Wed, 01 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2020/20200401-go-context/</guid>
-    <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理时间过长超过了3秒，那么继续执行显然是没必要且浪费资源。这时候就需要一个能终止他们的操作，而go没有提供类似 goroutineID这样的变量来记录goroutine状态。官方认为这样非常容易被滥用。所以Context就为此而来。
- 利用 channel/select ，以信号的方式来通知需要停止的goroutine 可以为Context记录一个key/value 来包含一些请求相关的信息  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  func B(ctx context.Context) error { for { select { case &lt;-time.After(1 * time.Second): fmt.Println(&#34;hello B&#34;) case &lt;-ctx.Done(): fmt.Println(&#34;b is end&#34;) return ctx.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2020/20200401-go-context/</guid>
+    <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理]]></description>
 </item></channel>
 </rss>

@@ -1,42 +1,43 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Tags - Tag - LoveIt</title>
-        <link>https://example.com/tags/</link>
-        <description>Tags - Tag - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
+        <title>Tags - 标签 - zJxin</title>
+        <link>https://heisenbergv.github.io/tags/</link>
+        <description>Tags - 标签 - zJxin</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/" rel="self" type="application/rss+xml" /><item>
     <title>go</title>
-    <link>https://example.com/tags/go/</link>
+    <link>https://heisenbergv.github.io/tags/go/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/tags/go/</guid>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/tags/go/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>源码</title>
-    <link>https://example.com/tags/%E6%BA%90%E7%A0%81/</link>
+    <link>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/tags/%E6%BA%90%E7%A0%81/</guid>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>grpc</title>
-    <link>https://example.com/tags/grpc/</link>
+    <link>https://heisenbergv.github.io/tags/grpc/</link>
     <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/tags/grpc/</guid>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/tags/grpc/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络</title>
-    <link>https://example.com/tags/%E7%BD%91%E7%BB%9C/</link>
+    <link>https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/</link>
     <pubDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/tags/%E7%BD%91%E7%BB%9C/</guid>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>操作系统</title>
-    <link>https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

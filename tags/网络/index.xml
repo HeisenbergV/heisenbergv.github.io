@@ -1,24 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>网络 - Tag - LoveIt</title>
-        <link>https://example.com/tags/%E7%BD%91%E7%BB%9C/</link>
-        <description>网络 - Tag - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://example.com/tags/%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
+        <title>网络 - 标签 - zJxin</title>
+        <link>https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/</link>
+        <description>网络 - 标签 - zJxin</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
     <title>计算机网络-传输层</title>
-    <link>https://example.com/post/2021/20210105-tcpudp/</link>
+    <link>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</link>
     <pubDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2021/20210105-tcpudp/</guid>
-    <description><![CDATA[TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物理链路传递到指定主机，然后每层又向剥洋葱一样，一层层处理自己的首部数据，到达传输层，传输层最终交付给应用程序。 数据传输流程： 传输层 与应用层的关系：应用层将数据发送给传输层，传输层将其进行分段处理，每段数据加入头协议，然后将每组发出去 与网络层的关系：分组的数据发给网络层，网络层将数据真正的发给链路层，然后从物理链路发到指定服务的进程中去
-举例： 北京一个家庭： 小明家庭 天津一个家庭： 小红家庭 小明写了封信，交给管家，管家将信给邮政局，邮政局收到后，寄到天津小红家，管家将信给小红；
-小明家庭的任意成员写信-&gt;小明家的管家-&gt;邮局-&gt;小红家的管家-&gt;小红
-应用层数据：小明信的内容 进程：小明，小明家庭成员都是这个主机内所有进程。 主机：小明的家庭 和 小红的家庭 传输层：管家，每个主机有一个管家 网络层：邮局
-简单介绍udp tcp tcp将应用层数据，分段处理 称为 报文段（seg-ment)；upd将应用层数据，分段处理 称为 数据报。 IP层 网际协议，为主机之间提供逻辑通信，尽力而为的交付服务（best-effort delivery service) 所以不保证数据不会丢失，报文段的顺序，并且附带了一个唯一表示的地址也就是ip地址来进行主机之间的确认。 udp和tcp 的基本责任是对两个端系统间的进程进行交付服务。主机间交付扩展到进程间交付被称之为 传输层的多路复用和多路分解。 并且都提供了差错检查字段，来对完整性进行校验。而udp也是不可靠服务，所以它仅提供了这两种服务：差错校验和进程到进程之间的交付。 tcp提供了可靠传输，通过流量控制，序号，确认，定时器等确保数据正确的，有序的到达接收进程;还提供了拥塞控制，调节网络流量速率，为整个互联网代理通用的好处，提供平等的带宽，这也是udp的传输速率高于tcp原因之一。
-对于拥塞控制可以举个例子：拥塞控制如同交通规则，当车辆很多的情况下，大家都遵守交通虽然会降低一点开车速度。但对整个城市的交通提供了高效的运转，一辆辆tcp汽车，会公平的遵守交通达到目的地。而一辆udp汽车运行其中不遵守交规，在车辆少的情况下，是绝对高速的，但高峰期的时候绝对会出现各种事故（丢包率提高等）
-多路复用，多路分解 多路复用:一个主机有多个进程，每个进程为了通信会建立一个套接字（socket)，而一个主机只有一个传输层，所以多个socket将数据传输给传输层，传输层将这些数据进行封装上首部信息（为了以后的分解）从而生成报文段。然后将报文段传递给网络层，这个过程就是多路复用。
-多路分解:当主机收到其他主机的数据，传输层根据报文段的首部信息找到指定的socket。这个过程就是多路分解
-举例：依旧是上面的例子，当管家收到信件后，需要依靠信件上的名字，给指定的成员（小明，爸爸，妈妈）。 这个管家的操作就是多路分解。当成员（小明，爸爸，妈妈）写了信给管家，管家进行整理然后发送给邮政局，这个管家的操作就是多路复用
-通过上述描述，传输层的多路复用的要求是：
- 每一个套接字要有唯一的标识，否则传输层无法分辨该将数据给谁 每个报文段要有特殊的字段来标识，要交付给哪个套接字（也就是端口 port）  1 2 3 4 5 6 7  |-----------------| | 源端口 | 目的端口 | |-----------------| | 其他首部字段 | |-----------------| | 应用数据 | |-----------------|   udp的多路复用的多路复用/分解 一个udp套接字使用一个二元组来全面标识，该二元组包含：一个目的IP地址和一个目的端口号。这也是为什么多个客户端连会接到同一个服务进程的同一个套接字]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</guid>
+    <description><![CDATA[TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物]]></description>
 </item></channel>
 </rss>

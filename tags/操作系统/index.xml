@@ -1,93 +1,57 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>操作系统 - Tag - LoveIt</title>
-        <link>https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
-        <description>操作系统 - Tag - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+        <title>操作系统 - 标签 - zJxin</title>
+        <link>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <description>操作系统 - 标签 - zJxin</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
     <title>MIT6.828 - 02-Lab1.Util</title>
-    <link>https://example.com/post/2020/20200407-mit6.828-02-lab1/</link>
+    <link>https://heisenbergv.github.io/posts/2020/20200407-mit6.828-02-lab1/</link>
     <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2020/20200407-mit6.828-02-lab1/</guid>
-    <description><![CDATA[实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel是内核， user是用户态程序， 代码写到user里，然后再Makefile UPROGS变量中加入的相应名称即可：
-1 2 3 4 5 6  UPROGS=\ 	$U/_sleep\ 	$U/_pingpong\ 	$U/_primes\ 	$U/_find\ 	$U/_xargs\   我的实验代码都在 自己fork的仓库里
-执行make grade会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：
-1 2 3 4 5 6 7 8  $ make qemu-gdb OK (5.1s) sleep, returns: $ make qemu-gdb OK (1.1s) sleep, makes syscall: $ make qemu-gdb OK (0.7s)   执行 make 然后 make qemu 编译运行操作系统]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2020/20200407-mit6.828-02-lab1/</guid>
+    <description><![CDATA[实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel]]></description>
 </item><item>
     <title>MIT6.828 - 01.环境搭建</title>
-    <link>https://example.com/post/2020/20200406-mit6.828-01/</link>
+    <link>https://heisenbergv.github.io/posts/2020/20200406-mit6.828-01/</link>
     <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2020/20200406-mit6.828-01/</guid>
-    <description><![CDATA[概述 6.S081 目标  理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验  环境搭建 我使用docker进行环境搭建，构建自己的image，方便部署，之后换电脑也无需重复安装各种工具。 我的image: docker pull zuojxin/xv6 (image太大了，应该是可以优化的)
-docker 简单命令  创建自己的docker：docker build -t orige_name/image_name:tag 安装镜像：docker pull image_name 删除镜像：docker rmi image_name 删除容器：docker rm container_name 查看已安装镜像：docker images 启动镜像容器： docker run -t -i image_name:tag 保存容器：docker commit container_id image_name 上传镜像：docker push image_name:tag 本地文件拷贝到docker容器：docker cp 文件 container_id:容器内路径 精简image大小：http://www.dockerinfo.net/3328.html 清理docker缓存：https://blog.fundebug.com/2018/01/10/how-to-clean-docker-disk/  Dockerfile 1 2 3 4 5 6 7  FROMdebianLABEL xv6 &lt;zuojxin@docker.com&gt;RUN apt-get update RUN apt-get -y install git build-essential gdb-multiarch qemu-system-misc \  gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu  RUN git clone https://github.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2020/20200406-mit6.828-01/</guid>
+    <description><![CDATA[概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima]]></description>
 </item><item>
     <title>MIT6.828 - 00.开始</title>
-    <link>https://example.com/post/2020/20200405-mit6.828-00/</link>
+    <link>https://heisenbergv.github.io/posts/2020/20200405-mit6.828-00/</link>
     <pubDate>Sun, 05 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2020/20200405-mit6.828-00/</guid>
-    <description><![CDATA[前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的github
-目录 LEC 1: 环境搭建 &amp; Lab1:Util
-主要学习的资料 官方讲义
-xv6 文档
-xv6源码
-vx6源码分析
-其他参考：
-https://blog.mky.moe/
-https://blog.csdn.net/bysui/category_6232831.html
-https://www.cnblogs.com/fatsheep9146/category/769143.html
-  ]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2020/20200405-mit6.828-00/</guid>
+    <description><![CDATA[前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的git]]></description>
 </item><item>
     <title>读CSAPP(4) - 虚拟内存</title>
-    <link>https://example.com/post/2019/20190928-csapp4/</link>
+    <link>https://heisenbergv.github.io/posts/2019/20190928-csapp4/</link>
     <pubDate>Sat, 28 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2019/20190928-csapp4/</guid>
-    <description><![CDATA[虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全部数据，而是只保留当前运行需要的数据在内存中。为了让MMU更高效加入了TLB，缓存映射关系，还利用多级页表降低页表内存占用有了
-虚拟内存系统 计算机系统主存被组织成一个连续字节大小的数组，每一个数组成员都有一个唯一的物理地址（Physical Address） 早期计算机使用物理寻址方式，这样的坏处是
- 系统中多个进程所使用的内存，进程之间容易互相读写数据造成各种问题 每个进程内存分布不同，管理不便 进程中暂无用处的数据也会被加载，进程过多就会导致内存不够用  现代处理器使用虚拟寻址（Virtual Address），利用虚拟地址映射成物理地址再进行访问，解决了上面的主要问题。既然需要地址转换，这就需要内存管理单元（Memory Management Unit，MMU）和页表（Page Table，PT）来处理
- 因为每个进程都有统一的访问方式，这样进程之间也不会互相影响 内存管理更加简单，每个进程看起来都在独享全部内存 节省内存空间，利用内存分页，物理内存中只保留进程当前活动区域，并根据需要在磁盘和主存之间来回传送数据  页表 虚拟内存系统将虚拟内存分割成一个个大小相同的虚拟页（Virtual Page，VP），类似的物理内存也被分割成物理页（Physical Page，PP）大小和VP相同，物理页也被称为叶帧（Page Frame）。 页表其实就是一个数组，每个元素称为页表项（Page Table Entry，PTE），PTE负责把虚拟页映射到磁盘或者物理页上。
-任意时刻虚拟页面的集合都分为三个不想交的子集：
- 未分配的：VM系统还未分配的页，物理内存，磁盘都没有与之关联的数据（图中0，3） 已分配已缓存的：已分配到了物理内存中（图中1，4，6） 已分配未缓存：数据块存在于磁盘中，还未被加载到内存（图中2，5，7）  页表项 当MMU从PTE获取物理内存地址，要根据PTE知道：
- 虚拟页是否被缓存了 缓存命中需要知道具体存在于哪个物理内存页中 缓存未命中需要知道此虚拟页在磁盘的什么地方进行缓存替换操作  整个页表数据结构由操作系统进行负责维护，以及在磁盘与主存之间来回传送页，进行替换的时候需要向系统内核发送一个缺页异常，内核会做一些处理。 PTE负责把虚拟页映射到磁盘或者物理页上，假设需要两个数据：
- 地址字段：存放映射的地址 有效位：判断此页是否被缓存  有了这两个字段就可以进行判断：
- 设置了有效位，地址字段不为空：数据缓存在物理内存页中，地址字段为物理页的起始位置 没有设置有效位，地址字段为空：此虚拟页还未被分配 没有设置有效位，地址字段不为空：虚拟页被分配，但还未缓存到物理内存中，只在磁盘上，地址字段指向该虚拟页在磁盘上的起始位置  映射流程 虚拟地址有两部分VPN+VPO。MMU利用VPN找到对应的PTE， 例如 VPN 0 对应 PTE 0，找到PTE后，PTE中的有效位决定是否有效，是否需要缺页处理。 如果有效，则得到其中的PPN，使用PPN+VPO 得到最终的物理内存地址
-页面命中，cpu硬件流程：
-缺页流程，页面命中完全由硬件处理，处理缺页需要硬件和操作系统内核协作完成：
-虚拟内存系统带来的优势 权限控制 每个PTE（页表项）高位部分存储了表示权限的位，MMU通过检查这些位来进行权限控制（sup表示进程是否必须运行在内核（超级管理员）模式下才能运行）。 如果违反了权限cpu会触发一个 一般保护故障，将控制传给内核的异常处理程序，linux shell一般称之为段错误（segmentation fault） 节省内存 MMU根据虚拟地址读取页表，发现设置了有效位，表明缓存命中，地址字段存储了物理页地址，就可以找到数据在物理内存中的位置，这是页命中，相对的就会触发缺页异常（缓存不命中 page fault）： （见上图）]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2019/20190928-csapp4/</guid>
+    <description><![CDATA[虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全]]></description>
 </item><item>
     <title>读CSAPP(3) - 存储器层次结构</title>
-    <link>https://example.com/post/2019/20190923-csapp3/</link>
+    <link>https://heisenbergv.github.io/posts/2019/20190923-csapp3/</link>
     <pubDate>Mon, 23 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2019/20190923-csapp3/</guid>
-    <description><![CDATA[了解硬件 随机访问存储器（Random-Access Memory，RAM） RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比DRAM更快，价格也更高。 SRAM用于高速缓存存储器，可以在cpu芯片上，也可以在片下。DRAM用来作为主存以及 图形系统的帧缓冲区。无论哪种RAM一旦断电，所有信息都会丢失。
-磁盘存储 磁盘存储数据的数量级更大，比RAM大得多，但读取信息要比DRAM慢10w倍，比SRAM慢100w倍。 磁盘分为机械硬盘和固态硬盘，机械硬盘的读写速度要低于固态硬盘，但价格低廉。
-总线 IO总线：例如，鼠标键盘，图形卡，磁盘等设备连接的称为io总线 cpu使用内存映射I/O技术（memory-mapped I/O）来向I/O设备发起命令
- 使用内存映射技术向io设备发起命令 磁盘控制器接收到命令，读取扇区，并执行到主存的DMA传送，磁盘进行直接内存访问的操作叫做DMA（Direct Memory Access） DMA传送完毕，磁盘控制器用中断方式通知cpu cpu接收到中断信号，从内存读取缓存的数据  局部性 一个好的程序应该有良好的局部性，这样可以使得效率更快
- 时间局部性：被引用过一次的内存，很可能在不久的将来再次被引用多次 空间局部性：如果一个内存位置被引用了一次，那么程序再不久的将来可能会引用其附近的内存位置  看一个例子
-1 2 3 4 5 6 7 8  int sumvec(int v[N]) { int i , sum = 0; for(i = 0; i &lt; N; i ++) sum+=v[i]; return sum; }   这个函数中，sum就有很好的时间局部性，在多次循环中，会一直访问同一个内存位置，因为是标量所以没有空间局部性。 数组v被顺序读取，读取第i个位置，那么附近的位置也会在下次循环中读取，所以有很好的空间局部性，但每个变量只访问一次，所以时间局部性很差。 这个函数中要么有好的时间局部性，要么有好的空间局部性，所以sumvec函数有良好的局部性。
-再看一个例子：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  int sumarray1(int a[M][N]) { int i ,j , sum = 0; for(i = 0;i &lt; M ;i ++) for(j = 0; j &lt; N ;j ++) sum+=a[i][j]; return sum; } int sumarray2(int a[M][N]) { int i ,j , sum = 0; for(i = 0;i &lt; N;i ++) for(j = 0; j &lt; M ;j ++) sum+=a[i][j]; return sum; }   两个程序做的事情一模一样，效率看起来也是一样的。但根据局部性原理： sumarray1有空间局部性，sumarry2则没有。 这个二维数组存储在内存的顺序是一行行的存储，也就是按照行来读就会按序读取，按列读取就会跳着读。 空间局部性的临近读取，导致最终sumarry1更高效。]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2019/20190923-csapp3/</guid>
+    <description><![CDATA[了解硬件 随机访问存储器（Random-Access Memory，RAM） RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比D]]></description>
 </item><item>
     <title>读CSAPP(2) - 程序性能优化</title>
-    <link>https://example.com/post/2019/20190909-csapp2/</link>
+    <link>https://heisenbergv.github.io/posts/2019/20190909-csapp2/</link>
     <pubDate>Mon, 09 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2019/20190909-csapp2/</guid>
-    <description><![CDATA[高效的程序需要做到  合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理  本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。
-编译器的优化限制 内存别名的使用 1 2 3 4 5 6 7 8 9 10  void twiddle1(long *xp, long *yp) { *xp += *yp; *xp += *yp; } void twiddle2(long *xp, long *yp) { *xp += 2* *yp; }   上面两个程序twiddle2（读xp，读yp，写xp）优于twiddl1（读2次xp，读2次yp，写2次xp）。 看起来编译器也许会将twiddle1优化成twiddle2的形式。但假设xp和yp是引用的同一个内存地址：&amp;xp = &amp;yp
-1 2 3 4 5 6 7 8  void twiddle1(long *xp, long *yp){ *xp += *xp; *xp += *xp; } void twiddle2(long *xp, long *yp){ *xp += 2* *xp; }   代码则可以写成上面这样，这时候两个函数的意义就不同了，twiddle1将xp增加了4倍，twiddle2将xp增加了3倍。 两个指针指向同一个内存地址，称之为：内存别名使用，编译器必须假设不同指针可能指向相同地址，限制了优化策略]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2019/20190909-csapp2/</guid>
+    <description><![CDATA[高效的程序需要做到 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可]]></description>
 </item><item>
     <title>读CSAPP(1) - 信息的表示和处理</title>
-    <link>https://example.com/post/2019/20190827-csapp1/</link>
+    <link>https://heisenbergv.github.io/posts/2019/20190827-csapp1/</link>
     <pubDate>Tue, 27 Aug 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2019/20190827-csapp1/</guid>
-    <description><![CDATA[计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯一的数字来标识，也就是地址（address）。每个计算机都有一个字长（word size），也就是常说的64位操作系统，32位操作系统。字长决定了虚拟地址空间的大小， 比如32位有4GB的内存空间，64位则是16EB（1TB = 1024GB，1 EB = 1,024 PB = 1,048,576 TB）。
-整数 原码，反码，补码 计算机存储的是二进制，现实中数字有正负之分，二进制如果想表示正负数怎么办呢？ 为了解决正负数问题于是有了 原码 ，原码的表示方式是：第一位不再表示有效位，而是符号位，0代表正数，1代表负数
-[1001] 这个8位二进制，本该表示 十进制的9，现在他表示为 -1，第一位（1）是符号位，后面的才是真正的值。
-   正数 二进制 负数 二进制     +0 0000 -0 1000   +1 0001 -1 1001   +2 0010 -2 1010   +3 0011 -3 1011   +4 0100 -4 1100   +5 0101 -5 1101   +6 0110 -6 1110   +7 0111 -7 1111    现在计算机可以存储负数了，我们进行运算操作：]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2019/20190827-csapp1/</guid>
+    <description><![CDATA[计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯]]></description>
 </item></channel>
 </rss>

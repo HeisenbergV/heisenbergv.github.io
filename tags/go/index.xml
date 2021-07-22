@@ -1,47 +1,43 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>go - Tag - LoveIt</title>
-        <link>https://example.com/tags/go/</link>
-        <description>go - Tag - LoveIt</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://example.com/tags/go/" rel="self" type="application/rss+xml" /><item>
+        <title>go - 标签 - zJxin</title>
+        <link>https://heisenbergv.github.io/tags/go/</link>
+        <description>go - 标签 - zJxin</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
     <title>gin源码</title>
-    <link>https://example.com/post/2021/20210721-gin/</link>
+    <link>https://heisenbergv.github.io/posts/2021/20210721-gin/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2021/20210721-gin/</guid>
-    <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息进行封装方便用户层使用等。本文基于 gin v1.7.2版本
-创建流程 一个Engine实例可以使用New 或者 Default进行创建，唯一区别就是Default默认增加了两个中间件：日志Logger(), panic捕获 Recovery()
-初始化会初始化以下内容：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  //gin.go  engine := &amp;Engine{ //默认的分组 	RouterGroup: RouterGroup{ Handlers: nil, basePath: &#34;/&#34;, root: true, }, FuncMap: template.FuncMap{}, RedirectTrailingSlash: true, RedirectFixedPath: false, HandleMethodNotAllowed: false, ForwardedByClientIP: true, RemoteIPHeaders: []string{&#34;X-Forwarded-For&#34;, &#34;X-Real-IP&#34;}, TrustedProxies: []string{&#34;0.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210721-gin/</guid>
+    <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息]]></description>
 </item><item>
     <title>源码阅读 - go Context</title>
-    <link>https://example.com/post/2020/20200401-go-context/</link>
+    <link>https://heisenbergv.github.io/posts/2020/20200401-go-context/</link>
     <pubDate>Wed, 01 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2020/20200401-go-context/</guid>
-    <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理时间过长超过了3秒，那么继续执行显然是没必要且浪费资源。这时候就需要一个能终止他们的操作，而go没有提供类似 goroutineID这样的变量来记录goroutine状态。官方认为这样非常容易被滥用。所以Context就为此而来。
- 利用 channel/select ，以信号的方式来通知需要停止的goroutine 可以为Context记录一个key/value 来包含一些请求相关的信息  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  func B(ctx context.Context) error { for { select { case &lt;-time.After(1 * time.Second): fmt.Println(&#34;hello B&#34;) case &lt;-ctx.Done(): fmt.Println(&#34;b is end&#34;) return ctx.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2020/20200401-go-context/</guid>
+    <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理]]></description>
 </item><item>
     <title>Go Channel</title>
-    <link>https://example.com/post/2019/20190917-go-channel/</link>
+    <link>https://heisenbergv.github.io/posts/2019/20190917-go-channel/</link>
     <pubDate>Tue, 17 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2019/20190917-go-channel/</guid>
-    <description><![CDATA[如何使用  channel在&lt;-左边 表示向channel发送数据 channel在&lt;-右边 表示从channel接收数据 close(channelName) 关闭一个channel  1 2 3 4 5 6 7 8  channel := make(chan string, 2) //发送数据: 写 channel &lt;- &#34;struct&#34; //接收数据: 读 data := &lt;-channel fmt.Println(data) close(channel)   Channel的关闭  关闭一个未初始化(nil) 的 channel 会产生 panic 重复关闭同一个 channel 会产生 panic 向一个已关闭的 channel 中发送消息会产生 panic 从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  func SendMessage(channel chan string) { go func(channel chan string) { channel &lt;- &#34;hello&#34; close(channel) fmt.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2019/20190917-go-channel/</guid>
+    <description><![CDATA[如何使用 channel在&lt;-左边 表示向channel发送数据 channel在&lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha]]></description>
 </item><item>
     <title>Go Groutine</title>
-    <link>https://example.com/post/2019/20190917-go-groutine/</link>
+    <link>https://heisenbergv.github.io/posts/2019/20190917-go-groutine/</link>
     <pubDate>Tue, 17 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2019/20190917-go-groutine/</guid>
-    <description><![CDATA[并发与并行  并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能有一条指令执行,但多个进程指令被快速的轮换执行,宏观看起来是并行的,微观是cpu在不断的快速切换.(操作系统)  线程安全问题  协作式调度: 当线程终止或阻塞是发生调度 =&gt; &ldquo;主动让出&rdquo; 抢占式调度: 允许逻辑上将可继续运行的线程在运行过程中暂停的调度方式 =&gt; &ldquo;被迫让出&rdquo; 脏数据原因: 抢占式调度被迫让出cpu控制权,一个行为可能有多个指令组合而成 多指令在执行过程中被中断,导致未执行完整出现脏数据. 举例:  i= 0, 线程1 执行 i++,线程 2 也执行 i++, 想要的结果是2 当程序 1 将 i 值读取出来并运算后改为写入的时候,系统抢占式把控制权给个程序 2 程序 2 完整的执行完了 i++,随后系统将控制权交回给程序 1,此时的程序 1 并不知道自己被打断了,也不知道 i 已经被修改,还把之前计算好的值写入,最后把之前的2给覆盖了结果变成了1. 被打断是因为抢占式使用时间到了后被迫交还cpu 值篡改是因为读取i和写入i是两个指令不是一个原子操作    Coroutine(协程)特点 一种用户态的轻量级线程
- 轻量级线程(由于线程创建时需要向操作系统申请资源,并且在销毁时将资源归还,因此它的创建和销毁的开销比较大,内存消耗更低,一般是2kb vs 1mb) 是语言层面的任务,非系统级别的(由语言层面虚拟机或者go runtime等 进行创建),切换更高效 多个协程可能在一个或多个线程上运行.依靠调度器分配 协作式: 非抢占式(协作)在关键时刻(阻塞,任务完成等)将cpu让给其他线程 同一线程上的多个协程的切换是无线程安全问题的  Goroutine  概念: goroutine是go语言中的协程 如何使用: go test() 在函数前加go关键字 就可以以新协程来启动test()函数 为什么说协程无线程安全问题: 协程是协作式本身无线程安全问题,但go runtime的scheduler会将多个goroutine分配到不同线程,才会出问题  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  var s int func test() { for i := 0; i &lt; 10000; i++ { s++ } } func main() { runtime.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2019/20190917-go-groutine/</guid>
+    <description><![CDATA[并发与并行 并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能]]></description>
 </item><item>
     <title>Go 竞态问题</title>
-    <link>https://example.com/post/2019/20190903-go-race-condition/</link>
+    <link>https://heisenbergv.github.io/posts/2019/20190903-go-race-condition/</link>
     <pubDate>Tue, 03 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://example.com/post/2019/20190903-go-race-condition/</guid>
-    <description><![CDATA[定义  单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源  如何避免竞态条件  变量只读  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  //下面两种获取map信息的方式 //懒汉获取方式,有则获取无则加载: 会有读写错乱情况 func loadmap(name string) int { return 2 } func getmap2(name string) int { v, ok := maps[name] if !ok { v = loadmap(name) maps[name] = v } return v } //预先加载好, 使getmap只读, 就不会存在竞态问题 var maps = map[string]int{ &#34;a&#34;: 1, &#34;b&#34;: 2, &#34;c&#34;: 3, } func getmap(name string) int { return maps[name] }    私有化变量  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  //两个goroutine同时访问了变量a 引发竞态问题,导致结果不准确 var a = 0 var wg sync.]]></description>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2019/20190903-go-race-condition/</guid>
+    <description><![CDATA[定义 单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源]]></description>
 </item></channel>
 </rss>
