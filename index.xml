@@ -1,10 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>zJxin Blog</title>
-        <link>https://heisenbergv.github.io/</link>
-        <description>万物皆备于我 反身而行 乐莫大焉</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><copyright>©2021 zJxin</copyright><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
-            <atom:link href="https://heisenbergv.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <title>LoveIt</title>
+        <link>https://example.com/</link>
+        <description>About LoveIt Theme</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         </channel>
 </rss>
