@@ -2,7 +2,7 @@
     <channel>
         <title>zJxin</title>
         <link>https://heisenbergv.github.io/</link>
-        <description>个人笔记本</description>
+        <description>Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
             <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://heisenbergv.github.io/index.xml" rel="self" type="application/rss+xml" />
