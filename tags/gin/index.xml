@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>gin on heisenbug blog</title>
+    <link>/tags/gin/</link>
+    <description>Recent content in gin on heisenbug blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2021 heisenbug</copyright>
+    <lastBuildDate>Wed, 21 Jul 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/tags/gin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>gin源码</title>
+      <link>/post/2021/20210721-gin/</link>
+      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021/20210721-gin/</guid>
+      <description>gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息</description>
+      
+    </item>
+    
+  </channel>
+</rss>
