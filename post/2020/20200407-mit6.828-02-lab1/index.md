@@ -1,0 +1,315 @@
+# MIT6.828 - 02-Lab1.Util
+
+
+## 实验说明
+每一个Lab对应一个git 分支，本实验分支为 `util`，主要是实现5个命令程序。在 `xv6-riscv-fall19`项目里， `kernel`是内核， `user`是用户态程序， 代码写到`user`里，然后再Makefile `UPROGS`变量中加入的相应名称即可：
+
+``` Makefile
+UPROGS=\
+	$U/_sleep\
+	$U/_pingpong\
+	$U/_primes\
+	$U/_find\
+	$U/_xargs\
+```
+
+我的实验代码都在 [自己fork的仓库里](https://github.com/HeisenbergV/xv6-riscv-fall19/)
+
+执行`make grade`会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：
+```log
+$ make qemu-gdb
+OK (5.1s)
+sleep, returns:
+$ make qemu-gdb
+OK (1.1s)
+sleep, makes syscall:
+$ make qemu-gdb
+OK (0.7s)
+```
+
+执行 `make` 然后 `make qemu` 编译运行操作系统
+
+## sleep
+`kernel/sysproc.c` 提供了`sleep`接口，只需要进行一次系统调用即可。
+
+TODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因
+
+##### sleep.c:
+```c
+#include "kernel/types.h"
+#include "user/user.h"
+
+int
+main(int argc, char *argv[])
+{
+    if( argc != 2) {
+        fprintf(2, "usage: sleep seconds \n");
+        exit();
+    }
+    sleep(atoi(argv[1]));
+    exit();
+}
+```
+## pingpong
+程序需求：利用`pipe`管道，将一个字节在两个进程间往返：parent进程发送一个字节到parent_fd[1]，child进程从 parent_fd[0]接收；然后再响应将字节回传给parent进程。
+
+- `fork`
+
+    创建的新进程被称为子进程，子进程的执行内容同创建它的进程（父进程）几乎一样（可以靠参数来产生不同的效果），父子进程执行没有固定的先后顺序，并且分配的资源互相独立不受影响。这样的话看起来就会无限fork了，不过`fork()`**一次调用两次返回**，在父进程返回子进程pid，在子进程中返回0（如果有异常返回负数）
+
+    所以下面代码`fork()`后，总共有两个进程，虽然进程的执行内容一样，但fork的返回结果不同，所以父进程的fork返回!=0进入了else语句，子进程相反。
+
+- `pipe`
+    
+    如果数据没有准备好，那么对管道执行的read会一直等待，所以parent和child进程在没有获取到对方数据时不会`exit()`
+
+    因为parent是先写，child是先读，所以程序执行后的输出顺序总是先输出child的log
+
+##### pingpong.c:
+```c
+#include "kernel/types.h"
+#include "user/user.h"
+
+int
+main(int argc, char *argv[]) {
+    int parent_fd[2],child_fd[2];
+
+    //创建管道 fd[0]读 fd[1]写
+    pipe(parent_fd); 
+    pipe(child_fd); 
+
+    char msg = '0';
+    if(fork() == 0) {//child 进程
+        read(parent_fd[0], &msg, 1);//读取
+        fprintf(2, "%d: child received ping, msg: %c \n", getpid(), msg);
+        write(child_fd[1], &msg, 1);//写入
+    } else{ //parent 进程
+        write(parent_fd[1], &msg, 1);
+        read(child_fd[0], &msg, 1);
+        fprintf(2, "%d: parent received pong, msg: %c \n", getpid(), msg);
+    }
+    exit();
+}
+```
+
+## primes
+程序需求：父线程将 2 ~ 35 数字输入`pipe`，`fork`的子进程如同一个递归操作，将第一个数字打印，并将其余不能被这个数字整除的输入到`pipe`，不断重复操作，直至最后一个数字。
+最后打印出来的结果将都会是素数。[这篇文章](https://swtch.com/~rsc/thread/)解释了这个模型。利用管道，和递归，一层层过滤无效数据。 需要注意的是xv6的fd有限，范围为0~15，所以需要将不用的fd close
+```txt
+流程大致如下：
+> 2,3,4,5,6,7,8,9,10,11
+> print 2 & 将能被2整除的过滤
+> 3,5,7,9,11
+> print 3 & 将能被3整除的过滤
+> 5,7,11
+> print 5 & 将能被5整除的过滤
+> 7,11
+> print 7 & 将能被7整除的过滤
+> 11
+> print 11 & end
+
+最后打印的结果为：2，3，5，7，11 全部为素数
+```
+
+子进程主要做三件事：
+
+1. 输出第一个
+2. 过滤，符合要求的发送到新的pipe
+3. 让子进程继续重复操作
+
+将2，3对调 可以让两个进程读写同时进行
+
+##### primes.c:
+```c
+#include "kernel/types.h"
+#include "user/user.h"
+
+void
+filter(int out, int input){
+    close(input);
+    int div;
+    //1. 输出第一个
+    if(read(out, &div, sizeof(int))<=0) exit();
+    fprintf(2, "prime %d \n", div);
+
+    int p[2];
+    pipe(p);
+
+    //3. 让子进程继续重复操作
+    if(fork()){
+        filter(p[0],p[1]);
+        return;
+    }
+
+    //2. 过滤，符合要求的发送到新的pipe
+    int num;
+    while(read(out, &num, sizeof(int))){
+        if (num % div != 0){
+            write(p[1], &num, sizeof(int));
+        }
+    }
+    close(out);
+
+    wait();
+    exit();
+}
+
+int 
+main(int argc, char *argv[]){
+    int p[2];
+    pipe(p);
+
+    if(fork()){
+        filter(p[0], p[1]);
+    }else{
+        for (int i = 2; i <= 35; i++){
+            write(p[1], &i, sizeof(i));
+        }
+        wait();
+        exit();
+    }
+    return 0;
+}
+```
+
+## find
+程序需求：输入文件名称，用递归方式遍历目录及其子目录，打印出：路径+名称。比如`find d.txt`打印`a/b/c/d.txt`。
+
+主要思路：部分代码可以直接用`ls.c`的，利用递归遍历`dir`，名字相同则输出，不用的fd要close掉，因为xv6范围是0~15
+
+##### find.c
+```c
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
+#include "kernel/fs.h"
+
+
+char* 
+fmtname(char *path) {
+    char *p;
+    // Find first character after last slash.
+    for(p=path+strlen(path); p >= path && *p != '/'; p--);
+    return ++p;
+}
+ 
+void
+find(char*path, char*name) {
+    int fd;
+    struct stat st;
+
+    if (strcmp(fmtname(path), name) == 0) {
+        fprintf(2, "%s \n", path);
+    }
+    
+    if ((fd = open(path, 0)) < 0) {
+        fprintf(2, "find: cannot open %s\n", path);
+        return;
+    }
+
+    if (fstat(fd, &st) < 0) {
+        fprintf(2, "find: cannot stat %s\n", path);
+        close(fd);
+        return;
+    }
+
+    if (st.type != T_DIR){
+        close(fd);
+        return;
+    }
+
+    char buf[512], *p;
+    struct dirent de;
+    strcpy(buf, path);
+    p = buf+strlen(buf);
+    *p++ = '/';
+
+    while (read(fd, &de, sizeof(de)) == sizeof(de)) {
+        if (de.inum == 0)
+            continue;
+
+        memmove(p, de.name, DIRSIZ);
+        p[DIRSIZ] = 0;
+
+        if (strcmp(de.name, ".") == 0)
+            continue;
+     
+        if (strcmp(de.name, "..") == 0)
+            continue;
+
+        find(buf, name);
+    }
+}
+
+int
+main(int argc, char *argv[]) {
+    if (argc <= 2) {
+        fprintf(2, "params error");
+        exit();
+    }
+
+    find(argv[1], argv[2]);
+    exit();
+}
+```
+
+## xargs
+程序需求：xargs执行后，从标准输出读取每一行，并为每一行运行一个命令，命令的参数是标准输出的内容
+举例：
+```
+> xargs echo bye
+hello too
+bye hello too
+```
+##### xargs.c
+```c
+#include "kernel/types.h"
+#include "user/user.h"
+
+int 
+main(int argc, char *argv[]) {
+    char buf2[512];
+    char buf[32][32];
+    char *pass[32];
+
+    for (int i = 0; i < 32; i++)
+        pass[i] = buf[i];
+
+    int i;
+    for (i = 1; i < argc; i++)
+        strcpy(buf[i - 1], argv[i]);
+
+    int n;
+    while ((n = read(0, buf2, sizeof(buf2))) > 0) {
+        int pos = argc - 1;
+        char *c = buf[pos];
+        for (char *p = buf2; *p; p++) {
+            if (*p == ' ' || *p == '\n') {
+                *c = '\0';
+                pos++;
+                c = buf[pos];
+            } else
+                *c++ = *p;
+        }
+        *c = '\0';
+        pos++;
+        pass[pos] = 0;
+
+        if (fork()) {
+            wait();
+        } else
+            exec(pass[0], pass);
+    }
+
+    if (n < 0) {
+        printf("xargs: read error\n");
+        exit();
+    }
+
+    exit();
+}
+```
+
+## 参考
+
+[linux-fork()](https://blog.csdn.net/jason314/article/details/5640969)
