@@ -9,8 +9,8 @@
 <meta property="og:description" content="如何使用 channel在&lt;-左边 表示向channel发送数据 channel在&lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://heisenbergv.github.io/posts/2019/20190917-go-channel/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-09-17T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2019-09-17T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2019-09-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-17T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go Channel"/>
@@ -129,7 +129,7 @@
 <li>channel在&lt;-右边 表示从channel接收数据</li>
 <li>close(channelName) 关闭一个channel</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1">//发送数据: 写
 </span><span class="c1"></span><span class="nx">channel</span> <span class="o">&lt;-</span> <span class="s">&#34;struct&#34;</span>
@@ -144,7 +144,7 @@
 <li>向一个已关闭的 channel 中发送消息会产生 panic</li>
 <li>从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">channel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">channel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">channel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 		<span class="nx">channel</span> <span class="o">&lt;-</span> <span class="s">&#34;hello&#34;</span>
 		<span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
@@ -172,7 +172,7 @@
 <li>make创建通道时,指定通道的大小时,称为有缓冲通道,反之无缓冲区</li>
 <li>无缓冲区或者缓冲区用完,写入一次,就要等待对方读取一次,否则无法继续写入阻塞住,同理读取不出来也会阻塞住</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
 <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">2</span>
@@ -182,7 +182,7 @@
 </code></pre></div><ul>
 <li>可以用len函数查看channel的已用大小, 用cap查看channel的缓存大小</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
 <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//1
 </span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//2
@@ -190,7 +190,7 @@
 <ul>
 <li>为了限制channel滥用,禁止其进行读取或者写入操作,让函数具有更高的单一原则,封装性</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span> <span class="p">{</span>
 		<span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">x</span>
 	<span class="p">}</span>
@@ -224,7 +224,7 @@
 <ul>
 <li>同步: 依靠阻塞的特性 做多个goroutine之间的锁</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
 	<span class="nx">sema</span>  <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="mi">1</span><span class="p">)</span>
 	<span class="nx">rece2</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="p">)</span>
@@ -242,7 +242,7 @@
 </code></pre></div><ul>
 <li>定时器</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
 <span class="nx">timer</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTimer</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
 <span class="o">&lt;-</span><span class="nx">timer</span><span class="p">.</span><span class="nx">C</span>
 
@@ -265,7 +265,7 @@
 </code></pre></div><ul>
 <li>通信: Channel是goroutine之间通信的通道,用于goroutine之间发消息和接收消息</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Cake</span> <span class="kd">struct</span><span class="p">{</span> <span class="nx">state</span> <span class="kt">string</span> <span class="p">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Cake</span> <span class="kd">struct</span><span class="p">{</span> <span class="nx">state</span> <span class="kt">string</span> <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">baker</span><span class="p">(</span><span class="nx">cooked</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">Cake</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="p">{</span>
@@ -290,7 +290,7 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">doWork</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">doWork</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">for</span> <span class="p">{</span>
 		<span class="k">select</span> <span class="p">{</span>
 		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
@@ -319,7 +319,7 @@
 <span class="p">}</span>
 </code></pre></div><h2 id="内部细节">内部细节</h2>
 <h3 id="数据结构">数据结构</h3>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">hchan</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">hchan</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">qcount</span>   <span class="kt">uint</span>           <span class="c1">// 当前队列中剩余元素个数
 </span><span class="c1"></span>	<span class="nx">dataqsiz</span> <span class="kt">uint</span>           <span class="c1">// 环形队列长度，即可以存放的元素个数
 </span><span class="c1"></span>	<span class="nx">buf</span>      <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 环形队列指针
@@ -349,7 +349,7 @@
 <ul>
 <li>makechan: 开辟一快连续内存区域存储消息元素</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//伪代码
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//伪代码
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">makechan</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">chantype</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">hchan</span> <span class="p">{</span>
 	<span class="kd">var</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">hchan</span>
 	<span class="nx">c</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">hchan</span><span class="p">)</span>
@@ -368,7 +368,7 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span>
 	<span class="k">if</span> <span class="nx">close</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close&#34;</span><span class="p">)</span>
 		<span class="k">return</span>
@@ -406,7 +406,7 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(){</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(){</span>
 	<span class="k">if</span> <span class="nx">sg</span><span class="o">:=</span> <span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
 		<span class="k">if</span> <span class="nx">buff</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
 			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span>
@@ -441,7 +441,7 @@
 </code></pre></div><ul>
 <li>close: 设置关闭符号为1,唤醒recvq和sendq的g</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">close</span><span class="p">(){</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">close</span><span class="p">(){</span>
 	<span class="k">if</span> <span class="kd">chan</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close of nil channel&#34;</span><span class="p">)</span>
 		<span class="k">return</span>
@@ -490,7 +490,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>

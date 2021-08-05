@@ -9,8 +9,8 @@
 <meta property="og:description" content="实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://heisenbergv.github.io/posts/2020/20200407-mit6.828-02-lab1/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-04-07T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-04-07T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-04-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-07T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MIT6.828 - 02-Lab1.Util"/>
@@ -140,7 +140,7 @@
 </nav></div>
             </div><div class="content" id="content"><h2 id="实验说明">实验说明</h2>
 <p>每一个Lab对应一个git 分支，本实验分支为 <code>util</code>，主要是实现5个命令程序。在 <code>xv6-riscv-fall19</code>项目里， <code>kernel</code>是内核， <code>user</code>是用户态程序， 代码写到<code>user</code>里，然后再Makefile <code>UPROGS</code>变量中加入的相应名称即可：</p>
-<div class="highlight"><pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">UPROGS</span><span class="o">=</span><span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nv">UPROGS</span><span class="o">=</span><span class="se">\
 </span><span class="se"></span>	<span class="nv">$U</span>/_sleep<span class="se">\
 </span><span class="se"></span>	<span class="nv">$U</span>/_pingpong<span class="se">\
 </span><span class="se"></span>	<span class="nv">$U</span>/_primes<span class="se">\
@@ -161,7 +161,7 @@ OK (0.7s)
 <p><code>kernel/sysproc.c</code> 提供了<code>sleep</code>接口，只需要进行一次系统调用即可。</p>
 <p>TODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因</p>
 <h5 id="sleepc">sleep.c:</h5>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span>
@@ -189,7 +189,7 @@ OK (0.7s)
 </li>
 </ul>
 <h5 id="pingpongc">pingpong.c:</h5>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span>
@@ -215,7 +215,7 @@ OK (0.7s)
 </code></pre></div><h2 id="primes">primes</h2>
 <p>程序需求：父线程将 2 ~ 35 数字输入<code>pipe</code>，<code>fork</code>的子进程如同一个递归操作，将第一个数字打印，并将其余不能被这个数字整除的输入到<code>pipe</code>，不断重复操作，直至最后一个数字。
 最后打印出来的结果将都会是素数。<a href="https://swtch.com/~rsc/thread/" target="_blank" rel="noopener noreffer">这篇文章</a>解释了这个模型。利用管道，和递归，一层层过滤无效数据。 需要注意的是xv6的fd有限，范围为0~15，所以需要将不用的fd close</p>
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">流程大致如下：
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">流程大致如下：
 &gt; 2,3,4,5,6,7,8,9,10,11
 &gt; print 2 &amp; 将能被2整除的过滤
 &gt; 3,5,7,9,11
@@ -236,7 +236,7 @@ OK (0.7s)
 </ol>
 <p>将2，3对调 可以让两个进程读写同时进行</p>
 <h5 id="primesc">primes.c:</h5>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">void</span>
@@ -289,7 +289,7 @@ OK (0.7s)
 <p>程序需求：输入文件名称，用递归方式遍历目录及其子目录，打印出：路径+名称。比如<code>find d.txt</code>打印<code>a/b/c/d.txt</code>。</p>
 <p>主要思路：部分代码可以直接用<code>ls.c</code>的，利用递归遍历<code>dir</code>，名字相同则输出，不用的fd要close掉，因为xv6范围是0~15</p>
 <h5 id="findc">find.c</h5>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;kernel/stat.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;kernel/fs.h&#34;</span><span class="cp">
@@ -368,7 +368,7 @@ OK (0.7s)
 hello too
 bye hello too
 </code></pre><h5 id="xargsc">xargs.c</h5>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&#34;kernel/types.h&#34;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&#34;user/user.h&#34;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="kt">int</span> 
@@ -443,7 +443,7 @@ bye hello too
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>
