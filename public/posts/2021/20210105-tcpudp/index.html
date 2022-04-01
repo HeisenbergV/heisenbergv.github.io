@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>计算机网络-传输层 - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="计算机网络-传输层" />
+<meta property="og:description" content="TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-05T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计算机网络-传输层"/>
+<meta name="twitter:description" content="TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2020/20200407-mit6.828-02-lab1/" /><link rel="next" href="https://heisenbergv.github.io/posts/2021/20210119-grpc/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计算机网络-传输层",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210105-tcpudp\/"
+        },"genre": "posts","keywords": "网络","wordcount":  11413 ,
+        "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210105-tcpudp\/","datePublished": "2021-01-05T00:00:00+00:00","dateModified": "2021-01-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "zJxin"},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">计算机网络-传输层</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-05">2021-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11413 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#tcpip-模型">TCP/IP 模型</a></li>
+    <li><a href="#传输层">传输层</a></li>
+    <li><a href="#简单介绍udp-tcp">简单介绍udp tcp</a></li>
+    <li><a href="#多路复用多路分解">多路复用，多路分解</a>
+      <ul>
+        <li><a href="#udp的多路复用的多路复用分解">udp的多路复用的多路复用/分解</a></li>
+        <li><a href="#tcp的多路复用的多路复用分解">tcp的多路复用的多路复用/分解</a></li>
+      </ul>
+    </li>
+    <li><a href="#udp">udp</a>
+      <ul>
+        <li><a href="#udp优点">udp优点</a></li>
+        <li><a href="#udp报文段">udp报文段</a></li>
+        <li><a href="#udp校验和计算">udp校验和计算</a></li>
+      </ul>
+    </li>
+    <li><a href="#可靠传输">可靠传输</a>
+      <ul>
+        <li><a href="#经完全可靠信道的可靠数据传输-rdt10">经完全可靠信道的可靠数据传输 rdt1.0</a></li>
+        <li><a href="#能处理比特差错信道的可靠传输-rdt20">能处理比特差错信道的可靠传输 rdt2.0</a></li>
+        <li><a href="#能处理比特差错信道的可靠传输-rdt21">能处理比特差错信道的可靠传输 rdt2.1</a></li>
+        <li><a href="#能处理丢包信道的可靠传输rdt30">能处理丢包信道的可靠传输：rdt3.0</a></li>
+        <li><a href="#流水线可靠传输协议-rdt40">流水线可靠传输协议 rdt4.0</a></li>
+      </ul>
+    </li>
+    <li><a href="#tcp连接">tcp连接</a>
+      <ul>
+        <li><a href="#tcp报文段结构">tcp报文段结构</a></li>
+        <li><a href="#rto的计算retransmission-timeout即重传超时时间">RTO的计算(Retransmission-TimeOut)即重传超时时间</a></li>
+        <li><a href="#tcp的状态机">TCP的状态机</a></li>
+      </ul>
+    </li>
+    <li><a href="#流量控制与拥塞控制">流量控制与拥塞控制</a>
+      <ul>
+        <li><a href="#流量控制">流量控制</a></li>
+        <li><a href="#拥塞控制">拥塞控制</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于数据包的最大值确定">关于数据包的最大值确定</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="tcpip-模型">TCP/IP 模型</h2>
+<p>应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物理链路传递到指定主机，然后每层又向剥洋葱一样，一层层处理自己的首部数据，到达传输层，传输层最终交付给应用程序。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%9e%8b2.jpg"
+        data-srcset="../../../img/2021/%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%9e%8b2.jpg, ../../../img/2021/%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%9e%8b2.jpg 1.5x, ../../../img/2021/%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%9e%8b2.jpg 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/网络模型2.jpg"
+        title="网络模型2" /></p>
+<p>数据传输流程：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e4%bc%a0%e8%be%93%e6%b5%81%e7%a8%8b.jpg"
+        data-srcset="../../../img/2021/%e4%bc%a0%e8%be%93%e6%b5%81%e7%a8%8b.jpg, ../../../img/2021/%e4%bc%a0%e8%be%93%e6%b5%81%e7%a8%8b.jpg 1.5x, ../../../img/2021/%e4%bc%a0%e8%be%93%e6%b5%81%e7%a8%8b.jpg 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/传输流程.jpg"
+        title="传输流程" /></p>
+<h2 id="传输层">传输层</h2>
+<p>与应用层的关系：应用层将数据发送给传输层，传输层将其进行分段处理，每段数据加入头协议，然后将每组发出去
+与网络层的关系：分组的数据发给网络层，网络层将数据真正的发给链路层，然后从物理链路发到指定服务的进程中去</p>
+<p>举例：
+北京一个家庭： 小明家庭
+天津一个家庭： 小红家庭
+小明写了封信，交给管家，管家将信给邮政局，邮政局收到后，寄到天津小红家，管家将信给小红；</p>
+<p>小明家庭的任意成员写信-&gt;小明家的管家-&gt;邮局-&gt;小红家的管家-&gt;小红</p>
+<p>应用层数据：小明信的内容
+进程：小明，小明家庭成员都是这个主机内所有进程。
+主机：小明的家庭 和 小红的家庭
+传输层：管家，每个主机有一个管家
+网络层：邮局</p>
+<h2 id="简单介绍udp-tcp">简单介绍udp tcp</h2>
+<p>tcp将应用层数据，分段处理 称为 报文段（seg-ment)；upd将应用层数据，分段处理 称为 数据报。
+IP层 网际协议，为主机之间提供逻辑通信，尽力而为的交付服务（best-effort delivery service)
+所以不保证数据不会丢失，报文段的顺序，并且附带了一个唯一表示的地址也就是ip地址来进行主机之间的确认。
+udp和tcp 的基本责任是对两个端系统间的进程进行交付服务。主机间交付扩展到进程间交付被称之为 传输层的<code>多路复用</code>和<code>多路分解</code>。
+并且都提供了差错检查字段，来对完整性进行校验。而udp也是不可靠服务，所以它仅提供了这两种服务：差错校验和进程到进程之间的交付。
+tcp提供了可靠传输，通过流量控制，序号，确认，定时器等确保数据正确的，有序的到达接收进程;还提供了<code>拥塞控制</code>，调节网络流量速率，为整个互联网代理通用的好处，提供平等的带宽，这也是udp的传输速率高于tcp原因之一。</p>
+<p>对于<code>拥塞控制</code>可以举个例子：拥塞控制如同交通规则，当车辆很多的情况下，大家都遵守交通虽然会降低一点开车速度。但对整个城市的交通提供了高效的运转，一辆辆tcp汽车，会公平的遵守交通达到目的地。而一辆udp汽车运行其中不遵守交规，在车辆少的情况下，是绝对高速的，但高峰期的时候绝对会出现各种事故（丢包率提高等）</p>
+<h2 id="多路复用多路分解">多路复用，多路分解</h2>
+<p><code>多路复用</code>:一个主机有多个进程，每个进程为了通信会建立一个套接字（socket)，而一个主机只有一个传输层，所以多个socket将数据传输给传输层，传输层将这些数据进行封装上首部信息（为了以后的分解）从而生成报文段。然后将报文段传递给网络层，这个过程就是多路复用。</p>
+<p><code>多路分解</code>:当主机收到其他主机的数据，传输层根据报文段的首部信息找到指定的socket。这个过程就是多路分解</p>
+<p>举例：依旧是上面的例子，当管家收到信件后，需要依靠信件上的名字，给指定的成员（小明，爸爸，妈妈）。
+这个管家的操作就是多路分解。当成员（小明，爸爸，妈妈）写了信给管家，管家进行整理然后发送给邮政局，这个管家的操作就是多路复用</p>
+<p>通过上述描述，传输层的多路复用的要求是：</p>
+<ol>
+<li>每一个套接字要有唯一的标识，否则传输层无法分辨该将数据给谁</li>
+<li>每个报文段要有特殊的字段来标识，要交付给哪个套接字（也就是端口 port）</li>
+</ol>
+<pre><code>|-----------------|
+| 源端口 | 目的端口 |
+|-----------------|
+|   其他首部字段    |
+|-----------------|
+|    应用数据      |
+|-----------------|
+</code></pre><h3 id="udp的多路复用的多路复用分解">udp的多路复用的多路复用/分解</h3>
+<p>一个udp套接字使用一个二元组来全面标识，该二元组包含：一个目的IP地址和一个目的端口号。这也是为什么多个客户端连会接到同一个服务进程的同一个套接字</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//udp server
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">ListenUDP</span><span class="p">(</span><span class="s">&#34;udp&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">net</span><span class="p">.</span><span class="nx">UDPAddr</span><span class="p">{</span>
+		<span class="nx">IP</span><span class="p">:</span>   <span class="nx">net</span><span class="p">.</span><span class="nf">IPv4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+		<span class="nx">Port</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+	<span class="p">})</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;listen failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen udp Start...:&#34;</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">data</span> <span class="p">[</span><span class="mi">1024</span><span class="p">]</span><span class="kt">byte</span>
+		<span class="c1">//读取UDP数据
+</span><span class="c1"></span>		<span class="nx">count</span><span class="p">,</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">ReadFromUDP</span><span class="p">(</span><span class="nx">data</span><span class="p">[:])</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;read udp failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;data:%s addr:%v count:%d\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">count</span><span class="p">]),</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span>
+		<span class="c1">//返回数据
+</span><span class="c1"></span>		<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">WriteToUDP</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;hello client&#34;</span><span class="p">),</span> <span class="nx">addr</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;write udp failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div><h3 id="tcp的多路复用的多路复用分解">tcp的多路复用的多路复用/分解</h3>
+<p>一个tcp套接字使用一个四元组来全面标识，该四元组包含：一个目的IP地址和一个目的端口，一个源地址和一个源端口。所以每一个客户端连接都会维护一个套接字，一个tcp服务会维护多个套接字管理多个客户端连接</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">一个tcp</span> <span class="nx">server</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;0.0.0.0:8888&#34;</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen failed, err:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen  tcp Start...:&#34;</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;accept failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">continue</span>
+		<span class="p">}</span>
+		<span class="k">go</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">buf</span> <span class="p">[</span><span class="mi">128</span><span class="p">]</span><span class="kt">byte</span>
+		<span class="nx">n</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:])</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;read from conn failed, err:%v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;recv from client, content:%v\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">n</span><span class="p">]))</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="udp">udp</h2>
+<p>udp其实就是做了<code>多路复用/多路分解</code>，<code>差错检查</code>。除此之外没任何额外功能，和网络层唯一区别就是这点功能。由<a href="../../../img/2021/https://tools.ietf.org/html/rfc768" rel="">RFC 768</a>定义的UDP只做传输层能够做的最少工作。</p>
+<p>udp将数据附加上多路复用/分解服务的源和目的端口字段，以及其他两个小字段后，将报文段交给网络层。网络层将报文段封装到一个IP数据报中，然后尽力而为交给目的主机，到达后udp进行多路分解交付给指定的进程，在发送数据前并没有与接收方进行握手确认。所以udp被称为 <code>无连接的</code></p>
+<h3 id="udp优点">udp优点</h3>
+<ul>
+<li>关于何时，发送什么数据的应用层控制更为精细：tcp为了可靠传输不管交付用多长时间，udp不提供不必要的额外功能所以更快</li>
+<li>无需建立连接：意味着不会有建立连接的延迟</li>
+<li>无连接状态：tcp为了实现可靠传输会维护连接状态，udp没有，因此一般情况udp的能支持更多的用户量</li>
+<li>分组首部开销小： tcp报文段20个字节的首部开销，udp8字节</li>
+</ul>
+<h3 id="udp报文段">udp报文段</h3>
+<p>首部四个字段，都是2字节，一共8字节</p>
+<pre><code>+--------+--------+--------+--------+
+|     Source      |   Destination   |
+|      Port       |      Port       |
++--------+--------+--------+--------+
+|                 |                 |
+|     Length      |    Checksum     |
++--------+--------+--------+--------+
+|                                   |
+|          data                     | 
++-----------------------------------
+</code></pre><ol>
+<li>源端口：源端口号。在需要对方回信时选用。不需要时可用全0</li>
+<li>目的端口：目的端口号。这在终点交付报文时必须要使用到</li>
+<li>长度： UDP用户数据报的长度，其最小值是8（仅有首部）</li>
+<li>校验和：检测UDP用户数据报在传输中是否有错。有错就丢弃</li>
+</ol>
+<h3 id="udp校验和计算">udp校验和计算</h3>
+<p>校验和提供了差错检测功能。也就是说，报文段从源到达目的地的过程中，判断比特是否发生了改变（链路中的噪声干扰或者路由器的问题）。发送方的udp对报文段中的所有16比特字的和进行反码运算，求和时遇到溢出都会被回卷。得到的结果放到校验和字段<code>checksum</code></p>
+<p>举例：</p>
+<pre><code>字段            十进制             二进制
+源端口            63549          1111100000111101  
+目的端口          12345           11000000111001
+数据长度            17              10001
+</code></pre><h4 id="发送前计算校验和">发送前计算校验和：</h4>
+<ol>
+<li>源端口+目的端口+数据长度 = 1111100000111101+0011000000111001+10001 = 10010100010000111</li>
+<li>16位溢出，回卷，抛弃首位：10010100010000111 ==&gt; 0010100010000111</li>
+<li>反码：0010100010000111==&gt;1101011101111000</li>
+<li>校验和 = 1101011101111000</li>
+</ol>
+<h4 id="接受后检验校验和">接受后检验校验和：</h4>
+<ol>
+<li>源端口+目的端口+数据长度 = 1111100000111101+0011000000111001+10001 = 10010100010000111</li>
+<li>16位溢出，回卷，抛弃首位：10010100010000111 ==&gt; 0010100010000111</li>
+<li>结果与校验和相加：0010100010000111（计算结果） + 1101011101111000(校验和)</li>
+<li>如果结果不为 1111111111111111（16个1） 则一定有问题；如果结果为16个1，则表示可能没错（单比特翻转）</li>
+</ol>
+<p>结论：校验和功能，不只是在传输层，在网络层，链路层也会做校验，每一层都会做自己首部的校验处理。虽然如此，依旧不能保证最终的无误。也会有几率检查不出来（单比特翻转）
+概率虽然低，但依旧有可能。这时需要依靠应用层做最终的数据校验</p>
+<h2 id="可靠传输">可靠传输</h2>
+<p>可靠传输协议（reliable data transfer protocol)是使用一个个的技术点组合达到最终的可靠传输。
+所以我们一个个了解，最终迭代出一个可靠传输的最终版本，当了解了这些可靠传输的每一个原理，就能在应用层用udp实现可靠传输了。</p>
+<h3 id="经完全可靠信道的可靠数据传输-rdt10">经完全可靠信道的可靠数据传输 rdt1.0</h3>
+<p><strong>假设传输保证可靠，不丢包，不出差错，发送与接收端的收发效率也完全一致的时候模型</strong></p>
+<h4 id="伪代码">伪代码</h4>
+<pre><code>发送端：
+
+loop:
+	data = rcv_app()
+	pkg=make_pkt(data) //添加首部
+	udt_send(pkg) //发送数据
+
+
+接收端：
+loop:
+	pkg = deliver_data(data)  //从网络层获取报文段
+	data = extract(pkg) //解析首部
+	to_app(data)
+</code></pre><p>完全不必加入额外的任何操作</p>
+<h3 id="能处理比特差错信道的可靠传输-rdt20">能处理比特差错信道的可靠传输 rdt2.0</h3>
+<p><strong>假设数据不会丢失</strong>，在发送数据的整条链路中，比特可能受损，在和别人打电话的时候，如果听到了对方完整的话，会说一句’ok'，来证明自己听到了全部内容，且听懂了。
+这个‘ok' 使用了 <code>肯定确认（positive acknowledgment）</code> 与<code>否定确认（negative acknowledgment）</code> (没听到说一句’请你再说一遍‘)。
+当对方收到 肯定确认就开始说下一句了， 但当收到否定确认，就要重新说一遍刚才说的话。
+基于上面的重传机制的可靠传输协议称之为 <code>自动重传请求（AutomaticRepeat reQuest, ARQ）</code>协议，此协议需要另外三种协议来处理存在的比特差错情况：</p>
+<ol>
+<li>差错检测：和上面的udp一样</li>
+<li>接收方反馈：收到的消息回答 肯定确认ACK 或者NAK。接收方需要向发送方发送一个报文段，其中一个字段只需要1bit，0（nak）或者1（ack）</li>
+<li>重传：接收方收到有差错的分组时，重传刚才的报文段</li>
+</ol>
+<h4 id="伪代码-1">伪代码</h4>
+<pre><code>发送端：
+loop:
+	data = rcv_app()
+	*pkg = make_pkt(data, checksum) //添加首部
+	udt_send(pkg) //发送数据
+
+	*if isNAK(rcvpkg)
+		*udt_send(oldpkg)   //重传刚才的数据
+
+
+接收端：
+loop:
+	pkg = deliver_data(data)  //从网络层获取报文段
+	data = extract(pkg) //解析首部
+	*if is_err(data, checksum) //收到消息并且是错误的
+		*udt_send(NAK)
+	*else
+		*udt_send(ACK)
+		to_app(data)
+</code></pre><p>由于发送方在没有收到回复的时候要一直等着，不能发送下一个报文段，因此这样的协议 被称为 <code>停等（stop and wait）</code>协议。</p>
+<p>目前看起来是可行了，但ack和nak 出现了比特差错怎么办？
+当接收方收到有差错的ack或者nak的时候，重传当前数据即可，这种方式 叫<code>冗余分组 duplicate packet</code>。但重传了冗余的数据，接收方因为无法确认，对方是否正确收到ack或者nak，所以不确定这次数据是新的，还是冗余的。这个解决方案有个简单方法（当前所有传输协议几乎都用这个方法）就是在数据分组里添加个新字段，对数据进行编号，将发送数据分组的<code>序号(sequence number)</code>放到这个字段。
+在rdt2.0 的基础上添加个新字段 做 rdt2.1 来处理上面的问题。
+当前rdt2.0是停等协议，所以无需让序号递增，只需要1个bit，区分本次数据和上次数据即可。</p>
+<h3 id="能处理比特差错信道的可靠传输-rdt21">能处理比特差错信道的可靠传输 rdt2.1</h3>
+<p>在2.0的基础上，添加一个序号字段，用于区分发送方的数据是新的还是重发的。</p>
+<h4 id="伪代码-2">伪代码</h4>
+<pre><code>发送端：
+*seq = 0
+loop:
+	data = rcv_app()
+	*seq = seq % 2
+	*pkg = make_pkt(data, checksum) //添加首部
+	udt_send(pkg) //发送数据
+
+	// 接收方回应nak，或者响应的结果有差错
+	*if isNAK(rcvpkg) || is_err(ack, checksum) 
+		*udt_send(oldpkg)   //重传刚才的数据
+	*else
+		*seq ++
+
+接收端：
+seq = 0
+loop:
+	*seq = seq % 2
+	pkg = deliver_data(data)  //从网络层获取报文段
+	data = extract(pkg) //解析首部
+	*if is_err(data, checksum) //收到消息并且是错误的
+		*udt_send(NAK)
+	*else if is_ok(data, checksum)&amp;&amp; seq == rcvseq
+		udt_send(ACK)
+		*seq ++
+		to_app(data)
+	&amp;else //如果接收方成功收取，但发送方ack有差错会一直重试，这里只需要一直响应ack即可
+		udt_send(ACK)
+</code></pre><h3 id="能处理丢包信道的可靠传输rdt30">能处理丢包信道的可靠传输：rdt3.0</h3>
+<p>上面的例子都是在数据不丢失的情况下进行的。但现实中发送方发送一个数据段， 发送过程中可能会丢失，或者接收方收到后发送ask，这个ask丢失了，都会造成发送方无法及时响应。如果发送方能等足够长的时间确定丢失，则它只需要重传即可。
+但发送方要等多久合适呢？最好的时间范围应该是这样：发送方&ndash;&gt;接收方，接收方&mdash;&gt;发送方，这两个时间，也就是<code>往返延迟(RTT)</code>，但确定这个时间是难以估算的。等的太久造成延迟因此实践中采取的方法是发送方明智的选择一个时间值，判断可能发生了丢包(TCP会对RTT做实现)</p>
+<p>发送方不确定丢失的原因，但结果一样，就是重传。为了实现在指定时间判断重传。需要一个 <code>倒计数定时器(countdown timer)</code>，每次发送数据段：</p>
+<ul>
+<li>启动一个定时器</li>
+<li>处理定时器中断（正常的中断，或者超时的中断）</li>
+<li>终止定时器</li>
+</ul>
+<h4 id="伪代码-3">伪代码</h4>
+<pre><code>发送端：
+seq = 0
+loop:
+	data = rcv_app()
+	seq = seq % 2
+	pkg = make_pkt(data, checksum) //添加首部
+	*udt_send(pkg) &amp;&amp; start_timer() //发送数据
+
+	// 接收方回应nak，或者响应的结果有差错
+	if isNAK(rcvpkg) || is_err(ack, checksum) 
+		udt_send(oldpkg)   //重传刚才的数据
+	else
+		seq ++
+		stop_timer()
+
+if timer reach
+	udt_send(oldpkg)&amp;&amp; start_timer()
+</code></pre><h3 id="流水线可靠传输协议-rdt40">流水线可靠传输协议 rdt4.0</h3>
+<p>现在我们不怕丢失数据，不怕数据有差错了，但效率很低，因为是停等协议，一个个数据处理，所以这次将是在上面的基础上，改进为流水线的处理方式。</p>
+<p>要做到这个需要：</p>
+<ol>
+<li>每个分组必须有一个唯一序号 做区分，之前的停等一次只可能一个分组，如果有差错重发，重发上一次的分组，所以只要能区分本次和上次即可，所以序号只需要一个bit，标识此分组是重发的还是新的</li>
+<li>最低限度发送方需要缓存发送成功但没收到确认的分组序号，以便进行重新发送</li>
+</ol>
+<p>为了实现以上两点，达到流水线操作，引入了<code>回退N步</code></p>
+<h4 id="回退n步">回退n步</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5.png"
+        data-srcset="../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5.png, ../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5.png 1.5x, ../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/回退n步.png"
+        title="回退n步" />
+回退N步协议中，允许发送多个分组，而无需等待。但也受限于最大的允许数N。
+base：第一个未确认的分组
+nextseqnum：最小的未使用的序号（也就是待发送的序号）
+N：窗口长度，所以gbn也称为  <code>滑动窗口协议(sliding-window protocol)</code></p>
+<h5 id="伪代码-4">伪代码</h5>
+<pre><code>发送：
+//当小于窗口总长度才进行发送
+if(nextseqnum&lt; base+N){
+    //压缩
+    sndpkt[nextseqnum] = make_pkt(nextseqnum, data, checksum)
+    //发送
+    udt_send(sndpkt[nextseqnum])
+    //如果是窗口的第一个分组，怎启动定时器
+    if(base == nextseqnum)
+        start_timer()
+    
+    nextseqnum++
+}else{
+    //阻塞不发
+}
+
+定时器的作用：
+if timeout{
+    start_timer() //重开一个定时器
+    udt_send(sndpkt[base])
+    udt_send(sndpkt[base+1])
+    ...
+    udt_send(sndpkt[nextseqnum-1])
+}
+
+收到接收方的回应：
+//当消息无差错
+if(rdt_rcv(pkt) &amp;&amp; notcorrupt(pkt)){
+    base = getacknum(pkt) + 1 // 滑动窗口起点向前移动
+    if (base == nextseqnum) //如果
+        stop_timer()
+    else
+        start_timer()
+
+}else{//有错误
+    重新发送所有窗口内未确认的分段
+}
+
+</code></pre><p>这个发送方缓存了窗口大小N的序号，接收方没做任何处理，只有在有序和无差错的情况下才回复ask，否则直接丢弃。
+好处是接收方非常简单，缺点是 第一个分段的异常，会导致后面全部分段重新发送
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5%e6%b5%81%e7%a8%8b.png"
+        data-srcset="../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5%e6%b5%81%e7%a8%8b.png, ../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5%e6%b5%81%e7%a8%8b.png 1.5x, ../../../img/2021/%e5%9b%9e%e9%80%80n%e6%ad%a5%e6%b5%81%e7%a8%8b.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/回退n步流程.png"
+        title="回退n步流程" /></p>
+<h4 id="选择重传">选择重传</h4>
+<p>在回退N步的基础上，选择重传做了优化，也就是只重发有差错或者超时的分组。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0.png"
+        data-srcset="../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0.png, ../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0.png 1.5x, ../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/选择重传.png"
+        title="选择重传" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0%e6%b5%81%e7%a8%8b.png"
+        data-srcset="../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0%e6%b5%81%e7%a8%8b.png, ../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0%e6%b5%81%e7%a8%8b.png 1.5x, ../../../img/2021/%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0%e6%b5%81%e7%a8%8b.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/选择重传流程.png"
+        title="选择重传流程" /></p>
+<p>为了实现这个机制需要具备以下条件</p>
+<ul>
+<li>每个分组有自己的独立定时器（回退N步窗口里的分组公用一个）</li>
+<li>接收方也需要有个窗口缓存已收到的分组序号
+回退N步会将无序的分组也丢弃, 而现在需要将无序的暂时缓存起了,等待中间未到达的分组收到后,再传给上层调用方</li>
+<li>发送方和接收方对窗口的移动需要同步
+接收方收到的分组序号有以下几种可能:</li>
+</ul>
+<ol>
+<li>和窗口起始位置相同,则将窗口进行向前移动,如果前移后又是一个已确认的(无序的缓存),则继续前移,直到找到第一个未收到的分组</li>
+<li>收到一个中间序号,缓存起来</li>
+<li>收到一个小于窗口起点的序号,返回ack</li>
+</ol>
+<p>发送方有以下可能:</p>
+<ol>
+<li>定时器超时 重发此分组</li>
+<li>收到发送方的ack序号,对此序号标记为已完成,如果是base则窗口向前移动,如果前移后又是一个已确认的(无序的缓存),则继续前移,直到找到第一个未收到的分组</li>
+<li>如果接收方发送了ack,但发送方丢失或者差错,则重发或者超时发</li>
+</ol>
+<p>因为接收方的ack响应也可能丢包或者差错,所以发送方会重发,又因为接收方的第三点,导致总能重新返回ack,这一点是为了防止发送方的无限制重新发送.</p>
+<p>总结：
+利用校验和检查比特错误，定时器用于 超时/重传，序号保证按序发送数据，ack,nak响应是否接受成功 实现可靠传输，窗口流水线可以让多个分组同时发送，提高效率。</p>
+<h2 id="tcp连接">tcp连接</h2>
+<p>tcp是面向连接（connection-orientend）的可靠传输。因为一个应用进程开始向另一个应用进程发数据前，两个进程必须先互相<code>握手</code>，需要预备某些报文段，确立传输的参数，和一些与连接相关的状态变量。
+这些状态是存在于传输层的，中间的网络层，链路层等不会知道这些细节，它们只知道数据报文，不知道什么是连接。</p>
+<p>tcp连接提供的是<code>全双工服务（full duplex service）</code> 这表示，数据从a服务流向b服务的同时，b服务的数据也可以流向a。</p>
+<p>tcp连接也是<code>点对点（point to point）</code>，在一个连接下，发送方只能给相对应的接收方，不能给多个接收方。</p>
+<h3 id="tcp报文段结构">tcp报文段结构</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/tcp%e6%8a%a5%e6%96%87%e6%ae%b5.png"
+        data-srcset="../../../img/2021/tcp%e6%8a%a5%e6%96%87%e6%ae%b5.png, ../../../img/2021/tcp%e6%8a%a5%e6%96%87%e6%ae%b5.png 1.5x, ../../../img/2021/tcp%e6%8a%a5%e6%96%87%e6%ae%b5.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/tcp报文段.png"
+        title="tcp报文段" /></p>
+<ul>
+<li>源端口与目标端口:分别写入源端口号和目标端口号.</li>
+<li>32位序列号:也就是我们tcp三次握手中的seq,表示的是我们tcp数据段发送的第一个字节的序号,范围[0,2^32 - 1],例如,我们的seq = 201,携带的数据有100,那么最后一个字节的序号就为300,那么下一个报文段就应该从301开始.</li>
+<li>32位确认序列号:也就是ack(假设为y),它的值是seq+1,表示的意义是y之前的数据我都收到了,下一个我期望收到的数据是y.也就是我回过去的seq = y.</li>
+<li>首部长度:占4位.也叫数据偏移,因为tcp中的首部中有长度不确定的字段.</li>
+<li>URG:紧急指针标志位,当URG=1时,表明紧急指针字段有效.它告诉系统中有紧急数据,应当尽快传送,这时不会按照原来的排队序列来传送.而会将紧急数据插入到本报文段数据的最前面.</li>
+<li>ACK:当ACK=1时,我们的确认序列号ack才有效,当ACK=0时,确认序号ack无效,TCP规定:所有建立连接的ACK必须全部置为1.</li>
+<li>PSH:推送操作,很少用,没有了解.</li>
+<li>RST:当RST=1时,表明TCP连接出现严重错误,此时必须释放连接,之后重新连接,又叫重置位.</li>
+<li>SYN:同步序列号标志位,tcp三次握手中,第一次会将SYN=1,ACK=0,此时表示这是一个连接请求报文段,对方会将SYN=1,ACK=1,表示同意连接,连接完成之后将SYN=0</li>
+<li>FIN:在tcp四次挥手时第一次将FIN=1,表示此报文段的发送方数据已经发送完毕,这是一个释放链接的标志.</li>
+<li>16位窗口的大小:win的值是作为接收方让发送方设置其发送窗口大小的依据.</li>
+<li>紧急指针:只有当URG=1时的时候,紧急指针才有效,它指出紧急数据的字节数</li>
+</ul>
+<h4 id="序号和确认号">序号和确认号</h4>
+<p>因为是全双工服务，并且tcp把数据看做一个无结构的，有序的字节流，所以序列号seq是字节流的编号。比如5000byte的数据，tcp根据<code>MSS</code>为1000byte，那么tcp会划分为5个报文段，0~999，1000~1999&hellip;；</p>
+<p>那么主机A请求发出去，seq表示自己发送的数据，而ack表示期待从B获得79</p>
+<h3 id="rto的计算retransmission-timeout即重传超时时间">RTO的计算(Retransmission-TimeOut)即重传超时时间</h3>
+<p>可靠传输中需要计算一个RTT，而这个RTT不能太长，也不能太短。为此官方给出了以下计算：</p>
+<ol>
+<li>并不是每次都重新算一次RTT，而是每隔一段时间</li>
+<li>重传的数据不做统计</li>
+<li>将多次的RTT取平均</li>
+</ol>
+<p>根据上面的条件，计算出一个 SampleRTT，简单的往返时间。但不能直接使用，需要再利用这个公式做最后的计算：</p>
+<p>EstimatedRTT = (1 -a)* EstimatedRTT * SampleRTT</p>
+<p>也就是新的EstimatedRTT，是由老的EstimatedRTT，计算得来。其中a=0.875。</p>
+<p>这样就估算出了最终的EstimatedRTT时间，但如果知道rtt变化的一个范围也是有价值的。
+DevRTT= (1 -b)<em>DevRTT+b</em> abs(EstimatedRTT - SampleRTT)</p>
+<h3 id="tcp的状态机">TCP的状态机</h3>
+<p>网络上的传输是没有连接的，包括TCP也是一样的。而TCP所谓的“连接”，其实只不过是在通讯的双方维护一个“连接状态”，让它看上去好像有连接一样。所以，TCP的状态变换是非常重要的。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/tcp_open_close.jpg"
+        data-srcset="../../../img/2021/tcp_open_close.jpg, ../../../img/2021/tcp_open_close.jpg 1.5x, ../../../img/2021/tcp_open_close.jpg 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/tcp_open_close.jpg"
+        title="tcp_open_close" /></p>
+<h4 id="握手">握手</h4>
+<p>第一次握手：客户端发送网络包，服务端收到了。这样服务端就能得出结论：客户端的发送能力、服务端的接收能力是正常的。</p>
+<p>第二次握手：服务端发包，客户端收到了。这样客户端就能得出结论：服务端的接收、发送能力，客户端的接收、发送能力是正常的。 从客户端的视角来看，我接到了服务端发送过来的响应数据包，说明服务端接收到了我在第一次握手时发送的网络包，并且成功发送了响应数据包，这就说明，服务端的接收、发送能力正常。而另一方面，我收到了服务端的响应数据包，说明我第一次发送的网络包成功到达服务端，这样，我自己的发送和接收能力也是正常的。</p>
+<p>第三次握手：客户端发包，服务端收到了。这样服务端就能得出结论：客户端的接收、发送能力，服务端的发送、接收能力是正常的。 第一、二次握手后，服务端并不知道客户端的接收能力以及自己的发送能力是否正常。而在第三次握手时，服务端收到了客户端对第二次握手作的回应。从服务端的角度，我在第二次握手时的响应数据发送出去了，客户端接收到了。所以，我的发送能力是正常的。而客户端的接收能力也是正常的</p>
+<p>具体操作：</p>
+<ol>
+<li>客户端发送一个SYN段，并指明客户端的初始序列号，即ISN(c).</li>
+<li>服务端发送自己的SYN段作为应答，同样指明自己的ISN(s)。为了确认客户端的SYN，将ISN(c)+1作为ACK数值。这样，每发送一个SYN，序列号就会加1. 如果有丢失的情况，则会重传。</li>
+<li>为了确认服务器端的SYN，客户端将ISN(s)+1作为返回的ACK数值</li>
+</ol>
+<h4 id="对于建链接的3次握手">对于建链接的3次握手：</h4>
+<ol>
+<li>
+<p>三次握手才可以阻止重复历史连接的初始化（主要原因）
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e6%8f%a1%e6%89%8b%e9%98%b2%e6%ad%a2%e9%87%8d%e8%bf%9e.jpg"
+        data-srcset="../../../img/2021/%e6%8f%a1%e6%89%8b%e9%98%b2%e6%ad%a2%e9%87%8d%e8%bf%9e.jpg, ../../../img/2021/%e6%8f%a1%e6%89%8b%e9%98%b2%e6%ad%a2%e9%87%8d%e8%bf%9e.jpg 1.5x, ../../../img/2021/%e6%8f%a1%e6%89%8b%e9%98%b2%e6%ad%a2%e9%87%8d%e8%bf%9e.jpg 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/握手防止重连.jpg"
+        title="tcp_open_close" /></p>
+</li>
+<li>
+<p>三次握手才可以同步双方的初始序列号</p>
+</li>
+<li>
+<p>三次握手才可以避免资源浪费</p>
+</li>
+</ol>
+<h4 id="挥手">挥手</h4>
+<p>因为TCP是全双工通信的</p>
+<ol>
+<li>
+<p>第一次挥手 ：因此当主动方发送断开连接的请求（即FIN报文）给被动方时，仅仅代表主动方不会再发送数据报文了，但主动方仍可以接收数据报文。</p>
+</li>
+<li>
+<p>第二次挥手：被动方此时有可能还有相应的数据报文需要发送，因此需要先发送ACK报文，告知主动方“我知道你想断开连接的请求了”。这样主动方便不会因为没有收到应答而继续发送断开连接的请求（即FIN报文）</p>
+</li>
+<li>
+<p>第三次挥手 ：被动方在处理完数据报文后，便发送给主动方FIN报文；这样可以保证数据通信正常可靠地完成。发送完FIN报文后，被动方进入LAST_ACK阶段（超时等待）。   4.</p>
+</li>
+<li>
+<p>第四挥手： 如果主动方及时发送ACK报文进行连接中断的确认，这时被动方就直接释放连接，进入可用状态。</p>
+</li>
+</ol>
+<h2 id="流量控制与拥塞控制">流量控制与拥塞控制</h2>
+<p>TCP为它的应用程序提供了流量控制服务（flow control service），以消除发送方使接收方数据溢出的可能性。
+流量控制因此是一种速度匹配模块，发送方的发送速率与接收方应用程序的读取速率相匹配，另一种控制发送方速度的方式是拥塞控制（congestion control），但是这两者是不同的：</p>
+<ol>
+<li>流量控制基于对端的窗口大小来调整发送方的发送速度</li>
+<li>拥塞控制基于IP网络的速度来调整发送方的发送策略</li>
+</ol>
+<h3 id="流量控制">流量控制</h3>
+<p>由滑动窗口协议（连续ARQ协议）实现。滑动窗口协议既保证了分组无差错、有序接收，也实现了流量控制。主要的方式就是接收方返回的 ACK 中会包含自己的接收窗口的大小，并且利用大小来控制发送方的数据发送。发送放的窗口 swnd 和接收方窗口 rwnd
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/tcpswflow.png"
+        data-srcset="../../../img/2021/tcpswflow.png, ../../../img/2021/tcpswflow.png 1.5x, ../../../img/2021/tcpswflow.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/tcpswflow.png"
+        title="tcpswflow" /></p>
+<ol>
+<li>client端的可用窗口大小为360字节。client发送140字节数据到server，其中seq=1，length=140；发送之后，client的可用窗口向右移动140字节，窗口总大小还是360字节。</li>
+<li>server端的可用窗口大小为360字节。收到client发来的140字节数据之后，server端接收窗口向右移动140字节，但是由于应用程序繁忙，只取出了其中的100字节，因此server在ACK的时候，可用窗口还剩360-100=260字节，ACK=141。</li>
+<li>client在接收到server的ACK=141报文之后，发送窗口左边缘向右移动140字节，表示前面发送的140字节server已经接收到了。剩下的260字节，由于server端告知窗口大小为260字节，client调整自己的发送窗口为260字节，表示此时不能发送大于260字节的数据。</li>
+<li>client发送180字节，可用窗口变成80（260-189）字节。
+5 server收到client发送的180字节，放入buffer中，这时应用程序还是很繁忙一个字节都没有处理，因此这一次应答回客户端ACK=321（140+180+1），窗口大小为80（260-180）。</li>
+<li>client收到server的确认应答，确认了第二次发送的180字节已经被server端收到，于是发送窗口左边缘向 前移动了180字节。</li>
+<li>client发送80字节，可用窗口变成0（80-80）。</li>
+<li>server收到了80字节，但是这一次应用程序还是一个字节都没有从buffer中取出处理，因此server应答client端ACK=401（140+180+80+1），窗口大小为0（80-80）。</li>
+<li>client收到确认包，确认之前发送的80字节已经到达server端。另外server端告知窗口大小为0，因此client无论是否有数据需要发送，都不能发送了</li>
+</ol>
+<h3 id="拥塞控制">拥塞控制</h3>
+<p><a href="../../../img/2021/%e6%8b%a5%e5%a1%9e%e6%b5%81%e9%87%8f.jpg" rel="">拥塞流量</a></p>
+<p>拥塞窗口 cwnd 变化的规则：
+只要网络中没有出现拥塞，cwnd 就会增大；
+但网络中出现了拥塞，cwnd 就减少</p>
+<p>其实只要「发送方」没有在规定时间内接收到 ACK 应答报文，也就是发生了超时重传，就会认为网络出现了用拥塞。
+防止过多的数据注入到网络中，避免出现网络负载过大的情况；常用的方法就是：慢开始、拥塞避免、快重传、快恢复。</p>
+<h4 id="过程">过程：</h4>
+<ol>
+<li>cwnd &lt; ssthresh 用慢开始</li>
+<li>cwnd &gt;= ssthresh 停止慢开始，改为拥塞避免</li>
+<li>cwnd = ssthresh 慢开始和拥塞避免都可以</li>
+</ol>
+<p>在tcp双方建立关系后， 拥塞窗口cwnd的值被设置为1，还需设置慢开始门限ssthresh（65535字节大小）,在执行慢开始算法时，发送方每收到一个对新报文段的确认时，就把拥塞窗口cwnd的值比上一次*2，每次都是指数倍增长。然后开始下一轮的传输，当拥塞窗口cwnd增长到慢开始门限值时，就使用拥塞避免算法</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e6%85%a2%e5%90%af%e5%8a%a8.jpg"
+        data-srcset="../../../img/2021/%e6%85%a2%e5%90%af%e5%8a%a8.jpg, ../../../img/2021/%e6%85%a2%e5%90%af%e5%8a%a8.jpg 1.5x, ../../../img/2021/%e6%85%a2%e5%90%af%e5%8a%a8.jpg 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/慢启动.jpg"
+        title="慢启动" /></p>
+<h4 id="慢启动">慢启动</h4>
+<p>TCP 在刚建立连接完成后，首先是有个慢启动的过程，这个慢启动的意思就是一点一点的提高发送数据包的数量，如果一上来就发大量的数据，这不是给网络添堵吗？
+<code>当发送方每收到一个 ACK，拥塞窗口 cwnd 的大小就会加 1</code></p>
+<p>假设当前发送方拥塞窗口cwnd的值为1，而发送窗口swnd等于拥塞窗口cwnd，因此发送方当前只能发送一个数据报文段（拥塞窗口cwnd的值是几，就能发送几个数据报文段），接收方收到该数据报文段后，给发送方回复一个确认报文段，发送方收到该确认报文后，将拥塞窗口的值变为2，</p>
+<pre><code>发送方此时可以连续发送两个数据报文段，接收方收到该数据报文段后，给发送方一次发回2个确认报文段，发送方收到这两个确认报文后，将拥塞窗口的值加2变为4，发送方此时可连续发送4个报文段，接收方收到4个报文段后，给发送方依次回复4个确认报文，发送方收到确认报文后，将拥塞窗口加4，置为8，发送方此时可以连续发送8个数据报文段，接收方收到该8个数据报文段后，给发送方一次发回8个确认报文段，发送方收到这8个确认报文后，将拥塞窗口的值加8变为16，
+</code></pre><p>当前的拥塞窗口cwnd的值已经等于慢开始门限值，之后改用拥塞避免算法。</p>
+<h4 id="拥塞避免">拥塞避免</h4>
+<p>也就是每个传输轮次，拥塞窗口cwnd只能线性加一，而不是像慢开始算法时，每个传输轮次，拥塞窗口cwnd按指数增长。同理，16+1……直至到达24，假设24个报文段在传输过程中丢失4个，接收方只收到20个报文段，给发送方依次回复20个确认报文段，一段时间后，丢失的4个报文段的重传计时器超时了，发送发判断可能出现拥塞，更改cwnd和ssthresh.并重新开始慢开始算法</p>
+<p>就这么一直增长着后，网络就会慢慢进入了拥塞的状况了，于是就会出现丢包现象，这时就需要对丢失的数据包进行重传。
+这时候触发重传机制
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2021/%e6%8b%a5%e5%a1%9e%e9%87%8d%e4%bc%a0.jpg"
+        data-srcset="../../../img/2021/%e6%8b%a5%e5%a1%9e%e9%87%8d%e4%bc%a0.jpg, ../../../img/2021/%e6%8b%a5%e5%a1%9e%e9%87%8d%e4%bc%a0.jpg 1.5x, ../../../img/2021/%e6%8b%a5%e5%a1%9e%e9%87%8d%e4%bc%a0.jpg 2x"
+        data-sizes="auto"
+        alt="../../../img/2021/拥塞重传.jpg"
+        title="拥塞重传" /></p>
+<h4 id="快速重传">快速重传</h4>
+<p>还有更好的方式，前面我们讲过「快速重传算法」。当接收方发现丢了一个中间包的时候，发送三次前一个包的 ACK，于是发送端就会快速地重传，不必等待超时再重传。</p>
+<p>TCP 认为这种情况不严重，因为大部分没丢，只丢了一小部分，则 ssthresh 和 cwnd 变化如下：</p>
+<p>cwnd = cwnd/2 ，也就是设置为原来的一半;
+ssthresh = cwnd;
+进入快速恢复算法</p>
+<h4 id="快速恢">快速恢</h4>
+<p>cwnd = cwnd + 3 MSS，加3 MSS的原因是因为收到3个重复的ACK。
+重传重复ACK（duplicate ACK）指定的数据包。
+如果再收到重复ACK，cwnd递增1。
+如果收到新的ACK，表明重传的报文已经收到。此时将cwnd设置为ssthresh值，进入拥塞避免状态</p>
+<h2 id="关于数据包的最大值确定">关于数据包的最大值确定</h2>
+<p>UDP和TCP协议利用端口号实现多项应用同时发送和接收数据。数据通过源端口发送出去，通过目标端口接收。有的网络应用只能使用预留或注册的静态端口；而另外一些网络应用则可以使用未被注册的动态端口。因为UDP和TCP报头使用两个字节存放端口号，所以端口号的有效范围是从0到65535。动态端口的范围是从1024到65535。　　
+MTU最大传输单元，这个最大传输单元实际上和链路层协议有着密切的关系，EthernetII帧的结构DMAC+SMAC+Type+Data+CRC由于以太网传输电气方面的限制，每个以太网帧都有最小的大小64Bytes最大不能超过1518Bytes，对于小于或者大于这个限制的以太网帧我们都可以视之为错误的数据帧，一般的以太网转发设备会丢弃这些数据帧。
+由于以太网EthernetII最大的数据帧是1518Bytes这样，刨去以太网帧的帧头（DMAC目的MAC地址48bits=6Bytes+SMAC源MAC地址48bits=6Bytes+Type域2Bytes）14Bytes和帧尾CRC校验部分4Bytes那么剩下承载上层协议的地方也就是Data域最大就只能有1500Bytes这个值我们就把它称之为MTU。</p>
+<p>链路层帧的大小  1500(不包括帧头、帧尾):</p>
+<ul>
+<li>UDP 包的大小就应该是 1500 - IP头(20) - UDP头(8) = 1472(Bytes)</li>
+<li>TCP 包的大小就应该是 1500 - IP头(20) - TCP头(20) = 1460 (Bytes)</li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li>《计算机网络自顶向下方法》</li>
+<li><a href="https://andrewpqc.github.io/2018/07/21/tcp-flow-control-and-congestion-control/" target="_blank" rel="noopener noreffer">https://andrewpqc.github.io/2018/07/21/tcp-flow-control-and-congestion-control/</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2020/20200407-mit6.828-02-lab1/" class="prev" rel="prev" title="MIT6.828 - 02-Lab1.Util"><i class="fas fa-angle-left fa-fw"></i>MIT6.828 - 02-Lab1.Util</a>
+            <a href="/posts/2021/20210119-grpc/" class="next" rel="next" title="grpc-go">grpc-go<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

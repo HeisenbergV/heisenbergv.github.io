@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Go Channel - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="Go Channel" />
+<meta property="og:description" content="如何使用 channel在&lt;-左边 表示向channel发送数据 channel在&lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/posts/2019/20190917-go-channel/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-09-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-17T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go Channel"/>
+<meta name="twitter:description" content="如何使用 channel在&lt;-左边 表示向channel发送数据 channel在&lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2019/20190917-go-channel/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2019/20190917-go-groutine/" /><link rel="next" href="https://heisenbergv.github.io/posts/2019/20190923-csapp3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Go Channel",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/posts\/2019\/20190917-go-channel\/"
+        },"genre": "posts","keywords": "go","wordcount":  2147 ,
+        "url": "https:\/\/heisenbergv.github.io\/posts\/2019\/20190917-go-channel\/","datePublished": "2019-09-17T00:00:00+00:00","dateModified": "2019-09-17T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "zJxin"},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Go Channel</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-09-17">2019-09-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2147 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#如何使用">如何使用</a></li>
+    <li><a href="#channel的关闭">Channel的关闭</a></li>
+    <li><a href="#缓冲区">缓冲区</a></li>
+    <li><a href="#单向通道">单向通道</a></li>
+    <li><a href="#作用">作用</a></li>
+    <li><a href="#内部细节">内部细节</a>
+      <ul>
+        <li><a href="#数据结构">数据结构</a></li>
+        <li><a href="#主要函数功能">主要函数功能</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="如何使用">如何使用</h2>
+<ul>
+<li>channel在&lt;-左边 表示向channel发送数据</li>
+<li>channel在&lt;-右边 表示从channel接收数据</li>
+<li>close(channelName) 关闭一个channel</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">//发送数据: 写
+</span><span class="c1"></span><span class="nx">channel</span> <span class="o">&lt;-</span> <span class="s">&#34;struct&#34;</span>
+<span class="c1">//接收数据: 读
+</span><span class="c1"></span><span class="nx">data</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">channel</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
+</code></pre></div><h2 id="channel的关闭">Channel的关闭</h2>
+<ul>
+<li>关闭一个未初始化(nil) 的 channel 会产生 panic</li>
+<li>重复关闭同一个 channel 会产生 panic</li>
+<li>向一个已关闭的 channel 中发送消息会产生 panic</li>
+<li>从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">channel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">channel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">channel</span> <span class="o">&lt;-</span> <span class="s">&#34;hello&#34;</span>
+		<span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;channel is closed.&#34;</span><span class="p">)</span>
+	<span class="p">}(</span><span class="nx">channel</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">channalFunc2</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+	<span class="k">go</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+		<span class="nx">chStr</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">channel</span>
+		<span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;channel is close!!!!!!.&#34;</span><span class="p">)</span>
+			<span class="k">break</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;receive %s\n&#34;</span><span class="p">,</span> <span class="nx">chStr</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="缓冲区">缓冲区</h2>
+<ul>
+<li>make创建通道时,指定通道的大小时,称为有缓冲通道,反之无缓冲区</li>
+<li>无缓冲区或者缓冲区用完,写入一次,就要等待对方读取一次,否则无法继续写入阻塞住,同理读取不出来也会阻塞住</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">2</span>
+<span class="c1">// ch &lt;- 3 //阻塞
+</span><span class="c1"></span><span class="nx">a</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</code></pre></div><ul>
+<li>可以用len函数查看channel的已用大小, 用cap查看channel的缓存大小</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//1
+</span><span class="c1"></span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//2
+</span></code></pre></div><h2 id="单向通道">单向通道</h2>
+<ul>
+<li>为了限制channel滥用,禁止其进行读取或者写入操作,让函数具有更高的单一原则,封装性</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">x</span>
+	<span class="p">}</span>
+	<span class="nb">close</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">squarer</span><span class="p">(</span><span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">in</span> <span class="p">{</span>
+		<span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">v</span>
+	<span class="p">}</span>
+	<span class="nb">close</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">printer</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">in</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">channalFunc3</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">naturals</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+	<span class="nx">squares</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+	<span class="c1">//将读写函数分离
+</span><span class="c1"></span>
+	<span class="c1">//写 chan&lt;- , 读 &lt;-chan
+</span><span class="c1"></span>	<span class="k">go</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">naturals</span><span class="p">)</span>          <span class="c1">//写入
+</span><span class="c1"></span>	<span class="k">go</span> <span class="nf">squarer</span><span class="p">(</span><span class="nx">squares</span><span class="p">,</span> <span class="nx">naturals</span><span class="p">)</span> <span class="c1">//将刚才写入的变成只读的,传参进去, 中间转换层
+</span><span class="c1"></span>	<span class="nf">printer</span><span class="p">(</span><span class="nx">squares</span><span class="p">)</span>              <span class="c1">//只读
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><h2 id="作用">作用</h2>
+<ul>
+<li>同步: 依靠阻塞的特性 做多个goroutine之间的锁</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">sema</span>  <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="nx">rece2</span> <span class="p">=</span> <span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">raceFunc2</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">sema</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+	<span class="nx">rece2</span><span class="o">++</span>
+	<span class="nx">v</span> <span class="o">:=</span> <span class="nx">rece2</span>
+	<span class="o">&lt;-</span><span class="nx">sema</span>
+	<span class="k">return</span> <span class="nx">v</span>
+<span class="p">}</span>
+
+<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span>
+<span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span>
+</code></pre></div><ul>
+<li>定时器</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+<span class="nx">timer</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTimer</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&lt;-</span><span class="nx">timer</span><span class="p">.</span><span class="nx">C</span>
+
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+<span class="c1">//输出: 差两秒
+</span><span class="c1">// 2019-06-24 16:03:34.011947 +0800 CST m=+0.000201381
+</span><span class="c1">// 2019-06-24 16:03:36.015244 +0800 CST m=+2.003571991
+</span><span class="c1"></span>    <span class="c1">//延迟执行
+</span><span class="c1"></span><span class="nx">time</span><span class="p">.</span><span class="nf">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+<span class="p">})</span>
+	<span class="c1">//定时器，每隔1秒执行
+</span><span class="c1"></span><span class="nx">ticker</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTicker</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">tick</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;tick at&#34;</span><span class="p">,</span> <span class="nx">tick</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}()</span>
+    
+</code></pre></div><ul>
+<li>通信: Channel是goroutine之间通信的通道,用于goroutine之间发消息和接收消息</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Cake</span> <span class="kd">struct</span><span class="p">{</span> <span class="nx">state</span> <span class="kt">string</span> <span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">baker</span><span class="p">(</span><span class="nx">cooked</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">Cake</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="nx">cake</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">Cake</span><span class="p">)</span>
+		<span class="nx">cake</span><span class="p">.</span><span class="nx">state</span> <span class="p">=</span> <span class="s">&#34;cooked&#34;</span>
+		<span class="nx">cooked</span> <span class="o">&lt;-</span> <span class="nx">cake</span> <span class="c1">// baker never touches this cake again
+</span><span class="c1"></span>	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">icer</span><span class="p">(</span><span class="nx">iced</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">Cake</span><span class="p">,</span> <span class="nx">cooked</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="o">*</span><span class="nx">Cake</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">cake</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">cooked</span> <span class="p">{</span>
+		<span class="nx">cake</span><span class="p">.</span><span class="nx">state</span> <span class="p">=</span> <span class="s">&#34;iced&#34;</span>
+		<span class="nx">iced</span> <span class="o">&lt;-</span> <span class="nx">cake</span> <span class="c1">// icer never touches this cake again
+</span><span class="c1"></span>	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>Select多路复用(I/O多路复用，I/O就是指的我们网络I/O,多路指多个TCP连接(或多个Channel)，复用指复用一个或少量线程。串起来理解就是很多个网络I/O复用一个或少量的线程来处理这些连接)
+<ul>
+<li>对channel的read, write,close, 超时事件等进行监听,</li>
+<li>同时触发事件会随机执行一个</li>
+<li>阻塞在多个channel上，对多个channel的读/写事件进行监控</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">doWork</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="k">select</span> <span class="p">{</span>
+		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;receive A &#34;</span><span class="p">)</span>
+		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;receive B &#34;</span><span class="p">)</span>
+		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ss&#34;</span><span class="p">)</span>
+		<span class="k">default</span><span class="p">:</span>
+		    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;11111&#34;</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">channalFunc5</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+	<span class="k">go</span> <span class="nf">doWork</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+		<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="nx">ch2</span> <span class="o">&lt;-</span> <span class="mi">2</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="p">{</span>
+
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="内部细节">内部细节</h2>
+<h3 id="数据结构">数据结构</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">hchan</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">qcount</span>   <span class="kt">uint</span>           <span class="c1">// 当前队列中剩余元素个数
+</span><span class="c1"></span>	<span class="nx">dataqsiz</span> <span class="kt">uint</span>           <span class="c1">// 环形队列长度，即可以存放的元素个数
+</span><span class="c1"></span>	<span class="nx">buf</span>      <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 环形队列指针
+</span><span class="c1"></span>	<span class="nx">elemsize</span> <span class="kt">uint16</span>         <span class="c1">// 每个元素的大小
+</span><span class="c1"></span>	<span class="nx">closed</span>   <span class="kt">uint32</span>	        <span class="c1">// 标识关闭状态
+</span><span class="c1"></span>	<span class="nx">elemtype</span> <span class="o">*</span><span class="nx">_type</span>         <span class="c1">// 元素类型
+</span><span class="c1"></span>	<span class="nx">sendx</span>    <span class="kt">uint</span>           <span class="c1">// 队列下标，指示元素写入时存放到队列中的位置
+</span><span class="c1"></span>	<span class="nx">recvx</span>    <span class="kt">uint</span>           <span class="c1">// 队列下标，指示元素从队列的该位置读出
+</span><span class="c1"></span>	<span class="nx">recvq</span>    <span class="nx">waitq</span>          <span class="c1">// 等待读消息的goroutine队列
+</span><span class="c1"></span>	<span class="nx">sendq</span>    <span class="nx">waitq</span>          <span class="c1">// 等待写消息的goroutine队列
+</span><span class="c1"></span>	<span class="nx">lock</span> <span class="nx">mutex</span>              <span class="c1">// 互斥锁，chan不允许并发读写
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">waitq</span> <span class="nx">sudog</span><span class="p">{</span><span class="c1">//对G的封装
+</span><span class="c1"></span>    
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>channel 的主要组成有：
+<ul>
+<li>一个环形数组实现的循环队列, 用于存储消息元素</li>
+<li>recvq和sendq两个链表实现的 goroutine 等待队列, 用于存储阻塞在 recv 和 send 操作上的 goroutine</li>
+<li>一个互斥锁，用于各个属性变动的同步</li>
+</ul>
+</li>
+</ul>
+<h3 id="主要函数功能">主要函数功能</h3>
+<ul>
+<li>makechan: 开辟一快连续内存区域存储消息元素</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//伪代码
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">makechan</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">chantype</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">hchan</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">hchan</span>
+	<span class="nx">c</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">hchan</span><span class="p">)</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">buf</span> <span class="p">=</span> <span class="nf">malloc</span><span class="p">(</span><span class="nx">元素类型大小</span><span class="o">*</span><span class="nx">size</span><span class="p">)</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">elemsize</span> <span class="p">=</span> <span class="nx">元素类型大小</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">elemtype</span> <span class="p">=</span> <span class="nx">元素类型</span>
+	<span class="nx">c</span><span class="p">.</span><span class="nx">dataqsiz</span> <span class="p">=</span> <span class="nx">size</span>
+	<span class="k">return</span> <span class="nx">c</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>send  chan&lt;-
+<ul>
+<li>如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时直接从recvq取出G,并把数据写入，最后把该G唤醒</li>
+<li>如果缓冲区中有空余位置，将数据写入缓冲区</li>
+<li>如果缓冲区中没有空余位置，将待发送数据写入G，将当前G加入sendq，进入睡眠，等待被读goroutine唤醒；</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span>
+	<span class="k">if</span> <span class="nx">close</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close&#34;</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="c1">//1.如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时
+</span><span class="c1"></span>	<span class="c1">//直接从recvq取出G,并把数据写入，最后把该G唤醒，结束发送过程
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">sg</span> <span class="o">:=</span> <span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+		<span class="nx">sg</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="c1">//给此goroutine发消息
+</span><span class="c1"></span>		<span class="nx">sg</span><span class="p">.</span><span class="nf">ready</span><span class="p">()</span>  <span class="c1">//唤醒
+</span><span class="c1"></span>		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="c1">//2. 跳过2说明无接收方, 如果有缓冲区且不满的话则写入到缓冲区
+</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">qcount</span> <span class="p">&lt;</span> <span class="nx">dataqsiz</span> <span class="p">{</span>
+		<span class="nx">buf</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+		<span class="nx">qcount</span><span class="o">++</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="c1">//3. 没空余位置或者没缓冲区, 将待发送数据写入到当前调用的G, 并加入sendq链表,进入休眠,等待被读方唤醒
+</span><span class="c1"></span>	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
+	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
+	<span class="nx">sendq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>recv  &lt;-chan
+<ul>
+<li>sendq不为空 获取链表的头一个first_g
+<ul>
+<li>缓存无数据,将first_g消息复制给当前请求的g,并激活first_g</li>
+<li>缓存有数据, 缓存队列 出列消息给当前请求的g,并将first_g数据加入缓存队列,first_g激活</li>
+</ul>
+</li>
+<li>缓存队列有数据将数据出队 复制给当前请求的g</li>
+<li>缓存队列无数据将调用此chan的当前g加入recvq链表并设置休眠</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(){</span>
+	<span class="k">if</span> <span class="nx">sg</span><span class="o">:=</span> <span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+		<span class="k">if</span> <span class="nx">buff</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span>
+			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+			<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+			<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+			
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">()</span>
+			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+			<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+			<span class="nx">buff</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span><span class="p">)</span>
+			<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+		<span class="p">}</span>
+		
+		<span class="k">return</span> <span class="kc">true</span>
+	<span class="p">}</span>
+    
+	<span class="k">if</span> <span class="nx">qcount</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">()</span>
+		<span class="nx">qcount</span><span class="o">--</span>
+		<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+		<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+		<span class="k">return</span> <span class="kc">true</span>
+	<span class="p">}</span>
+	
+	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
+	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
+	<span class="nx">recvq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>close: 设置关闭符号为1,唤醒recvq和sendq的g</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nb">close</span><span class="p">(){</span>
+	<span class="k">if</span> <span class="kd">chan</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close of nil channel&#34;</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="nx">close</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close of closed channel&#34;</span><span class="p">)</span>
+		<span class="k">return</span>
+	<span class="p">}</span>
+	<span class="nx">close</span> <span class="p">=</span> <span class="mi">1</span>
+	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+		<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+		<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="参考">参考</h2>
+<p><a href="https://books.studygolang.com/gopl-zh/" target="_blank" rel="noopener noreffer">go语言圣经</a></p>
+<p><a href="https://my.oschina.net/renhc/blog/2246871" target="_blank" rel="noopener noreffer">恋恋美食 blog</a></p>
+<p><a href="https://draveness.me/" target="_blank" rel="noopener noreffer">draveness blog</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-09-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go/">go</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2019/20190917-go-groutine/" class="prev" rel="prev" title="Go Groutine"><i class="fas fa-angle-left fa-fw"></i>Go Groutine</a>
+            <a href="/posts/2019/20190923-csapp3/" class="next" rel="next" title="读CSAPP(3) - 存储器层次结构">读CSAPP(3) - 存储器层次结构<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

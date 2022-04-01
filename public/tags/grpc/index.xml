@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>grpc - 标签 - zJxin</title>
+        <link>https://heisenbergv.github.io/tags/grpc/</link>
+        <description>grpc - 标签 - zJxin</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/grpc/" rel="self" type="application/rss+xml" /><item>
+    <title>grpc-go</title>
+    <link>https://heisenbergv.github.io/posts/2021/20210119-grpc/</link>
+    <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210119-grpc/</guid>
+    <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
+</item></channel>
+</rss>

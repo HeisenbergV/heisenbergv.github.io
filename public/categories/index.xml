@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - 分类 - zJxin</title>
+        <link>https://heisenbergv.github.io/categories/</link>
+        <description>Categories - 分类 - zJxin</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>coder</title>
+    <link>https://heisenbergv.github.io/categories/coder/</link>
+    <pubDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/categories/coder/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>thinker</title>
+    <link>https://heisenbergv.github.io/categories/thinker/</link>
+    <pubDate>Sat, 10 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/categories/thinker/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>
