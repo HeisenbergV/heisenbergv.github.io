@@ -4,7 +4,14 @@
         <link>https://heisenbergv.github.io/tags/go/</link>
         <description>go - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>vscode&#43;dlv 远程调试</title>
+    <link>https://heisenbergv.github.io/posts/2021/20210813-dlv/</link>
+    <pubDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210813-dlv/</guid>
+    <description><![CDATA[dlv在服务器排查程序问题，没有可视化界面比较繁琐，利用vscode+dlv 远程调试，就和在本地调试一样简单 安装 在服务器和本地开发环境都要安]]></description>
+</item><item>
     <title>gin源码</title>
     <link>https://heisenbergv.github.io/posts/2021/20210721-gin/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
