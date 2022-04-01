@@ -18,7 +18,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210813-dlv/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2021/20210721-gin/" /><link rel="next" href="https://heisenbergv.github.io/posts/read/%E5%85%B1%E4%BA%A7%E5%85%9A%E5%AE%A3%E8%A8%80-%E5%86%99%E4%BD%9C%E8%83%8C%E6%99%AF/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210813-dlv/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2021/20210721-gin/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210813-dlv\/"
-        },"genre": "posts","keywords": "go","wordcount":  330 ,
+        },"genre": "posts","keywords": "go","wordcount":  338 ,
         "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210813-dlv\/","datePublished": "2021-08-13T00:00:00+00:00","dateModified": "2021-08-13T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "zJxin"},"author": {
@@ -101,7 +101,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">vscode&#43;dlv 远程调试</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-13">2021-08-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 330 字&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-13">2021-08-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 338 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -141,6 +141,7 @@
 <span class="p">}</span>
 </code></pre></div><h2 id="运行">运行</h2>
 <ol>
+<li>代码编译增加 <code> -gcflags='all=-N -l'</code></li>
 <li>在服务器端的程序目录下（main.go所在位置)执行命令: <code>dlv --listen=:2345 --headless=true --api-version=2 --log attach 进程id</code></li>
 <li>本地vscode启动调试</li>
 <li>这样就能远程调试了</li>
@@ -168,8 +169,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/2021/20210721-gin/" class="prev" rel="prev" title="gin源码"><i class="fas fa-angle-left fa-fw"></i>gin源码</a>
-            <a href="/posts/read/%E5%85%B1%E4%BA%A7%E5%85%9A%E5%AE%A3%E8%A8%80-%E5%86%99%E4%BD%9C%E8%83%8C%E6%99%AF/" class="next" rel="next" title="共产党宣言">共产党宣言<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/2021/20210721-gin/" class="prev" rel="prev" title="gin源码"><i class="fas fa-angle-left fa-fw"></i>gin源码</a></div>
 </div>
 </article></div>
             </main><footer class="footer">
