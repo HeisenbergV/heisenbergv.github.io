@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210906-redis\/"
-        },"genre": "posts","keywords": "redis","wordcount":  10331 ,
+        },"genre": "posts","keywords": "redis","wordcount":  10353 ,
         "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210906-redis\/","datePublished": "2021-09-06T00:00:00+00:00","dateModified": "2021-09-06T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "zJxin"},"author": {
@@ -101,7 +101,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">redis-单机场景</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-06">2021-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 10331 字&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-06">2021-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 10353 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -211,7 +211,7 @@
 <h3 id="list">list</h3>
 <p>列表结构对插入，查询是有顺序的</p>
 <ul>
-<li>列表类型有2种编码方式: ziplist、hashtable</li>
+<li>列表类型有2种编码方式: ziplist、linkedlist</li>
 <li>使用场景:
 <ul>
 <li>队列: lpush + rpop</li>
@@ -352,7 +352,7 @@ OK
 <h3 id="aof">aof</h3>
 <p>aof提供了命令级别的持久化，会把写入相关命令同步到aof文件中，因为一条写入命令就立刻落地到文件中，会影响redis的高性能。所以官方提供了三种持久化策略进行选择：</p>
 <ol>
-<li>AOF_FSYNC_NO ：不保存</li>
+<li>AOF_FSYNC_NO ： redis不做任何同步操作，保存时机由系统决定</li>
 </ol>
 <p>当redis被关闭，aof被关闭，或者aof缓存满了，才落地到磁盘上</p>
 <ol start="2">
@@ -412,7 +412,7 @@ OK
 </ol>
 <h2 id="内存优化">内存优化</h2>
 <h3 id="基础对象的编码调整">基础对象的编码调整</h3>
-<p>不同的数据有不同的编码方式(<code>encoding</code>)主要是用来节省内存空间，比如使用hset数据类型时，在元素数量小于配置值的时候，同时所有值都小于hash-max-ziplist-value配置时，使用ziplist结构当字典使用，更加节省内存。当超出条件后检索效率会降低，所以会改为hashtable。</p>
+<p>不同的数据有不同的编码方式(encoding)主要是用来节省内存空间，比如使用hset数据类型时，在元素数量小于配置值的时候，同时所有值都小于hash-max-ziplist-value配置时，使用ziplist结构当字典使用，更加节省内存。当超出条件后检索效率会降低，所以会改为hashtable。</p>
 <p>每种redis数据结构都有2种或以上的编码方式来实现效率和空间的平衡，元素数量极少的时候即便是0(n²)也可以满足性能需求</p>
 <h3 id="对象共享">对象共享</h3>
 <p>相同数据多个key会指向同一个对象，这时<code>refcount</code> 会增加引用数量，不过这种节省内存的方式redis只提供了数字上的对象复用，因为判断数字是否一致时间复杂度为0(1)，而字符串需要0(n)，其他类型可能更复杂，如果复用就导致了时间换空间，对于高性能的redis并不合适。一个数字类型占用空间很小，比一个<code>redisObject</code>对象小的多，再加上判断快，所以对于数字对象的内存共享是很有意义的。</p>
@@ -461,11 +461,11 @@ OK
 <li>重启redis: 重启后数据重新加载，之前非连续的内存就能连续了</li>
 <li>配置设置: 此配置可以控制redis自动清理</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="l">activedefrag true</span><span class="w"> </span><span class="c">#  是否开启自动内存清理</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-ignore-bytes 100mb</span><span class="w"> </span><span class="c"># 表示内存碎片的字节数达到 100MB 时，开始 清理;</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-threshold-lower 10</span><span class="w"> </span><span class="c">#  表示内存碎片空间占操作系统分配给 Redis 的 总空间比例达到 10% 时，开始清理。</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-cycle-min 25 </span><span class="w"> </span><span class="c">#  表示自动清理过程所用 CPU 时间的比例不低于 25%，保证清理能正常开展;</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-cycle-max 75 </span><span class="w"> </span><span class="c"># 表示自动清理过程所用 CPU 时间的比例不高于 75%，一旦超过，就停止清理，从而避免在清理时，大量的内存拷贝阻塞 Redis，导致 响应延迟升高。</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">  </span><span class="l">activedefrag true</span><span class="w"> </span><span class="c">#  是否开启自动内存清理</span><span class="w">
+</span><span class="w">  </span><span class="l">active-defrag-ignore-bytes 100mb</span><span class="w"> </span><span class="c"># 表示内存碎片的字节数达到 100MB 时，开始 清理;</span><span class="w">
+</span><span class="w">  </span><span class="l">active-defrag-threshold-lower 10</span><span class="w"> </span><span class="c">#  表示内存碎片空间占操作系统分配给 Redis 的 总空间比例达到 10% 时，开始清理。</span><span class="w">
+</span><span class="w">  </span><span class="l">active-defrag-cycle-min 25 </span><span class="w"> </span><span class="c">#  表示自动清理过程所用 CPU 时间的比例不低于 25%，保证清理能正常开展;</span><span class="w">
+</span><span class="w">  </span><span class="l">active-defrag-cycle-max 75 </span><span class="w"> </span><span class="c"># 表示自动清理过程所用 CPU 时间的比例不高于 75%，一旦超过，就停止清理，从而避免在清理时，大量的内存拷贝阻塞 Redis，导致 响应延迟升高。</span><span class="w">
 </span></code></pre></div><h2 id="一些性能问题">一些性能问题</h2>
 <h3 id="慢查询日志">慢查询日志</h3>
 <pre><code>slowlog-log-slower-than 10000  记录超过10000微妙的命令
@@ -503,12 +503,8 @@ slowlog-max-len 128  最多存储128条慢查询日志
 <li>对于cpu调用程序</li>
 </ul>
 <ol>
-<li>
-<p>软亲和性：进程要在指定的 CPU 上尽量长时间地运行而不被迁移到其他CPU。Linux 内核进程调度器天生就具有被称为 软 CPU 亲和性（affinity） 的特性，因此linux通过这种软的亲和性试图使某进程尽可能在同一个CPU上运行</p>
-</li>
-<li>
-<p>硬亲和性：将进程或者线程绑定到某一个指定的cpu核运行，虽然Linux尽力通过一种软的亲和性试图使进程尽量在同一个处理器上运行，但它也允许用户强制指定进程无论如何都必须在指定的处理器上运行。</p>
-</li>
+<li>软亲和性：进程要在指定的 CPU 上尽量长时间地运行而不被迁移到其他CPU。Linux 内核进程调度器天生就具有被称为 软 CPU 亲和性（affinity） 的特性，因此linux通过这种软的亲和性试图使某进程尽可能在同一个CPU上运行</li>
+<li>硬亲和性：将进程或者线程绑定到某一个指定的cpu核运行，虽然Linux尽力通过一种软的亲和性试图使进程尽量在同一个处理器上运行，但它也允许用户强制指定进程无论如何都必须在指定的处理器上运行。</li>
 </ol>
 <p>目前我们的cpu架构是numa架构（非统一内存访问架构(Non-uniform Memory Access,简称NUMA架构)，这意味着物理核之间如果处于不同的numa节点，那么内存是分离的，a核心（socket 1）访问b核心（socket 2）内存数据是需要经过总线的，会增加延迟。
 linux使用<code>lscpu</code>看cpu情况:</p>
@@ -552,17 +548,15 @@ NUMA 节点0 CPU：    0-7
 </span><span class="cm"> */</span>
 <span class="kt">int</span> <span class="nf">sched_setaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
 <span class="kt">int</span> <span class="nf">sched_getaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span><span class="cm">/* 获得pid所指示的进程的CPU位掩码,并将该掩码返回到mask所指向的结构中 */</span>
-</code></pre></div><p>redis的持久化，还有个别命令都是在子进程或子线程执行的，也就是说对于redis绑定一个物理核还是有可能阻塞的。另外redis网络用的是io多路复用，监听的是io事件，在使用numa架构的时候我们应该防止redis在绑定cpu时跨节点。
-redis</p>
+</code></pre></div><p>redis的持久化，还有个别命令都是在子进程或子线程执行的，也就是说对于redis绑定一个物理核还是有可能阻塞的。另外redis网络用的是io多路复用，监听的是io事件，在使用numa架构的时候我们应该防止redis在绑定cpu时跨节点。</p>
 <h3 id="redis-与linux-hugepage">redis 与linux hugepage</h3>
 <ul>
 <li>写时复制</li>
 </ul>
 <p>fork是系统命令，主进程执行后，会将内存数据完全的拷贝在子进程中，相当于创建了一个快照。redis用fork的好处是方便，且不影响主进程工作，因为是完全拷贝了主进程的内存，但当redis内存数据非常大的时候，fork会非常慢，若使用了10g内存，fork之后总体就占了20G内存</p>
 <p>linux提供了fork的写时复制(copy-on-write)，主要作用就是将拷贝推迟到写操作真正发生时，这也就避免了大量无意义的拷贝操作。</p>
-<p>也就是在redis进行 rdb save的时候，fork是很快的，因为fork只是子进程指向了与主进程同样的物理内存中，并没有发生内存复制操作。类似应用代码中创建了个指针，两个指针指向的是同一个数据。只有当主进程的数据做了修改，才会开始复制，并且只会复制修改所在内存页的数据，也就是复制的效率取决于redis在save过程中的写命令是否频繁，内存页的大小。但因为redis总体是读多写少。也就是说假设在fork后进行备份过程中，redis并没有任何写入行为，那么fork子进程进行持久化操作是不会产生额外内存的。</p>
-<p>刚才说内存页也影响了rdb效率，是因为linux hugepage（大内存页），hugepage可以增加命中率减少页数量的，这对数据库来讲是个好处。同样的内存需求情况下内存页大了意味着页表项的减少，这样就可以提高快表的命中率了
-linux系统是支持内存大页机制的 默认是2mb: <code>grep Huge /proc/meminfo</code>，但对于redis进行rdb的时利用写时复制，内存页大导致主进程写入操作会复制更大的内存空间和数据，所以如果开启了hugepage redis会有下面log:</p>
+<p>也就是在redis进行 rdb save的时候，fork是很快的，因为fork只是子进程指向了与主进程同样的物理内存中，并没有发生内存复制操作。类似应用代码中创建了个指针，两个指针指向的是同一个数据。只有当主进程的数据做了修改，才会开始复制，并且只会复制修改所在内存页的数据，也就是复制的效率取决于redis在save过程中的写命令是否频繁，内存页的大小。但因为redis总体是读多写少。也就是说假设在fork后进行备份过程中，redis并没有任何写入行为，那么fork子进程进行持久化操作是不会产生额外的使用内存。</p>
+<p>刚才说内存页也影响了rdb效率，是因为linux hugepage（大内存页），hugepage可以增加命中率减少页数量的，这对数据库来讲是个好处。同样的内存需求情况下内存页大了意味着页表项的减少，这样就可以提高快表的命中率了，linux系统是支持内存大页机制的 默认是2mb: <code>grep Huge /proc/meminfo</code>，但对于redis进行rdb时利用写时复制，内存页大导致主进程写入操作会复制更大的内存空间和数据，所以如果开启了hugepage redis会有下面log:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">WARNING you have Transparent Huge Pages (THP) support enabled in your kernel.
 This will create latency and memory usage issues with Redis. To fix this issue run the command
 &#39;echo madvise &gt; /sys/kernel/mm/transparent_hugepage/enabled&#39; as root, 
