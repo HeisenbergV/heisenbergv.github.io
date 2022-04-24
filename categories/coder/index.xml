@@ -4,7 +4,14 @@
         <link>https://heisenbergv.github.io/categories/coder/</link>
         <description>coder - 分类 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
+    <title>redis-单机场景</title>
+    <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
+    <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210906-redis/</guid>
+    <description><![CDATA[我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等 概要 有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注]]></description>
+</item><item>
     <title>vscode&#43;dlv 远程调试</title>
     <link>https://heisenbergv.github.io/posts/2021/20210813-dlv/</link>
     <pubDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://heisenbergv.github.io/posts/2019/20190928-csapp4/</guid>
     <description><![CDATA[虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全]]></description>
-</item><item>
-    <title>读CSAPP(3) - 存储器层次结构</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190923-csapp3/</link>
-    <pubDate>Mon, 23 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190923-csapp3/</guid>
-    <description><![CDATA[了解硬件 随机访问存储器（Random-Access Memory，RAM） RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比D]]></description>
 </item></channel>
 </rss>

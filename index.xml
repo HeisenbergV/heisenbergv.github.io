@@ -4,9 +4,16 @@
         <link>https://heisenbergv.github.io/</link>
         <description>Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://heisenbergv.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>redis-单机场景</title>
+    <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
+    <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210906-redis/</guid>
+    <description><![CDATA[我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等 概要 有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注]]></description>
+</item><item>
     <title>vscode&#43;dlv 远程调试</title>
     <link>https://heisenbergv.github.io/posts/2021/20210813-dlv/</link>
     <pubDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</pubDate>
@@ -69,12 +76,5 @@
     <author>作者</author>
     <guid>https://heisenbergv.github.io/posts/2020/20200407-mit6.828-02-lab1/</guid>
     <description><![CDATA[实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel]]></description>
-</item><item>
-    <title>MIT6.828 - 01.环境搭建</title>
-    <link>https://heisenbergv.github.io/posts/2020/20200406-mit6.828-01/</link>
-    <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://heisenbergv.github.io/posts/2020/20200406-mit6.828-01/</guid>
-    <description><![CDATA[概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima]]></description>
 </item></channel>
 </rss>
