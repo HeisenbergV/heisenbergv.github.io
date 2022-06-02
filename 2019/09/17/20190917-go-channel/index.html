@@ -1,0 +1,251 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Liste - "><title>Go Channel | Liste</title><meta name=description content="Minimalistic Hugo blogging theme"><meta property="og:title" content="Go Channel"><meta property="og:description" content="如何使用 # channel在<-左边 表示向channel发送数据 channel在<-右边 表示从channel接收数据 close(channelName) 关闭一个channel channel := make(chan string, 2) //发送数据: 写 channel <- &#34;struct&#34; //接收数据: 读 data := <-channel fmt.Println(data) close(channel) Channel的关闭 # 关闭一个未初始化(nil) 的 channel 会产生 panic 重复关闭同一个 channel 会产生 panic 向一个已关闭的 channel 中发送消息会产生 panic 从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值 func SendMessage(channel chan string) { go func(channel chan string) { channel <- &#34;hello&#34; close(channel) fmt.Println(&#34;channel is closed.&#34;) }(channel) } func channalFunc2() { channel := make(chan string, 5) go SendMessage(channel) for { time."><meta property="og:type" content="article"><meta property="og:url" content="/2019/09/17/20190917-go-channel/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-09-17T00:00:00+00:00"><meta property="article:modified_time" content="2019-09-17T00:00:00+00:00"><meta itemprop=name content="Go Channel"><meta itemprop=description content="如何使用 # channel在<-左边 表示向channel发送数据 channel在<-右边 表示从channel接收数据 close(channelName) 关闭一个channel channel := make(chan string, 2) //发送数据: 写 channel <- &#34;struct&#34; //接收数据: 读 data := <-channel fmt.Println(data) close(channel) Channel的关闭 # 关闭一个未初始化(nil) 的 channel 会产生 panic 重复关闭同一个 channel 会产生 panic 向一个已关闭的 channel 中发送消息会产生 panic 从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值 func SendMessage(channel chan string) { go func(channel chan string) { channel <- &#34;hello&#34; close(channel) fmt.Println(&#34;channel is closed.&#34;) }(channel) } func channalFunc2() { channel := make(chan string, 5) go SendMessage(channel) for { time."><meta itemprop=datePublished content="2019-09-17T00:00:00+00:00"><meta itemprop=dateModified content="2019-09-17T00:00:00+00:00"><meta itemprop=wordCount content="724"><meta itemprop=keywords content="go,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Go Channel"><meta name=twitter:description content="如何使用 # channel在<-左边 表示向channel发送数据 channel在<-右边 表示从channel接收数据 close(channelName) 关闭一个channel channel := make(chan string, 2) //发送数据: 写 channel <- &#34;struct&#34; //接收数据: 读 data := <-channel fmt.Println(data) close(channel) Channel的关闭 # 关闭一个未初始化(nil) 的 channel 会产生 panic 重复关闭同一个 channel 会产生 panic 向一个已关闭的 channel 中发送消息会产生 panic 从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值 func SendMessage(channel chan string) { go func(channel chan string) { channel <- &#34;hello&#34; close(channel) fmt.Println(&#34;channel is closed.&#34;) }(channel) } func channalFunc2() { channel := make(chan string, 5) go SendMessage(channel) for { time."><link rel=canonical href=/2019/09/17/20190917-go-channel/><meta name=monetization content="$twitter.xrptipbot.com/ronaldsvilcins"><link rel=dns-prefetch href=https://www.google-analytics.com><link href=https://www.google-analytics.com rel=preconnect crossorigin><link rel=alternate type=application/atom+xml title=Liste href=atom.xml><link rel=alternate type=application/json title=Liste href=feed.json><link rel="shortcut icon" type=image/png href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="><style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{padding:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}</style><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"Go Channel","headline":"Go Channel","alternativeHeadline":"","description":"如何使用 # channel在\u0026lt;-左边 表示向channel发送数据 channel在\u0026lt;-右边 表示从channel接收数据 close(channelName) 关闭一个channel channel := make(chan string, 2) \/\/发送数据: 写 channel \u0026lt;- \u0026quot;struct\u0026quot; \/\/接收数据: 读 data := \u0026lt;-channel fmt.Println(data) close(channel) Channel的关闭 # 关闭一个未初始化(nil) 的 channel 会产生 panic 重复关闭同一个 channel 会产生 panic 向一个已关闭的 channel 中发送消息会产生 panic 从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值 func SendMessage(channel chan string) { go func(channel chan string) { channel \u0026lt;- \u0026quot;hello\u0026quot; close(channel) fmt.Println(\u0026quot;channel is closed.\u0026quot;) }(channel) } func channalFunc2() { channel := make(chan string, 5) go SendMessage(channel) for { time.","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"\/2019\/09\/17\/20190917-go-channel\/"},"author":{"@type":"Person","name":"Liste"},"creator":{"@type":"Person","name":"Liste"},"accountablePerson":{"@type":"Person","name":"Liste"},"copyrightHolder":"Liste","copyrightYear":"2019","dateCreated":"2019-09-17T00:00:00.00Z","datePublished":"2019-09-17T00:00:00.00Z","dateModified":"2019-09-17T00:00:00.00Z","publisher":{"@type":"Organization","name":"Liste","url":"","logo":{"@type":"ImageObject","url":"","width":"32","height":"32"}},"image":"","url":"\/2019\/09\/17\/20190917-go-channel\/","wordCount":"724","genre":["go"],"keywords":["go"]}</script></head><body><a class=skip-link href=#main>Skip to main</a><main id=main><div class=content><header><p style=padding:0;margin:0><a href=/><b>Listed</b></a></p><ul style=padding:0;margin:0><li><a href=/projects>Projects</a></li><li><a href=/about>About</a></li></ul></header><hr class=hr-list style=padding:0;margin:0><h2 class=post>Go Channel</h2><h2 id=如何使用>如何使用 <a href=#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8 class="hash g">#</a></h2><ul><li>channel在&lt;-左边 表示向channel发送数据</li><li>channel在&lt;-右边 表示从channel接收数据</li><li>close(channelName) 关闭一个channel</li></ul><pre><code class=language-go>channel := make(chan string, 2)
+
+//发送数据: 写
+channel &lt;- &quot;struct&quot;
+//接收数据: 读
+data := &lt;-channel
+fmt.Println(data)
+close(channel)
+</code></pre><h2 id=channel的关闭>Channel的关闭 <a href=#channel%e7%9a%84%e5%85%b3%e9%97%ad class="hash g">#</a></h2><ul><li>关闭一个未初始化(nil) 的 channel 会产生 panic</li><li>重复关闭同一个 channel 会产生 panic</li><li>向一个已关闭的 channel 中发送消息会产生 panic</li><li>从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值</li></ul><pre><code class=language-go>func SendMessage(channel chan string) {
+	go func(channel chan string) {
+		channel &lt;- &quot;hello&quot;
+		close(channel)
+		fmt.Println(&quot;channel is closed.&quot;)
+	}(channel)
+}
+
+func channalFunc2() {
+	channel := make(chan string, 5)
+	go SendMessage(channel)
+
+	for {
+		time.Sleep(time.Second)
+		chStr, ok := &lt;-channel
+		if !ok {
+			fmt.Println(&quot;channel is close!!!!!!.&quot;)
+			break
+		} else {
+			fmt.Printf(&quot;receive %s\n&quot;, chStr)
+		}
+	}
+}
+</code></pre><h2 id=缓冲区>缓冲区 <a href=#%e7%bc%93%e5%86%b2%e5%8c%ba class="hash g">#</a></h2><ul><li>make创建通道时,指定通道的大小时,称为有缓冲通道,反之无缓冲区</li><li>无缓冲区或者缓冲区用完,写入一次,就要等待对方读取一次,否则无法继续写入阻塞住,同理读取不出来也会阻塞住</li></ul><pre><code class=language-go>ch := make(chan int, 2)
+
+ch &lt;- 1
+ch &lt;- 2
+// ch &lt;- 3 //阻塞
+a := &lt;- ch
+fmt.Println(a)
+</code></pre><ul><li>可以用len函数查看channel的已用大小, 用cap查看channel的缓存大小</li></ul><pre><code class=language-go>ch := make(chan int, 2)
+ch &lt;- 1
+fmt.Println(len(ch)) //1
+fmt.Println(cap(ch)) //2
+</code></pre><h2 id=单向通道>单向通道 <a href=#%e5%8d%95%e5%90%91%e9%80%9a%e9%81%93 class="hash g">#</a></h2><ul><li>为了限制channel滥用,禁止其进行读取或者写入操作,让函数具有更高的单一原则,封装性</li></ul><pre><code class=language-go>func counter(out chan&lt;- int) {
+	for x := 0; x &lt; 10; x++ {
+		out &lt;- x
+	}
+	close(out)
+}
+
+func squarer(out chan&lt;- int, in &lt;-chan int) {
+	for v := range in {
+		out &lt;- v
+	}
+	close(out)
+}
+
+func printer(in &lt;-chan int) {
+	for v := range in {
+		fmt.Println(v)
+	}
+}
+
+func channalFunc3() {
+	naturals := make(chan int)
+	squares := make(chan int)
+	//将读写函数分离
+
+	//写 chan&lt;- , 读 &lt;-chan
+	go counter(naturals)          //写入
+	go squarer(squares, naturals) //将刚才写入的变成只读的,传参进去, 中间转换层
+	printer(squares)              //只读
+}
+</code></pre><h2 id=作用>作用 <a href=#%e4%bd%9c%e7%94%a8 class="hash g">#</a></h2><ul><li>同步: 依靠阻塞的特性 做多个goroutine之间的锁</li></ul><pre><code class=language-go>var (
+	sema  = make(chan struct{}, 1)
+	rece2 = 0
+)
+
+func raceFunc2() int {
+	sema &lt;- struct{}{}
+	rece2++
+	v := rece2
+	&lt;-sema
+	return v
+}
+
+go raceFunc2()
+go raceFunc2()
+</code></pre><ul><li>定时器</li></ul><pre><code class=language-go>fmt.Println(time.Now())
+timer := time.NewTimer(time.Second * 2)
+&lt;-timer.C
+
+fmt.Println(time.Now())
+//输出: 差两秒
+// 2019-06-24 16:03:34.011947 +0800 CST m=+0.000201381
+// 2019-06-24 16:03:36.015244 +0800 CST m=+2.003571991
+    //延迟执行
+time.AfterFunc(time.Second*2, func() {
+	fmt.Println(time.Now())
+})
+	//定时器，每隔1秒执行
+ticker := time.NewTicker(time.Second)
+	go func() {
+	for tick := range ticker.C {
+		fmt.Println(&quot;tick at&quot;, tick)
+	}
+}()
+    
+</code></pre><ul><li>通信: Channel是goroutine之间通信的通道,用于goroutine之间发消息和接收消息</li></ul><pre><code class=language-go>type Cake struct{ state string }
+
+func baker(cooked chan&lt;- *Cake) {
+	for {
+		cake := new(Cake)
+		cake.state = &quot;cooked&quot;
+		cooked &lt;- cake // baker never touches this cake again
+	}
+}
+
+func icer(iced chan&lt;- *Cake, cooked &lt;-chan *Cake) {
+	for cake := range cooked {
+		cake.state = &quot;iced&quot;
+		iced &lt;- cake // icer never touches this cake again
+	}
+}
+</code></pre><ul><li>Select多路复用(I/O多路复用，I/O就是指的我们网络I/O,多路指多个TCP连接(或多个Channel)，复用指复用一个或少量线程。串起来理解就是很多个网络I/O复用一个或少量的线程来处理这些连接)<ul><li>对channel的read, write,close, 超时事件等进行监听,</li><li>同时触发事件会随机执行一个</li><li>阻塞在多个channel上，对多个channel的读/写事件进行监控</li></ul></li></ul><pre><code class=language-go>func doWork(ch chan int) {
+	for {
+		select {
+		case &lt;-ch:
+			fmt.Println(&quot;receive A &quot;)
+		case &lt;-ch2:
+			fmt.Println(&quot;receive B &quot;)
+		case &lt;-time.After(2 * time.Second):
+			fmt.Println(&quot;ss&quot;)
+		default:
+		    fmt.Println(&quot;11111&quot;)
+		}
+	}
+}
+func channalFunc5() {
+	var ch chan int = make(chan int)
+	go doWork(ch)
+	for i := 0; i &lt; 5; i++ {
+		ch &lt;- 1
+		time.Sleep(time.Second * 1)
+		ch2 &lt;- 2
+	}
+
+	for {
+
+	}
+}
+</code></pre><h2 id=内部细节>内部细节 <a href=#%e5%86%85%e9%83%a8%e7%bb%86%e8%8a%82 class="hash g">#</a></h2><h3 id=数据结构>数据结构 <a href=#%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84 class="hash g">#</a></h3><pre><code class=language-go>type hchan struct {
+	qcount   uint           // 当前队列中剩余元素个数
+	dataqsiz uint           // 环形队列长度，即可以存放的元素个数
+	buf      unsafe.Pointer // 环形队列指针
+	elemsize uint16         // 每个元素的大小
+	closed   uint32	        // 标识关闭状态
+	elemtype *_type         // 元素类型
+	sendx    uint           // 队列下标，指示元素写入时存放到队列中的位置
+	recvx    uint           // 队列下标，指示元素从队列的该位置读出
+	recvq    waitq          // 等待读消息的goroutine队列
+	sendq    waitq          // 等待写消息的goroutine队列
+	lock mutex              // 互斥锁，chan不允许并发读写
+}
+
+type waitq sudog{//对G的封装
+    
+}
+</code></pre><ul><li>channel 的主要组成有：<ul><li>一个环形数组实现的循环队列, 用于存储消息元素</li><li>recvq和sendq两个链表实现的 goroutine 等待队列, 用于存储阻塞在 recv 和 send 操作上的 goroutine</li><li>一个互斥锁，用于各个属性变动的同步</li></ul></li></ul><h3 id=主要函数功能>主要函数功能 <a href=#%e4%b8%bb%e8%a6%81%e5%87%bd%e6%95%b0%e5%8a%9f%e8%83%bd class="hash g">#</a></h3><ul><li>makechan: 开辟一快连续内存区域存储消息元素</li></ul><pre><code class=language-go>//伪代码
+func makechan(t *chantype, size int) *hchan {
+	var c *hchan
+	c = new(hchan)
+	c.buf = malloc(元素类型大小*size)
+	c.elemsize = 元素类型大小
+	c.elemtype = 元素类型
+	c.dataqsiz = size
+	return c
+}
+</code></pre><ul><li>send chan&lt;-<ul><li>如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时直接从recvq取出G,并把数据写入，最后把该G唤醒</li><li>如果缓冲区中有空余位置，将数据写入缓冲区</li><li>如果缓冲区中没有空余位置，将待发送数据写入G，将当前G加入sendq，进入睡眠，等待被读goroutine唤醒；</li></ul></li></ul><pre><code class=language-go>func chansend(msg){
+	if close !=0 {
+		panic(&quot;close&quot;)
+		return
+	}
+	//1.如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时
+	//直接从recvq取出G,并把数据写入，最后把该G唤醒，结束发送过程
+	if sg := recvq.dequeue(); sg != nil{
+		sg.send(msg) //给此goroutine发消息
+		sg.ready()  //唤醒
+		return
+	}
+	//2. 跳过2说明无接收方, 如果有缓冲区且不满的话则写入到缓冲区
+	if qcount &lt; dataqsiz {
+		buf.enqueue(msg)
+		qcount++
+		return
+	}
+	//3. 没空余位置或者没缓冲区, 将待发送数据写入到当前调用的G, 并加入sendq链表,进入休眠,等待被读方唤醒
+	sg := get_current_g()
+	sg.msg = msg
+	sg.g.sleep = true
+	sendq.enqueue(sg)
+}
+</code></pre><ul><li>recv &lt;-chan<ul><li>sendq不为空 获取链表的头一个first_g<ul><li>缓存无数据,将first_g消息复制给当前请求的g,并激活first_g</li><li>缓存有数据, 缓存队列 出列消息给当前请求的g,并将first_g数据加入缓存队列,first_g激活</li></ul></li><li>缓存队列有数据将数据出队 复制给当前请求的g</li><li>缓存队列无数据将调用此chan的当前g加入recvq链表并设置休眠</li></ul></li></ul><pre><code class=language-go>func chanrecv(){
+	if sg:= sendq.dequeue(); sg != nil{
+		if buff &lt;= 0 {
+			msg := sg.msg
+			g := get_current_g()
+			g.send(msg)
+			sg.sleep = false
+			
+		} else {
+			msg := buff.dequeue()
+			g := get_current_g()
+			g.send(msg)
+			buff.enqueue(sg.msg)
+			sg.sleep = false
+		}
+		
+		return true
+	}
+    
+	if qcount &gt; 0 {
+		msg := buff.dequeue()
+		qcount--
+		g := get_current_g()
+		g.send(msg)
+		return true
+	}
+	
+	sg := get_current_g()
+	sg.msg = msg
+	sg.g.sleep = true
+	recvq.enqueue(sg)
+}
+</code></pre><ul><li>close: 设置关闭符号为1,唤醒recvq和sendq的g</li></ul><pre><code class=language-go>func close(){
+	if chan == nil {
+		panic(&quot;close of nil channel&quot;)
+		return
+	}
+	if close !=0 {
+		panic(&quot;close of closed channel&quot;)
+		return
+	}
+	close = 1
+	for sg:=recvq.dequeue();sg!=nil{
+		sg.sleep = false
+	}
+	for sg:=sendq.dequeue();sg!=nil{
+		sg.sleep = false
+	}
+}
+</code></pre><h2 id=参考>参考 <a href=#%e5%8f%82%e8%80%83 class="hash g">#</a></h2><p><a href=https://books.studygolang.com/gopl-zh/>go语言圣经</a></p><p><a href=https://my.oschina.net/renhc/blog/2246871>恋恋美食 blog</a></p><p><a href=https://draveness.me/>draveness blog</a></p></div></main></body></html>

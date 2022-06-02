@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210105-tcpudp\/"
-        },"genre": "posts","keywords": "网络","wordcount":  11413 ,
+        },"genre": "posts","keywords": "网络","wordcount":  11424 ,
         "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210105-tcpudp\/","datePublished": "2021-01-05T00:00:00+00:00","dateModified": "2021-01-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "zJxin"},"author": {
@@ -101,7 +101,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">计算机网络-传输层</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-05">2021-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11413 字&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-05">2021-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11424 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -201,7 +201,7 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 <li>每一个套接字要有唯一的标识，否则传输层无法分辨该将数据给谁</li>
 <li>每个报文段要有特殊的字段来标识，要交付给哪个套接字（也就是端口 port）</li>
 </ol>
-<pre><code>|-----------------|
+<pre tabindex="0"><code>|-----------------|
 | 源端口 | 目的端口 |
 |-----------------|
 |   其他首部字段    |
@@ -210,73 +210,72 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 |-----------------|
 </code></pre><h3 id="udp的多路复用的多路复用分解">udp的多路复用的多路复用/分解</h3>
 <p>一个udp套接字使用一个二元组来全面标识，该二元组包含：一个目的IP地址和一个目的端口号。这也是为什么多个客户端连会接到同一个服务进程的同一个套接字</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//udp server
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">ListenUDP</span><span class="p">(</span><span class="s">&#34;udp&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">net</span><span class="p">.</span><span class="nx">UDPAddr</span><span class="p">{</span>
-		<span class="nx">IP</span><span class="p">:</span>   <span class="nx">net</span><span class="p">.</span><span class="nf">IPv4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-		<span class="nx">Port</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
-	<span class="p">})</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;listen failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-		<span class="k">return</span>
-	<span class="p">}</span>
-
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen udp Start...:&#34;</span><span class="p">)</span>
-
-	<span class="k">for</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">data</span> <span class="p">[</span><span class="mi">1024</span><span class="p">]</span><span class="kt">byte</span>
-		<span class="c1">//读取UDP数据
-</span><span class="c1"></span>		<span class="nx">count</span><span class="p">,</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">ReadFromUDP</span><span class="p">(</span><span class="nx">data</span><span class="p">[:])</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;read udp failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-			<span class="k">continue</span>
-		<span class="p">}</span>
-
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;data:%s addr:%v count:%d\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">count</span><span class="p">]),</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span>
-		<span class="c1">//返回数据
-</span><span class="c1"></span>		<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">WriteToUDP</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;hello client&#34;</span><span class="p">),</span> <span class="nx">addr</span><span class="p">)</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;write udp failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-			<span class="k">continue</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div><h3 id="tcp的多路复用的多路复用分解">tcp的多路复用的多路复用/分解</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//udp server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">ListenUDP</span><span class="p">(</span><span class="s">&#34;udp&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">net</span><span class="p">.</span><span class="nx">UDPAddr</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">IP</span><span class="p">:</span>   <span class="nx">net</span><span class="p">.</span><span class="nf">IPv4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Port</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;listen failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen udp Start...:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">var</span> <span class="nx">data</span> <span class="p">[</span><span class="mi">1024</span><span class="p">]</span><span class="kt">byte</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//读取UDP数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">count</span><span class="p">,</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">ReadFromUDP</span><span class="p">(</span><span class="nx">data</span><span class="p">[:])</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;read udp failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">continue</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;data:%s addr:%v count:%d\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">count</span><span class="p">]),</span> <span class="nx">addr</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//返回数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">WriteToUDP</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;hello client&#34;</span><span class="p">),</span> <span class="nx">addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;write udp failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">continue</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="tcp的多路复用的多路复用分解">tcp的多路复用的多路复用/分解</h3>
 <p>一个tcp套接字使用一个四元组来全面标识，该四元组包含：一个目的IP地址和一个目的端口，一个源地址和一个源端口。所以每一个客户端连接都会维护一个套接字，一个tcp服务会维护多个套接字管理多个客户端连接</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">一个tcp</span> <span class="nx">server</span>
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;0.0.0.0:8888&#34;</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen failed, err:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-		<span class="k">return</span>
-	<span class="p">}</span>
-
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen  tcp Start...:&#34;</span><span class="p">)</span>
-
-	<span class="k">for</span> <span class="p">{</span>
-		<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;accept failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-			<span class="k">continue</span>
-		<span class="p">}</span>
-		<span class="k">go</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-	<span class="k">for</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">buf</span> <span class="p">[</span><span class="mi">128</span><span class="p">]</span><span class="kt">byte</span>
-		<span class="nx">n</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:])</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;read from conn failed, err:%v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-			<span class="k">break</span>
-		<span class="p">}</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;recv from client, content:%v\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">n</span><span class="p">]))</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="udp">udp</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">一个tcp</span> <span class="nx">server</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;0.0.0.0:8888&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen failed, err:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;listen  tcp Start...:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">listen</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;accept failed, err:%v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">continue</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">process</span><span class="p">(</span><span class="nx">conn</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">var</span> <span class="nx">buf</span> <span class="p">[</span><span class="mi">128</span><span class="p">]</span><span class="kt">byte</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">n</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:])</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;read from conn failed, err:%v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;recv from client, content:%v\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">n</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="udp">udp</h2>
 <p>udp其实就是做了<code>多路复用/多路分解</code>，<code>差错检查</code>。除此之外没任何额外功能，和网络层唯一区别就是这点功能。由<a href="../../../img/2021/https://tools.ietf.org/html/rfc768" rel="">RFC 768</a>定义的UDP只做传输层能够做的最少工作。</p>
 <p>udp将数据附加上多路复用/分解服务的源和目的端口字段，以及其他两个小字段后，将报文段交给网络层。网络层将报文段封装到一个IP数据报中，然后尽力而为交给目的主机，到达后udp进行多路分解交付给指定的进程，在发送数据前并没有与接收方进行握手确认。所以udp被称为 <code>无连接的</code></p>
 <h3 id="udp优点">udp优点</h3>
@@ -288,7 +287,7 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 </ul>
 <h3 id="udp报文段">udp报文段</h3>
 <p>首部四个字段，都是2字节，一共8字节</p>
-<pre><code>+--------+--------+--------+--------+
+<pre tabindex="0"><code>+--------+--------+--------+--------+
 |     Source      |   Destination   |
 |      Port       |      Port       |
 +--------+--------+--------+--------+
@@ -307,7 +306,7 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 <h3 id="udp校验和计算">udp校验和计算</h3>
 <p>校验和提供了差错检测功能。也就是说，报文段从源到达目的地的过程中，判断比特是否发生了改变（链路中的噪声干扰或者路由器的问题）。发送方的udp对报文段中的所有16比特字的和进行反码运算，求和时遇到溢出都会被回卷。得到的结果放到校验和字段<code>checksum</code></p>
 <p>举例：</p>
-<pre><code>字段            十进制             二进制
+<pre tabindex="0"><code>字段            十进制             二进制
 源端口            63549          1111100000111101  
 目的端口          12345           11000000111001
 数据长度            17              10001
@@ -333,7 +332,7 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 <h3 id="经完全可靠信道的可靠数据传输-rdt10">经完全可靠信道的可靠数据传输 rdt1.0</h3>
 <p><strong>假设传输保证可靠，不丢包，不出差错，发送与接收端的收发效率也完全一致的时候模型</strong></p>
 <h4 id="伪代码">伪代码</h4>
-<pre><code>发送端：
+<pre tabindex="0"><code>发送端：
 
 loop:
 	data = rcv_app()
@@ -348,8 +347,8 @@ loop:
 	to_app(data)
 </code></pre><p>完全不必加入额外的任何操作</p>
 <h3 id="能处理比特差错信道的可靠传输-rdt20">能处理比特差错信道的可靠传输 rdt2.0</h3>
-<p><strong>假设数据不会丢失</strong>，在发送数据的整条链路中，比特可能受损，在和别人打电话的时候，如果听到了对方完整的话，会说一句’ok'，来证明自己听到了全部内容，且听懂了。
-这个‘ok' 使用了 <code>肯定确认（positive acknowledgment）</code> 与<code>否定确认（negative acknowledgment）</code> (没听到说一句’请你再说一遍‘)。
+<p><strong>假设数据不会丢失</strong>，在发送数据的整条链路中，比特可能受损，在和别人打电话的时候，如果听到了对方完整的话，会说一句’ok&rsquo;，来证明自己听到了全部内容，且听懂了。
+这个‘ok&rsquo; 使用了 <code>肯定确认（positive acknowledgment）</code> 与<code>否定确认（negative acknowledgment）</code> (没听到说一句’请你再说一遍‘)。
 当对方收到 肯定确认就开始说下一句了， 但当收到否定确认，就要重新说一遍刚才说的话。
 基于上面的重传机制的可靠传输协议称之为 <code>自动重传请求（AutomaticRepeat reQuest, ARQ）</code>协议，此协议需要另外三种协议来处理存在的比特差错情况：</p>
 <ol>
@@ -358,7 +357,7 @@ loop:
 <li>重传：接收方收到有差错的分组时，重传刚才的报文段</li>
 </ol>
 <h4 id="伪代码-1">伪代码</h4>
-<pre><code>发送端：
+<pre tabindex="0"><code>发送端：
 loop:
 	data = rcv_app()
 	*pkg = make_pkt(data, checksum) //添加首部
@@ -385,7 +384,7 @@ loop:
 <h3 id="能处理比特差错信道的可靠传输-rdt21">能处理比特差错信道的可靠传输 rdt2.1</h3>
 <p>在2.0的基础上，添加一个序号字段，用于区分发送方的数据是新的还是重发的。</p>
 <h4 id="伪代码-2">伪代码</h4>
-<pre><code>发送端：
+<pre tabindex="0"><code>发送端：
 *seq = 0
 loop:
 	data = rcv_app()
@@ -423,7 +422,7 @@ loop:
 <li>终止定时器</li>
 </ul>
 <h4 id="伪代码-3">伪代码</h4>
-<pre><code>发送端：
+<pre tabindex="0"><code>发送端：
 seq = 0
 loop:
 	data = rcv_app()
@@ -462,7 +461,7 @@ base：第一个未确认的分组
 nextseqnum：最小的未使用的序号（也就是待发送的序号）
 N：窗口长度，所以gbn也称为  <code>滑动窗口协议(sliding-window protocol)</code></p>
 <h5 id="伪代码-4">伪代码</h5>
-<pre><code>发送：
+<pre tabindex="0"><code>发送：
 //当小于窗口总长度才进行发送
 if(nextseqnum&lt; base+N){
     //压缩
@@ -499,7 +498,6 @@ if(rdt_rcv(pkt) &amp;&amp; notcorrupt(pkt)){
 }else{//有错误
     重新发送所有窗口内未确认的分段
 }
-
 </code></pre><p>这个发送方缓存了窗口大小N的序号，接收方没做任何处理，只有在有序和无差错的情况下才回复ask，否则直接丢弃。
 好处是接收方非常简单，缺点是 第一个分段的异常，会导致后面全部分段重新发送
 <img
@@ -703,8 +701,8 @@ DevRTT= (1 -b)<em>DevRTT+b</em> abs(EstimatedRTT - SampleRTT)</p>
 <p>TCP 在刚建立连接完成后，首先是有个慢启动的过程，这个慢启动的意思就是一点一点的提高发送数据包的数量，如果一上来就发大量的数据，这不是给网络添堵吗？
 <code>当发送方每收到一个 ACK，拥塞窗口 cwnd 的大小就会加 1</code></p>
 <p>假设当前发送方拥塞窗口cwnd的值为1，而发送窗口swnd等于拥塞窗口cwnd，因此发送方当前只能发送一个数据报文段（拥塞窗口cwnd的值是几，就能发送几个数据报文段），接收方收到该数据报文段后，给发送方回复一个确认报文段，发送方收到该确认报文后，将拥塞窗口的值变为2，</p>
-<pre><code>发送方此时可以连续发送两个数据报文段，接收方收到该数据报文段后，给发送方一次发回2个确认报文段，发送方收到这两个确认报文后，将拥塞窗口的值加2变为4，发送方此时可连续发送4个报文段，接收方收到4个报文段后，给发送方依次回复4个确认报文，发送方收到确认报文后，将拥塞窗口加4，置为8，发送方此时可以连续发送8个数据报文段，接收方收到该8个数据报文段后，给发送方一次发回8个确认报文段，发送方收到这8个确认报文后，将拥塞窗口的值加8变为16，
-</code></pre><p>当前的拥塞窗口cwnd的值已经等于慢开始门限值，之后改用拥塞避免算法。</p>
+<p><code>发送方此时可以连续发送两个数据报文段，接收方收到该数据报文段后，给发送方一次发回2个确认报文段，发送方收到这两个确认报文后，将拥塞窗口的值加2变为4，发送方此时可连续发送4个报文段，接收方收到4个报文段后，给发送方依次回复4个确认报文，发送方收到确认报文后，将拥塞窗口加4，置为8，发送方此时可以连续发送8个数据报文段，接收方收到该8个数据报文段后，给发送方一次发回8个确认报文段，发送方收到这8个确认报文后，将拥塞窗口的值加8变为16</code></p>
+<p>当前的拥塞窗口cwnd的值已经等于慢开始门限值，之后改用拥塞避免算法。</p>
 <h4 id="拥塞避免">拥塞避免</h4>
 <p>也就是每个传输轮次，拥塞窗口cwnd只能线性加一，而不是像慢开始算法时，每个传输轮次，拥塞窗口cwnd按指数增长。同理，16+1……直至到达24，假设24个报文段在传输过程中丢失4个，接收方只收到20个报文段，给发送方依次回复20个确认报文段，一段时间后，丢失的4个报文段的重传计时器超时了，发送发判断可能出现拥塞，更改cwnd和ssthresh.并重新开始慢开始算法</p>
 <p>就这么一直增长着后，网络就会慢慢进入了拥塞的状况了，于是就会出现丢包现象，这时就需要对丢失的数据包进行重传。
@@ -770,7 +768,7 @@ MTU最大传输单元，这个最大传输单元实际上和链路层协议有�
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0-DEV">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>软件设计随想 - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="软件设计随想" />
+<meta property="og:description" content="在我看来软件设计主要做两件事一个是划分边界另一个是做权衡。 划分边界往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/posts/2021/20211107-design/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-07T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="软件设计随想"/>
+<meta name="twitter:description" content="在我看来软件设计主要做两件事一个是划分边界另一个是做权衡。 划分边界往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20211107-design/" /><link rel="prev" href="https://heisenbergv.github.io/posts/read/20210909/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "软件设计随想",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20211107-design\/"
+        },"genre": "posts","keywords": "设计","wordcount":  2531 ,
+        "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20211107-design\/","datePublished": "2021-11-07T00:00:00+00:00","dateModified": "2021-11-07T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "zJxin"},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">软件设计随想</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-07">2021-11-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2531 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是软件架构">什么是软件架构</a></li>
+    <li><a href="#软件架构的目标">软件架构的目标</a></li>
+    <li><a href="#编程范式">编程范式</a>
+      <ul>
+        <li><a href="#结构化编程">结构化编程</a></li>
+        <li><a href="#面向对象编程">面向对象编程</a></li>
+        <li><a href="#函数式编程">函数式编程</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于设计原则">关于设计原则</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在我看来软件设计主要做两件事一个是<code>划分边界</code>另一个是做<code>权衡</code>。</p>
+<p><code>划分边界</code>往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个服务，有了边界还要考虑它们之间的依赖关系。<code>权衡</code>也有多种情况：比如功能实现上的优先级、扩展性的度、更细节点就是算法的时间与空间的抉择；还有限制上的平衡，比如一个函数的参数是个更宽泛的接口（基类）还是针对性的具体类型。</p>
+<h2 id="什么是软件架构">什么是软件架构</h2>
+<blockquote>
+<p>从开发者的角度来看，尽管他们英勇，加班和奉献，但他们根本没有得到任何东西了。 他们所有的努力都被从开发功能特性中转移出来，现在被用来管理混乱。 他们的工作已经改变了，从一个地方转移到另一个地方，下一个和另一个地方，这样下去他们就只能增加小小的功能特征了。&mdash; 《架构整洁之道》</p>
+</blockquote>
+<p>创建一个能运行的程序是相对简单的，但让程序持续的运行，并且对不断变化的需求做出反应就复杂的多。如果<code>算法+数据结构=程序</code>的话，那么<code>底层设计+高层架构=软件系统</code>。
+而一个软件系统是由多个功能组合而成，那么组合的方式就是所谓的<code>架构</code>，功能的设计与组合方式是互相影响的， 所以设计与架构无需刻意区分。</p>
+<h2 id="软件架构的目标">软件架构的目标</h2>
+<blockquote>
+<p>最小成本构建业务需求 &ndash;《架构整洁之道》</p>
+</blockquote>
+<p>架构的设计就是为了实现业务需求，这是最最基本的，否则软件毫无用处。而业务是会随着用户或者市场需求不断变化的，所以我们的架构要适应变化也是非常重要的。适应也就意味着用更小代价来构建新需求。所以这是软件架构的核心目标。</p>
+<p>我们在架构设计中还要考虑需求的实现与适应变化（可扩展性）之间的<code>权衡</code>，比如从开发角度改动影响大的应该优先开发，不影响其他逻辑的可以延后；从产品角度有急需上线的也有不太着急的功能。设计者还需要考虑一个<code>度</code>的问题，当前产品100个用户，就不应该考虑1w个用户的场景，但可以稍微考虑1000个用户的情况，那么这个<code>度</code>可能受开发进度的影响，或者市场变化的影响。</p>
+<h2 id="编程范式">编程范式</h2>
+<p>知道了架构目标，那么实现目标的方法是怎样的呢？那就是<code>编程范式</code>，常见的编程范式主要是三种：</p>
+<table>
+<thead>
+<tr>
+<th>范式</th>
+<th>作用</th>
+<th>限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结构化编程</td>
+<td>将模块递归降解拆分为可推导的单元，更方便进行测试进行证伪，限制了goto</td>
+<td>对程序控制权直接转移进行了限制和规范</td>
+</tr>
+<tr>
+<td>面向对象编程</td>
+<td>利用核心的多态性对依赖关系进行反转（策略与实现的分离）</td>
+<td>对程序控制权的间接转义进行了限制和规范</td>
+</tr>
+<tr>
+<td>函数式编程</td>
+<td>对可变性进行了隔离</td>
+<td>对程序中的赋值进行了限制和规范</td>
+</tr>
+</tbody>
+</table>
+<h3 id="结构化编程">结构化编程</h3>
+<p>代码实现后还需要验证它的准确性，防止bug产生，而软件测试是复杂的。Dijkstra 提出的解决方案是采用数学推导方法：程序员可以用代码将一些己证明可用的结构串联起来，只要自行证明这些额外代码是正确的，就可以推导出整个程序的正确性。</p>
+<p>在整个证伪过程中: goto 语句的某些用法会导致某个模块无法被递归拆分成更小的、可证明的单元，这会导致无法采用分解法来将大型问题进一步拆分成更小的、可证明的部分。另外goto完全可以由其他语句替代（while、if/else）：</p>
+<blockquote>
+<p>Bohm 和 Jocopini 证明了人们可以用顺序结构、分支结构、循环结构这三种结构构造出任何程序。这个发现非常重要: 因为它证明了我们构建可推导模块所需要的控制结构集与构建所有程序所需的控制结构集的最小集是等同的。 这样一来，结构化编程就诞生了</p>
+<blockquote>
+<p>Dijkstra: 测试只能展示bug存在，不能证明不存在bug</p>
+</blockquote>
+</blockquote>
+<p>计算机程序的准确性是无法证明的，只能证伪。因此我们只能在尽可能多的情况下确保程序是没有bug的，但无法证明程序在任何条件任何情况下都是完美的。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>总结<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">结构化编程限制了goto，将模块拆解为可推导的单元，更容易进行测试</div>
+        </div>
+    </div>
+<h3 id="面向对象编程">面向对象编程</h3>
+<p>首先明确一点就是这些编程范式都是设计并非技术，所以任何语言都可以达到范式的效果。面向对象所谓的封装继承多态，即便非面向对象语言也可以支持。</p>
+<p>比如多态性:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">file:
+</span></span></span><span class="line"><span class="cl"><span class="cm">int getchar(){
+</span></span></span><span class="line"><span class="cl"><span class="cm">    return FILE-&gt;read();
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">网络io:
+</span></span></span><span class="line"><span class="cl"><span class="cm">int getchar(){
+</span></span></span><span class="line"><span class="cl"><span class="cm">    return SOCKET-&gt;read();
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">copy</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">putchar</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这是c语言一个copy功能，只要具体设备实现了getchar接口，无论我们写文件或者网络io都可以用此功能。这就是多态性，调用者不用改动任何写入代码，即可支持多种设备。</p>
+<p>这是函数指针的一种应用，而函数指针具有危险性（只有在具体调用的时候才能确定是否实现了接口），只能依靠人为遵守约定。</p>
+<p>面向对象的作用就是对封装继承的显示支持，并且让多态可以更安全的使用（语言层面定义函数指针的规范）。依靠多态性可以更简单安全的实现依赖反转。</p>
+<p>什么是依赖反转？<strong>高层模块不要依赖低层模块，高层模块和低层模块应该通过抽象来互相依赖</strong>，举个例子:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Animal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;do nothing&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Cat</span> <span class="kd">extends</span> <span class="n">Animal</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl"> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;meow&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">extends</span> <span class="n">Animal</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl"> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">say</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;woof&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Mammal</span><span class="o">&gt;</span> <span class="n">mammals</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mammals</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Dog</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mammals</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Cat</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Mammal</span> <span class="n">mammal</span> <span class="o">:</span> <span class="n">mammals</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mammal</span><span class="o">.</span><span class="na">say</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">主函数的流程</span><span class="err">（</span><span class="n">高层模块</span><span class="err">）</span><span class="n">与具体实现的Dog</span><span class="err">、</span><span class="n">Cat类</span><span class="err">（</span><span class="n">底层模块</span><span class="err">）</span><span class="n">不再依赖</span><span class="err">。</span><span class="n">中间通过Animal</span><span class="err">（</span><span class="n">抽象层</span> <span class="n">可以是接口</span><span class="err">、</span><span class="n">基类</span><span class="err">、</span><span class="n">抽象类等</span><span class="err">）</span><span class="n">解耦</span><span class="err">。</span><span class="n">高层模块不再依赖具体的实现</span><span class="err">，</span><span class="n">而是反过来了</span><span class="err">，</span><span class="n">底层实现依赖上层提供的接口</span><span class="err">，</span><span class="n">在面向对象编程中</span><span class="err">，</span><span class="n">得到了更加简单安全的实现</span><span class="err">。</span>
+</span></span></code></pre></div><p>非依赖注入
+<div class="mermaid" id="id-1"></div>
+符合依赖注入
+<div class="mermaid" id="id-2"></div></p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>总结<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">面向对象让高层策略性组件与底层实现性组件分离，让插件式的架构流行起来，还让高层组件可以独立与底层实现部署。</div>
+        </div>
+    </div>
+<h3 id="函数式编程">函数式编程</h3>
+<p>函数即不依赖外部的状态也不修改外部的状态，函数调用的结果不依赖调用的时间和位置，这样写的代码容易进行推理，不容易出错，这使得单元测试和调试都更容易。
+另外不修改外部状态在多线程下更加简单，不用考虑锁、脏数据问题。</p>
+<h3 id="总结">总结</h3>
+<p>每个范式提出了新的限制，约束了编写方式，并没有增加新的能力。<strong>告诉我们不该做什么，而不是告诉我们该做什么</strong>。结构化编程限制了流程，拆解了模块，方便测试证伪；面向对象限制了依赖关系，高层不再依赖具体实现，这种解耦带来了众多好处；函数式编程限制了赋值，解决线程带来的问题。我们一般的应用开发，这几种范式都可能会用到。</p>
+<h2 id="关于设计原则">关于设计原则</h2>
+<p>设计原则的目的: 让设计更容易改动和复用，既然容易改动和复用也就意味着其他开发人员更容易理解。</p>
+<p>如果说编程范式约束规范了我们的整套代码，那设计原则是对模块与模块之间关系的规范，我们常说的设计原则主要指的是SOLID原则，也就是:</p>
+<ul>
+<li>单一职责</li>
+<li>开闭原则</li>
+<li>里氏替换原则</li>
+<li>接口隔离原则</li>
+<li>依赖反转原则</li>
+</ul>
+<p>这几种原则其实是殊途同归，我开头说<code>划分边界</code>，模块之间划分了边界，那么设计原则就是规定了不同边界下的模块之间的依赖关系。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AE%BE%E8%AE%A1/">设计</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/read/20210909/" class="prev" rel="prev" title="共产党宣言"><i class="fas fa-angle-left fa-fw"></i>共产党宣言</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0-DEV">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{},"data":{"id-1":"graph LR;\n    A[上层] --\u003e B[下层]","id-2":"graph LR;\n    A[上层] --\u003eB{抽象层}\n    C[底层] --\u003eB"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

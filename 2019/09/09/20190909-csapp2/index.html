@@ -1,0 +1,165 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Liste - "><title>读CSAPP(2) - 程序性能优化 | Liste</title><meta name=description content="Minimalistic Hugo blogging theme"><meta property="og:title" content="读CSAPP(2) - 程序性能优化"><meta property="og:description" content="高效的程序需要做到 # 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理 本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。
+编译器的优化限制 # 内存别名的使用 # void twiddle1(long *xp, long *yp) { *xp += *yp; *xp += *yp; } void twiddle2(long *xp, long *yp) { *xp += 2* *yp; } 上面两个程序twiddle2（读xp，读yp，写xp）优于twiddl1（读2次xp，读2次yp，写2次xp）。 看起来编译器也许会将twiddle1优化成twiddle2的形式。但假设xp和yp是引用的同一个内存地址：&xp = &yp
+void twiddle1(long *xp, long *yp){ *xp += *xp; *xp += *xp; } void twiddle2(long *xp, long *yp){ *xp += 2* *xp; } 代码则可以写成上面这样，这时候两个函数的意义就不同了，twiddle1将xp增加了4倍，twiddle2将xp增加了3倍。 两个指针指向同一个内存地址，称之为：内存别名使用，编译器必须假设不同指针可能指向相同地址，限制了优化策略
+函数调用 # long f(); long func1(){ return f() + f() + f() + f() } long func2(){ return 4*f() } 看起来两个函数结果是相同的，但假设函数f内部为："><meta property="og:type" content="article"><meta property="og:url" content="/2019/09/09/20190909-csapp2/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-09-09T00:00:00+00:00"><meta property="article:modified_time" content="2019-09-09T00:00:00+00:00"><meta itemprop=name content="读CSAPP(2) - 程序性能优化"><meta itemprop=description content="高效的程序需要做到 # 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理 本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。
+编译器的优化限制 # 内存别名的使用 # void twiddle1(long *xp, long *yp) { *xp += *yp; *xp += *yp; } void twiddle2(long *xp, long *yp) { *xp += 2* *yp; } 上面两个程序twiddle2（读xp，读yp，写xp）优于twiddl1（读2次xp，读2次yp，写2次xp）。 看起来编译器也许会将twiddle1优化成twiddle2的形式。但假设xp和yp是引用的同一个内存地址：&xp = &yp
+void twiddle1(long *xp, long *yp){ *xp += *xp; *xp += *xp; } void twiddle2(long *xp, long *yp){ *xp += 2* *xp; } 代码则可以写成上面这样，这时候两个函数的意义就不同了，twiddle1将xp增加了4倍，twiddle2将xp增加了3倍。 两个指针指向同一个内存地址，称之为：内存别名使用，编译器必须假设不同指针可能指向相同地址，限制了优化策略
+函数调用 # long f(); long func1(){ return f() + f() + f() + f() } long func2(){ return 4*f() } 看起来两个函数结果是相同的，但假设函数f内部为："><meta itemprop=datePublished content="2019-09-09T00:00:00+00:00"><meta itemprop=dateModified content="2019-09-09T00:00:00+00:00"><meta itemprop=wordCount content="554"><meta itemprop=keywords content="操作系统,"><meta name=twitter:card content="summary"><meta name=twitter:title content="读CSAPP(2) - 程序性能优化"><meta name=twitter:description content="高效的程序需要做到 # 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理 本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。
+编译器的优化限制 # 内存别名的使用 # void twiddle1(long *xp, long *yp) { *xp += *yp; *xp += *yp; } void twiddle2(long *xp, long *yp) { *xp += 2* *yp; } 上面两个程序twiddle2（读xp，读yp，写xp）优于twiddl1（读2次xp，读2次yp，写2次xp）。 看起来编译器也许会将twiddle1优化成twiddle2的形式。但假设xp和yp是引用的同一个内存地址：&xp = &yp
+void twiddle1(long *xp, long *yp){ *xp += *xp; *xp += *xp; } void twiddle2(long *xp, long *yp){ *xp += 2* *xp; } 代码则可以写成上面这样，这时候两个函数的意义就不同了，twiddle1将xp增加了4倍，twiddle2将xp增加了3倍。 两个指针指向同一个内存地址，称之为：内存别名使用，编译器必须假设不同指针可能指向相同地址，限制了优化策略
+函数调用 # long f(); long func1(){ return f() + f() + f() + f() } long func2(){ return 4*f() } 看起来两个函数结果是相同的，但假设函数f内部为："><link rel=canonical href=/2019/09/09/20190909-csapp2/><meta name=monetization content="$twitter.xrptipbot.com/ronaldsvilcins"><link rel=dns-prefetch href=https://www.google-analytics.com><link href=https://www.google-analytics.com rel=preconnect crossorigin><link rel=alternate type=application/atom+xml title=Liste href=atom.xml><link rel=alternate type=application/json title=Liste href=feed.json><link rel="shortcut icon" type=image/png href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="><style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{padding:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}</style><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"读CSAPP(2) - 程序性能优化","headline":"读CSAPP(2) - 程序性能优化","alternativeHeadline":"","description":"高效的程序需要做到 # 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理 本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。\n编译器的优化限制 # 内存别名的使用 # void twiddle1(long *xp, long *yp) { *xp \u002b= *yp; *xp \u002b= *yp; } void twiddle2(long *xp, long *yp) { *xp \u002b= 2* *yp; } 上面两个程序twiddle2（读xp，读yp，写xp）优于twiddl1（读2次xp，读2次yp，写2次xp）。 看起来编译器也许会将twiddle1优化成twiddle2的形式。但假设xp和yp是引用的同一个内存地址：\u0026amp;xp = \u0026amp;yp\nvoid twiddle1(long *xp, long *yp){ *xp \u002b= *xp; *xp \u002b= *xp; } void twiddle2(long *xp, long *yp){ *xp \u002b= 2* *xp; } 代码则可以写成上面这样，这时候两个函数的意义就不同了，twiddle1将xp增加了4倍，twiddle2将xp增加了3倍。 两个指针指向同一个内存地址，称之为：内存别名使用，编译器必须假设不同指针可能指向相同地址，限制了优化策略\n函数调用 # long f(); long func1(){ return f() \u002b f() \u002b f() \u002b f() } long func2(){ return 4*f() } 看起来两个函数结果是相同的，但假设函数f内部为：","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"\/2019\/09\/09\/20190909-csapp2\/"},"author":{"@type":"Person","name":"Liste"},"creator":{"@type":"Person","name":"Liste"},"accountablePerson":{"@type":"Person","name":"Liste"},"copyrightHolder":"Liste","copyrightYear":"2019","dateCreated":"2019-09-09T00:00:00.00Z","datePublished":"2019-09-09T00:00:00.00Z","dateModified":"2019-09-09T00:00:00.00Z","publisher":{"@type":"Organization","name":"Liste","url":"","logo":{"@type":"ImageObject","url":"","width":"32","height":"32"}},"image":"","url":"\/2019\/09\/09\/20190909-csapp2\/","wordCount":"554","genre":["操作系统"],"keywords":["操作系统"]}</script></head><body><a class=skip-link href=#main>Skip to main</a><main id=main><div class=content><header><p style=padding:0;margin:0><a href=/><b>Listed</b></a></p><ul style=padding:0;margin:0><li><a href=/projects>Projects</a></li><li><a href=/about>About</a></li></ul></header><hr class=hr-list style=padding:0;margin:0><h2 class=post>读CSAPP(2) - 程序性能优化</h2><h2 id=高效的程序需要做到>高效的程序需要做到 <a href=#%e9%ab%98%e6%95%88%e7%9a%84%e7%a8%8b%e5%ba%8f%e9%9c%80%e8%a6%81%e5%81%9a%e5%88%b0 class="hash g">#</a></h2><ol><li>合适的数据结构与算法</li><li>编写出编译器能够有效优化以转换成高效可执行代码的源码。</li><li>将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理</li></ol><p>本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。</p><h2 id=编译器的优化限制>编译器的优化限制 <a href=#%e7%bc%96%e8%af%91%e5%99%a8%e7%9a%84%e4%bc%98%e5%8c%96%e9%99%90%e5%88%b6 class="hash g">#</a></h2><h3 id=内存别名的使用>内存别名的使用 <a href=#%e5%86%85%e5%ad%98%e5%88%ab%e5%90%8d%e7%9a%84%e4%bd%bf%e7%94%a8 class="hash g">#</a></h3><pre><code class=language-c>void twiddle1(long *xp, long *yp)
+{
+	*xp += *yp;
+	*xp += *yp;
+}
+
+void twiddle2(long *xp, long *yp)
+{
+	*xp += 2* *yp;
+}
+</code></pre><p>上面两个程序twiddle2（读xp，读yp，写xp）优于twiddl1（读2次xp，读2次yp，写2次xp）。
+看起来编译器也许会将twiddle1优化成twiddle2的形式。但假设<em>xp和</em>yp是引用的同一个内存地址：&xp = &yp</p><pre><code class=language-c>void twiddle1(long *xp, long *yp){
+	*xp += *xp;
+	*xp += *xp;
+}
+
+void twiddle2(long *xp, long *yp){
+	*xp += 2* *xp;
+}
+</code></pre><p>代码则可以写成上面这样，这时候两个函数的意义就不同了，twiddle1将<em>xp增加了4倍，twiddle2将</em>xp增加了3倍。
+两个指针指向同一个内存地址，称之为：内存别名使用，编译器必须假设不同指针可能指向相同地址，限制了优化策略</p><h3 id=函数调用>函数调用 <a href=#%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8 class="hash g">#</a></h3><pre><code class=language-c>long f();
+
+long func1(){
+	return f() + f() + f() + f()
+}
+
+long func2(){
+	return 4*f()
+}
+</code></pre><p>看起来两个函数结果是相同的，但假设函数f内部为：</p><pre><code class=language-c>long counter = 0;
+long f(){
+	return counter ++;
+}
+</code></pre><p>那么func1和func2返回结果就不同了，而且修改全局状态也不同。
+大多数编译器不会试图判断一个函数是否没有副作用，如果没有，可能被优化成func2的形式。否则假设最糟糕的情况，保持不变。</p><blockquote><p>用内联函数减少开销，也对展开代码做了优化。</p></blockquote><h2 id=对一段代码的优化案例>对一段代码的优化案例 <a href=#%e5%af%b9%e4%b8%80%e6%ae%b5%e4%bb%a3%e7%a0%81%e7%9a%84%e4%bc%98%e5%8c%96%e6%a1%88%e4%be%8b class="hash g">#</a></h2><p>下面程序是将元素累加，之后我们对combine1函数进行一步步优化</p><pre><code class=language-c>int get_vec_element(vec_ptr v, long index, data_t *dest){
+	if (index &lt; 0 || index &gt;= v-&gt;len)
+		return 0;
+	*dest = v-&gt;data[index]
+	return 1;
+}
+
+long vec_length(vec_ptr v){
+	return v-&gt;len;
+}
+
+void combine1(vec_ptr v, data_t *dest){
+	long i;
+	*dest = 0;
+	for(i = 0; i &lt; vec_length(v); i++ )
+	{
+		data_t val;
+		get_vec_element(v, i, &amp;val);
+		*dest = *dest + val;
+	}
+}
+</code></pre><h3 id=1-消除循环的低效率>1. 消除循环的低效率 <a href=#1-%e6%b6%88%e9%99%a4%e5%be%aa%e7%8e%af%e7%9a%84%e4%bd%8e%e6%95%88%e7%8e%87 class="hash g">#</a></h3><p>将幂等函数移动出循环</p><pre><code class=language-c>void combine2(vec_ptr v, data_t *dest){
+	long i;
+	*dest = 0;
+	long length = vec_length(v);
+	for(i = 0; i &lt; length; i++ )
+	{
+		data_t val;
+		get_vec_element(v, i, &amp;val);
+		*dest = *dest + val;
+	}
+}
+</code></pre><h3 id=2-减少过程调用>2. 减少过程调用 <a href=#2-%e5%87%8f%e5%b0%91%e8%bf%87%e7%a8%8b%e8%b0%83%e7%94%a8 class="hash g">#</a></h3><p>get_vec_element中对边界检查，虽然很有用，但在本例中能明显看出所有引用都是合法，可以去除</p><pre><code class=language-c>void combine3(vec_ptr v, data_t *dest){
+	long i;
+	*dest = 0;
+	long length = vec_length(v);
+	data_t *data = v-&gt;data; //获取首地址
+	for(i = 0; i &lt; length; i++ )
+	{
+		*dest = *dest + data[i];
+	}
+}
+</code></pre><h3 id=3-消除不必要的内存引用>3. 消除不必要的内存引用 <a href=#3-%e6%b6%88%e9%99%a4%e4%b8%8d%e5%bf%85%e8%a6%81%e7%9a%84%e5%86%85%e5%ad%98%e5%bc%95%e7%94%a8 class="hash g">#</a></h3><p>combine3将计算值累积在指针dest位置，每次循环都会进行三步操作</p><ol><li>读取dest值</li><li>读取data[i]值</li><li>写入dest所在内存</li></ol><p>从dest读取的值，就是上次写入dest的值，加上个临时的变量</p><ol><li>读data[i]值，计算结果放到临时内存</li><li>内存的值不写入，当循环完毕最后在写入到dest</li></ol><p>优化后每次循环只需要读取一次data[i]值即可。</p><pre><code class=language-c>void combine4(vec_ptr v, data_t *dest){
+	long i;
+	data_t acc = 0;
+	long length = vec_length(v);
+	data_t *data = v-&gt;data; //获取首地址
+	for(i = 0; i &lt; length; i++ )
+	{
+		acc = acc + data[i];
+	}
+	*dest = acc;
+}
+</code></pre><p>编译器应该也会帮我们优化成combine4的形式，但由于内存别名的使用，可能会有不同行为。
+比如 *dest引用的是data的地址，那结果会有区别，所以不会优化。</p><h3 id=4-循环展开>4. 循环展开 <a href=#4-%e5%be%aa%e7%8e%af%e5%b1%95%e5%bc%80 class="hash g">#</a></h3><p>增加每次循环迭代计算的元素数量，减少迭代次数。</p><pre><code class=language-c>void combine5(vec_ptr v, data_t *dest){
+	long i;
+	data_t acc = 0;
+	long length = vec_length(v) - 1;
+	data_t *data = v-&gt;data; //获取首地址
+	for(i = 0; i &lt; length; i+=2 )
+	{
+		acc = (acc + data[i])+ data[i+1];
+	}
+	*dest = acc;
+}
+</code></pre><p>编译器一般会帮助我们进行循环展开操作，只要优化等级3或更高。</p><h3 id=5-提高并行性>5. 提高并行性 <a href=#5-%e6%8f%90%e9%ab%98%e5%b9%b6%e8%a1%8c%e6%80%a7 class="hash g">#</a></h3><p>在代码层面，下面三行是一条条按序执行，但cpu发现a和b的赋值操作是互不影响的，会同时执行a和b，这种现象叫做：指令级并行。</p><pre><code class=language-c>int a = 1;
+int b = 2;
+int c = a + b;
+</code></pre><p>所以我们可以将combine5的代码再进行一次优化：</p><pre><code class=language-c>void combine6(vec_ptr v, data_t *dest){
+	long i;
+	data_t acc0 = 0;
+	data_t acc1 = 0;
+	long length = vec_length(v) - 1;
+	data_t *data = v-&gt;data; //获取首地址
+	for(i = 0; i &lt; length; i+=2 )
+	{
+		acc0 = acc0 + data[i];
+		acc1 = acc1 + data[i+1];
+	}
+	*dest = acc0 + acc1;
+}
+</code></pre><p>combine5的循环展开，将循环次数减少了一半，提高了效率。但是cpu执行还是按序执行，无法进行并行操作，因为新的acc值总要依靠上一个acc，必须按顺序执行，才能获取。
+现在将奇数索引的值赋给acc0，偶数索引的值赋给acc1，两个变量互不影响，cpu就可以进行并行操作了，最后将结果相结合</p><blockquote><p>循环展开的数量并不是越多效率越高，循环的变量一旦超过可用寄存器数量，效率反而会更慢。</p></blockquote><h3 id=6-分支预测>6. 分支预测 <a href=#6-%e5%88%86%e6%94%af%e9%a2%84%e6%b5%8b class="hash g">#</a></h3><h4 id=案例>案例 <a href=#%e6%a1%88%e4%be%8b class="hash g">#</a></h4><p><a href=https://zhuanlan.zhihu.com/p/22469702>代码引用-婉儿飞飞</a></p><p>下面代码，对数组值大于等于128的进行求和。求和前进行排序要比不进行排序直接求和效率要高3倍左右。</p><pre><code class=language-c>#include &lt;algorithm&gt;
+#include &lt;ctime&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+    // 随机产生整数，用分区函数填充，以避免出现分桶不均
+    const unsigned arraySize = 32768;
+    int data[arraySize];
+
+    for (unsigned c = 0; c &lt; arraySize; ++c)
+        data[c] = std::rand() % 256;
+
+    // !!! 排序后下面的Loop运行将更快
+    std::sort(data, data + arraySize);
+
+    // 测试部分
+    clock_t start = clock();
+    long long sum = 0;
+
+    for (unsigned i = 0; i &lt; 100000; ++i)
+    {
+        // 主要计算部分，选一半元素参与计算
+        for (unsigned c = 0; c &lt; arraySize; ++c)
+        {
+            if (data[c] &gt;= 128)
+                sum += data[c];
+        }
+    }
+
+    double elapsedTime = static_cast&lt;double&gt;(clock() - start) / CLOCKS_PER_SEC;
+
+    std::cout &lt;&lt; elapsedTime &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;sum = &quot; &lt;&lt; sum &lt;&lt; std::endl;
+}
+</code></pre><p>cpu对分支进行预测，猜测下一步走哪个分支。如果猜对，cpu不会暂停一直运行，猜错，就要停止-回滚-热启动。
+cpu根据历史进行猜测下一步走向。有序的数组，预测判断条件的结果更加准确，无序数组无法预测，命中率低，导致效率低。</p><h4 id=优化方案>优化方案 <a href=#%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88 class="hash g">#</a></h4><ol><li>如果可以的话移除分支</li></ol><pre><code class=language-c>//用位运算 替换 if判断
+int t = (data[c] - 128) &gt;&gt; 31;
+sum += ~t &amp; data[c];
+</code></pre><ol start=2><li>提高分支的可预测性，比如上面先排序</li></ol><h3 id=优化总结>优化总结 <a href=#%e4%bc%98%e5%8c%96%e6%80%bb%e7%bb%93 class="hash g">#</a></h3><ul><li>消除函数调用</li><li>消除不必要的内存引用</li><li>循环展开</li><li>提高指令并行</li><li>提高分支的预测性</li></ul><h3 id=参考>参考 <a href=#%e5%8f%82%e8%80%83 class="hash g">#</a></h3><p><a href=https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array/11227902#11227902>stackoverflow-分支预测</a></p></div></main></body></html>

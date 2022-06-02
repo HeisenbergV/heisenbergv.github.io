@@ -18,7 +18,7 @@
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210906-redis/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2021/20210813-dlv/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210906-redis/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2021/20210813-dlv/" /><link rel="next" href="https://heisenbergv.github.io/posts/read/20210909/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210906-redis\/"
-        },"genre": "posts","keywords": "redis","wordcount":  10353 ,
+        },"genre": "posts","keywords": "redis","wordcount":  9735 ,
         "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210906-redis\/","datePublished": "2021-09-06T00:00:00+00:00","dateModified": "2021-09-06T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "zJxin"},"author": {
@@ -101,7 +101,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">redis-单机场景</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-06">2021-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 10353 字&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-06">2021-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9735 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -169,23 +169,23 @@
 <h2 id="概要">概要</h2>
 <p>有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注意事项，性能分析调优等。
 先简单介绍下最基本的数据结构:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
-    <span class="c1">// 数据类型 string list set zset hset
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">type</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> 
-
-    <span class="c1">// 编码类型
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">encoding</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span>
-
-    <span class="c1">// 开启策略后 内存不足进行指定回收
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">lru</span><span class="p">:</span><span class="n">LRU_BITS</span><span class="p">;</span> 
-
-    <span class="c1">// 内存回收相关，redis使用引用计数回收内存，当refcount为0后，回收内存
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">refcount</span><span class="p">;</span>
-    
-    <span class="c1">//指向具体的用户数据
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">robj</span><span class="p">;</span>
-</code></pre></div><p>redis存储的数据都是以上述<code>redisObject</code>对象方式存储，主要是为了几个功能: 节省内存、增加内存回收机制、对外的api掩盖了编码不同的复杂</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 数据类型 string list set zset hset
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">type</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 编码类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">encoding</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 开启策略后 内存不足进行指定回收
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">lru</span><span class="p">:</span><span class="n">LRU_BITS</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 内存回收相关，redis使用引用计数回收内存，当refcount为0后，回收内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">refcount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//指向具体的用户数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">robj</span><span class="p">;</span>
+</span></span></code></pre></div><p>redis存储的数据都是以上述<code>redisObject</code>对象方式存储，主要是为了几个功能: 节省内存、增加内存回收机制、对外的api掩盖了编码不同的复杂</p>
 <h2 id="基础命令">基础命令</h2>
 <p>编码方式在什么情况下转换细节不说了，具体可以看《redis设计与实现》</p>
 <h3 id="string">string</h3>
@@ -211,7 +211,7 @@
 <h3 id="list">list</h3>
 <p>列表结构对插入，查询是有顺序的</p>
 <ul>
-<li>列表类型有2种编码方式: ziplist、linkedlist</li>
+<li>列表类型有2种编码方式: ziplist、quicklist、linkedlist</li>
 <li>使用场景:
 <ul>
 <li>队列: lpush + rpop</li>
@@ -246,29 +246,30 @@
 <h3 id="lua--事务">Lua &amp; 事务</h3>
 <p>一组动作要么全部执行成功，要么全部执行失败，这就是事务。
 redis中使用事务很简单:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; multi
-OK
-127.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> a <span class="m">11</span>
-QUEUED
-127.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> b aa
-QUEUED
-127.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">exec</span>
-1<span class="o">)</span> OK
-2<span class="o">)</span> OK
-127.0.0.1:6379&gt;
-</code></pre></div><p>redis不支持事务回滚，如果写错了某个命令， 最终执行成功后，是无法回滚的。lua脚本可以提供更强大的功能。</p>
-<p>命令:<code> EVAL(命令的关键字) &quot;luascript(Lua脚本)&quot; numkeys(指定的Lua脚本需要处理键的数量) key1 key2.. arg1 arg2...</code></p>
-<p>举例:</p>
-<pre><code>127.0.0.1:6379&gt; set a hello
-OK
-127.0.0.1:6379&gt; eval &quot;return redis.call('GET',KEYS[1])..ARGV[1]&quot; 1 a ee
-&quot;helloee&quot;
-</code></pre><p>也可以将脚本加载到redis中，达到复用</p>
-<pre><code>127.0.0.1:6379&gt; script load &quot;return redis.call('GET',KEYS[1])..ARGV[1]&quot;
-&quot;2395484f3580116c01aecdda33849d4b42b2d5c2&quot;
-127.0.0.1:6379&gt; evalsha 2395484f3580116c01aecdda33849d4b42b2d5c2 1 a ee
-&quot;helloee&quot;
-</code></pre><p>那么事务能做的，用lua脚本也可以实现，并且lua还能更简单的实现复杂的带业务逻辑的事务比如:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.0.0.1:6379&gt; multi
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">127.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> a <span class="m">11</span>
+</span></span><span class="line"><span class="cl">QUEUED
+</span></span><span class="line"><span class="cl">127.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> b aa
+</span></span><span class="line"><span class="cl">QUEUED
+</span></span><span class="line"><span class="cl">127.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">exec</span>
+</span></span><span class="line"><span class="cl">1<span class="o">)</span> OK
+</span></span><span class="line"><span class="cl">2<span class="o">)</span> OK
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt;
+</span></span></code></pre></div><p>redis不支持事务回滚，如果写错了某个命令， 最终执行成功后，是无法回滚的。lua脚本可以提供更强大的功能。</p>
+<p>命令:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">EVAL(命令的关键字) &#34;luascript(Lua脚本)&#34; numkeys(指定的Lua脚本需要处理键的数量) key1 key2.. arg1 arg2...
+</span></span></code></pre></div><p>举例:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">127.0.0.1:6379&gt; set a hello
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; eval &#34;return redis.call(&#39;GET&#39;,KEYS[1])..ARGV[1]&#34; 1 a ee
+</span></span><span class="line"><span class="cl">&#34;helloee&#34;
+</span></span></code></pre></div><p>也可以将脚本加载到redis中，达到复用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">127.0.0.1:6379&gt; script load &#34;return redis.call(&#39;GET&#39;,KEYS[1])..ARGV[1]&#34;
+</span></span><span class="line"><span class="cl">&#34;2395484f3580116c01aecdda33849d4b42b2d5c2&#34;
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; evalsha 2395484f3580116c01aecdda33849d4b42b2d5c2 1 a ee
+</span></span><span class="line"><span class="cl">&#34;helloee&#34;
+</span></span></code></pre></div><p>那么事务能做的，用lua脚本也可以实现，并且lua还能更简单的实现复杂的带业务逻辑的事务比如:
 需要对某个有序集合范围内的数据进行分值统一修改，</p>
 <h3 id="bitmap">Bitmap</h3>
 <p>比如有这样一个场景: 游戏服务搞活动，连续7天登录可以获得奖励。
@@ -293,42 +294,42 @@ OK
 <ol>
 <li>append</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; <span class="nb">set</span> a hello
-OK
-127.0.0.1:6379&gt; append a world
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">10</span>
-127.0.0.1:6379&gt; get a
-<span class="s2">&#34;helloworld&#34;</span>
-
-127.0.0.1:6379&gt; exists b
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">0</span>
-127.0.0.1:6379&gt; append b hello
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">5</span>
-127.0.0.1:6379&gt; get b
-<span class="s2">&#34;hello&#34;</span>
-</code></pre></div><p>若有内容则追加，否则和set相同，这个命令的好处是可以追加，也就是无需get后再重新set。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.0.0.1:6379&gt; <span class="nb">set</span> a hello
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; append a world
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; get a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;helloworld&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; exists b
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; append b hello
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">5</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; get b
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;hello&#34;</span>
+</span></span></code></pre></div><p>若有内容则追加，否则和set相同，这个命令的好处是可以追加，也就是无需get后再重新set。
 需要注意的是无论原本的编码格式是什么 <code>embstr</code>或 <code>int</code>，无论追加什么内容都会改变为 <code>raw</code>编码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; <span class="nb">set</span> a <span class="m">1</span>
-OK
-127.0.0.1:6379&gt; object encoding a
-<span class="s2">&#34;int&#34;</span>
-127.0.0.1:6379&gt; append a <span class="m">2</span>
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">2</span>
-127.0.0.1:6379&gt; get a
-<span class="s2">&#34;12&#34;</span>
-127.0.0.1:6379&gt; object encoding a
-<span class="s2">&#34;raw&#34;</span>
-</code></pre></div><ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.0.0.1:6379&gt; <span class="nb">set</span> a <span class="m">1</span>
+</span></span><span class="line"><span class="cl">OK
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; object encoding a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;int&#34;</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; append a <span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>integer<span class="o">)</span> <span class="m">2</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; get a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;12&#34;</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; object encoding a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;raw&#34;</span>
+</span></span></code></pre></div><ol>
 <li>getset
 返回老值并赋予一个新值，当没有此值的时候返回空</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; getset a hello
-<span class="o">(</span>nil<span class="o">)</span>
-127.0.0.1:6379&gt; getset a world
-<span class="s2">&#34;hello&#34;</span>
-127.0.0.1:6379&gt; get a
-<span class="s2">&#34;world&#34;</span>
-</code></pre></div><p>可以理解为 get + set 命令集，且是原子性的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">127.0.0.1:6379&gt; getset a hello
+</span></span><span class="line"><span class="cl"><span class="o">(</span>nil<span class="o">)</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; getset a world
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl">127.0.0.1:6379&gt; get a
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;world&#34;</span>
+</span></span></code></pre></div><p>可以理解为 get + set 命令集，且是原子性的</p>
 <ol start="3">
 <li>stream
 主要用于消息队列，缺点就是消息无法持久化，如果出现网络断开、Redis 宕机等，消息就会被丢弃。</li>
@@ -352,11 +353,12 @@ OK
 <h3 id="aof">aof</h3>
 <p>aof提供了命令级别的持久化，会把写入相关命令同步到aof文件中，因为一条写入命令就立刻落地到文件中，会影响redis的高性能。所以官方提供了三种持久化策略进行选择：</p>
 <ol>
-<li>AOF_FSYNC_NO ： redis不做任何同步操作，保存时机由系统决定</li>
-</ol>
-<p>当redis被关闭，aof被关闭，或者aof缓存满了，才落地到磁盘上</p>
-<ol start="2">
-<li>AOF_FSYNC_EVERYSEC ：每一秒钟保存一次</li>
+<li>
+<p>AOF_FSYNC_NO ： redis不做任何同步操作，保存时机由系统决定；因为调用的系统命令<code>sync</code></p>
+</li>
+<li>
+<p>AOF_FSYNC_EVERYSEC ：每一秒钟保存一次</p>
+</li>
 </ol>
 <p>write会写入命令，但fsync命令才会最终执行同步到文件中，所以redis有一个单独的线程来每秒进行fsync操作，理论上只有在系统突然宕机的情况下丢失1秒的数据。(严格 来说最多丢失1秒数据是不准确的)</p>
 <ol start="3">
@@ -365,9 +367,9 @@ OK
 <p>每次有写入命令，都会进行同步到aof文件操作，虽然保证了实时性（最多丢失一个命令），但如果同步过程阻塞，则会影响整个redis的命令读写效率。
 当然，也提供了手动执行的方式: 命令为 <code>bgrewriteaof</code></p>
 <p>aof是追加式的写入，这样的缺点就是会有重复，比如:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">set</span> a hello
-<span class="nb">set</span> a world
-</code></pre></div><p>两条命令，其实可以合并为一条<code>set a world</code>，这以点redis提供了<code>重写</code>机制，用来将已有的aof文件进行整合缩减。
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">set</span> a hello
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> a world
+</span></span></code></pre></div><p>两条命令，其实可以合并为一条<code>set a world</code>，这以点redis提供了<code>重写</code>机制，用来将已有的aof文件进行整合缩减。
 重写条件在配置文件中，比如当aof文件增长比达到 n% 后就会进行重写，会后台启动一个子线程进行重写操作。</p>
 <h2 id="内存回收">内存回收</h2>
 <p>redis主要有两种回收策略，设置了过期的key，过期后回收。内存达到上限后有限制的回收。这些都有配置进行策略性的回收</p>
@@ -384,16 +386,16 @@ OK
 <p>两者结合来提高内存的释放效率，节省cpu资源</p>
 <h4 id="lazy-free">lazy free</h4>
 <p>若删除一个大的key，因为慢而阻塞redis，所以4.0开始加入了惰性删除。使用命令<code>unlink key</code> 可以主动的使用惰性删除某个key。或根据下面配置，进行被动的删除。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c">## 在内存到达最大内存需要逐出数据时使用</span><span class="w">
-</span><span class="w"></span><span class="c">## 建议关闭，避免内存未及时释放</span><span class="w">
-</span><span class="w"></span><span class="l">lazyfree-lazy-eviction no</span><span class="w">
-</span><span class="w"></span><span class="c">## 在KEY过期时使用</span><span class="w">
-</span><span class="w"></span><span class="c">## 建议开启</span><span class="w">
-</span><span class="w"></span><span class="l">lazyfree-lazy-expire no</span><span class="w">
-</span><span class="w"></span><span class="c">## 隐式删除服务器数据时，如RENAME操作</span><span class="w">
-</span><span class="w"></span><span class="c">## 建议开启</span><span class="w">
-</span><span class="w"></span><span class="l">lazyfree-lazy-server-del no</span><span class="w">
-</span></code></pre></div><p>无论是主动还是被动他们的流程都是一样的:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">## 在内存到达最大内存需要逐出数据时使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 建议关闭，避免内存未及时释放</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">lazyfree-lazy-eviction no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 在KEY过期时使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 建议开启</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">lazyfree-lazy-expire no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 隐式删除服务器数据时，如RENAME操作</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 建议开启</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">lazyfree-lazy-server-del no</span><span class="w">
+</span></span></span></code></pre></div><p>无论是主动还是被动他们的流程都是一样的:</p>
 <ol>
 <li>删除的时候计算Lazy Free方式释放对象的成本，只有超过特定阈值，才会采用Lazy Free方式</li>
 <li>Lazy Free方式会调用bioCreateBackgroundJob函数来使用BIO线程后台异步释放对象。</li>
@@ -417,38 +419,38 @@ OK
 <h3 id="对象共享">对象共享</h3>
 <p>相同数据多个key会指向同一个对象，这时<code>refcount</code> 会增加引用数量，不过这种节省内存的方式redis只提供了数字上的对象复用，因为判断数字是否一致时间复杂度为0(1)，而字符串需要0(n)，其他类型可能更复杂，如果复用就导致了时间换空间，对于高性能的redis并不合适。一个数字类型占用空间很小，比一个<code>redisObject</code>对象小的多，再加上判断快，所以对于数字对象的内存共享是很有意义的。</p>
 <p>redis 只支持10000以内的数字对象复用，并且不可配置写死在代码中的。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">server</span><span class="p">.</span><span class="n">h</span>
-<span class="cp">#define OBJ_SHARED_INTEGERS 10000
-</span><span class="cp"></span>
-<span class="n">server</span><span class="p">.</span><span class="n">c</span>
-
-<span class="kt">void</span> <span class="n">createSharedObjects</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//...
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">OBJ_SHARED_INTEGERS</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">shared</span><span class="p">.</span><span class="n">integers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span>
-            <span class="n">makeObjectShared</span><span class="p">(</span><span class="n">createObject</span><span class="p">(</span><span class="n">OBJ_STRING</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="kt">long</span><span class="p">)</span><span class="n">j</span><span class="p">));</span>
-        <span class="n">shared</span><span class="p">.</span><span class="n">integers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">OBJ_ENCODING_INT</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">//...
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>需要注意的是如果开启 <code>maxmemory</code>和<code>LRU淘汰策略</code>后对象池就无效了。因为共享一个redisObject后也会共享lru字段:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
-    <span class="c1">// 数据类型 string list set zset hset
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">type</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> 
-
-    <span class="c1">// 编码类型
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">encoding</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span>
-
-    <span class="c1">// 开启策略后 内存不足进行指定回收
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">lru</span><span class="p">:</span><span class="n">LRU_BITS</span><span class="p">;</span> 
-
-    <span class="c1">// 内存回收相关，redis使用引用计数回收内存，当refcount为0后，回收内存
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">refcount</span><span class="p">;</span>
-    
-    <span class="c1">//指向具体的用户数据
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">robj</span><span class="p">;</span>
-</code></pre></div><p>导致无法对每个对象的最后访问时间进行分别记录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">server</span><span class="p">.</span><span class="n">h</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define OBJ_SHARED_INTEGERS 10000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">server</span><span class="p">.</span><span class="n">c</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">createSharedObjects</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">OBJ_SHARED_INTEGERS</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">shared</span><span class="p">.</span><span class="n">integers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">            <span class="n">makeObjectShared</span><span class="p">(</span><span class="n">createObject</span><span class="p">(</span><span class="n">OBJ_STRING</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="kt">long</span><span class="p">)</span><span class="n">j</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">shared</span><span class="p">.</span><span class="n">integers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">OBJ_ENCODING_INT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>需要注意的是如果开启 <code>maxmemory</code>和<code>LRU淘汰策略</code>后对象池就无效了。因为共享一个redisObject后也会共享lru字段:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 数据类型 string list set zset hset
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">type</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 编码类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">encoding</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 开启策略后 内存不足进行指定回收
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">unsigned</span> <span class="nl">lru</span><span class="p">:</span><span class="n">LRU_BITS</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 内存回收相关，redis使用引用计数回收内存，当refcount为0后，回收内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">refcount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//指向具体的用户数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">robj</span><span class="p">;</span>
+</span></span></code></pre></div><p>导致无法对每个对象的最后访问时间进行分别记录。</p>
 <h3 id="内存碎片">内存碎片</h3>
 <p>什么是内存碎片？网上看到一个例子非常贴切: 坐高铁，假设一个车厢60个位置，目前空位有3个，但这三个都是独立的位置，不是连续的。这时候如果有3个朋友想坐在一起，就无法满足，只能选其他车厢，也就是整体内存是足够的，但无法提供服务</p>
 <p>造成内存碎片主要原因是:</p>
@@ -456,32 +458,43 @@ OK
 <li>为了方便的做内存管理，内存分配器不会完全按照申请的大小做分配，比如<code>jemalloc</code>分配器，我们申请15字节，<code>jemalloc</code>会给我们20字节内存，这样好处是如果继续写入5字节内容，就减少了一次分配次数，但多出来的5字节就是碎片。</li>
 <li>正常的业务都会对kv内容进行修改删除造成内存扩大或释放</li>
 </ol>
-<p>解决方法:</p>
+<p>如何判断内存碎片情况:</p>
+<p>使用命令:<code>info memory</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Memory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">used_memory:1073741736</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">used_memory_human:1024.00M</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">used_memory_rss:1997159792</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">used_memory_rss_human:1.86G</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># mem_fragmentation_ratio 大于1但小于1.5。这种情况是合理的。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># mem_fragmentation_ratio 大于 1.5 。这表明内存碎片率已经超过了50%。一般情况下，这个时候，我们就需要采取一些措施来降低内存碎片率了</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">mem_fragmentation_ratio:1.86</span><span class="w">
+</span></span></span></code></pre></div><p>解决方法:</p>
 <ol>
 <li>重启redis: 重启后数据重新加载，之前非连续的内存就能连续了</li>
 <li>配置设置: 此配置可以控制redis自动清理</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">  </span><span class="l">activedefrag true</span><span class="w"> </span><span class="c">#  是否开启自动内存清理</span><span class="w">
-</span><span class="w">  </span><span class="l">active-defrag-ignore-bytes 100mb</span><span class="w"> </span><span class="c"># 表示内存碎片的字节数达到 100MB 时，开始 清理;</span><span class="w">
-</span><span class="w">  </span><span class="l">active-defrag-threshold-lower 10</span><span class="w"> </span><span class="c">#  表示内存碎片空间占操作系统分配给 Redis 的 总空间比例达到 10% 时，开始清理。</span><span class="w">
-</span><span class="w">  </span><span class="l">active-defrag-cycle-min 25 </span><span class="w"> </span><span class="c">#  表示自动清理过程所用 CPU 时间的比例不低于 25%，保证清理能正常开展;</span><span class="w">
-</span><span class="w">  </span><span class="l">active-defrag-cycle-max 75 </span><span class="w"> </span><span class="c"># 表示自动清理过程所用 CPU 时间的比例不高于 75%，一旦超过，就停止清理，从而避免在清理时，大量的内存拷贝阻塞 Redis，导致 响应延迟升高。</span><span class="w">
-</span></code></pre></div><h2 id="一些性能问题">一些性能问题</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span><span class="l">activedefrag true</span><span class="w"> </span><span class="c">#  是否开启自动内存清理</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">active-defrag-ignore-bytes 100mb</span><span class="w"> </span><span class="c"># 表示内存碎片的字节数达到 100MB 时，开始 清理;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">active-defrag-threshold-lower 10</span><span class="w"> </span><span class="c">#  表示内存碎片空间占操作系统分配给 Redis 的 总空间比例达到 10% 时，开始清理。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">active-defrag-cycle-min 25 </span><span class="w"> </span><span class="c">#  表示自动清理过程所用 CPU 时间的比例不低于 25%，保证清理能正常开展;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">active-defrag-cycle-max 75 </span><span class="w"> </span><span class="c"># 表示自动清理过程所用 CPU 时间的比例不高于 75%，一旦超过，就停止清理，从而避免在清理时，大量的内存拷贝阻塞 Redis，导致 响应延迟升高。</span><span class="w">
+</span></span></span></code></pre></div><h2 id="一些性能问题">一些性能问题</h2>
 <h3 id="慢查询日志">慢查询日志</h3>
-<pre><code>slowlog-log-slower-than 10000  记录超过10000微妙的命令
+<pre tabindex="0"><code>slowlog-log-slower-than 10000  记录超过10000微妙的命令
 slowlog-max-len 128  最多存储128条慢查询日志
 </code></pre><p>使用命令 <code>slowlog get</code> 就能查询出所有符合上述条件的命令</p>
-<pre><code> 1) 1) (integer) 10466    日志id
+<pre tabindex="0"><code> 1) 1) (integer) 10466    日志id
     2) (integer) 1650529643   命令执行时间
     3) (integer) 377462  执行耗时(微妙)
     命令和命令参数
-    4) 1) &quot;LRANGE&quot;
-       2) &quot;1611a5de-c05f-11ec-9c1a-0050569ae574_20220421_160652_421424&quot;
-       3) &quot;0&quot;
-       4) &quot;-1&quot;
+    4) 1) &#34;LRANGE&#34;
+       2) &#34;1611a5de-c05f-11ec-9c1a-0050569ae574_20220421_160652_421424&#34;
+       3) &#34;0&#34;
+       4) &#34;-1&#34;
 
-    5) &quot;127.0.0.1:45984&quot;  执行命令的客户端
-    6) &quot;&quot;
+    5) &#34;127.0.0.1:45984&#34;  执行命令的客户端
+    6) &#34;&#34;
 
 .....
 </code></pre><h3 id="bigkey">bigkey</h3>
@@ -508,7 +521,7 @@ slowlog-max-len 128  最多存储128条慢查询日志
 </ol>
 <p>目前我们的cpu架构是numa架构（非统一内存访问架构(Non-uniform Memory Access,简称NUMA架构)，这意味着物理核之间如果处于不同的numa节点，那么内存是分离的，a核心（socket 1）访问b核心（socket 2）内存数据是需要经过总线的，会增加延迟。
 linux使用<code>lscpu</code>看cpu情况:</p>
-<pre><code>Architecture:          x86_64
+<pre tabindex="0"><code>Architecture:          x86_64
 CPU op-mode(s):        32-bit, 64-bit
 Byte Order:            Little Endian
 CPU(s):                8
@@ -537,18 +550,18 @@ NUMA 节点0 CPU：    0-7
 <li>启动进程的时候进行绑定: taskset -c cpuid 程序启动项</li>
 <li>使用系统调用:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define _GNU_SOURCE             </span><span class="cm">/* See feature_test_macros(7) */</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;sched.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cm">/* 设置进程号为pid的进程运行在mask所设定的CPU上
-</span><span class="cm"> * 第二个参数cpusetsize是mask所指定的数的长度
-</span><span class="cm"> * 通常设定为sizeof(cpu_set_t)
-</span><span class="cm">
-</span><span class="cm"> * 如果pid的值为0,则表示指定的是当前进程 
-</span><span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">sched_setaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
-<span class="kt">int</span> <span class="nf">sched_getaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span><span class="cm">/* 获得pid所指示的进程的CPU位掩码,并将该掩码返回到mask所指向的结构中 */</span>
-</code></pre></div><p>redis的持久化，还有个别命令都是在子进程或子线程执行的，也就是说对于redis绑定一个物理核还是有可能阻塞的。另外redis网络用的是io多路复用，监听的是io事件，在使用numa架构的时候我们应该防止redis在绑定cpu时跨节点。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define _GNU_SOURCE             </span><span class="cm">/* See feature_test_macros(7) */</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sched.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 设置进程号为pid的进程运行在mask所设定的CPU上
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 第二个参数cpusetsize是mask所指定的数的长度
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 通常设定为sizeof(cpu_set_t)
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 如果pid的值为0,则表示指定的是当前进程 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sched_setaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sched_getaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span><span class="cm">/* 获得pid所指示的进程的CPU位掩码,并将该掩码返回到mask所指向的结构中 */</span>
+</span></span></code></pre></div><p>redis的持久化，还有个别命令都是在子进程或子线程执行的，也就是说对于redis绑定一个物理核还是有可能阻塞的。另外redis网络用的是io多路复用，监听的是io事件，在使用numa架构的时候我们应该防止redis在绑定cpu时跨节点。</p>
 <h3 id="redis-与linux-hugepage">redis 与linux hugepage</h3>
 <ul>
 <li>写时复制</li>
@@ -557,135 +570,138 @@ NUMA 节点0 CPU：    0-7
 <p>linux提供了fork的写时复制(copy-on-write)，主要作用就是将拷贝推迟到写操作真正发生时，这也就避免了大量无意义的拷贝操作。</p>
 <p>也就是在redis进行 rdb save的时候，fork是很快的，因为fork只是子进程指向了与主进程同样的物理内存中，并没有发生内存复制操作。类似应用代码中创建了个指针，两个指针指向的是同一个数据。只有当主进程的数据做了修改，才会开始复制，并且只会复制修改所在内存页的数据，也就是复制的效率取决于redis在save过程中的写命令是否频繁，内存页的大小。但因为redis总体是读多写少。也就是说假设在fork后进行备份过程中，redis并没有任何写入行为，那么fork子进程进行持久化操作是不会产生额外的使用内存。</p>
 <p>刚才说内存页也影响了rdb效率，是因为linux hugepage（大内存页），hugepage可以增加命中率减少页数量的，这对数据库来讲是个好处。同样的内存需求情况下内存页大了意味着页表项的减少，这样就可以提高快表的命中率了，linux系统是支持内存大页机制的 默认是2mb: <code>grep Huge /proc/meminfo</code>，但对于redis进行rdb时利用写时复制，内存页大导致主进程写入操作会复制更大的内存空间和数据，所以如果开启了hugepage redis会有下面log:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">WARNING you have Transparent Huge Pages (THP) support enabled in your kernel.
-This will create latency and memory usage issues with Redis. To fix this issue run the command
-&#39;echo madvise &gt; /sys/kernel/mm/transparent_hugepage/enabled&#39; as root, 
-and add it to your /etc/rc.local in order to retain the setting after a reboot.
- Redis must be restarted after THP is disabled (set to &#39;madvise&#39; or &#39;never&#39;).
-</code></pre></div><p>如果有rdb需求则可以考虑关闭linux hugepage。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">WARNING you have Transparent Huge Pages (THP) support enabled in your kernel.
+</span></span><span class="line"><span class="cl">This will create latency and memory usage issues with Redis. To fix this issue run the command
+</span></span><span class="line"><span class="cl">&#39;echo madvise &gt; /sys/kernel/mm/transparent_hugepage/enabled&#39; as root, 
+</span></span><span class="line"><span class="cl">and add it to your /etc/rc.local in order to retain the setting after a reboot.
+</span></span><span class="line"><span class="cl"> Redis must be restarted after THP is disabled (set to &#39;madvise&#39; or &#39;never&#39;).
+</span></span></code></pre></div><p>如果有rdb需求则可以考虑关闭linux hugepage。</p>
 <h3 id="redis-与-vm">redis 与 vm</h3>
 <p>redis3.0 之前自己开发了vm，之后就去掉了，主要原因可能是代码复杂，重启慢等。3.0开始使用了<code>/proc/sys/vm/overcommit_memory</code>系统相关的vm，若没设置，会有下面的log</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"> WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
-  To fix this issue add &#39;vm.overcommit_memory = 1&#39; to /etc/sysctl.conf and then reboot or run the command &#39;sysctl vm.overcommit_memory=1&#39; for this to take effect.
-</code></pre></div><p>linux系统配置<code>/proc/sys/vm/overcommit_memory</code> 有三种策略:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># 设置为2，禁用overcommit，会降低内存的使用效率，浪费内存资源。但是不会发生OOM。</span><span class="w">
-</span><span class="w"></span><span class="c"># 设置为1，内核假装总是有足够的内存，直到它实际耗尽</span><span class="w">
-</span><span class="w"></span><span class="c"># 设置为0，默认值，适度超发内存，但也有OOM风险。（这也是数据库经常发生OOM的原因）</span><span class="w">
-</span><span class="w"></span><span class="l">vm.overcommit_memory=1</span><span class="w">
-</span></code></pre></div><h2 id="配置">配置</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">
-</span><span class="w"></span><span class="c"># -------- 持久化相关 -------------</span><span class="w">
-</span><span class="w"></span><span class="c"># rdb相关持久化 </span><span class="w">
-</span><span class="w"></span><span class="c"># save &lt;seconds&gt; &lt;changes&gt;</span><span class="w">
-</span><span class="w"></span><span class="c"># Redis 默认配置文件中提供了三个条件：</span><span class="w">
-</span><span class="w"></span><span class="c"># 90 0 秒（15 分钟）内有 1 个更改</span><span class="w">
-</span><span class="w"></span><span class="l">save 900 1</span><span class="w">
-</span><span class="w"></span><span class="c"># 300 秒（5 分钟）内有 10 个更改</span><span class="w">
-</span><span class="w"></span><span class="l">save 300 10</span><span class="w">
-</span><span class="w"></span><span class="c"># 60 秒内有 10000 个更改</span><span class="w">
-</span><span class="w"></span><span class="l">​save 60 10000</span><span class="w">
-</span><span class="w"></span><span class="c"># 指定存储至本地数据库时是否压缩数据，默认为 yes，Redis 采用 LZF 压缩，如果为了节省 CPU 时间，可以关闭该选项，但会导致数据库文件变的巨大</span><span class="w">
-</span><span class="w"></span><span class="l">rdbcompression yes</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># aof持久化</span><span class="w">
-</span><span class="w"></span><span class="c"># 是否启动aof</span><span class="w">
-</span><span class="w"></span><span class="l">appendonly no</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 三种aof策略</span><span class="w">
-</span><span class="w"></span><span class="c"># no：表示等操作系统进行数据缓存同步到磁盘（快）  </span><span class="w">
-</span><span class="w"></span><span class="c"># always：表示每次更新操作后手动调用 fsync() 将数据写到磁盘（慢，安全） </span><span class="w">
-</span><span class="w"></span><span class="c"># everysec：表示每秒同步一次（折衷，默认值）</span><span class="w">
-</span><span class="w"></span><span class="l">appendfsync everysec</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># -------- 内存管理策略 -------------</span><span class="w">
-</span><span class="w"></span><span class="c"># volatile-lru:  对设置了过期时间的keys适用LRU淘汰策略</span><span class="w">
-</span><span class="w"></span><span class="c"># allkeys-lru:  对所有keys适用LRU淘汰策略</span><span class="w">
-</span><span class="w"></span><span class="c"># volatile-lfu:  对设置了过期时间的keys适用LFU淘汰策略</span><span class="w">
-</span><span class="w"></span><span class="c"># allkeys-lfu:  对所有keys适用LFU淘汰策略</span><span class="w">
-</span><span class="w"></span><span class="c"># volatile-random:  对设置了过期时间的keys适用随机淘汰策略</span><span class="w">
-</span><span class="w"></span><span class="c"># allkeys-random:  对所有keys适用随机淘汰策略</span><span class="w">
-</span><span class="w"></span><span class="c"># volatile-ttl:  淘汰离过期时间最近的keys</span><span class="w">
-</span><span class="w"></span><span class="c"># noeviction:  不淘汰任何key，仅对写入操作返回一个错误</span><span class="w">
-</span><span class="w"></span><span class="l">maxmemory-policy noeviction</span><span class="w"> </span><span class="c"># 默认是noeviction</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># -------- 惰性删除 -------------</span><span class="w">
-</span><span class="w"></span><span class="c">## 在内存到达最大内存需要逐出数据时使用</span><span class="w">
-</span><span class="w"></span><span class="c">## 建议关闭，避免内存未及时释放</span><span class="w">
-</span><span class="w"></span><span class="l">lazyfree-lazy-eviction no</span><span class="w">
-</span><span class="w"></span><span class="c">## 在KEY过期时使用</span><span class="w">
-</span><span class="w"></span><span class="l">lazyfree-lazy-expire no</span><span class="w">
-</span><span class="w"></span><span class="c">## 隐式删除服务器数据时，如RENAME操作</span><span class="w">
-</span><span class="w"></span><span class="l">lazyfree-lazy-server-del no</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># -------- 数据结构高级配置 -------------</span><span class="w">
-</span><span class="w"></span><span class="c"># ziplist最大条目数</span><span class="w">
-</span><span class="w"></span><span class="l">hash-max-ziplist-entries 512</span><span class="w">
-</span><span class="w"></span><span class="c"># ziplist单个条目value的最大字节数</span><span class="w">
-</span><span class="w"></span><span class="l">hash-max-ziplist-value 64</span><span class="w">
-</span><span class="w"></span><span class="c"># ziplist列表最大值，默认存在五项：</span><span class="w">
-</span><span class="w"></span><span class="c"># -5:最大大小:64 Kb &lt;——不建议用于正常工作负载</span><span class="w">
-</span><span class="w"></span><span class="c"># -4:最大大小:32 Kb &lt;——不推荐</span><span class="w">
-</span><span class="w"></span><span class="c"># -3:最大大小:16 Kb &lt;——可能不推荐</span><span class="w">
-</span><span class="w"></span><span class="c"># -2:最大大小:8 Kb&lt;——很好</span><span class="w">
-</span><span class="w"></span><span class="c"># -1:最大大小:4 Kb &lt;——好</span><span class="w">
-</span><span class="w"></span><span class="l">list-max-ziplist-size -2</span><span class="w">
-</span><span class="w"></span><span class="c"># 一个quicklist两端不被压缩的节点个数</span><span class="w">
-</span><span class="w"></span><span class="c"># 0: 表示都不压缩。这是Redis的默认值</span><span class="w">
-</span><span class="w"></span><span class="c"># 1: 表示quicklist两端各有1个节点不压缩，中间的节点压缩</span><span class="w">
-</span><span class="w"></span><span class="c"># 3: 表示quicklist两端各有3个节点不压缩，中间的节点压缩。</span><span class="w">
-</span><span class="w"></span><span class="l">list-compress-depth 0</span><span class="w">
-</span><span class="w"></span><span class="c"># 当集合中的元素全是整数,且长度不超过set-max-intset-entries(默认为512个)时,</span><span class="w">
-</span><span class="w"></span><span class="c"># redis会选用intset作为内部编码，大于512用set。</span><span class="w">
-</span><span class="w"></span><span class="l">set-max-intset-entries 512</span><span class="w">
-</span><span class="w"></span><span class="c"># 当有序集合的元素小于zset-max-ziplist-entries配置(默认是128个),同时每个元素</span><span class="w">
-</span><span class="w"></span><span class="c"># 的值都小于zset-max-ziplist-value(默认是64字节)时,Redis会用ziplist来作为有</span><span class="w">
-</span><span class="w"></span><span class="c"># 序集合的内部编码实现,ziplist可以有效的减少内存的使用。</span><span class="w">
-</span><span class="w"></span><span class="l">zset-max-ziplist-entries 128</span><span class="w">
-</span><span class="w"></span><span class="l">zset-max-ziplist-value 64</span><span class="w">
-</span><span class="w"></span><span class="c"># value大小 小于等于hll-sparse-max-bytes使用稀疏数据结构（sparse），大于hll-sparse-max-bytes使用稠密的数据结构（dense）</span><span class="w">
-</span><span class="w"></span><span class="l">hll-sparse-max-bytes 3000</span><span class="w">
-</span><span class="w"></span><span class="c"># Streams单个节点的字节数，以及切换到新节点之前可能包含的最大项目数。</span><span class="w">
-</span><span class="w"></span><span class="l">stream-node-max-bytes 4096</span><span class="w">
-</span><span class="w"></span><span class="l">stream-node-max-entries 100</span><span class="w">
-</span><span class="w"></span><span class="c"># 主动重新散列每100毫秒CPU时间使用1毫秒，以帮助重新散列主Redis散列表（将顶级键映射到值）</span><span class="w">
-</span><span class="w"></span><span class="l">activerehashing yes</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># -------- 内存碎片  -------------</span><span class="w">
-</span><span class="w"></span><span class="c"># 是否启用碎片整理，默认是no</span><span class="w">
-</span><span class="w"></span><span class="l">activedefrag no</span><span class="w">
-</span><span class="w"></span><span class="c"># 最小的碎片空间浪费量</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-ignore-bytes 100mb</span><span class="w">
-</span><span class="w"></span><span class="c"># 最小的碎片百分比阈值</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-threshold-lower 10</span><span class="w">
-</span><span class="w"></span><span class="c"># 最大的碎片百分比阈值</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-threshold-upper 100</span><span class="w">
-</span><span class="w"></span><span class="c"># 碎片整理周期CPU消耗最小百分比</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-cycle-min 1</span><span class="w">
-</span><span class="w"></span><span class="c"># 碎片整理周期CPU消耗最大百分比</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-cycle-max 25</span><span class="w">
-</span><span class="w"></span><span class="c"># redis5.0之后的配置 从set / hash / zset / list 扫描的最大字段数</span><span class="w">
-</span><span class="w"></span><span class="l">active-defrag-max-scan-fields 1000</span><span class="w">
-</span><span class="w"></span><span class="c"># redis6.0之后的配置 默认情况下，用于清除的Jemalloc后台线程是启用的。</span><span class="w">
-</span><span class="w"></span><span class="l">jemalloc-bg-thread yes</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># -------- cpu绑定（redis6.0） -------------</span><span class="w">
-</span><span class="w"></span><span class="c"># 设置redis服务器的IO线程组的CPU绑定：0，2，4，6</span><span class="w">
-</span><span class="w"></span><span class="l">server_cpulist 0-7:2</span><span class="w">
-</span><span class="w"></span><span class="c"># 设置BIO线程的CPU绑定为：1，3：</span><span class="w">
-</span><span class="w"></span><span class="l">bio_cpulist 1,3</span><span class="w">
-</span><span class="w"></span><span class="c"># 设置AOF子进程的CPU绑定为：8，9，10，11</span><span class="w">
-</span><span class="w"></span><span class="l">aof_rewrite_cpulist 8-11</span><span class="w">
-</span><span class="w"></span><span class="c"># 设置bgsave的CPU绑定为：1，10-11</span><span class="w">
-</span><span class="w"></span><span class="l">bgsave_cpulist 1,10-11</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># -------- 其他 -------------</span><span class="w">
-</span><span class="w"></span><span class="c"># 执行大于多少微妙，才存入慢查询队列</span><span class="w">
-</span><span class="w"></span><span class="l">slowlog-log-slower-than 10000</span><span class="w">
-</span><span class="w"></span><span class="c"># 慢查询最多保存多少日志</span><span class="w">
-</span><span class="w"></span><span class="l">slowlog-max-len 128</span><span class="w">
-</span><span class="w"></span><span class="c"># 一个Lua脚本最长的执行时间，单位为毫秒，如果为0或负数表示无限执行时间，默认为5000</span><span class="w">
-</span><span class="w"></span><span class="l">lua-time-limit 5000</span><span class="w">
-</span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl"> WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
+</span></span><span class="line"><span class="cl">  To fix this issue add &#39;vm.overcommit_memory = 1&#39; to /etc/sysctl.conf and then reboot or run the command &#39;sysctl vm.overcommit_memory=1&#39; for this to take effect.
+</span></span></code></pre></div><p>linux系统配置<code>/proc/sys/vm/overcommit_memory</code> 有三种策略:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 设置为2，禁用overcommit，会降低内存的使用效率，浪费内存资源。但是不会发生OOM。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 设置为1，内核假装总是有足够的内存，直到它实际耗尽</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 设置为0，默认值，适度超发内存，但也有OOM风险。（这也是数据库经常发生OOM的原因）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">vm.overcommit_memory=1</span><span class="w">
+</span></span></span></code></pre></div><h2 id="配置">配置</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -------- 持久化相关 -------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># rdb相关持久化 </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># save &lt;seconds&gt; &lt;changes&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Redis 默认配置文件中提供了三个条件：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 90 0 秒（15 分钟）内有 1 个更改</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">save 900 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 300 秒（5 分钟）内有 10 个更改</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">save 300 10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 60 秒内有 10000 个更改</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">​save 60 10000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 指定存储至本地数据库时是否压缩数据，默认为 yes，Redis 采用 LZF 压缩，如果为了节省 CPU 时间，可以关闭该选项，但会导致数据库文件变的巨大</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">rdbcompression yes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 存储路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">dir /var/lib/redis/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># aof持久化</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 是否启动aof</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">appendonly no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 三种aof策略</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># no：表示等操作系统进行数据缓存同步到磁盘（快）  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># always：表示每次更新操作后手动调用 fsync() 将数据写到磁盘（慢，安全） </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># everysec：表示每秒同步一次（折衷，默认值）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">appendfsync everysec</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -------- 内存管理策略 -------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># volatile-lru:  对设置了过期时间的keys适用LRU淘汰策略</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># allkeys-lru:  对所有keys适用LRU淘汰策略</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># volatile-lfu:  对设置了过期时间的keys适用LFU淘汰策略</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># allkeys-lfu:  对所有keys适用LFU淘汰策略</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># volatile-random:  对设置了过期时间的keys适用随机淘汰策略</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># allkeys-random:  对所有keys适用随机淘汰策略</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># volatile-ttl:  淘汰离过期时间最近的keys</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># noeviction:  不淘汰任何key，仅对写入操作返回一个错误</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">maxmemory-policy noeviction</span><span class="w"> </span><span class="c"># 默认是noeviction</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -------- 惰性删除 -------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 在内存到达最大内存需要逐出数据时使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 建议关闭，避免内存未及时释放</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">lazyfree-lazy-eviction no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 在KEY过期时使用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">lazyfree-lazy-expire no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">## 隐式删除服务器数据时，如RENAME操作</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">lazyfree-lazy-server-del no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -------- 数据结构高级配置 -------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># ziplist最大条目数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">hash-max-ziplist-entries 512</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># ziplist单个条目value的最大字节数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">hash-max-ziplist-value 64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># ziplist列表最大值，默认存在五项：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -5:最大大小:64 Kb &lt;——不建议用于正常工作负载</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -4:最大大小:32 Kb &lt;——不推荐</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -3:最大大小:16 Kb &lt;——可能不推荐</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -2:最大大小:8 Kb&lt;——很好</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -1:最大大小:4 Kb &lt;——好</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">list-max-ziplist-size -2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 一个quicklist两端不被压缩的节点个数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 0: 表示都不压缩。这是Redis的默认值</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 1: 表示quicklist两端各有1个节点不压缩，中间的节点压缩</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 3: 表示quicklist两端各有3个节点不压缩，中间的节点压缩。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">list-compress-depth 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 当集合中的元素全是整数,且长度不超过set-max-intset-entries(默认为512个)时,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># redis会选用intset作为内部编码，大于512用set。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">set-max-intset-entries 512</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 当有序集合的元素小于zset-max-ziplist-entries配置(默认是128个),同时每个元素</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 的值都小于zset-max-ziplist-value(默认是64字节)时,Redis会用ziplist来作为有</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 序集合的内部编码实现,ziplist可以有效的减少内存的使用。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">zset-max-ziplist-entries 128</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">zset-max-ziplist-value 64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># value大小 小于等于hll-sparse-max-bytes使用稀疏数据结构（sparse），大于hll-sparse-max-bytes使用稠密的数据结构（dense）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">hll-sparse-max-bytes 3000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Streams单个节点的字节数，以及切换到新节点之前可能包含的最大项目数。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">stream-node-max-bytes 4096</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">stream-node-max-entries 100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 主动重新散列每100毫秒CPU时间使用1毫秒，以帮助重新散列主Redis散列表（将顶级键映射到值）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">activerehashing yes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -------- 内存碎片  -------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 是否启用碎片整理，默认是no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">activedefrag no</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 最小的碎片空间浪费量</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">active-defrag-ignore-bytes 100mb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 最小的碎片百分比阈值</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">active-defrag-threshold-lower 10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 最大的碎片百分比阈值</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">active-defrag-threshold-upper 100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 碎片整理周期CPU消耗最小百分比</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">active-defrag-cycle-min 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 碎片整理周期CPU消耗最大百分比</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">active-defrag-cycle-max 25</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># redis5.0之后的配置 从set / hash / zset / list 扫描的最大字段数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">active-defrag-max-scan-fields 1000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># redis6.0之后的配置 默认情况下，用于清除的Jemalloc后台线程是启用的。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">jemalloc-bg-thread yes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -------- cpu绑定（redis6.0） -------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 设置redis服务器的IO线程组的CPU绑定：0，2，4，6</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">server_cpulist 0-7:2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 设置BIO线程的CPU绑定为：1，3：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">bio_cpulist 1,3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 设置AOF子进程的CPU绑定为：8，9，10，11</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">aof_rewrite_cpulist 8-11</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 设置bgsave的CPU绑定为：1，10-11</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">bgsave_cpulist 1,10-11</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># -------- 其他 -------------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 执行大于多少微妙，才存入慢查询队列</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">slowlog-log-slower-than 10000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 慢查询最多保存多少日志</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">slowlog-max-len 128</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 一个Lua脚本最长的执行时间，单位为毫秒，如果为0或负数表示无限执行时间，默认为5000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">lua-time-limit 5000</span><span class="w">
+</span></span></span></code></pre></div><ul>
 <li>6379来源： 是手机按键的 MERZ，原因是redis作者Antirez在看一个广告，意大利广告女郎「Alessia Merz」在电视节目上说了一堆愚蠢的话。</li>
 </ul>
 <h2 id="参考">参考</h2>
@@ -718,11 +734,12 @@ and add it to your /etc/rc.local in order to retain the setting after a reboot.
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/2021/20210813-dlv/" class="prev" rel="prev" title="vscode&#43;dlv 远程调试"><i class="fas fa-angle-left fa-fw"></i>vscode&#43;dlv 远程调试</a></div>
+    <div class="post-nav"><a href="/posts/2021/20210813-dlv/" class="prev" rel="prev" title="vscode&#43;dlv 远程调试"><i class="fas fa-angle-left fa-fw"></i>vscode&#43;dlv 远程调试</a>
+            <a href="/posts/read/20210909/" class="next" rel="next" title="共产党宣言">共产党宣言<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0-DEV">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>

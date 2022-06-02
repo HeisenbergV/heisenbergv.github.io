@@ -1,0 +1,253 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Liste - "><title>MIT6.828 - 02-Lab1.Util | Liste</title><meta name=description content="Minimalistic Hugo blogging theme"><meta property="og:title" content="MIT6.828 - 02-Lab1.Util"><meta property="og:description" content="实验说明 # 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel是内核， user是用户态程序， 代码写到user里，然后再Makefile UPROGS变量中加入的相应名称即可：
+UPROGS=\ $U/_sleep\ $U/_pingpong\ $U/_primes\ $U/_find\ $U/_xargs\ 我的实验代码都在 自己fork的仓库里
+执行make grade会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：
+$ make qemu-gdb OK (5.1s) sleep, returns: $ make qemu-gdb OK (1.1s) sleep, makes syscall: $ make qemu-gdb OK (0.7s) 执行 make 然后 make qemu 编译运行操作系统
+sleep # kernel/sysproc.c 提供了sleep接口，只需要进行一次系统调用即可。
+TODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因
+sleep.c: # #include &#34;kernel/types.h&#34; #include &#34;user/user.h&#34; int main(int argc, char *argv[]) { if( argc != 2) { fprintf(2, &#34;usage: sleep seconds \n&#34;); exit(); } sleep(atoi(argv[1])); exit(); } pingpong # 程序需求：利用pipe管道，将一个字节在两个进程间往返：parent进程发送一个字节到parent_fd[1]，child进程从 parent_fd[0]接收；然后再响应将字节回传给parent进程。"><meta property="og:type" content="article"><meta property="og:url" content="/2020/04/07/20200407-mit6.828-02-lab1/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-04-07T00:00:00+00:00"><meta property="article:modified_time" content="2020-04-07T00:00:00+00:00"><meta itemprop=name content="MIT6.828 - 02-Lab1.Util"><meta itemprop=description content="实验说明 # 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel是内核， user是用户态程序， 代码写到user里，然后再Makefile UPROGS变量中加入的相应名称即可：
+UPROGS=\ $U/_sleep\ $U/_pingpong\ $U/_primes\ $U/_find\ $U/_xargs\ 我的实验代码都在 自己fork的仓库里
+执行make grade会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：
+$ make qemu-gdb OK (5.1s) sleep, returns: $ make qemu-gdb OK (1.1s) sleep, makes syscall: $ make qemu-gdb OK (0.7s) 执行 make 然后 make qemu 编译运行操作系统
+sleep # kernel/sysproc.c 提供了sleep接口，只需要进行一次系统调用即可。
+TODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因
+sleep.c: # #include &#34;kernel/types.h&#34; #include &#34;user/user.h&#34; int main(int argc, char *argv[]) { if( argc != 2) { fprintf(2, &#34;usage: sleep seconds \n&#34;); exit(); } sleep(atoi(argv[1])); exit(); } pingpong # 程序需求：利用pipe管道，将一个字节在两个进程间往返：parent进程发送一个字节到parent_fd[1]，child进程从 parent_fd[0]接收；然后再响应将字节回传给parent进程。"><meta itemprop=datePublished content="2020-04-07T00:00:00+00:00"><meta itemprop=dateModified content="2020-04-07T00:00:00+00:00"><meta itemprop=wordCount content="604"><meta itemprop=keywords content="操作系统,"><meta name=twitter:card content="summary"><meta name=twitter:title content="MIT6.828 - 02-Lab1.Util"><meta name=twitter:description content="实验说明 # 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel是内核， user是用户态程序， 代码写到user里，然后再Makefile UPROGS变量中加入的相应名称即可：
+UPROGS=\ $U/_sleep\ $U/_pingpong\ $U/_primes\ $U/_find\ $U/_xargs\ 我的实验代码都在 自己fork的仓库里
+执行make grade会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：
+$ make qemu-gdb OK (5.1s) sleep, returns: $ make qemu-gdb OK (1.1s) sleep, makes syscall: $ make qemu-gdb OK (0.7s) 执行 make 然后 make qemu 编译运行操作系统
+sleep # kernel/sysproc.c 提供了sleep接口，只需要进行一次系统调用即可。
+TODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因
+sleep.c: # #include &#34;kernel/types.h&#34; #include &#34;user/user.h&#34; int main(int argc, char *argv[]) { if( argc != 2) { fprintf(2, &#34;usage: sleep seconds \n&#34;); exit(); } sleep(atoi(argv[1])); exit(); } pingpong # 程序需求：利用pipe管道，将一个字节在两个进程间往返：parent进程发送一个字节到parent_fd[1]，child进程从 parent_fd[0]接收；然后再响应将字节回传给parent进程。"><link rel=canonical href=/2020/04/07/20200407-mit6.828-02-lab1/><meta name=monetization content="$twitter.xrptipbot.com/ronaldsvilcins"><link rel=dns-prefetch href=https://www.google-analytics.com><link href=https://www.google-analytics.com rel=preconnect crossorigin><link rel=alternate type=application/atom+xml title=Liste href=atom.xml><link rel=alternate type=application/json title=Liste href=feed.json><link rel="shortcut icon" type=image/png href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="><style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{padding:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}</style><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"posts","name":"MIT6.828 - 02-Lab1.Util","headline":"MIT6.828 - 02-Lab1.Util","alternativeHeadline":"","description":"实验说明 # 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel是内核， user是用户态程序， 代码写到user里，然后再Makefile UPROGS变量中加入的相应名称即可：\nUPROGS=\\ $U\/_sleep\\ $U\/_pingpong\\ $U\/_primes\\ $U\/_find\\ $U\/_xargs\\ 我的实验代码都在 自己fork的仓库里\n执行make grade会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：\n$ make qemu-gdb OK (5.1s) sleep, returns: $ make qemu-gdb OK (1.1s) sleep, makes syscall: $ make qemu-gdb OK (0.7s) 执行 make 然后 make qemu 编译运行操作系统\nsleep # kernel\/sysproc.c 提供了sleep接口，只需要进行一次系统调用即可。\nTODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因\nsleep.c: # #include \u0026quot;kernel\/types.h\u0026quot; #include \u0026quot;user\/user.h\u0026quot; int main(int argc, char *argv[]) { if( argc != 2) { fprintf(2, \u0026quot;usage: sleep seconds \\n\u0026quot;); exit(); } sleep(atoi(argv[1])); exit(); } pingpong # 程序需求：利用pipe管道，将一个字节在两个进程间往返：parent进程发送一个字节到parent_fd[1]，child进程从 parent_fd[0]接收；然后再响应将字节回传给parent进程。","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"\/2020\/04\/07\/20200407-mit6.828-02-lab1\/"},"author":{"@type":"Person","name":"Liste"},"creator":{"@type":"Person","name":"Liste"},"accountablePerson":{"@type":"Person","name":"Liste"},"copyrightHolder":"Liste","copyrightYear":"2020","dateCreated":"2020-04-07T00:00:00.00Z","datePublished":"2020-04-07T00:00:00.00Z","dateModified":"2020-04-07T00:00:00.00Z","publisher":{"@type":"Organization","name":"Liste","url":"","logo":{"@type":"ImageObject","url":"","width":"32","height":"32"}},"image":"","url":"\/2020\/04\/07\/20200407-mit6.828-02-lab1\/","wordCount":"604","genre":["操作系统"],"keywords":["操作系统"]}</script></head><body><a class=skip-link href=#main>Skip to main</a><main id=main><div class=content><header><p style=padding:0;margin:0><a href=/><b>Listed</b></a></p><ul style=padding:0;margin:0><li><a href=/projects>Projects</a></li><li><a href=/about>About</a></li></ul></header><hr class=hr-list style=padding:0;margin:0><h2 class=post>MIT6.828 - 02-Lab1.Util</h2><h2 id=实验说明>实验说明 <a href=#%e5%ae%9e%e9%aa%8c%e8%af%b4%e6%98%8e class="hash g">#</a></h2><p>每一个Lab对应一个git 分支，本实验分支为 <code>util</code>，主要是实现5个命令程序。在 <code>xv6-riscv-fall19</code>项目里， <code>kernel</code>是内核， <code>user</code>是用户态程序， 代码写到<code>user</code>里，然后再Makefile <code>UPROGS</code>变量中加入的相应名称即可：</p><pre><code class=language-Makefile>UPROGS=\
+	$U/_sleep\
+	$U/_pingpong\
+	$U/_primes\
+	$U/_find\
+	$U/_xargs\
+</code></pre><p>我的实验代码都在 <a href=https://github.com/HeisenbergV/xv6-riscv-fall19/>自己fork的仓库里</a></p><p>执行<code>make grade</code>会测试自己写的api，如果执行失败可能是未安装python(apt-get install python)，就像下面一样：</p><pre><code class=language-log>$ make qemu-gdb
+OK (5.1s)
+sleep, returns:
+$ make qemu-gdb
+OK (1.1s)
+sleep, makes syscall:
+$ make qemu-gdb
+OK (0.7s)
+</code></pre><p>执行 <code>make</code> 然后 <code>make qemu</code> 编译运行操作系统</p><h2 id=sleep>sleep <a href=#sleep class="hash g">#</a></h2><p><code>kernel/sysproc.c</code> 提供了<code>sleep</code>接口，只需要进行一次系统调用即可。</p><p>TODO：程序写完，但在执行命令的时候总是卡死，但测试是通过的，目前还不知道什么原因</p><h5 id=sleepc>sleep.c: <a href=#sleepc class="hash g">#</a></h5><pre><code class=language-c>#include &quot;kernel/types.h&quot;
+#include &quot;user/user.h&quot;
+
+int
+main(int argc, char *argv[])
+{
+    if( argc != 2) {
+        fprintf(2, &quot;usage: sleep seconds \n&quot;);
+        exit();
+    }
+    sleep(atoi(argv[1]));
+    exit();
+}
+</code></pre><h2 id=pingpong>pingpong <a href=#pingpong class="hash g">#</a></h2><p>程序需求：利用<code>pipe</code>管道，将一个字节在两个进程间往返：parent进程发送一个字节到parent_fd[1]，child进程从 parent_fd[0]接收；然后再响应将字节回传给parent进程。</p><ul><li><p><code>fork</code></p><p>创建的新进程被称为子进程，子进程的执行内容同创建它的进程（父进程）几乎一样（可以靠参数来产生不同的效果），父子进程执行没有固定的先后顺序，并且分配的资源互相独立不受影响。这样的话看起来就会无限fork了，不过<code>fork()</code><strong>一次调用两次返回</strong>，在父进程返回子进程pid，在子进程中返回0（如果有异常返回负数）</p><p>所以下面代码<code>fork()</code>后，总共有两个进程，虽然进程的执行内容一样，但fork的返回结果不同，所以父进程的fork返回!=0进入了else语句，子进程相反。</p></li><li><p><code>pipe</code></p><p>如果数据没有准备好，那么对管道执行的read会一直等待，所以parent和child进程在没有获取到对方数据时不会<code>exit()</code></p><p>因为parent是先写，child是先读，所以程序执行后的输出顺序总是先输出child的log</p></li></ul><h5 id=pingpongc>pingpong.c: <a href=#pingpongc class="hash g">#</a></h5><pre><code class=language-c>#include &quot;kernel/types.h&quot;
+#include &quot;user/user.h&quot;
+
+int
+main(int argc, char *argv[]) {
+    int parent_fd[2],child_fd[2];
+
+    //创建管道 fd[0]读 fd[1]写
+    pipe(parent_fd); 
+    pipe(child_fd); 
+
+    char msg = '0';
+    if(fork() == 0) {//child 进程
+        read(parent_fd[0], &amp;msg, 1);//读取
+        fprintf(2, &quot;%d: child received ping, msg: %c \n&quot;, getpid(), msg);
+        write(child_fd[1], &amp;msg, 1);//写入
+    } else{ //parent 进程
+        write(parent_fd[1], &amp;msg, 1);
+        read(child_fd[0], &amp;msg, 1);
+        fprintf(2, &quot;%d: parent received pong, msg: %c \n&quot;, getpid(), msg);
+    }
+    exit();
+}
+</code></pre><h2 id=primes>primes <a href=#primes class="hash g">#</a></h2><p>程序需求：父线程将 2 ~ 35 数字输入<code>pipe</code>，<code>fork</code>的子进程如同一个递归操作，将第一个数字打印，并将其余不能被这个数字整除的输入到<code>pipe</code>，不断重复操作，直至最后一个数字。
+最后打印出来的结果将都会是素数。<a href=https://swtch.com/~rsc/thread/>这篇文章</a>解释了这个模型。利用管道，和递归，一层层过滤无效数据。 需要注意的是xv6的fd有限，范围为0~15，所以需要将不用的fd close</p><pre><code class=language-txt>流程大致如下：
+&gt; 2,3,4,5,6,7,8,9,10,11
+&gt; print 2 &amp; 将能被2整除的过滤
+&gt; 3,5,7,9,11
+&gt; print 3 &amp; 将能被3整除的过滤
+&gt; 5,7,11
+&gt; print 5 &amp; 将能被5整除的过滤
+&gt; 7,11
+&gt; print 7 &amp; 将能被7整除的过滤
+&gt; 11
+&gt; print 11 &amp; end
+
+最后打印的结果为：2，3，5，7，11 全部为素数
+</code></pre><p>子进程主要做三件事：</p><ol><li>输出第一个</li><li>过滤，符合要求的发送到新的pipe</li><li>让子进程继续重复操作</li></ol><p>将2，3对调 可以让两个进程读写同时进行</p><h5 id=primesc>primes.c: <a href=#primesc class="hash g">#</a></h5><pre><code class=language-c>#include &quot;kernel/types.h&quot;
+#include &quot;user/user.h&quot;
+
+void
+filter(int out, int input){
+    close(input);
+    int div;
+    //1. 输出第一个
+    if(read(out, &amp;div, sizeof(int))&lt;=0) exit();
+    fprintf(2, &quot;prime %d \n&quot;, div);
+
+    int p[2];
+    pipe(p);
+
+    //3. 让子进程继续重复操作
+    if(fork()){
+        filter(p[0],p[1]);
+        return;
+    }
+
+    //2. 过滤，符合要求的发送到新的pipe
+    int num;
+    while(read(out, &amp;num, sizeof(int))){
+        if (num % div != 0){
+            write(p[1], &amp;num, sizeof(int));
+        }
+    }
+    close(out);
+
+    wait();
+    exit();
+}
+
+int 
+main(int argc, char *argv[]){
+    int p[2];
+    pipe(p);
+
+    if(fork()){
+        filter(p[0], p[1]);
+    }else{
+        for (int i = 2; i &lt;= 35; i++){
+            write(p[1], &amp;i, sizeof(i));
+        }
+        wait();
+        exit();
+    }
+    return 0;
+}
+</code></pre><h2 id=find>find <a href=#find class="hash g">#</a></h2><p>程序需求：输入文件名称，用递归方式遍历目录及其子目录，打印出：路径+名称。比如<code>find d.txt</code>打印<code>a/b/c/d.txt</code>。</p><p>主要思路：部分代码可以直接用<code>ls.c</code>的，利用递归遍历<code>dir</code>，名字相同则输出，不用的fd要close掉，因为xv6范围是0~15</p><h5 id=findc>find.c <a href=#findc class="hash g">#</a></h5><pre><code class=language-c>#include &quot;kernel/types.h&quot;
+#include &quot;kernel/stat.h&quot;
+#include &quot;user/user.h&quot;
+#include &quot;kernel/fs.h&quot;
+
+
+char* 
+fmtname(char *path) {
+    char *p;
+    // Find first character after last slash.
+    for(p=path+strlen(path); p &gt;= path &amp;&amp; *p != '/'; p--);
+    return ++p;
+}
+ 
+void
+find(char*path, char*name) {
+    int fd;
+    struct stat st;
+
+    if (strcmp(fmtname(path), name) == 0) {
+        fprintf(2, &quot;%s \n&quot;, path);
+    }
+    
+    if ((fd = open(path, 0)) &lt; 0) {
+        fprintf(2, &quot;find: cannot open %s\n&quot;, path);
+        return;
+    }
+
+    if (fstat(fd, &amp;st) &lt; 0) {
+        fprintf(2, &quot;find: cannot stat %s\n&quot;, path);
+        close(fd);
+        return;
+    }
+
+    if (st.type != T_DIR){
+        close(fd);
+        return;
+    }
+
+    char buf[512], *p;
+    struct dirent de;
+    strcpy(buf, path);
+    p = buf+strlen(buf);
+    *p++ = '/';
+
+    while (read(fd, &amp;de, sizeof(de)) == sizeof(de)) {
+        if (de.inum == 0)
+            continue;
+
+        memmove(p, de.name, DIRSIZ);
+        p[DIRSIZ] = 0;
+
+        if (strcmp(de.name, &quot;.&quot;) == 0)
+            continue;
+     
+        if (strcmp(de.name, &quot;..&quot;) == 0)
+            continue;
+
+        find(buf, name);
+    }
+}
+
+int
+main(int argc, char *argv[]) {
+    if (argc &lt;= 2) {
+        fprintf(2, &quot;params error&quot;);
+        exit();
+    }
+
+    find(argv[1], argv[2]);
+    exit();
+}
+</code></pre><h2 id=xargs>xargs <a href=#xargs class="hash g">#</a></h2><p>程序需求：xargs执行后，从标准输出读取每一行，并为每一行运行一个命令，命令的参数是标准输出的内容
+举例：</p><pre><code>&gt; xargs echo bye
+hello too
+bye hello too
+</code></pre><h5 id=xargsc>xargs.c <a href=#xargsc class="hash g">#</a></h5><pre><code class=language-c>#include &quot;kernel/types.h&quot;
+#include &quot;user/user.h&quot;
+
+int 
+main(int argc, char *argv[]) {
+    char buf2[512];
+    char buf[32][32];
+    char *pass[32];
+
+    for (int i = 0; i &lt; 32; i++)
+        pass[i] = buf[i];
+
+    int i;
+    for (i = 1; i &lt; argc; i++)
+        strcpy(buf[i - 1], argv[i]);
+
+    int n;
+    while ((n = read(0, buf2, sizeof(buf2))) &gt; 0) {
+        int pos = argc - 1;
+        char *c = buf[pos];
+        for (char *p = buf2; *p; p++) {
+            if (*p == ' ' || *p == '\n') {
+                *c = '\0';
+                pos++;
+                c = buf[pos];
+            } else
+                *c++ = *p;
+        }
+        *c = '\0';
+        pos++;
+        pass[pos] = 0;
+
+        if (fork()) {
+            wait();
+        } else
+            exec(pass[0], pass);
+    }
+
+    if (n &lt; 0) {
+        printf(&quot;xargs: read error\n&quot;);
+        exit();
+    }
+
+    exit();
+}
+</code></pre><h2 id=参考>参考 <a href=#%e5%8f%82%e8%80%83 class="hash g">#</a></h2><p><a href=https://blog.csdn.net/jason314/article/details/5640969>linux-fork()</a></p></div></main></body></html>

@@ -4,7 +4,14 @@
         <link>https://heisenbergv.github.io/categories/coder/</link>
         <description>coder - 分类 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
+    <title>软件设计随想</title>
+    <link>https://heisenbergv.github.io/posts/2021/20211107-design/</link>
+    <pubDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20211107-design/</guid>
+    <description><![CDATA[在我看来软件设计主要做两件事一个是划分边界另一个是做权衡。 划分边界往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个]]></description>
+</item><item>
     <title>redis-单机场景</title>
     <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://heisenbergv.github.io/posts/2020/20200401-go-context/</guid>
     <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理]]></description>
-</item><item>
-    <title>读CSAPP(4) - 虚拟内存</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190928-csapp4/</link>
-    <pubDate>Sat, 28 Sep 2019 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190928-csapp4/</guid>
-    <description><![CDATA[虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全]]></description>
 </item></channel>
 </rss>

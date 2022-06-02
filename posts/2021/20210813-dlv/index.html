@@ -119,27 +119,27 @@
 <li>在服务器和本地开发环境都要安装dlv:   <code>go install github.com/go-delve/delve/cmd/dlv@latest</code>； 两个机器版本一定要一模一样</li>
 <li>vscode配置launch.json</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;remote debug&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span>
-            <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;attach&#34;</span><span class="p">,</span>
-            <span class="err">//</span> <span class="err">这里设置remote</span> <span class="err">远程</span>
-            <span class="nt">&#34;mode&#34;</span><span class="p">:</span><span class="s2">&#34;remote&#34;</span><span class="p">,</span>
-            <span class="err">//</span> <span class="err">目标机器</span> <span class="err">端口</span>
-            <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">2345</span><span class="p">,</span>
-            <span class="err">//</span> <span class="err">目标机器</span> <span class="err">ip</span>
-            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;10.10.10.123&#34;</span><span class="p">,</span>
-            <span class="err">//</span> <span class="err">本地与目标一模一样的工程目录位置</span>
-            <span class="nt">&#34;substitutePath&#34;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="s2">&#34;本地项目目录/hello&#34;</span><span class="p">,</span> <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="s2">&#34;/服务器项目目录/hello&#34;</span> <span class="p">},</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">],</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="运行">运行</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;remote debug&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;attach&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 这里设置remote 远程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;mode&#34;</span><span class="p">:</span><span class="s2">&#34;remote&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 目标机器 端口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">2345</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 目标机器 ip
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;10.10.10.123&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 本地与目标一模一样的工程目录位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;substitutePath&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span> <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="s2">&#34;本地项目目录/hello&#34;</span><span class="p">,</span> <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="s2">&#34;/服务器项目目录/hello&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="运行">运行</h2>
 <ol>
 <li>代码编译增加 <code> -gcflags='all=-N -l'</code></li>
 <li>在服务器端的程序目录下（main.go所在位置)执行命令: <code>dlv --listen=:2345 --headless=true --api-version=2 --log attach 进程id</code></li>
@@ -174,7 +174,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0-DEV">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>
