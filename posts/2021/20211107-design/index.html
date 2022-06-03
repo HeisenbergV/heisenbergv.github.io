@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20211107-design\/"
-        },"genre": "posts","keywords": "设计","wordcount":  2531 ,
+        },"genre": "posts","keywords": "设计","wordcount":  3018 ,
         "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20211107-design\/","datePublished": "2021-11-07T00:00:00+00:00","dateModified": "2021-11-07T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "zJxin"},"author": {
@@ -101,7 +101,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">软件设计随想</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw"></i>coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-07">2021-11-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2531 字&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-07">2021-11-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3018 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -120,6 +120,7 @@
       </ul>
     </li>
     <li><a href="#关于设计原则">关于设计原则</a></li>
+    <li><a href="#再说面向对象">再说面向对象</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>在我看来软件设计主要做两件事一个是<code>划分边界</code>另一个是做<code>权衡</code>。</p>
@@ -266,7 +267,14 @@
 <li>接口隔离原则</li>
 <li>依赖反转原则</li>
 </ul>
-<p>这几种原则其实是殊途同归，我开头说<code>划分边界</code>，模块之间划分了边界，那么设计原则就是规定了不同边界下的模块之间的依赖关系。</p>
+<p>这几种原则其实是殊途同归，都是为了划清边界，理清依赖关系。</p>
+<h2 id="再说面向对象">再说面向对象</h2>
+<p>上面说过，编程范式只是限制了某些事情，而不是增加了某些能力。封装继承多态，并不是面向对象语言独有的，只是面向对象语言对其进行了更加规范的语言层面的限制。</p>
+<p>我最开始说划分边界，那封装的作用就是明确了成员的内外关系，划分了边界</p>
+<p>继承则是有两个作用一个是代码复用、另一个是抽离策略与行为（基类设定行为，子类具体实现细节）。然而代码复用不需要继承也能轻易实现，如果为了代码复用利用继承关系，反而让两个类产生了关系增加了耦合，强面向对象语言比如c#或java，任何成员（变量或者函数）都需要宿主（类或结构体），那么代码复用要么利用继承关系，要么new一个对象再复用。不过还好有个静态类可以更简单的应对复用。</p>
+<p>继承的策略与行为的抽离才是最关键的，因为两者的分离才有了多态性让代码变得更<strong>软</strong>。然而策略与行为的抽离并不是继承创造出来的，而是函数指针的功劳。那么看来面向对象的继承实际上并没有什么优点，可能唯一的优点就是让多态的实现变得更安全和便捷。</p>
+<p>多态性使得调用者无需关注具体实现者，多个不同实现者也可以用同样方式调用。</p>
+<p>封装使得成员明确了职责，划分了边界，多态让依赖关系更加容易，这两点让代码模块化更简单灵活。而面向对象语言从语法层面规范了它们。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
