@@ -4,9 +4,16 @@
         <link>https://heisenbergv.github.io/</link>
         <description>Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://heisenbergv.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>crawlergo源码</title>
+    <link>https://heisenbergv.github.io/posts/2023/20230104/</link>
+    <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/2023/20230104/</guid>
+    <description><![CDATA[目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter]]></description>
+</item><item>
     <title>软件设计随想</title>
     <link>https://heisenbergv.github.io/posts/2021/20211107-design/</link>
     <pubDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</pubDate>
@@ -69,12 +76,5 @@
     <author>作者</author>
     <guid>https://heisenbergv.github.io/posts/read/20210610/</guid>
     <description><![CDATA[小团队的话，管理者个人开发能力过关，再加上分配工作合理就能有不错的效果。再进一步就是把项目规划好，在项目进展中及时纠正错误问题（计划、设计、]]></description>
-</item><item>
-    <title>grpc-go</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210119-grpc/</link>
-    <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210119-grpc/</guid>
-    <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
 </item></channel>
 </rss>
