@@ -8,71 +8,81 @@
     <title>crawlergo源码</title>
     <link>https://heisenbergv.github.io/posts/2023/20230104/</link>
     <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2023/20230104/</guid>
     <description><![CDATA[目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter]]></description>
-</item><item>
+</item>
+<item>
     <title>软件设计随想</title>
     <link>https://heisenbergv.github.io/posts/2021/20211107-design/</link>
     <pubDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20211107-design/</guid>
     <description><![CDATA[在我看来软件设计主要做两件事一个是划分边界另一个是做权衡。 划分边界往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个]]></description>
-</item><item>
+</item>
+<item>
     <title>redis-单机场景</title>
     <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210906-redis/</guid>
     <description><![CDATA[我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等 概要 有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注]]></description>
-</item><item>
+</item>
+<item>
     <title>vscode&#43;dlv 远程调试</title>
     <link>https://heisenbergv.github.io/posts/2021/20210813-dlv/</link>
     <pubDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210813-dlv/</guid>
     <description><![CDATA[dlv在服务器排查程序问题，没有可视化界面比较繁琐，利用vscode+dlv 远程调试，就和在本地调试一样简单 安装 在服务器和本地开发环境都要安]]></description>
-</item><item>
+</item>
+<item>
     <title>gin源码</title>
     <link>https://heisenbergv.github.io/posts/2021/20210721-gin/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210721-gin/</guid>
     <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息]]></description>
-</item><item>
+</item>
+<item>
     <title>grpc-go</title>
     <link>https://heisenbergv.github.io/posts/2021/20210119-grpc/</link>
     <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210119-grpc/</guid>
     <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
-</item><item>
+</item>
+<item>
     <title>计算机网络-传输层</title>
     <link>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</link>
     <pubDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</guid>
     <description><![CDATA[TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物]]></description>
-</item><item>
+</item>
+<item>
     <title>MIT6.828 - 02-Lab1.Util</title>
     <link>https://heisenbergv.github.io/posts/2020/20200407-mit6.828-02-lab1/</link>
     <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2020/20200407-mit6.828-02-lab1/</guid>
     <description><![CDATA[实验说明 每一个Lab对应一个git 分支，本实验分支为 util，主要是实现5个命令程序。在 xv6-riscv-fall19项目里， kernel]]></description>
-</item><item>
+</item>
+<item>
     <title>MIT6.828 - 01.环境搭建</title>
     <link>https://heisenbergv.github.io/posts/2020/20200406-mit6.828-01/</link>
     <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2020/20200406-mit6.828-01/</guid>
     <description><![CDATA[概述 6.S081 目标 理解操作系统设计与实现 掌握扩展迷你操作系统的实践经验 掌握编写系统软件的经验 环境搭建 我使用docker进行环境搭建，构建自己的ima]]></description>
-</item><item>
+</item>
+<item>
     <title>MIT6.828 - 00.开始</title>
     <link>https://heisenbergv.github.io/posts/2020/20200405-mit6.828-00/</link>
     <pubDate>Sun, 05 Apr 2020 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2020/20200405-mit6.828-00/</guid>
     <description><![CDATA[前言 写一个操作系统一直是我的梦想，MIT 6.828-2019fall是最好的课程之一。我将记录学习的过程与实践， 所有代码都会上传至我的git]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>
