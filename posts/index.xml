@@ -12,6 +12,13 @@
     <guid>https://heisenbergv.github.io/posts/2023/20230104/</guid>
     <description><![CDATA[目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter]]></description>
 </item><item>
+    <title>人生的意义</title>
+    <link>https://heisenbergv.github.io/posts/read/20220408/</link>
+    <pubDate>Fri, 08 Apr 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://heisenbergv.github.io/posts/read/20220408/</guid>
+    <description><![CDATA[人生的意义是什么？ 人生的意义是找到一种比死更重要的东西 人活着总要走向死亡，面对死亡更容易获得超越死亡的东西，苦难常常是人与死亡之间的桥梁，因]]></description>
+</item><item>
     <title>软件设计随想</title>
     <link>https://heisenbergv.github.io/posts/2021/20211107-design/</link>
     <pubDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://heisenbergv.github.io/posts/read/20210613/</guid>
     <description><![CDATA[辩证法研究对象的本质自身中的矛盾 &ndash; 列宁 从这句话得知矛盾是辩证法的核心。因为是核心，所以涉及许多方面和哲学问题：两种宇宙观、矛盾的普遍性、矛盾]]></description>
-</item><item>
-    <title>管理什么的</title>
-    <link>https://heisenbergv.github.io/posts/read/20210610/</link>
-    <pubDate>Thu, 10 Jun 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://heisenbergv.github.io/posts/read/20210610/</guid>
-    <description><![CDATA[小团队的话，管理者个人开发能力过关，再加上分配工作合理就能有不错的效果。再进一步就是把项目规划好，在项目进展中及时纠正错误问题（计划、设计、]]></description>
 </item></channel>
 </rss>
