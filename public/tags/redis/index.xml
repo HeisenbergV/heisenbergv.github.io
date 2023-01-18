@@ -8,8 +8,9 @@
     <title>redis-单机场景</title>
     <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
+    <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210906-redis/</guid>
     <description><![CDATA[我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等 概要 有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>
