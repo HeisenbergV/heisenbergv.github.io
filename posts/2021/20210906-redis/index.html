@@ -10,14 +10,13 @@
 <meta property="og:url" content="https://heisenbergv.github.io/posts/2021/20210906-redis/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-06T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-09-06T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="redis-单机场景"/>
 <meta name="twitter:description" content="我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等 概要 有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210906-redis/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2021/20210813-dlv/" /><link rel="next" href="https://heisenbergv.github.io/posts/read/20210909/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210906-redis/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2021/20210813-dlv/" /><link rel="next" href="https://heisenbergv.github.io/posts/2021/20211107-design/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -28,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210906-redis\/"
-        },"genre": "posts","keywords": "redis","wordcount":  10474 ,
+        },"genre": "posts","keywords": "redis","wordcount":  9735 ,
         "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210906-redis\/","datePublished": "2021-09-06T00:00:00+00:00","dateModified": "2021-09-06T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -100,7 +99,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">redis-单机场景</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-09-06">2021-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 10474 字&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-09-06">2021-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9735 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -423,11 +422,11 @@ redis中使用事务很简单:</p>
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="n">server</span><span class="p">.</span><span class="n">c</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">createSharedObjects</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">createSharedObjects</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//...
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">OBJ_SHARED_INTEGERS</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">shared</span><span class="p">.</span><span class="n">integers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span>
-</span></span><span class="line"><span class="cl">            <span class="n">makeObjectShared</span><span class="p">(</span><span class="n">createObject</span><span class="p">(</span><span class="n">OBJ_STRING</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="kt">long</span><span class="p">)</span><span class="n">j</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">makeObjectShared</span><span class="p">(</span><span class="nf">createObject</span><span class="p">(</span><span class="n">OBJ_STRING</span><span class="p">,(</span><span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="kt">long</span><span class="p">)</span><span class="n">j</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">        <span class="n">shared</span><span class="p">.</span><span class="n">integers</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">OBJ_ENCODING_INT</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//...
@@ -558,8 +557,8 @@ NUMA 节点0 CPU：    0-7
 </span></span></span><span class="line"><span class="cl"><span class="cm">
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * 如果pid的值为0,则表示指定的是当前进程 
 </span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sched_setaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sched_getaffinity</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="n">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span><span class="cm">/* 获得pid所指示的进程的CPU位掩码,并将该掩码返回到mask所指向的结构中 */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sched_setaffinity</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="kt">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sched_getaffinity</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">cpusetsize</span><span class="p">,</span> <span class="kt">cpu_set_t</span> <span class="o">*</span><span class="n">mask</span><span class="p">);</span><span class="cm">/* 获得pid所指示的进程的CPU位掩码,并将该掩码返回到mask所指向的结构中 */</span>
 </span></span></code></pre></div><p>redis的持久化，还有个别命令都是在子进程或子线程执行的，也就是说对于redis绑定一个物理核还是有可能阻塞的。另外redis网络用的是io多路复用，监听的是io事件，在使用numa架构的时候我们应该防止redis在绑定cpu时跨节点。</p>
 <h3 id="redis-与linux-hugepage">redis 与linux hugepage</h3>
 <ul>
@@ -732,11 +731,11 @@ NUMA 节点0 CPU：    0-7
     </div>
 
     <div class="post-nav"><a href="/posts/2021/20210813-dlv/" class="prev" rel="prev" title="vscode&#43;dlv 远程调试"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>vscode+dlv 远程调试</a>
-            <a href="/posts/read/20210909/" class="next" rel="next" title="共产党宣言">共产党宣言<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/2021/20211107-design/" class="next" rel="next" title="软件设计随想">软件设计随想<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.99.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.108.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>
