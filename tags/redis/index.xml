@@ -4,7 +4,15 @@
         <link>https://heisenbergv.github.io/tags/redis/</link>
         <description>redis - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/redis/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Thu, 16 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/redis/" rel="self" type="application/rss+xml" /><item>
+    <title>redis-多机模式</title>
+    <link>https://heisenbergv.github.io/posts/2021/20210916-redis/</link>
+    <pubDate>Thu, 16 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2021/20210916-redis/</guid>
+    <description><![CDATA[单redis意义较小，单机redis的主要作用可能就是多服务之间进行数据共享、或者利用redis提供的有序集合过期键等实现一些业务逻辑。 re]]></description>
+</item>
+<item>
     <title>redis-单机场景</title>
     <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
