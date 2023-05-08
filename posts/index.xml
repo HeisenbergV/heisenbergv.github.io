@@ -21,6 +21,14 @@
     <description><![CDATA[目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter]]></description>
 </item>
 <item>
+    <title>烘焙市场分析</title>
+    <link>https://heisenbergv.github.io/posts/2023/%E7%83%98%E7%84%99%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90/</link>
+    <pubDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2023/%E7%83%98%E7%84%99%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90/</guid>
+    <description><![CDATA[任何决策之前都需要调查，没有调查就没有发言权。做生意就要研究调查一个市场的情况，分析接下来要做什么，怎么做。 很明显，我们当下目标无论怎样都不]]></description>
+</item>
+<item>
     <title>人生的意义</title>
     <link>https://heisenbergv.github.io/posts/read/20220408/</link>
     <pubDate>Fri, 08 Apr 2022 00:00:00 &#43;0000</pubDate>
@@ -75,14 +83,6 @@
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210721-gin/</guid>
     <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息]]></description>
-</item>
-<item>
-    <title>关于矛盾论</title>
-    <link>https://heisenbergv.github.io/posts/read/20210613/</link>
-    <pubDate>Sun, 13 Jun 2021 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/read/20210613/</guid>
-    <description><![CDATA[辩证法研究对象的本质自身中的矛盾 &ndash; 列宁 从这句话得知矛盾是辩证法的核心。因为是核心，所以涉及许多方面和哲学问题：两种宇宙观、矛盾的普遍性、矛盾]]></description>
 </item>
 </channel>
 </rss>
