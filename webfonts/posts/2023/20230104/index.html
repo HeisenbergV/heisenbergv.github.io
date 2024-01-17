@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>crawlergo源码 - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="crawlergo源码" />
+<meta property="og:description" content="目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/posts/2023/20230104/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-01-04T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="crawlergo源码"/>
+<meta name="twitter:description" content="目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2023/20230104/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2023/%E7%83%98%E7%84%99%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90/" /><link rel="next" href="https://heisenbergv.github.io/posts/read/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "crawlergo源码",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/posts\/2023\/20230104\/"
+        },"genre": "posts","keywords": "go","wordcount":  2277 ,
+        "url": "https:\/\/heisenbergv.github.io\/posts\/2023\/20230104\/","datePublished": "2023-01-04T00:00:00+00:00","dateModified": "2023-01-04T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="auto" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">crawlergo源码</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-04">2023-01-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2277 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#目录">目录</a></li>
+    <li><a href="#爬虫生命周期">爬虫生命周期</a></li>
+    <li><a href="#过滤去重">过滤去重</a>
+      <ul>
+        <li><a href="#智能过滤">智能过滤</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于进程超时">关于进程超时</a></li>
+    <li><a href="#output">output</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="目录">目录</h2>
+<pre tabindex="0"><code>├─cmd
+│  └─main.go  # 程序主入口
+└─pkg
+    ├─config  # 一些配置相关
+    ├─engine  # chrome相关程序
+    ├─filter  # 去重相关
+    ├─js      # 一些注入的js
+    ├─logger  # 日志
+    ├─model   # url和请求相关的库
+    └─tools   # 一些通用类库
+        └─requests
+</code></pre><h2 id="爬虫生命周期">爬虫生命周期</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2023/crawlergo.png"
+        data-srcset="../../../img/2023/crawlergo.png, ../../../img/2023/crawlergo.png 1.5x, ../../../img/2023/crawlergo.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2023/crawlergo.png"
+        title="crawlergo" /></p>
+<p>上述标记了每个大步骤标记了a、b、c&hellip; 便于后面分析功能时说明在哪个步骤实现的</p>
+<ol>
+<li>
+<p>初始化全局参数（所有的url请求都依赖这些参数）： 设置关键字过滤<code>IgnoreKeywords</code>; 设置表单参数，若没有则使用默认值: <code>default= config.go-&gt;DefaultInputText</code></p>
+</li>
+<li>
+<p>初始化爬虫任务</p>
+<ol>
+<li>初始化参数（一些chrome的配置）： 最大并发数、最大深度、url请求超时时间等</li>
+<li>初始化浏览器 <code>InitBrowser()</code>：忽略证书错误、不请求图片url、不展示gui等</li>
+<li>初始化过滤器 <code>smartFilter.Init()</code>：所有url在爬取前都要经过<code>smartFilter.DoFilter(*model.Request)</code>进行过滤</li>
+<li>创建协成池（根据参数<code>max-tab-count</code>）：同时开启最多<code>max-tab-count</code>个tab页，也就是并发爬取数量限制</li>
+</ol>
+</li>
+<li>
+<p>运行爬虫任务</p>
+<ol>
+<li>若配置了<code>--robots-path true</code>（默认false）则爬取robot.txt中的url</li>
+<li>若配置了<code>--fuzz-path-dict path</code> 则开启目录爆破，爬取文件中所有关键字组成的url；也可以使用<code>--fuzz-path true</code> 开启后会爬取<code>path_expansion.go-&gt;pathStr</code>变量中的内容</li>
+<li>开始爬取: 每个url请求都会调用<code>addTask2Pool(req *model.Request)</code></li>
+</ol>
+</li>
+<li>
+<p>每个url的爬取流程</p>
+<ol>
+<li>url会调用<code>addTask2Pool</code>，并且每个url都会是一个独立的goroutine</li>
+<li>每个url执行会创建一个tab页来运行: 每个tab页都会监听多种事件，便于在不同时刻处理不同的请求逻辑: 可以参考 <a href="https://chromedevtools.github.io/devtools-protocol/tot/Network/" target="_blank" rel="noopener noreffer ">https://chromedevtools.github.io/devtools-protocol/tot/Network/</a></li>
+<li>重要的事件有: 请求前的拦截、解析js中的url、重定向、40x请求、表单填充等</li>
+<li>开始爬取<code>(tab *Tab) Start()</code>: 到这一步才真正的开始爬取</li>
+<li>每个tab请求都遵循<code>InitBrowser()</code>时的参数，并且每个tab页也可以在<code>chromedp.Run</code>中添加参数</li>
+<li>爬取ing：爬取过程中事件会经过刚才注册过的</li>
+<li>爬取后：收集所有url结果添加到<code>func (tab *Tab) AddResultUrl</code></li>
+<li>爬取的url结果会再次过滤后添加到<code>addTask2Pool</code>，进行下一阶段爬取</li>
+<li>从<code>1</code>开始重复流程，直至爬取不到任何结果或符合终止条件（最大深度、最大时间等）</li>
+</ol>
+</li>
+<li>
+<p>输出结果，终止浏览器</p>
+</li>
+</ol>
+<h2 id="过滤去重">过滤去重</h2>
+<p>使用方式是: <code>spiderman --filter-mode=smart http://127.0.0.1</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// taskconfig.go:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">TaskConfig</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">FilterMode</span>              <span class="kt">string</span> <span class="c1">// simple、smart、strict
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// config.go: 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">const</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 默认-简单过滤: 其他过滤条件都包含简单过滤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">// 对req做md5操作，比较md5值，并且过滤掉一些无用url：config.go:StaticSuffix 参数中的比如 png、jpg等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">SimpleFilterMode</span> <span class="p">=</span> <span class="s">&#34;simple&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 智能过滤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">SmartFilterMode</span>  <span class="p">=</span> <span class="s">&#34;smart&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 严格智能过滤: 在智能过滤基础上增加了一点逻辑，对大小写、下划线等更敏感
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">StrictFilterMode</span> <span class="p">=</span> <span class="s">&#34;strict&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>此功能流程:</p>
+<ol>
+<li>在<code>步骤c</code>进行初始化设置</li>
+<li>在<code>步骤c</code>创建初始url时 进行一次过滤</li>
+<li>在<code>步骤g</code>产生新的url后 进行一次过滤</li>
+<li>在<code>步骤h</code>将最终产出的url req 做最简单的md5 过滤</li>
+</ol>
+<p>因此如果需要增加新的过滤方式，或调整过滤流程，需要注意上述流程，另外可以以接口的形式来解耦filter模块，这是我提的pr:https://github.com/Qianlitp/crawlergo/pull/136</p>
+<h3 id="智能过滤">智能过滤</h3>
+<p>根据正则将匹配结果进行标记</p>
+<p>比如:</p>
+<pre tabindex="0"><code>www.baidu.com/page/1 --&gt; www.baidu.com/page/{int}
+因此www.baidu.com/page/1 和www.baidu.com/page/2 最终处理后都是www.baidu.com/page/{int} 表示相同url
+</code></pre><h2 id="关于进程超时">关于进程超时</h2>
+<p>目前的超时只能根据并发数量<code>-m</code>、<code>tab-run-timeout</code>、<code>--max-crawled-count </code>大致的进行时间上的控制 <a href="https://github.com/Qianlitp/crawlergo/issues/69" target="_blank" rel="noopener noreffer ">参考</a>。我这里增加了
+最大的执行时间控制。但无法达到精准的控制，只能在秒级别内，比如设置20秒，会在20-23秒左右停止</p>
+<p>根据上图，可以知道<code>d</code>和<code>f</code>两个步骤，一个是加入新的url，一个是tab创建设置tab的超时时间。因此可以在这两个地方进行限制。</p>
+<ol>
+<li>增加参数，并记录Crawlergo启动时间</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">TaskConfig</span> <span class="kd">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//..
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">MaxRunTime</span> <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">Start</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">CrawlerTask</span><span class="p">)</span> <span class="nf">Run</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">Start</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ol start="2">
+<li>产生新url 阶段 - <code>task_main.go:addTask2Pool()</code>： 若检测超时则无法再添加新的url 创建新的tab</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">CrawlerTask</span><span class="p">)</span> <span class="nf">addTask2Pool</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawledCount</span> <span class="o">&gt;=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxCrawlCount</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nx">crawledCount</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Start</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxRunTime</span><span class="p">)).</span><span class="nf">Before</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//.....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ol>
+<li>创建tab准备爬取 阶段 - <code>task_main.go:Task()</code>：进程剩余时间和tab最大超时时间 取最小，作为tab的超时时间，如果没时间了，则取消创建</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">tabTask</span><span class="p">)</span> <span class="nf">Task</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 设置tab超时时间，若设置了程序最大运行时间， tab超时时间和程序剩余时间取小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">timeremaining</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Start</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxRunTime</span><span class="p">)</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">).</span><span class="nf">Sub</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">tabTime</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">TabRunTimeout</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">TabRunTimeout</span> <span class="p">&gt;</span> <span class="nx">timeremaining</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">tabTime</span> <span class="p">=</span> <span class="nx">timeremaining</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">tabTime</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//.....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><h2 id="output">output</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// task_main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Result</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 存储的url，是请求完成并且是过滤后的；也就是最终产出的全部内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">ReqList</span> <span class="p">[]</span><span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 存储的是搜集到的所有url（没有过滤，也不一定会进行请求的url）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">// 它的存储逻辑是直接将每个tab产出的req存入，如果多个tab并发执行，是会重复的，因此在任务完成后需要去重操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 主要作用是 展示爬取到的全部域名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">AllReqList</span> <span class="p">[]</span><span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//..
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>举例:
+假设捕获到了两个url要进行爬取，并且分别会产出3个url，如下关系：</p>
+<pre tabindex="0"><code>1. www.baidu.com/a
+   - www.baidu.com/c
+   - www.baidu.com/d
+   - www.baidu.com/e
+
+2. www.baidu.com/b
+   - www.baidu.com/c
+   - www.baidu.com/d
+   - www.baidu.com/f
+</code></pre><p>根据参数可以设置最大并发爬取<code>--max-tab-count</code>，比如是 2，整个爬取流程:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../../img/2023/result1.png"
+        data-srcset="../../../img/2023/result1.png, ../../../img/2023/result1.png 1.5x, ../../../img/2023/result1.png 2x"
+        data-sizes="auto"
+        alt="../../../img/2023/result1.png"
+        title="result" /></p>
+<p>假设<code>tab1</code>优先完成，产出了<code>b/c/d</code>三个url，那么<code>tab2</code>经过过滤最终只上报<code>f</code>一个url。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-01-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://heisenbergv.github.io/posts/2023/20230104/" data-title="crawlergo源码" data-hashtags="go"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://heisenbergv.github.io/posts/2023/20230104/" data-hashtag="go"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://heisenbergv.github.io/posts/2023/20230104/" data-title="crawlergo源码"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://heisenbergv.github.io/posts/2023/20230104/" data-title="crawlergo源码"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://heisenbergv.github.io/posts/2023/20230104/" data-title="crawlergo源码"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2023/%E7%83%98%E7%84%99%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90/" class="prev" rel="prev" title="烘焙市场分析"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>烘焙市场分析</a>
+            <a href="/posts/read/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/" class="next" rel="next" title="刻意练习">刻意练习<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.108.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{"gitalk":{"admin":["heisenbergv"],"clientID":"70335a4af07c4a97b79b","clientSecret":"6c0684397ec265598fead8d27242c273d151bd1e","id":"2023-01-04T00:00:00Z","owner":"heisenbergv","repo":"heisenbergv.github.io","title":"crawlergo源码"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
