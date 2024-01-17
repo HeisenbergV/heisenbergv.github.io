@@ -4,9 +4,17 @@
         <link>https://heisenbergv.github.io/</link>
         <description>Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 11 Sep 2023 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 02 Oct 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://heisenbergv.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>梅菜扣肉的独白</title>
+    <link>https://heisenbergv.github.io/posts/2023/20231002/</link>
+    <pubDate>Mon, 02 Oct 2023 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2023/20231002/</guid>
+    <description><![CDATA[我是一只猪，一只普通的猪，躺也不是站也不是，吃也不是，饿也不是。隔壁村的种猪活得潇洒，终归还是猪。我跑出去过一次，也算是不平凡的猪生，只是撞]]></description>
+</item>
+<item>
     <title>基督山伯爵</title>
     <link>https://heisenbergv.github.io/posts/read/2023911/</link>
     <pubDate>Mon, 11 Sep 2023 00:00:00 &#43;0000</pubDate>
@@ -16,10 +24,10 @@
 </item>
 <item>
     <title>转载(忘记在哪看的了)</title>
-    <link>https://heisenbergv.github.io/posts/2023/2023901/</link>
+    <link>https://heisenbergv.github.io/posts/2023/20230901/</link>
     <pubDate>Fri, 01 Sep 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/2023901/</guid>
+    <guid>https://heisenbergv.github.io/posts/2023/20230901/</guid>
     <description><![CDATA[时下流行的一句话是“年轻人对国家未来充满希望，对自己未来一片迷茫！”答案是因为年轻人不掌握生产资料。生产资料所有者在生产关系中占据着天然优势]]></description>
 </item>
 <item>
@@ -157,14 +165,6 @@
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2020/20200401-go-context/</guid>
     <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理]]></description>
-</item>
-<item>
-    <title>百年孤独</title>
-    <link>https://heisenbergv.github.io/posts/2020/20200210-book-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</link>
-    <pubDate>Mon, 10 Feb 2020 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2020/20200210-book-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</guid>
-    <description><![CDATA[第一章 简要 一个叫 何塞·阿尔卡蒂奥·布恩迪亚 的人，从吉卜赛人 梅尔吉亚德斯，一个诚实善良的人手中换来各种新奇未见过的道具：磁铁，放大镜等。 他天马]]></description>
 </item>
 </channel>
 </rss>
