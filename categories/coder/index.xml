@@ -21,14 +21,6 @@
     <description><![CDATA[在我看来软件设计主要做两件事一个是划分边界另一个是做权衡。 划分边界往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个]]></description>
 </item>
 <item>
-    <title>redis-多机模式</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210916-redis/</link>
-    <pubDate>Thu, 16 Sep 2021 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210916-redis/</guid>
-    <description><![CDATA[单redis意义较小，单机redis的主要作用可能就是多服务之间进行数据共享、或者利用redis提供的有序集合过期键等实现一些业务逻辑。 re]]></description>
-</item>
-<item>
     <title>redis-单机场景</title>
     <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
