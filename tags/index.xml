@@ -4,7 +4,15 @@
         <link>https://heisenbergv.github.io/tags/</link>
         <description>Tags - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Fri, 04 Oct 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>AI</title>
+    <link>https://heisenbergv.github.io/tags/ai/</link>
+    <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/tags/ai/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>SS</title>
     <link>https://heisenbergv.github.io/tags/ss/</link>
     <pubDate>Fri, 04 Oct 2024 00:00:00 &#43;0000</pubDate>
@@ -13,7 +21,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Go</title>
+    <title>go</title>
     <link>https://heisenbergv.github.io/tags/go/</link>
     <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
@@ -29,7 +37,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Redis</title>
+    <title>redis</title>
     <link>https://heisenbergv.github.io/tags/redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
@@ -45,7 +53,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Grpc</title>
+    <title>grpc</title>
     <link>https://heisenbergv.github.io/tags/grpc/</link>
     <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>

@@ -2,25 +2,28 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://heisenbergv.github.io/categories/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://heisenbergv.github.io/posts/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://heisenbergv.github.io/tags/ss/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://heisenbergv.github.io/tags/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://heisenbergv.github.io/categories/thinker/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://heisenbergv.github.io/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://heisenbergv.github.io/posts/2024/20241004/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/tags/ai/</loc><lastmod>2025-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2025/20250324/</loc><lastmod>2025-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/categories/</loc><lastmod>2025-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/categories/coder/</loc><lastmod>2025-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/</loc><lastmod>2025-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/tags/</loc><lastmod>2025-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/</loc><lastmod>2025-03-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://heisenbergv.github.io/tags/ss/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/categories/thinker/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2024/20241004/</loc><lastmod>2024-10-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2023/20231103/</loc><lastmod>2023-11-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/read/2023911/</loc><lastmod>2023-09-11T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/</loc><lastmod>2023-06-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/read/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/</loc><lastmod>2023-02-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://heisenbergv.github.io/categories/coder/</loc><lastmod>2023-01-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2023/20230104/</loc><lastmod>2023-01-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/tags/go/</loc><lastmod>2023-01-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2023/%E7%83%98%E7%84%99%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90/</loc><lastmod>2023-01-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2023/%E8%B0%83%E6%9F%A5%E6%96%B9%E6%B3%95/</loc><lastmod>2022-11-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/read/20220408/</loc><lastmod>2022-04-08T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/read/20220102/</loc><lastmod>2022-01-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://heisenbergv.github.io/posts/2021/20211107-design/</loc><lastmod>2021-11-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/tags/%E8%AE%BE%E8%AE%A1/</loc><lastmod>2021-11-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2021/20211107-design/</loc><lastmod>2021-11-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/tags/redis/</loc><lastmod>2021-09-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2021/20210906-redis/</loc><lastmod>2021-09-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2021/20210813-dlv/</loc><lastmod>2021-08-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -31,8 +34,8 @@
             <loc>https://heisenbergv.github.io/posts/read/20210303/</loc><lastmod>2021-03-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/tags/grpc/</loc><lastmod>2021-01-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2021/20210119-grpc/</loc><lastmod>2021-01-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</loc><lastmod>2021-01-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/</loc><lastmod>2021-01-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</loc><lastmod>2021-01-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2020/20200401-go-context/</loc><lastmod>2020-04-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2020/20200210-book-%E7%99%BE%E5%B9%B4%E5%AD%A4%E7%8B%AC/</loc><lastmod>2020-02-10T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc><lastmod>2019-09-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -43,4 +46,7 @@
             <loc>https://heisenbergv.github.io/posts/2019/20190909-csapp2/</loc><lastmod>2019-09-09T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2019/20190903-go-race-condition/</loc><lastmod>2019-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://heisenbergv.github.io/posts/2019/20190827-csapp1/</loc><lastmod>2019-08-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://heisenbergv.github.io/posts/read/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</loc><lastmod>2019-08-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>https://heisenbergv.github.io/posts/read/20190821-%E6%9A%97%E6%97%B6%E9%97%B4/</loc><lastmod>2019-08-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2025/%E5%8F%91%E5%B1%95/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://heisenbergv.github.io/posts/2025/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

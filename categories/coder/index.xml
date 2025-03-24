@@ -1,10 +1,18 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Coder - 分类 - zJxin</title>
+        <title>coder - 分类 - zJxin</title>
         <link>https://heisenbergv.github.io/categories/coder/</link>
-        <description>Coder - 分类 - zJxin</description>
+        <description>coder - 分类 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
+    <title>AI生产</title>
+    <link>https://heisenbergv.github.io/posts/2025/20250324/</link>
+    <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2025/20250324/</guid>
+    <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
+</item>
+<item>
     <title>crawlergo源码</title>
     <link>https://heisenbergv.github.io/posts/2023/20230104/</link>
     <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
