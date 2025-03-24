@@ -4,20 +4,28 @@
         <link>https://heisenbergv.github.io/tags/</link>
         <description>Tags - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>go</title>
-    <link>https://heisenbergv.github.io/tags/go/</link>
-    <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>AI</title>
+    <link>https://heisenbergv.github.io/tags/ai/</link>
+    <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/tags/go/</guid>
+    <guid>https://heisenbergv.github.io/tags/ai/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>SS</title>
     <link>https://heisenbergv.github.io/tags/ss/</link>
-    <pubDate>Fri, 08 Apr 2022 00:00:00 &#43;0000</pubDate>
+    <pubDate>Fri, 04 Oct 2024 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/tags/ss/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>go</title>
+    <link>https://heisenbergv.github.io/tags/go/</link>
+    <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/tags/go/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -63,7 +71,7 @@
 <item>
     <title>操作系统</title>
     <link>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
-    <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <pubDate>Sat, 28 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
     <description><![CDATA[]]></description>
