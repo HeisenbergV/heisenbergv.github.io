@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LLM平台 - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="LLM平台" />
+<meta property="og:description" content="LLM应用开发平台是什么 LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-04-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-04-07T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LLM平台"/>
+<meta name="twitter:description" content="LLM应用开发平台是什么 LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2025/20250324/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LLM平台",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/posts\/2025\/llm%E5%B9%B3%E5%8F%B0\/"
+        },"genre": "posts","keywords": "AI","wordcount":  2358 ,
+        "url": "https:\/\/heisenbergv.github.io\/posts\/2025\/llm%E5%B9%B3%E5%8F%B0\/","datePublished": "2025-04-07T00:00:00+00:00","dateModified": "2025-04-07T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="auto" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LLM平台</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-04-07">2025-04-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2358 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#llm应用开发平台是什么">LLM应用开发平台是什么</a></li>
+    <li><a href="#简单举例">简单举例</a></li>
+    <li><a href="#llm平台适用场景">LLM平台适用场景</a>
+      <ul>
+        <li><a href="#传统编码">传统编码</a></li>
+        <li><a href="#利用ai模型">利用AI模型</a></li>
+        <li><a href="#基于llm平台">基于LLM平台</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="llm应用开发平台是什么">LLM应用开发平台是什么</h2>
+<p>LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规模人工智能模型</p>
+<p>LLM平台（如Dify/FastGPT）: 本质上是通过工程化手段，把&quot;零散的Prompt技巧&quot;和&quot;业务需求&quot;组合成可复用的AI产品​​。可以理解为LLM平台 = 模型 + 代码 + 工程化&quot;全家桶&quot;​</p>
+<h2 id="简单举例">简单举例</h2>
+<ol>
+<li>传统编码时代（手写逻辑）​</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 程序员明确定义计算规则
+</span><span class="c1">// 优点：绝对可控  缺点：只能处理预设情况
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+
+<span class="c1">// 调用示例
+</span><span class="c1"></span><span class="nx">result</span> <span class="o">:=</span> <span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// 永远返回3
+</span></code></pre></div><ol start="2">
+<li>直接调用模型API（通用但原始）​</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 把计算任务丢给AI，但需处理非结构化返回</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&#34;gpt-4&#34;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;请问1+2等于多少？&#34;</span><span class="p">}]</span>
+<span class="p">)</span>
+<span class="c1"># 实际返回可能是：</span>
+<span class="c1"># &#34;1+2等于3&#34; → 需用正则提取数字</span>
+<span class="c1"># 或错误回复：&#34;这是小学数学题，答案是3&#34;</span>
+</code></pre></div><p>​3. LLM平台时代（工程化解决方案）​</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># 在Dify/FastGPT等平台配置：</span><span class="w">
+</span><span class="w"></span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;math_operation&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;num1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;num2&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;计算{{num1}} + {{num2}}的精确值&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">output_type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;number&#34;</span><span class="w">  </span><span class="c"># 强制返回数字而非文本</span><span class="w">
+</span><span class="w">    </span><span class="nt">error_fallback</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;调用本地计算函数&#34;</span><span class="w">  </span><span class="c"># 降级方案</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 最终调用方式（平台生成的标准API）</span><span class="w">
+</span><span class="w"></span><span class="l">POST /api/calculate </span><span class="w">
+</span><span class="w"></span>{<span class="nt">&#34;num1&#34;: 1, &#34;num2&#34;: 2} → 返回 {&#34;result&#34;: </span><span class="m">3</span>}<span class="w">
+</span><span class="w">
+</span></code></pre></div><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>手写函数</th>
+<th>裸调API</th>
+<th>LLM平台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发速度</td>
+<td>快（简单逻辑）</td>
+<td>中（需处理文本解析）</td>
+<td>最快（可视化配置）</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>只能处理预设输入</td>
+<td>可处理模糊自然语言</td>
+<td>平衡结构化与灵活性</td>
+</tr>
+<tr>
+<td>维护成本</td>
+<td>需修改代码</td>
+<td>需持续优化Prompt</td>
+<td>后台热更新配置</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>确定性强的基础运算</td>
+<td>探索性需求</td>
+<td>生产环境复杂AI应用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="llm平台适用场景">LLM平台适用场景</h2>
+<blockquote>
+<p>我从日本买了一个价值200美元的智能手表，寄到中国海南自贸港，请问要交多少关税？有没有免税政策？</p>
+</blockquote>
+<p>基于这个问题我们用三种方式来开发:</p>
+<h3 id="传统编码">传统编码</h3>
+<p>很难实现，需要调用各种接口，确认各种数据，另外也无法识别用户的文字描述，只能从输入源限制用户的格式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 传统编码方式 - 关税计算服务
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">TaxCalculator</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="c1">// 数据库连接
+</span><span class="c1"></span>    <span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span>
+    <span class="c1">// 汇率服务
+</span><span class="c1"></span>    <span class="nx">exchangeService</span> <span class="o">*</span><span class="nx">ExchangeService</span>
+    <span class="c1">// 海关编码服务
+</span><span class="c1"></span>    <span class="nx">customsCodeService</span> <span class="o">*</span><span class="nx">CustomsCodeService</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">tc</span> <span class="o">*</span><span class="nx">TaxCalculator</span><span class="p">)</span> <span class="nf">CalculateTax</span><span class="p">(</span><span class="nx">item</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">price</span> <span class="kt">float64</span><span class="p">,</span> <span class="nx">from</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">to</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">float64</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 1. 获取商品海关编码
+</span><span class="c1"></span>    <span class="nx">code</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">tc</span><span class="p">.</span><span class="nx">customsCodeService</span><span class="p">.</span><span class="nf">GetCode</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;获取海关编码失败: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 2. 查询税率
+</span><span class="c1"></span>    <span class="nx">taxRate</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">tc</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">&#34;SELECT rate FROM tax_rates WHERE code = ?&#34;</span><span class="p">,</span> <span class="nx">code</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;查询税率失败: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 3. 汇率转换
+</span><span class="c1"></span>    <span class="nx">exchangeRate</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">tc</span><span class="p">.</span><span class="nx">exchangeService</span><span class="p">.</span><span class="nf">GetRate</span><span class="p">(</span><span class="s">&#34;USD&#34;</span><span class="p">,</span> <span class="s">&#34;CNY&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;获取汇率失败: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 4. 计算关税
+</span><span class="c1"></span>    <span class="nx">tax</span> <span class="o">:=</span> <span class="nx">price</span> <span class="o">*</span> <span class="nx">exchangeRate</span> <span class="o">*</span> <span class="nx">taxRate</span>
+
+    <span class="c1">// 5. 检查特殊政策（如海南自贸港）
+</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">to</span> <span class="o">==</span> <span class="s">&#34;海南&#34;</span> <span class="p">{</span>
+        <span class="nx">specialPolicy</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">tc</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">&#34;SELECT discount FROM special_policies WHERE region = ?&#34;</span><span class="p">,</span> <span class="s">&#34;海南&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">&amp;&amp;</span> <span class="nx">specialPolicy</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="nx">tax</span> <span class="p">=</span> <span class="nx">tax</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">specialPolicy</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">tax</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="c1">// 痛点：
+</span><span class="c1">// 1. 代码复杂，需要维护多个服务
+</span><span class="c1">// 2. 政策变化需要修改代码
+</span><span class="c1">// 3. 无法处理自然语言输入
+</span><span class="c1">// 4. 错误处理复杂
+</span></code></pre></div><h3 id="利用ai模型">利用AI模型</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 直接调用AI模型的方式</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">class</span> <span class="nc">AITaxCalculator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">calculate_tax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="s2">&#34;gpt-4&#34;</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                    <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;你是一个专业的关税计算助手&#34;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">question</span><span class="p">}</span>
+                <span class="p">],</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                <span class="n">max_tokens</span><span class="o">=</span><span class="mi">500</span>
+            <span class="p">)</span>
+            
+            <span class="c1"># 解析返回结果</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+            
+            <span class="c1"># 尝试提取数字</span>
+            <span class="kn">import</span> <span class="nn">re</span>
+            <span class="n">tax_amount</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+\.?\d*&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&#34;raw_response&#34;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+                <span class="s2">&#34;tax_amount&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">tax_amount</span><span class="o">.</span><span class="n">group</span><span class="p">())</span> <span class="k">if</span> <span class="n">tax_amount</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&#34;explanation&#34;</span><span class="p">:</span> <span class="n">result</span>
+            <span class="p">}</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&#34;error&#34;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                <span class="s2">&#34;tax_amount&#34;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&#34;explanation&#34;</span><span class="p">:</span> <span class="s2">&#34;计算失败&#34;</span>
+            <span class="p">}</span>
+
+<span class="c1"># 使用示例</span>
+<span class="n">calculator</span> <span class="o">=</span> <span class="n">AITaxCalculator</span><span class="p">(</span><span class="s2">&#34;your-api-key&#34;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">calculate_tax</span><span class="p">(</span><span class="s2">&#34;我从日本买了一个价值200美元的智能手表，寄到中国海南自贸港，请问要交多少关税？&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># 缺陷：</span>
+<span class="c1"># 1. 无法保证返回格式统一</span>
+<span class="c1"># 2. 可能返回过时信息</span>
+<span class="c1"># 3. 没有数据验证</span>
+<span class="c1"># 4. 无法对接实时数据库</span>
+</code></pre></div><h3 id="基于llm平台">基于LLM平台</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># LLM平台配置示例（以Dify为例）</span>
+<span class="p">{</span>
+    <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;关税计算助手&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;智能计算跨境商品关税&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;prompt_template&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    你是一个专业的关税计算助手。请根据以下信息计算关税：
+</span><span class="s2">    商品：{{item}}
+</span><span class="s2">    价值：{{value}}美元
+</span><span class="s2">    起运地：{{from}}
+</span><span class="s2">    目的地：{{to}}
+</span><span class="s2">    
+</span><span class="s2">    请按照以下步骤计算：
+</span><span class="s2">    1. 确定商品海关编码
+</span><span class="s2">    2. 查询适用税率
+</span><span class="s2">    3. 考虑特殊政策（如自贸区）
+</span><span class="s2">    4. 计算最终税额
+</span><span class="s2">    &#34;&#34;&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;variables&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&#34;item&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span> <span class="s2">&#34;required&#34;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+        <span class="s2">&#34;value&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;number&#34;</span><span class="p">,</span> <span class="s2">&#34;required&#34;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+        <span class="s2">&#34;from&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span> <span class="s2">&#34;required&#34;</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+        <span class="s2">&#34;to&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span> <span class="s2">&#34;required&#34;</span><span class="p">:</span> <span class="n">true</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&#34;tools&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;查询海关编码&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;api&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://customs-api.com/code&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;POST&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&#34;item&#34;</span><span class="p">:</span> <span class="s2">&#34;{{item}}&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;查询税率&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;api&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://customs-api.com/rate&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;{{海关编码}}&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;检查特殊政策&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;api&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://customs-api.com/policy&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;GET&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&#34;region&#34;</span><span class="p">:</span> <span class="s2">&#34;{{to}}&#34;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&#34;output_template&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    根据计算结果：
+</span><span class="s2">    商品海关编码：{{海关编码}}
+</span><span class="s2">    适用税率：{{税率}}%
+</span><span class="s2">    特殊政策：{{特殊政策}}
+</span><span class="s2">    最终税额：{{税额}}元
+</span><span class="s2">    &#34;&#34;&#34;</span>
+<span class="p">}</span>
+
+<span class="c1"># 平台生成的API调用示例</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">calculate_tax</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">from_region</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to_region</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="s2">&#34;https://llm_api.com/api/tax-calculator&#34;</span><span class="p">,</span>
+        <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&#34;item&#34;</span><span class="p">:</span> <span class="n">item</span><span class="p">,</span>
+            <span class="s2">&#34;value&#34;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+            <span class="s2">&#34;from&#34;</span><span class="p">:</span> <span class="n">from_region</span><span class="p">,</span>
+            <span class="s2">&#34;to&#34;</span><span class="p">:</span> <span class="n">to_region</span>
+        <span class="p">},</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;Authorization&#34;</span><span class="p">:</span> <span class="s2">&#34;Bearer token&#34;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="c1"># 使用示例</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">calculate_tax</span><span class="p">(</span>
+    <span class="n">item</span><span class="o">=</span><span class="s2">&#34;智能手表&#34;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">from_region</span><span class="o">=</span><span class="s2">&#34;日本&#34;</span><span class="p">,</span>
+    <span class="n">to_region</span><span class="o">=</span><span class="s2">&#34;海南&#34;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># 优势：</span>
+<span class="c1"># 1. 统一的输入输出格式</span>
+<span class="c1"># 2. 可配置的工具链</span>
+<span class="c1"># 3. 实时数据支持</span>
+<span class="c1"># 4. 易于维护和更新</span>
+</code></pre></div><h2 id="总结">总结</h2>
+<p>目前大部分非AI的系统平台需要为用户提供界面，让用户基于固定形式来输入各种参数才能完成一系列的工作。现在有了AI模型可以让用户傻瓜式的输入一些话来达到目标，而有了LLM平台不但让用户可以傻瓜式的使用，还能约束AI模型的输入输出。</p>
+<ol>
+<li>
+<p><strong>传统系统</strong></p>
+<ul>
+<li>用户需要学习复杂的界面操作</li>
+<li>输入必须符合严格的格式要求</li>
+<li>功能扩展需要修改代码</li>
+</ul>
+</li>
+<li>
+<p><strong>AI模型直接调用</strong></p>
+<ul>
+<li>用户可以用自然语言描述需求</li>
+<li>但输出结果不可控</li>
+<li>无法保证数据准确性和实时性</li>
+</ul>
+</li>
+<li>
+<p><strong>LLM平台</strong></p>
+<ul>
+<li>结合了前两者的优势</li>
+<li>用户可以用自然语言交互</li>
+<li>平台确保输出符合业务规范</li>
+<li>可以对接实时数据和业务系统</li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-04-07</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/" data-title="LLM平台" data-hashtags="AI"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/" data-hashtag="AI"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/" data-title="LLM平台"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/" data-title="LLM平台"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/" data-title="LLM平台"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">AI</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2025/20250324/" class="prev" rel="prev" title="AI生产"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AI生产</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{"gitalk":{"admin":["heisenbergv"],"clientID":"70335a4af07c4a97b79b","clientSecret":"6c0684397ec265598fead8d27242c273d151bd1e","id":"2025-04-07T00:00:00Z","owner":"heisenbergv","repo":"heisenbergv.github.io","title":"LLM平台"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

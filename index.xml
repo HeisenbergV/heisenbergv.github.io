@@ -4,9 +4,17 @@
         <link>https://heisenbergv.github.io/</link>
         <description>Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://heisenbergv.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>LLM平台</title>
+    <link>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
+    <pubDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
+    <description><![CDATA[LLM应用开发平台是什么 LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规]]></description>
+</item>
+<item>
     <title>AI生产</title>
     <link>https://heisenbergv.github.io/posts/2025/20250324/</link>
     <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
@@ -157,14 +165,6 @@
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2021/20210119-grpc/</guid>
     <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
-</item>
-<item>
-    <title>计算机网络-传输层</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</link>
-    <pubDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</guid>
-    <description><![CDATA[TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物]]></description>
 </item>
 </channel>
 </rss>
