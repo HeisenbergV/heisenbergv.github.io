@@ -11,8 +11,7 @@
 <meta property="article:published_time" content="2023-01-04T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-01-04T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="crawlergo源码"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="crawlergo源码"/>
 <meta name="twitter:description" content="目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -99,7 +98,7 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">crawlergo源码</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>coder</a></span></div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Coder</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-04">2023-01-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2277 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -182,28 +181,27 @@
 </ol>
 <h2 id="过滤去重">过滤去重</h2>
 <p>使用方式是: <code>spiderman --filter-mode=smart http://127.0.0.1</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// taskconfig.go:
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">TaskConfig</span> <span class="kd">struct</span> <span class="p">{</span>
-   <span class="c1">// ...
-</span><span class="c1"></span>	<span class="nx">FilterMode</span>              <span class="kt">string</span> <span class="c1">// simple、smart、strict
-</span><span class="c1"></span>   <span class="c1">// ...
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="c1">// config.go: 
-</span><span class="c1"></span><span class="kd">const</span> <span class="p">(</span>
-   <span class="c1">// 默认-简单过滤: 其他过滤条件都包含简单过滤
-</span><span class="c1"></span>   <span class="c1">// 对req做md5操作，比较md5值，并且过滤掉一些无用url：config.go:StaticSuffix 参数中的比如 png、jpg等
-</span><span class="c1"></span>	<span class="nx">SimpleFilterMode</span> <span class="p">=</span> <span class="s">&#34;simple&#34;</span>
-
-   <span class="c1">// 智能过滤
-</span><span class="c1"></span>	<span class="nx">SmartFilterMode</span>  <span class="p">=</span> <span class="s">&#34;smart&#34;</span>
-
-   <span class="c1">// 严格智能过滤: 在智能过滤基础上增加了一点逻辑，对大小写、下划线等更敏感
-</span><span class="c1"></span>	<span class="nx">StrictFilterMode</span> <span class="p">=</span> <span class="s">&#34;strict&#34;</span>
-
-<span class="p">)</span>
-
-</code></pre></div><p>此功能流程:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// taskconfig.go:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">TaskConfig</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">FilterMode</span>              <span class="kt">string</span> <span class="c1">// simple、smart、strict
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// config.go: 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">const</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 默认-简单过滤: 其他过滤条件都包含简单过滤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">// 对req做md5操作，比较md5值，并且过滤掉一些无用url：config.go:StaticSuffix 参数中的比如 png、jpg等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">SimpleFilterMode</span> <span class="p">=</span> <span class="s">&#34;simple&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 智能过滤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">SmartFilterMode</span>  <span class="p">=</span> <span class="s">&#34;smart&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">// 严格智能过滤: 在智能过滤基础上增加了一点逻辑，对大小写、下划线等更敏感
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">StrictFilterMode</span> <span class="p">=</span> <span class="s">&#34;strict&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>此功能流程:</p>
 <ol>
 <li>在<code>步骤c</code>进行初始化设置</li>
 <li>在<code>步骤c</code>创建初始url时 进行一次过滤</li>
@@ -223,64 +221,64 @@
 <ol>
 <li>增加参数，并记录Crawlergo启动时间</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">TaskConfig</span> <span class="kd">struct</span><span class="p">{</span>
-   <span class="c1">//..
-</span><span class="c1"></span>   <span class="nx">MaxRunTime</span> <span class="kt">int64</span>
-   <span class="nx">Start</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">CrawlerTask</span><span class="p">)</span> <span class="nf">Run</span><span class="p">()</span> <span class="p">{</span>
-   <span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">Start</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
-   <span class="c1">//...
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">TaskConfig</span> <span class="kd">struct</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//..
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nx">MaxRunTime</span> <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">Start</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">CrawlerTask</span><span class="p">)</span> <span class="nf">Run</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">Start</span> <span class="p">=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ol start="2">
 <li>产生新url 阶段 - <code>task_main.go:addTask2Pool()</code>： 若检测超时则无法再添加新的url 创建新的tab</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">CrawlerTask</span><span class="p">)</span> <span class="nf">addTask2Pool</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
-	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawledCount</span> <span class="o">&gt;=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxCrawlCount</span> <span class="p">{</span>
-		<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-		<span class="k">return</span>
-	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="nx">t</span><span class="p">.</span><span class="nx">crawledCount</span> <span class="o">+=</span> <span class="mi">1</span>
-	<span class="p">}</span>
-
-	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Start</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxRunTime</span><span class="p">)).</span><span class="nf">Before</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span> <span class="p">{</span>
-		<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-		<span class="k">return</span>
-	<span class="p">}</span>
-	<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-   <span class="c1">//.....
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">CrawlerTask</span><span class="p">)</span> <span class="nf">addTask2Pool</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawledCount</span> <span class="o">&gt;=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxCrawlCount</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nx">crawledCount</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Start</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxRunTime</span><span class="p">)).</span><span class="nf">Before</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">t</span><span class="p">.</span><span class="nx">taskCountLock</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//.....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ol>
 <li>创建tab准备爬取 阶段 - <code>task_main.go:Task()</code>：进程剩余时间和tab最大超时时间 取最小，作为tab的超时时间，如果没时间了，则取消创建</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">tabTask</span><span class="p">)</span> <span class="nf">Task</span><span class="p">()</span> <span class="p">{</span>
-   <span class="c1">// 设置tab超时时间，若设置了程序最大运行时间， tab超时时间和程序剩余时间取小
-</span><span class="c1"></span>	<span class="nx">timeremaining</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Start</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxRunTime</span><span class="p">)</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">).</span><span class="nf">Sub</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
-	<span class="nx">tabTime</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">TabRunTimeout</span>
-	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">TabRunTimeout</span> <span class="p">&gt;</span> <span class="nx">timeremaining</span> <span class="p">{</span>
-		<span class="nx">tabTime</span> <span class="p">=</span> <span class="nx">timeremaining</span>
-	<span class="p">}</span>
-
-	<span class="k">if</span> <span class="nx">tabTime</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="k">return</span>
-	<span class="p">}</span>
-   <span class="c1">//.....
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><h2 id="output">output</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// task_main.go
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Result</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="c1">// 存储的url，是请求完成并且是过滤后的；也就是最终产出的全部内容
-</span><span class="c1"></span>	<span class="nx">ReqList</span> <span class="p">[]</span><span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span>
-
-	<span class="c1">// 存储的是搜集到的所有url（没有过滤，也不一定会进行请求的url）
-</span><span class="c1"></span>   <span class="c1">// 它的存储逻辑是直接将每个tab产出的req存入，如果多个tab并发执行，是会重复的，因此在任务完成后需要去重操作
-</span><span class="c1"></span>	<span class="c1">// 主要作用是 展示爬取到的全部域名
-</span><span class="c1"></span>	<span class="nx">AllReqList</span> <span class="p">[]</span><span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span>
-   <span class="c1">//..
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>举例:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">tabTask</span><span class="p">)</span> <span class="nf">Task</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 设置tab超时时间，若设置了程序最大运行时间， tab超时时间和程序剩余时间取小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">timeremaining</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Start</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">MaxRunTime</span><span class="p">)</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">).</span><span class="nf">Sub</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">tabTime</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">TabRunTimeout</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nx">crawlerTask</span><span class="p">.</span><span class="nx">Config</span><span class="p">.</span><span class="nx">TabRunTimeout</span> <span class="p">&gt;</span> <span class="nx">timeremaining</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">tabTime</span> <span class="p">=</span> <span class="nx">timeremaining</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">tabTime</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//.....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><h2 id="output">output</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// task_main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Result</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 存储的url，是请求完成并且是过滤后的；也就是最终产出的全部内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">ReqList</span> <span class="p">[]</span><span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 存储的是搜集到的所有url（没有过滤，也不一定会进行请求的url）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">// 它的存储逻辑是直接将每个tab产出的req存入，如果多个tab并发执行，是会重复的，因此在任务完成后需要去重操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 主要作用是 展示爬取到的全部域名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">AllReqList</span> <span class="p">[]</span><span class="o">*</span><span class="nx">model</span><span class="p">.</span><span class="nx">Request</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//..
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>举例:
 假设捕获到了两个url要进行爬取，并且分别会产出3个url，如下关系：</p>
 <pre tabindex="0"><code>1. www.baidu.com/a
    - www.baidu.com/c
@@ -316,7 +314,7 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">go</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">Go</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
@@ -329,7 +327,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.123.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>

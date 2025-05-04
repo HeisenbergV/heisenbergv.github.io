@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>go - 标签 - zJxin</title>
+        <title>Go - 标签 - zJxin</title>
         <link>https://heisenbergv.github.io/tags/go/</link>
-        <description>go - 标签 - zJxin</description>
+        <description>Go - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
             <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
     <title>crawlergo源码</title>

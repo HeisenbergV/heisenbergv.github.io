@@ -23,6 +23,14 @@
     <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
 </item>
 <item>
+    <title>ai帮我做阅读</title>
+    <link>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</link>
+    <pubDate>Sat, 04 Jan 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</guid>
+    <description><![CDATA[文学认知阶梯：从叙事魔法到元叙述智慧 这是一个四级文学认知训练体系，每阶精选3-5部关键作品，搭配专属阅读策略，助您系统解锁文学的深层密码。 第]]></description>
+</item>
+<item>
     <title>堂吉诃德</title>
     <link>https://heisenbergv.github.io/posts/2024/20241004/</link>
     <pubDate>Fri, 04 Oct 2024 00:00:00 &#43;0000</pubDate>
@@ -45,6 +53,14 @@
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/read/2023911/</guid>
     <description><![CDATA[故事背景是资产阶级反封建的新文化运动1800年左右，拿破仑流放，路易十八上位。 复仇起因 爱德蒙·邓蒂斯一个19岁年轻有为的青年，最可贵的是又有]]></description>
+</item>
+<item>
+    <title>架构设计学习指南</title>
+    <link>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sun, 02 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[一、架构设计基础 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范 面向对象编程：强调封装、继承和多态 函数式编程：强调不可变]]></description>
 </item>
 <item>
     <title>安心立命</title>
@@ -149,22 +165,6 @@
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/read/20210610/</guid>
     <description><![CDATA[小团队的话，管理者个人开发能力过关，再加上分配工作合理就能有不错的效果。再进一步就是把项目规划好，在项目进展中及时纠正错误问题（计划、设计、]]></description>
-</item>
-<item>
-    <title>提高读书效果</title>
-    <link>https://heisenbergv.github.io/posts/read/20210303/</link>
-    <pubDate>Wed, 03 Mar 2021 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/read/20210303/</guid>
-    <description><![CDATA[以下的读书方法针对的是以收集信息、获得判断为目的 为什有的人努力学习了却没有结果呢？因为我们大多数时候只是以过程为导向学习，而没有以目标为导向]]></description>
-</item>
-<item>
-    <title>grpc-go</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210119-grpc/</link>
-    <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210119-grpc/</guid>
-    <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
 </item>
 </channel>
 </rss>

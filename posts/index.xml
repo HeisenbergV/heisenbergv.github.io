@@ -21,6 +21,14 @@
     <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
 </item>
 <item>
+    <title>ai帮我做阅读</title>
+    <link>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</link>
+    <pubDate>Sat, 04 Jan 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</guid>
+    <description><![CDATA[文学认知阶梯：从叙事魔法到元叙述智慧 这是一个四级文学认知训练体系，每阶精选3-5部关键作品，搭配专属阅读策略，助您系统解锁文学的深层密码。 第]]></description>
+</item>
+<item>
     <title>堂吉诃德</title>
     <link>https://heisenbergv.github.io/posts/2024/20241004/</link>
     <pubDate>Fri, 04 Oct 2024 00:00:00 &#43;0000</pubDate>
@@ -45,6 +53,14 @@
     <description><![CDATA[故事背景是资产阶级反封建的新文化运动1800年左右，拿破仑流放，路易十八上位。 复仇起因 爱德蒙·邓蒂斯一个19岁年轻有为的青年，最可贵的是又有]]></description>
 </item>
 <item>
+    <title>架构设计学习指南</title>
+    <link>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sun, 02 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[一、架构设计基础 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范 面向对象编程：强调封装、继承和多态 函数式编程：强调不可变]]></description>
+</item>
+<item>
     <title>安心立命</title>
     <link>https://heisenbergv.github.io/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/</link>
     <pubDate>Sat, 03 Jun 2023 00:00:00 &#43;0000</pubDate>
@@ -67,22 +83,6 @@
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2023/20230104/</guid>
     <description><![CDATA[目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter]]></description>
-</item>
-<item>
-    <title>烘焙市场分析</title>
-    <link>https://heisenbergv.github.io/posts/2023/%E7%83%98%E7%84%99%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90/</link>
-    <pubDate>Mon, 02 Jan 2023 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/%E7%83%98%E7%84%99%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90/</guid>
-    <description><![CDATA[任何决策之前都需要调查，没有调查就没有发言权。做生意就要研究调查一个市场的情况，分析接下来要做什么，怎么做。 很明显，我们当下目标无论怎样都不]]></description>
-</item>
-<item>
-    <title>调查方法</title>
-    <link>https://heisenbergv.github.io/posts/2023/%E8%B0%83%E6%9F%A5%E6%96%B9%E6%B3%95/</link>
-    <pubDate>Sat, 19 Nov 2022 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/%E8%B0%83%E6%9F%A5%E6%96%B9%E6%B3%95/</guid>
-    <description><![CDATA[单个公司&ndash;&gt;整个行业&ndash;&gt;目前形式&ndash;&gt;行业周期 实地调查:主要是发放调查问卷，或者询问熟悉]]></description>
 </item>
 </channel>
 </rss>

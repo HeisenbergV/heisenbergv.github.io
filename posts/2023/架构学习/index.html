@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>架构设计学习指南 - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="架构设计学习指南" />
+<meta property="og:description" content="一、架构设计基础 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范 面向对象编程：强调封装、继承和多态 函数式编程：强调不可变" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-07-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-07-02T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="架构设计学习指南"/>
+<meta name="twitter:description" content="一、架构设计基础 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范 面向对象编程：强调封装、继承和多态 函数式编程：强调不可变"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/" /><link rel="next" href="https://heisenbergv.github.io/posts/read/2023911/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "架构设计学习指南",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heisenbergv.github.io\/posts\/2023\/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0\/"
+        },"genre": "posts","keywords": "SS","wordcount":  1184 ,
+        "url": "https:\/\/heisenbergv.github.io\/posts\/2023\/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0\/","datePublished": "2023-07-02T00:00:00+00:00","dateModified": "2023-07-02T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="auto" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">架构设计学习指南</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-07-02">2023-07-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1184 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一架构设计基础">一、架构设计基础</a>
+      <ul>
+        <li><a href="#1-编程范式与架构设计">1. 编程范式与架构设计</a></li>
+        <li><a href="#2-设计原则">2. 设计原则</a></li>
+        <li><a href="#3-架构模式">3. 架构模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#二核心技术突破">二、核心技术突破</a>
+      <ul>
+        <li><a href="#1-tob领域专家">1. ToB领域专家</a></li>
+        <li><a href="#2-每日必修">2. 每日必修</a></li>
+      </ul>
+    </li>
+    <li><a href="#三职业发展路径">三、职业发展路径</a>
+      <ul>
+        <li><a href="#1-技术管理路线">1. 技术管理路线</a></li>
+        <li><a href="#2-架构师路线">2. 架构师路线</a></li>
+      </ul>
+    </li>
+    <li><a href="#四学习资源与实践">四、学习资源与实践</a>
+      <ul>
+        <li><a href="#1-经典书籍">1. 经典书籍</a></li>
+        <li><a href="#2-在线课程">2. 在线课程</a></li>
+        <li><a href="#3-实践项目">3. 实践项目</a></li>
+      </ul>
+    </li>
+    <li><a href="#五差异化竞争策略">五、差异化竞争策略</a>
+      <ul>
+        <li><a href="#1-领域专精">1. 领域专精</a></li>
+        <li><a href="#2-技术影响力">2. 技术影响力</a></li>
+      </ul>
+    </li>
+    <li><a href="#六执行计划">六、执行计划</a>
+      <ul>
+        <li><a href="#1-每日计划">1. 每日计划</a></li>
+        <li><a href="#2-紧急行动项">2. 紧急行动项</a></li>
+      </ul>
+    </li>
+    <li><a href="#七抗风险措施">七、抗风险措施</a>
+      <ul>
+        <li><a href="#1-远程工作准备">1. 远程工作准备</a></li>
+        <li><a href="#2-第二收入来源">2. 第二收入来源</a></li>
+      </ul>
+    </li>
+    <li><a href="#八学习路径建议">八、学习路径建议</a>
+      <ul>
+        <li><a href="#1-入门阶段0-6个月">1. 入门阶段（0-6个月）</a></li>
+        <li><a href="#2-进阶阶段6-18个月">2. 进阶阶段（6-18个月）</a></li>
+        <li><a href="#3-深化阶段18-36个月">3. 深化阶段（18-36个月）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="一架构设计基础">一、架构设计基础</h2>
+<h3 id="1-编程范式与架构设计">1. 编程范式与架构设计</h3>
+<ul>
+<li><strong>结构化编程</strong>：对程序控制权的直接转移进行限制和规范</li>
+<li><strong>面向对象编程</strong>：强调封装、继承和多态</li>
+<li><strong>函数式编程</strong>：强调不可变性和纯函数</li>
+</ul>
+<h3 id="2-设计原则">2. 设计原则</h3>
+<ul>
+<li><strong>SOLID原则</strong>
+<ul>
+<li>SRP（单一职责原则）</li>
+<li>OCP（开闭原则）</li>
+<li>LSP（里氏替换原则）</li>
+<li>ISP（接口隔离原则）</li>
+<li>DIP（依赖反转原则）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-架构模式">3. 架构模式</h3>
+<ul>
+<li><strong>MVC/MVVM/MVP</strong>：视图层架构模式</li>
+<li><strong>DDD</strong>：领域驱动设计</li>
+<li><strong>微服务架构</strong>：服务独立部署与治理</li>
+</ul>
+<h2 id="二核心技术突破">二、核心技术突破</h2>
+<h3 id="1-tob领域专家">1. ToB领域专家</h3>
+<ul>
+<li>分布式事务：Seata/Saga实战（日均处理10w+事务）</li>
+<li>API治理：Apisix网关二次开发（含灰度发布）</li>
+<li>低代码平台：Vue3+Go搭建表单引擎+流程设计器</li>
+</ul>
+<h3 id="2-每日必修">2. 每日必修</h3>
+<ul>
+<li>算法：LeetCode每日1题（重点动态规划/图论）</li>
+<li>源码：Spring Cloud Alibaba核心模块精读</li>
+<li>性能：Arthas实战（生产环境问题诊断）</li>
+</ul>
+<h2 id="三职业发展路径">三、职业发展路径</h2>
+<h3 id="1-技术管理路线">1. 技术管理路线</h3>
+<ul>
+<li>短期（0-6月）：
+<ul>
+<li>组织代码评审</li>
+<li>攻克技术难题</li>
+<li>技术分享会</li>
+</ul>
+</li>
+<li>中期（6-18月）：
+<ul>
+<li>考取PMP证书</li>
+<li>搭建自动化流水线</li>
+</ul>
+</li>
+<li>长期（18-36月）：
+<ul>
+<li>制定技术路线图</li>
+<li>积累行业人脉</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-架构师路线">2. 架构师路线</h3>
+<ul>
+<li>核心能力：
+<ol>
+<li>技术选型（Kafka/Pulsar对比）</li>
+<li>容灾设计（双活方案）</li>
+<li>架构决策文档(ADR)</li>
+</ol>
+</li>
+<li>认证要求：
+<ul>
+<li>阿里云ACE认证（6个月内）</li>
+<li>AWS架构师认证（12个月）</li>
+</ul>
+</li>
+</ul>
+<h2 id="四学习资源与实践">四、学习资源与实践</h2>
+<h3 id="1-经典书籍">1. 经典书籍</h3>
+<ul>
+<li>《整洁架构之道》：架构设计核心原则</li>
+<li>《企业应用架构模式》：分层架构、MVC、DDD等模式</li>
+<li>《微服务设计》：分布式系统设计实践</li>
+</ul>
+<h3 id="2-在线课程">2. 在线课程</h3>
+<ul>
+<li>51CTO《系统架构方法论与实践》</li>
+<li>慕课网《分布式系统设计与实践》</li>
+<li>阿里云《中台架构实战》</li>
+</ul>
+<h3 id="3-实践项目">3. 实践项目</h3>
+<ul>
+<li>GitHub开源项目参与</li>
+<li>企业级应用架构设计</li>
+<li>微服务系统搭建</li>
+</ul>
+<h2 id="五差异化竞争策略">五、差异化竞争策略</h2>
+<h3 id="1-领域专精">1. 领域专精</h3>
+<ul>
+<li>医疗信息化：HL7/FHIR协议</li>
+<li>金融科技：分布式事务与高可用</li>
+<li>电商系统：高并发与秒杀设计</li>
+</ul>
+<h3 id="2-技术影响力">2. 技术影响力</h3>
+<ul>
+<li>GitHub运营：规范文档与开源贡献</li>
+<li>技术博客：每周更新架构设计文章</li>
+<li>技术分享：定期组织架构设计研讨会</li>
+</ul>
+<h2 id="六执行计划">六、执行计划</h2>
+<h3 id="1-每日计划">1. 每日计划</h3>
+<ul>
+<li>7:00-8:00：算法+行业资讯</li>
+<li>12:00-13:00：源码阅读</li>
+<li>20:00-22:00：项目实战/课程开发</li>
+<li>周六下午：GitHub维护</li>
+<li>周日上午：计划复盘</li>
+</ul>
+<h3 id="2-紧急行动项">2. 紧急行动项</h3>
+<ol>
+<li>注册阿里云架构师认证考试</li>
+<li>创建GitHub技术产品仓库</li>
+<li>制定每周技术分享主题</li>
+<li>搭建个人技术博客</li>
+<li>参与开源项目贡献</li>
+</ol>
+<h2 id="七抗风险措施">七、抗风险措施</h2>
+<h3 id="1-远程工作准备">1. 远程工作准备</h3>
+<ul>
+<li>掌握Jira/Confluence</li>
+<li>接海外项目（Upwork平台）</li>
+<li>英语会议能力</li>
+</ul>
+<h3 id="2-第二收入来源">2. 第二收入来源</h3>
+<ul>
+<li>IDEA插件开发</li>
+<li>技术咨询（架构优化服务）</li>
+<li>在线课程制作（ToB开发实战）</li>
+</ul>
+<h2 id="八学习路径建议">八、学习路径建议</h2>
+<h3 id="1-入门阶段0-6个月">1. 入门阶段（0-6个月）</h3>
+<ul>
+<li>阅读《大话软件架构》</li>
+<li>学习基础架构课程</li>
+<li>实践简单的MVC项目</li>
+</ul>
+<h3 id="2-进阶阶段6-18个月">2. 进阶阶段（6-18个月）</h3>
+<ul>
+<li>深入学习《微服务设计》</li>
+<li>参与实战课程</li>
+<li>搭建Spring Cloud微服务原型</li>
+</ul>
+<h3 id="3-深化阶段18-36个月">3. 深化阶段（18-36个月）</h3>
+<ul>
+<li>参与GitHub开源项目</li>
+<li>实践《整洁架构之道》原则</li>
+<li>设计复杂系统架构</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-07-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南" data-hashtags="SS"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-hashtag="SS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ss/">SS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/" class="prev" rel="prev" title="安心立命"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>安心立命</a>
+            <a href="/posts/read/2023911/" class="next" rel="next" title="基督山伯爵">基督山伯爵<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.123.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{"gitalk":{"admin":["heisenbergv"],"clientID":"70335a4af07c4a97b79b","clientSecret":"6c0684397ec265598fead8d27242c273d151bd1e","id":"2023-07-02T00:00:00Z","owner":"heisenbergv","repo":"heisenbergv.github.io","title":"架构设计学习指南"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

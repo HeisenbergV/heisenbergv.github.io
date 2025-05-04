@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>架构设计学习指南 - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="架构设计学习指南" />
+<meta property="og:description" content="一、架构设计基础概念 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范，是现代编程语言的基础。 面向对象编程：对程序控制权的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/2021/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-07-02T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="架构设计学习指南"/>
+<meta name="twitter:description" content="一、架构设计基础概念 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范，是现代编程语言的基础。 面向对象编程：对程序控制权的"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/2021/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="http://localhost:1313/posts/read/20210613/" /><link rel="next" href="http://localhost:1313/posts/2021/20210721-gin/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "架构设计学习指南",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/2021\/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0\/"
+        },"genre": "posts","keywords": "SS","wordcount":  1126 ,
+        "url": "http:\/\/localhost:1313\/posts\/2021\/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0\/","datePublished": "2021-07-02T00:00:00+00:00","dateModified": "2021-07-02T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="auto" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">架构设计学习指南</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-07-02">2021-07-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1126 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一架构设计基础概念">一、架构设计基础概念</a>
+      <ul>
+        <li><a href="#1-编程范式与架构设计">1. 编程范式与架构设计</a></li>
+        <li><a href="#2-设计原则">2. 设计原则</a></li>
+        <li><a href="#3-架构模式">3. 架构模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#二架构设计方法论">二、架构设计方法论</a>
+      <ul>
+        <li><a href="#1-企业级架构方法论">1. 企业级架构方法论</a></li>
+        <li><a href="#2-应用架构方法论">2. 应用架构方法论</a></li>
+        <li><a href="#3-系统级设计方法论">3. 系统级设计方法论</a></li>
+      </ul>
+    </li>
+    <li><a href="#三学习资源推荐">三、学习资源推荐</a>
+      <ul>
+        <li><a href="#1-经典书籍">1. 经典书籍</a></li>
+        <li><a href="#2-在线课程">2. 在线课程</a></li>
+        <li><a href="#3-实践资源">3. 实践资源</a></li>
+      </ul>
+    </li>
+    <li><a href="#四学习路径建议">四、学习路径建议</a>
+      <ul>
+        <li><a href="#1-入门阶段">1. 入门阶段</a></li>
+        <li><a href="#2-进阶阶段">2. 进阶阶段</a></li>
+        <li><a href="#3-深化阶段">3. 深化阶段</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="一架构设计基础概念">一、架构设计基础概念</h2>
+<h3 id="1-编程范式与架构设计">1. 编程范式与架构设计</h3>
+<ul>
+<li><strong>结构化编程</strong>：对程序控制权的直接转移进行限制和规范，是现代编程语言的基础。</li>
+<li><strong>面向对象编程</strong>：对程序控制权的间接转移进行限制和规范，强调封装、继承和多态。</li>
+<li><strong>函数式编程</strong>：对程序中的赋值进行限制和规范，强调不可变性和纯函数。</li>
+</ul>
+<h3 id="2-设计原则">2. 设计原则</h3>
+<ul>
+<li><strong>SOLID原则</strong>
+<ul>
+<li>SRP（单一职责原则）：每个模块只有一个改变的理由</li>
+<li>OCP（开闭原则）：对扩展开放，对修改关闭</li>
+<li>LSP（里氏替换原则）：子类型必须能够替换其基类型</li>
+<li>ISP（接口隔离原则）：避免不必要的依赖</li>
+<li>DIP（依赖反转原则）：高层策略不依赖底层实现</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-架构模式">3. 架构模式</h3>
+<ul>
+<li><strong>MVC</strong>：模型-视图-控制器分离</li>
+<li><strong>MVVM</strong>：通过数据绑定简化视图逻辑</li>
+<li><strong>MVP</strong>：Presenter作为中间层解耦视图与业务</li>
+<li><strong>DDD</strong>：通过领域模型对齐业务与技术</li>
+</ul>
+<h2 id="二架构设计方法论">二、架构设计方法论</h2>
+<h3 id="1-企业级架构方法论">1. 企业级架构方法论</h3>
+<ol>
+<li>
+<p><strong>TOGAF</strong></p>
+<ul>
+<li>基于ADM分阶段迭代设计</li>
+<li>涵盖业务、数据、应用、技术四层架构</li>
+<li>适用：大型组织数字化转型</li>
+</ul>
+</li>
+<li>
+<p><strong>普华永道企业架构解决方案</strong></p>
+<ul>
+<li>业务先行、敏捷协同</li>
+<li>适用：金融行业复杂系统重构</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-应用架构方法论">2. 应用架构方法论</h3>
+<ol>
+<li>
+<p><strong>六边形架构</strong></p>
+<ul>
+<li>业务逻辑居中</li>
+<li>通过端口/适配器隔离外部依赖</li>
+<li>适用：高内聚业务系统</li>
+</ul>
+</li>
+<li>
+<p><strong>领域驱动设计（DDD）</strong></p>
+<ul>
+<li>通过领域模型对齐业务与技术</li>
+<li>划分限界上下文</li>
+<li>适用：复杂业务系统</li>
+</ul>
+</li>
+<li>
+<p><strong>微服务架构</strong></p>
+<ul>
+<li>服务独立部署</li>
+<li>轻量通信（REST/gRPC）</li>
+<li>适用：互联网高并发场景</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-系统级设计方法论">3. 系统级设计方法论</h3>
+<ol>
+<li>
+<p><strong>4R架构定义方法论</strong></p>
+<ul>
+<li>Rank（层级划分）</li>
+<li>Role（角色定义）</li>
+<li>Relation（关系建模）</li>
+<li>Rule（规则制定）</li>
+</ul>
+</li>
+<li>
+<p><strong>事件驱动架构（EDA）</strong></p>
+<ul>
+<li>通过事件发布/订阅实现异步通信</li>
+<li>适用：实时数据处理</li>
+</ul>
+</li>
+</ol>
+<h2 id="三学习资源推荐">三、学习资源推荐</h2>
+<h3 id="1-经典书籍">1. 经典书籍</h3>
+<ol>
+<li>
+<p><strong>《整洁架构之道》</strong></p>
+<ul>
+<li>作者：Bob大叔</li>
+<li>特点：涵盖架构设计核心原则</li>
+<li>适用：重构遗留系统、设计高内聚低耦合架构</li>
+</ul>
+</li>
+<li>
+<p><strong>《企业应用架构模式》</strong></p>
+<ul>
+<li>作者：Martin Fowler</li>
+<li>特点：详细讲解分层架构、MVC、DDD等模式</li>
+<li>适用：传统企业级系统设计</li>
+</ul>
+</li>
+<li>
+<p><strong>《微服务设计》</strong></p>
+<ul>
+<li>特点：解析微服务架构核心思想</li>
+<li>适用：分布式系统设计、服务治理实践</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-在线课程">2. 在线课程</h3>
+<ol>
+<li>
+<p><strong>51CTO《系统架构方法论与实践》</strong></p>
+<ul>
+<li>内容：30课时覆盖预架构设计、逻辑/物理架构、数据架构</li>
+<li>特点：含电商系统完整案例</li>
+</ul>
+</li>
+<li>
+<p><strong>慕课网《分布式系统设计与实践》</strong></p>
+<ul>
+<li>内容：Zookeeper、Redis、Kafka实战</li>
+<li>特点：代码驱动，提供实战项目模板</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-实践资源">3. 实践资源</h3>
+<ol>
+<li>
+<p><strong>GitHub开源项目</strong></p>
+<ul>
+<li>Envoy网关：学习服务网格架构</li>
+<li>Kafka源码：理解分布式消息队列设计</li>
+</ul>
+</li>
+<li>
+<p><strong>技术博客</strong></p>
+<ul>
+<li>CSDN《系统架构设计精要》</li>
+<li>阿里云《中台架构实战》</li>
+</ul>
+</li>
+</ol>
+<h2 id="四学习路径建议">四、学习路径建议</h2>
+<h3 id="1-入门阶段">1. 入门阶段</h3>
+<ul>
+<li>阅读《大话软件架构》建立直观认知</li>
+<li>学习51CTO基础课程</li>
+<li>实践简单的MVC项目</li>
+</ul>
+<h3 id="2-进阶阶段">2. 进阶阶段</h3>
+<ul>
+<li>深入学习《微服务设计》</li>
+<li>参与慕课网实战课程</li>
+<li>搭建Spring Cloud微服务原型</li>
+</ul>
+<h3 id="3-深化阶段">3. 深化阶段</h3>
+<ul>
+<li>参与GitHub开源项目</li>
+<li>实践《整洁架构之道》中的原则</li>
+<li>尝试复杂系统架构设计</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-07-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/2021/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南" data-hashtags="SS"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/2021/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-hashtag="SS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/2021/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/posts/2021/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/2021/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/" data-title="架构设计学习指南"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ss/">SS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/read/20210613/" class="prev" rel="prev" title="关于矛盾论"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>关于矛盾论</a>
+            <a href="/posts/2021/20210721-gin/" class="next" rel="next" title="gin源码">gin源码<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.123.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

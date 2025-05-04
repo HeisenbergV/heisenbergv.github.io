@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>coder - 分类 - zJxin</title>
+        <title>Coder - 分类 - zJxin</title>
         <link>https://heisenbergv.github.io/categories/coder/</link>
-        <description>coder - 分类 - zJxin</description>
+        <description>Coder - 分类 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
             <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
     <title>LLM平台</title>
@@ -19,6 +19,14 @@
     <author>zJxin</author>
     <guid>https://heisenbergv.github.io/posts/2025/20250324/</guid>
     <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
+</item>
+<item>
+    <title>架构设计学习指南</title>
+    <link>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sun, 02 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[一、架构设计基础 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范 面向对象编程：强调封装、继承和多态 函数式编程：强调不可变]]></description>
 </item>
 <item>
     <title>crawlergo源码</title>
