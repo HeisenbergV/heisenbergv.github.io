@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Agent - 标签 - zJxin</title>
-        <link>http://localhost:1313/tags/agent/</link>
+        <link>https://heisenbergv.github.io/tags/agent/</link>
         <description>Agent - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/agent/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/agent/" rel="self" type="application/rss+xml" /><item>
     <title>AI相关概念的简介</title>
-    <link>http://localhost:1313/posts/2025/20250527/</link>
+    <link>https://heisenbergv.github.io/posts/2025/20250527/</link>
     <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/posts/2025/20250527/</guid>
+    <guid>https://heisenbergv.github.io/posts/2025/20250527/</guid>
     <description><![CDATA[原始程序 最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范： ping 127.0.0.1 API服务化阶段 用代码简单增加个http服务，调用后台的系统命令]]></description>
 </item>
 </channel>

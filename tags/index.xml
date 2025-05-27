@@ -1,95 +1,95 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tags - 标签 - zJxin</title>
-        <link>http://localhost:1313/tags/</link>
+        <link>https://heisenbergv.github.io/tags/</link>
         <description>Tags - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/" rel="self" type="application/rss+xml" /><item>
     <title>Agent</title>
-    <link>http://localhost:1313/tags/agent/</link>
+    <link>https://heisenbergv.github.io/tags/agent/</link>
     <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/agent/</guid>
+    <guid>https://heisenbergv.github.io/tags/agent/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>AI</title>
-    <link>http://localhost:1313/tags/ai/</link>
+    <link>https://heisenbergv.github.io/tags/ai/</link>
     <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/ai/</guid>
+    <guid>https://heisenbergv.github.io/tags/ai/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>LLM</title>
-    <link>http://localhost:1313/tags/llm/</link>
+    <link>https://heisenbergv.github.io/tags/llm/</link>
     <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/llm/</guid>
+    <guid>https://heisenbergv.github.io/tags/llm/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>SS</title>
-    <link>http://localhost:1313/tags/ss/</link>
+    <link>https://heisenbergv.github.io/tags/ss/</link>
     <pubDate>Fri, 04 Oct 2024 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/ss/</guid>
+    <guid>https://heisenbergv.github.io/tags/ss/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Go</title>
-    <link>http://localhost:1313/tags/go/</link>
+    <link>https://heisenbergv.github.io/tags/go/</link>
     <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/go/</guid>
+    <guid>https://heisenbergv.github.io/tags/go/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>设计</title>
-    <link>http://localhost:1313/tags/%E8%AE%BE%E8%AE%A1/</link>
+    <link>https://heisenbergv.github.io/tags/%E8%AE%BE%E8%AE%A1/</link>
     <pubDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/%E8%AE%BE%E8%AE%A1/</guid>
+    <guid>https://heisenbergv.github.io/tags/%E8%AE%BE%E8%AE%A1/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Redis</title>
-    <link>http://localhost:1313/tags/redis/</link>
+    <link>https://heisenbergv.github.io/tags/redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/redis/</guid>
+    <guid>https://heisenbergv.github.io/tags/redis/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>源码</title>
-    <link>http://localhost:1313/tags/%E6%BA%90%E7%A0%81/</link>
+    <link>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/%E6%BA%90%E7%A0%81/</guid>
+    <guid>https://heisenbergv.github.io/tags/%E6%BA%90%E7%A0%81/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Grpc</title>
-    <link>http://localhost:1313/tags/grpc/</link>
+    <link>https://heisenbergv.github.io/tags/grpc/</link>
     <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/grpc/</guid>
+    <guid>https://heisenbergv.github.io/tags/grpc/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>网络</title>
-    <link>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/</link>
+    <link>https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/</link>
     <pubDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/</guid>
+    <guid>https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>操作系统</title>
-    <link>http://localhost:1313/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Sat, 28 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+    <guid>https://heisenbergv.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

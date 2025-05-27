@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Redis - 标签 - zJxin</title>
-        <link>http://localhost:1313/tags/redis/</link>
+        <link>https://heisenbergv.github.io/tags/redis/</link>
         <description>Redis - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/redis/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/redis/" rel="self" type="application/rss+xml" /><item>
     <title>redis-单机场景</title>
-    <link>http://localhost:1313/posts/2021/20210906-redis/</link>
+    <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>http://localhost:1313/posts/2021/20210906-redis/</guid>
+    <guid>https://heisenbergv.github.io/posts/2021/20210906-redis/</guid>
     <description><![CDATA[我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等 概要 有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注]]></description>
 </item>
 </channel>
