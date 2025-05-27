@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>计算机网络-传输层 - zJxin</title><meta name="Description" content="Blog"><meta property="og:title" content="计算机网络-传输层" />
-<meta property="og:description" content="TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-01-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-01-05T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+        <title>计算机网络-传输层 - zJxin</title><meta name="Description" content="Blog"><meta property="og:url" content="http://localhost:1313/posts/2021/20210105-tcpudp/">
+  <meta property="og:site_name" content="zJxin">
+  <meta property="og:title" content="计算机网络-传输层">
+  <meta property="og:description" content="TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-01-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-01-05T00:00:00+00:00">
+    <meta property="article:tag" content="网络">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="计算机网络-传输层"/>
-<meta name="twitter:description" content="TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="计算机网络-传输层">
+  <meta name="twitter:description" content="TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物">
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2020/20200401-go-context/" /><link rel="next" href="https://heisenbergv.github.io/posts/2021/20210119-grpc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/2021/20210105-tcpudp/" /><link rel="prev" href="http://localhost:1313/posts/2020/20200401-go-context/" /><link rel="next" href="http://localhost:1313/posts/2021/20210119-grpc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -26,9 +32,9 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210105-tcpudp\/"
-        },"genre": "posts","keywords": "网络","wordcount":  11424 ,
-        "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210105-tcpudp\/","datePublished": "2021-01-05T00:00:00+00:00","dateModified": "2021-01-05T00:00:00+00:00","publisher": {
+            "@id": "http:\/\/localhost:1313\/posts\/2021\/20210105-tcpudp\/"
+        },"genre": "posts","keywords": "网络","wordcount":  11422 ,
+        "url": "http:\/\/localhost:1313\/posts\/2021\/20210105-tcpudp\/","datePublished": "2021-01-05T00:00:00+00:00","dateModified": "2021-01-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -36,7 +42,7 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="auto" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="auto" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -55,7 +61,9 @@
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
                         </span>
-                    </span></div>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -99,7 +107,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机网络-传输层</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-05">2021-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11424 字&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-05">2021-01-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11422 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -199,16 +207,26 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 <li>每一个套接字要有唯一的标识，否则传输层无法分辨该将数据给谁</li>
 <li>每个报文段要有特殊的字段来标识，要交付给哪个套接字（也就是端口 port）</li>
 </ol>
-<pre tabindex="0"><code>|-----------------|
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>|-----------------|
 | 源端口 | 目的端口 |
 |-----------------|
 |   其他首部字段    |
 |-----------------|
 |    应用数据      |
-|-----------------|
-</code></pre><h3 id="udp的多路复用的多路复用分解">udp的多路复用的多路复用/分解</h3>
+|-----------------|</code></pre></div>
+<h3 id="udp的多路复用的多路复用分解">udp的多路复用的多路复用/分解</h3>
 <p>一个udp套接字使用一个二元组来全面标识，该二元组包含：一个目的IP地址和一个目的端口号。这也是为什么多个客户端连会接到同一个服务进程的同一个套接字</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//udp server
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//udp server
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">ListenUDP</span><span class="p">(</span><span class="s">&#34;udp&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">net</span><span class="p">.</span><span class="nx">UDPAddr</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">IP</span><span class="p">:</span>   <span class="nx">net</span><span class="p">.</span><span class="nf">IPv4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
@@ -238,10 +256,15 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 </span></span><span class="line"><span class="cl">			<span class="k">continue</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="tcp的多路复用的多路复用分解">tcp的多路复用的多路复用/分解</h3>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h3 id="tcp的多路复用的多路复用分解">tcp的多路复用的多路复用/分解</h3>
 <p>一个tcp套接字使用一个四元组来全面标识，该四元组包含：一个目的IP地址和一个目的端口，一个源地址和一个源端口。所以每一个客户端连接都会维护一个套接字，一个tcp服务会维护多个套接字管理多个客户端连接</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">一个tcp</span> <span class="nx">server</span>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">一个tcp</span> <span class="nx">server</span>
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">listen</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;0.0.0.0:8888&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
@@ -272,8 +295,8 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;recv from client, content:%v\n&#34;</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">n</span><span class="p">]))</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="udp">udp</h2>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="udp">udp</h2>
 <p>udp其实就是做了<code>多路复用/多路分解</code>，<code>差错检查</code>。除此之外没任何额外功能，和网络层唯一区别就是这点功能。由<a href="../../../img/2021/https://tools.ietf.org/html/rfc768" rel="">RFC 768</a>定义的UDP只做传输层能够做的最少工作。</p>
 <p>udp将数据附加上多路复用/分解服务的源和目的端口字段，以及其他两个小字段后，将报文段交给网络层。网络层将报文段封装到一个IP数据报中，然后尽力而为交给目的主机，到达后udp进行多路分解交付给指定的进程，在发送数据前并没有与接收方进行握手确认。所以udp被称为 <code>无连接的</code></p>
 <h3 id="udp优点">udp优点</h3>
@@ -285,7 +308,12 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 </ul>
 <h3 id="udp报文段">udp报文段</h3>
 <p>首部四个字段，都是2字节，一共8字节</p>
-<pre tabindex="0"><code>+--------+--------+--------+--------+
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>+--------+--------+--------+--------+
 |     Source      |   Destination   |
 |      Port       |      Port       |
 +--------+--------+--------+--------+
@@ -294,8 +322,8 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 +--------+--------+--------+--------+
 |                                   |
 |          data                     | 
-+-----------------------------------
-</code></pre><ol>
++-----------------------------------</code></pre></div>
+<ol>
 <li>源端口：源端口号。在需要对方回信时选用。不需要时可用全0</li>
 <li>目的端口：目的端口号。这在终点交付报文时必须要使用到</li>
 <li>长度： UDP用户数据报的长度，其最小值是8（仅有首部）</li>
@@ -304,11 +332,16 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 <h3 id="udp校验和计算">udp校验和计算</h3>
 <p>校验和提供了差错检测功能。也就是说，报文段从源到达目的地的过程中，判断比特是否发生了改变（链路中的噪声干扰或者路由器的问题）。发送方的udp对报文段中的所有16比特字的和进行反码运算，求和时遇到溢出都会被回卷。得到的结果放到校验和字段<code>checksum</code></p>
 <p>举例：</p>
-<pre tabindex="0"><code>字段            十进制             二进制
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>字段            十进制             二进制
 源端口            63549          1111100000111101  
 目的端口          12345           11000000111001
-数据长度            17              10001
-</code></pre><h4 id="发送前计算校验和">发送前计算校验和：</h4>
+数据长度            17              10001</code></pre></div>
+<h4 id="发送前计算校验和">发送前计算校验和：</h4>
 <ol>
 <li>源端口+目的端口+数据长度 = 1111100000111101+0011000000111001+10001 = 10010100010000111</li>
 <li>16位溢出，回卷，抛弃首位：10010100010000111 ==&gt; 0010100010000111</li>
@@ -330,7 +363,12 @@ tcp提供了可靠传输，通过流量控制，序号，确认，定时器等�
 <h3 id="经完全可靠信道的可靠数据传输-rdt10">经完全可靠信道的可靠数据传输 rdt1.0</h3>
 <p><strong>假设传输保证可靠，不丢包，不出差错，发送与接收端的收发效率也完全一致的时候模型</strong></p>
 <h4 id="伪代码">伪代码</h4>
-<pre tabindex="0"><code>发送端：
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>发送端：
 
 loop:
 	data = rcv_app()
@@ -342,8 +380,8 @@ loop:
 loop:
 	pkg = deliver_data(data)  //从网络层获取报文段
 	data = extract(pkg) //解析首部
-	to_app(data)
-</code></pre><p>完全不必加入额外的任何操作</p>
+	to_app(data)</code></pre></div>
+<p>完全不必加入额外的任何操作</p>
 <h3 id="能处理比特差错信道的可靠传输-rdt20">能处理比特差错信道的可靠传输 rdt2.0</h3>
 <p><strong>假设数据不会丢失</strong>，在发送数据的整条链路中，比特可能受损，在和别人打电话的时候，如果听到了对方完整的话，会说一句’ok&rsquo;，来证明自己听到了全部内容，且听懂了。
 这个‘ok&rsquo; 使用了 <code>肯定确认（positive acknowledgment）</code> 与<code>否定确认（negative acknowledgment）</code> (没听到说一句’请你再说一遍‘)。
@@ -355,7 +393,12 @@ loop:
 <li>重传：接收方收到有差错的分组时，重传刚才的报文段</li>
 </ol>
 <h4 id="伪代码-1">伪代码</h4>
-<pre tabindex="0"><code>发送端：
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>发送端：
 loop:
 	data = rcv_app()
 	*pkg = make_pkt(data, checksum) //添加首部
@@ -373,8 +416,8 @@ loop:
 		*udt_send(NAK)
 	*else
 		*udt_send(ACK)
-		to_app(data)
-</code></pre><p>由于发送方在没有收到回复的时候要一直等着，不能发送下一个报文段，因此这样的协议 被称为 <code>停等（stop and wait）</code>协议。</p>
+		to_app(data)</code></pre></div>
+<p>由于发送方在没有收到回复的时候要一直等着，不能发送下一个报文段，因此这样的协议 被称为 <code>停等（stop and wait）</code>协议。</p>
 <p>目前看起来是可行了，但ack和nak 出现了比特差错怎么办？
 当接收方收到有差错的ack或者nak的时候，重传当前数据即可，这种方式 叫<code>冗余分组 duplicate packet</code>。但重传了冗余的数据，接收方因为无法确认，对方是否正确收到ack或者nak，所以不确定这次数据是新的，还是冗余的。这个解决方案有个简单方法（当前所有传输协议几乎都用这个方法）就是在数据分组里添加个新字段，对数据进行编号，将发送数据分组的<code>序号(sequence number)</code>放到这个字段。
 在rdt2.0 的基础上添加个新字段 做 rdt2.1 来处理上面的问题。
@@ -382,7 +425,12 @@ loop:
 <h3 id="能处理比特差错信道的可靠传输-rdt21">能处理比特差错信道的可靠传输 rdt2.1</h3>
 <p>在2.0的基础上，添加一个序号字段，用于区分发送方的数据是新的还是重发的。</p>
 <h4 id="伪代码-2">伪代码</h4>
-<pre tabindex="0"><code>发送端：
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>发送端：
 *seq = 0
 loop:
 	data = rcv_app()
@@ -409,8 +457,8 @@ loop:
 		*seq ++
 		to_app(data)
 	&amp;else //如果接收方成功收取，但发送方ack有差错会一直重试，这里只需要一直响应ack即可
-		udt_send(ACK)
-</code></pre><h3 id="能处理丢包信道的可靠传输rdt30">能处理丢包信道的可靠传输：rdt3.0</h3>
+		udt_send(ACK)</code></pre></div>
+<h3 id="能处理丢包信道的可靠传输rdt30">能处理丢包信道的可靠传输：rdt3.0</h3>
 <p>上面的例子都是在数据不丢失的情况下进行的。但现实中发送方发送一个数据段， 发送过程中可能会丢失，或者接收方收到后发送ask，这个ask丢失了，都会造成发送方无法及时响应。如果发送方能等足够长的时间确定丢失，则它只需要重传即可。
 但发送方要等多久合适呢？最好的时间范围应该是这样：发送方&ndash;&gt;接收方，接收方&mdash;&gt;发送方，这两个时间，也就是<code>往返延迟(RTT)</code>，但确定这个时间是难以估算的。等的太久造成延迟因此实践中采取的方法是发送方明智的选择一个时间值，判断可能发生了丢包(TCP会对RTT做实现)</p>
 <p>发送方不确定丢失的原因，但结果一样，就是重传。为了实现在指定时间判断重传。需要一个 <code>倒计数定时器(countdown timer)</code>，每次发送数据段：</p>
@@ -420,7 +468,12 @@ loop:
 <li>终止定时器</li>
 </ul>
 <h4 id="伪代码-3">伪代码</h4>
-<pre tabindex="0"><code>发送端：
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>发送端：
 seq = 0
 loop:
 	data = rcv_app()
@@ -436,8 +489,8 @@ loop:
 		stop_timer()
 
 if timer reach
-	udt_send(oldpkg)&amp;&amp; start_timer()
-</code></pre><h3 id="流水线可靠传输协议-rdt40">流水线可靠传输协议 rdt4.0</h3>
+	udt_send(oldpkg)&amp;&amp; start_timer()</code></pre></div>
+<h3 id="流水线可靠传输协议-rdt40">流水线可靠传输协议 rdt4.0</h3>
 <p>现在我们不怕丢失数据，不怕数据有差错了，但效率很低，因为是停等协议，一个个数据处理，所以这次将是在上面的基础上，改进为流水线的处理方式。</p>
 <p>要做到这个需要：</p>
 <ol>
@@ -459,7 +512,12 @@ base：第一个未确认的分组
 nextseqnum：最小的未使用的序号（也就是待发送的序号）
 N：窗口长度，所以gbn也称为  <code>滑动窗口协议(sliding-window protocol)</code></p>
 <h5 id="伪代码-4">伪代码</h5>
-<pre tabindex="0"><code>发送：
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>发送：
 //当小于窗口总长度才进行发送
 if(nextseqnum&lt; base+N){
     //压缩
@@ -495,8 +553,8 @@ if(rdt_rcv(pkt) &amp;&amp; notcorrupt(pkt)){
 
 }else{//有错误
     重新发送所有窗口内未确认的分段
-}
-</code></pre><p>这个发送方缓存了窗口大小N的序号，接收方没做任何处理，只有在有序和无差错的情况下才回复ask，否则直接丢弃。
+}</code></pre></div>
+<p>这个发送方缓存了窗口大小N的序号，接收方没做任何处理，只有在有序和无差错的情况下才回复ask，否则直接丢弃。
 好处是接收方非常简单，缺点是 第一个分段的异常，会导致后面全部分段重新发送
 <img
         class="lazyload"
@@ -575,7 +633,7 @@ if(rdt_rcv(pkt) &amp;&amp; notcorrupt(pkt)){
 <li>紧急指针:只有当URG=1时的时候,紧急指针才有效,它指出紧急数据的字节数</li>
 </ul>
 <h4 id="序号和确认号">序号和确认号</h4>
-<p>因为是全双工服务，并且tcp把数据看做一个无结构的，有序的字节流，所以序列号seq是字节流的编号。比如5000byte的数据，tcp根据<code>MSS</code>为1000byte，那么tcp会划分为5个报文段，0~999，1000~1999&hellip;；</p>
+<p>因为是全双工服务，并且tcp把数据看做一个无结构的，有序的字节流，所以序列号seq是字节流的编号。比如5000byte的数据，tcp根据<code>MSS</code>为1000byte，那么tcp会划分为5个报文段，0<del>999，1000</del>1999&hellip;；</p>
 <p>那么主机A请求发出去，seq表示自己发送的数据，而ack表示期待从B获得79</p>
 <h3 id="rto的计算retransmission-timeout即重传超时时间">RTO的计算(Retransmission-TimeOut)即重传超时时间</h3>
 <p>可靠传输中需要计算一个RTT，而这个RTT不能太长，也不能太短。为此官方给出了以下计算：</p>
@@ -747,7 +805,7 @@ MTU最大传输单元，这个最大传输单元实际上和链路层协议有�
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层" data-hashtags="网络"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" data-hashtag="网络"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:1313/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层" data-hashtags="网络"><i class="fab fa-x-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:1313/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/2021/20210105-tcpudp/" data-hashtag="网络"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:1313/posts/2021/20210105-tcpudp/" data-title="计算机网络-传输层" data-description=""><i class="fab fa-diaspora fa-fw" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a1313%2fposts%2f2021%2f20210105-tcpudp%2f&amp;text=%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c-%e4%bc%a0%e8%be%93%e5%b1%82" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -762,19 +820,20 @@ MTU最大传输单元，这个最大传输单元实际上和链路层协议有�
     <div class="post-nav"><a href="/posts/2020/20200401-go-context/" class="prev" rel="prev" title="源码阅读 - go Context"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>源码阅读 - go Context</a>
             <a href="/posts/2021/20210119-grpc/" class="next" rel="next" title="grpc-go">grpc-go<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
-<div id="comments"><div id="gitalk" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
-            </noscript></div></article></div>
+</article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.123.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
                 <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10000},"comment":{"gitalk":{"admin":["heisenbergv"],"clientID":"70335a4af07c4a97b79b","clientSecret":"6c0684397ec265598fead8d27242c273d151bd1e","id":"2021-01-05T00:00:00Z","owner":"heisenbergv","repo":"heisenbergv.github.io","title":"计算机网络-传输层"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/contrib/auto-render.min.js"></script><script src="/lib/katex/contrib/copy-tex.min.js"></script><script src="/lib/katex/contrib/mhchem.min.js"></script><script>window.config={"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
 </html>

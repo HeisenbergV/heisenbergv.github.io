@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>网络 - 标签 - zJxin</title>
-        <link>https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/</link>
+        <link>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/</link>
         <description>网络 - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/" rel="self" type="application/rss+xml" /><item>
     <title>计算机网络-传输层</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</link>
+    <link>http://localhost:1313/posts/2021/20210105-tcpudp/</link>
     <pubDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</guid>
+    <guid>http://localhost:1313/posts/2021/20210105-tcpudp/</guid>
     <description><![CDATA[TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物]]></description>
 </item>
 </channel>

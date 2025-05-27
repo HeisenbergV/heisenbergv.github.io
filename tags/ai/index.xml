@@ -1,24 +1,40 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>AI - 标签 - zJxin</title>
-        <link>https://heisenbergv.github.io/tags/ai/</link>
+        <link>http://localhost:1313/tags/ai/</link>
         <description>AI - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ai/" rel="self" type="application/rss+xml" /><item>
+    <title>AI相关概念的简介</title>
+    <link>http://localhost:1313/posts/2025/20250527/</link>
+    <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>http://localhost:1313/posts/2025/20250527/</guid>
+    <description><![CDATA[原始程序 最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范： ping 127.0.0.1 API服务化阶段 用代码简单增加个http服务，调用后台的系统命令]]></description>
+</item>
+<item>
     <title>LLM平台</title>
-    <link>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
+    <link>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
     <pubDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
+    <guid>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
     <description><![CDATA[LLM应用开发平台是什么 LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规]]></description>
 </item>
 <item>
     <title>AI生产</title>
-    <link>https://heisenbergv.github.io/posts/2025/20250324/</link>
+    <link>http://localhost:1313/posts/2025/20250324/</link>
     <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/20250324/</guid>
+    <guid>http://localhost:1313/posts/2025/20250324/</guid>
     <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
+</item>
+<item>
+    <title>ai帮我做阅读</title>
+    <link>http://localhost:1313/posts/2025/%E4%B9%A6/</link>
+    <pubDate>Sat, 04 Jan 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>http://localhost:1313/posts/2025/%E4%B9%A6/</guid>
+    <description><![CDATA[文学认知阶梯：从叙事魔法到元叙述智慧 这是一个四级文学认知训练体系，每阶精选3-5部关键作品，搭配专属阅读策略，助您系统解锁文学的深层密码。 第]]></description>
 </item>
 </channel>
 </rss>

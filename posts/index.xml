@@ -1,88 +1,88 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 - zJxin</title>
-        <link>https://heisenbergv.github.io/posts/</link>
+        <link>http://localhost:1313/posts/</link>
         <description>所有文章 | zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>AI相关概念的简介</title>
+    <link>http://localhost:1313/posts/2025/20250527/</link>
+    <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>http://localhost:1313/posts/2025/20250527/</guid>
+    <description><![CDATA[原始程序 最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范： ping 127.0.0.1 API服务化阶段 用代码简单增加个http服务，调用后台的系统命令]]></description>
+</item>
+<item>
     <title>LLM平台</title>
-    <link>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
+    <link>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
     <pubDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
+    <guid>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
     <description><![CDATA[LLM应用开发平台是什么 LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规]]></description>
 </item>
 <item>
     <title>AI生产</title>
-    <link>https://heisenbergv.github.io/posts/2025/20250324/</link>
+    <link>http://localhost:1313/posts/2025/20250324/</link>
     <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/20250324/</guid>
+    <guid>http://localhost:1313/posts/2025/20250324/</guid>
     <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
 </item>
 <item>
     <title>ai帮我做阅读</title>
-    <link>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</link>
+    <link>http://localhost:1313/posts/2025/%E4%B9%A6/</link>
     <pubDate>Sat, 04 Jan 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</guid>
+    <guid>http://localhost:1313/posts/2025/%E4%B9%A6/</guid>
     <description><![CDATA[文学认知阶梯：从叙事魔法到元叙述智慧 这是一个四级文学认知训练体系，每阶精选3-5部关键作品，搭配专属阅读策略，助您系统解锁文学的深层密码。 第]]></description>
 </item>
 <item>
     <title>堂吉诃德</title>
-    <link>https://heisenbergv.github.io/posts/2024/20241004/</link>
+    <link>http://localhost:1313/posts/2024/20241004/</link>
     <pubDate>Fri, 04 Oct 2024 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2024/20241004/</guid>
+    <guid>http://localhost:1313/posts/2024/20241004/</guid>
     <description><![CDATA[堂吉诃德夙愿就是成为一个骑士，坚守骑士精神，惩恶扬善，行侠仗义。因为世道的黑暗却依旧坚守骑士精神闹了很多笑话。那么真正可笑的是堂吉诃德，还是]]></description>
 </item>
 <item>
     <title>梅菜扣肉的独白</title>
-    <link>https://heisenbergv.github.io/posts/2023/20231103/</link>
+    <link>http://localhost:1313/posts/2023/20231103/</link>
     <pubDate>Sat, 04 Nov 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/20231103/</guid>
+    <guid>http://localhost:1313/posts/2023/20231103/</guid>
     <description><![CDATA[我是一只猪，一只普通的猪，躺也不是站也不是，吃也不是，饿也不是。隔壁村的种猪活得潇洒，终归还是猪。我跑出去过一次，也算是不平凡的猪生，只是撞]]></description>
 </item>
 <item>
     <title>基督山伯爵</title>
-    <link>https://heisenbergv.github.io/posts/read/2023911/</link>
+    <link>http://localhost:1313/posts/read/2023911/</link>
     <pubDate>Mon, 11 Sep 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/read/2023911/</guid>
+    <guid>http://localhost:1313/posts/read/2023911/</guid>
     <description><![CDATA[故事背景是资产阶级反封建的新文化运动1800年左右，拿破仑流放，路易十八上位。 复仇起因 爱德蒙·邓蒂斯一个19岁年轻有为的青年，最可贵的是又有]]></description>
 </item>
 <item>
     <title>架构设计学习指南</title>
-    <link>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</link>
+    <link>http://localhost:1313/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</link>
     <pubDate>Sun, 02 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</guid>
+    <guid>http://localhost:1313/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</guid>
     <description><![CDATA[一、架构设计基础 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范 面向对象编程：强调封装、继承和多态 函数式编程：强调不可变]]></description>
 </item>
 <item>
     <title>安心立命</title>
-    <link>https://heisenbergv.github.io/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/</link>
+    <link>http://localhost:1313/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/</link>
     <pubDate>Sat, 03 Jun 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/</guid>
+    <guid>http://localhost:1313/posts/2023/%E5%AE%89%E5%BF%83%E7%AB%8B%E5%91%BD/</guid>
     <description><![CDATA[生产资料私有制的出现个人主义随之而来，并随着私有制的发展而发展，当下是个人主义横行的时代。但它不能与利己主义画等号，个人主义有其积极性，然而]]></description>
 </item>
 <item>
     <title>刻意练习</title>
-    <link>https://heisenbergv.github.io/posts/read/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/</link>
+    <link>http://localhost:1313/posts/read/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/</link>
     <pubDate>Tue, 21 Feb 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/read/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/</guid>
+    <guid>http://localhost:1313/posts/read/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/</guid>
     <description><![CDATA[刻意练习是什么 和重复练习不同，刻意练习是”不重复“的练习。在我看来重复练习和刻意练习不是互斥的，而是相辅相成的。刻意练习是为了进步，重复练习]]></description>
-</item>
-<item>
-    <title>crawlergo源码</title>
-    <link>https://heisenbergv.github.io/posts/2023/20230104/</link>
-    <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
-    <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/20230104/</guid>
-    <description><![CDATA[目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter]]></description>
 </item>
 </channel>
 </rss>
