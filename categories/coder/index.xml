@@ -1,160 +1,980 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Coder - 分类 - zJxin</title>
-        <link>https://heisenbergv.github.io/categories/coder/</link>
+        <link>http://localhost:1313/categories/coder/</link>
         <description>Coder - 分类 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/categories/coder/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Fri, 27 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/categories/coder/" rel="self" type="application/rss+xml" /><item>
+    <title>产品AI化的一些体会</title>
+    <link>http://localhost:1313/posts/2026/a/</link>
+    <pubDate>Fri, 27 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>http://localhost:1313/posts/2026/a/</guid>
+    <description><![CDATA[<p>当前普通人很难参与模型的训练和研究工作，大模型的使用成本也很高。但出现了很多中小模型，虽然效果比不过大模型，但在受局限的场景下可以依靠工程能力做出不错的产品。比如方便调度各种中小模型的开源工具 ComfyUI，还有很多剪辑相关的本地部署产品。</p>]]></description>
+</item>
+<item>
     <title>AI相关概念的简介</title>
-    <link>https://heisenbergv.github.io/posts/2025/20250527/</link>
+    <link>http://localhost:1313/posts/2025/20250527/</link>
     <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/20250527/</guid>
-    <description><![CDATA[原始程序 最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范： ping 127.0.0.1 API服务化阶段 用代码简单增加个http服务，调用后台的系统命令]]></description>
+    <guid>http://localhost:1313/posts/2025/20250527/</guid>
+    <description><![CDATA[<p>最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ping 127.0.0.1</span></span></code></pre></div></div>
+<h2 id="api服务化阶段">API服务化阶段</h2>
+<p>用代码简单增加个http服务，调用后台的系统命令</p>]]></description>
 </item>
 <item>
     <title>LLM平台</title>
-    <link>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
+    <link>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
     <pubDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
-    <description><![CDATA[LLM应用开发平台是什么 LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规]]></description>
+    <guid>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
+    <description><![CDATA[<p>LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规模人工智能模型</p>
+<p>LLM平台（如Dify/FastGPT）: 本质上是通过工程化手段，把&quot;零散的Prompt技巧&quot;和&quot;业务需求&quot;组合成可复用的AI产品​​。可以理解为LLM平台 = 模型 + 代码 + 工程化&quot;全家桶&quot;​</p>]]></description>
 </item>
 <item>
     <title>AI生产</title>
-    <link>https://heisenbergv.github.io/posts/2025/20250324/</link>
+    <link>http://localhost:1313/posts/2025/20250324/</link>
     <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/20250324/</guid>
-    <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
+    <guid>http://localhost:1313/posts/2025/20250324/</guid>
+    <description><![CDATA[<p>最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个具体模型或工具。因为技术迭代太快了，盯着细节容易过时，但一个通用的流程，至少在未来一年应该不会落伍。</p>]]></description>
 </item>
 <item>
     <title>架构设计学习指南</title>
-    <link>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</link>
+    <link>http://localhost:1313/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</link>
     <pubDate>Sun, 02 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</guid>
-    <description><![CDATA[一、架构设计基础 1. 编程范式与架构设计 结构化编程：对程序控制权的直接转移进行限制和规范 面向对象编程：强调封装、继承和多态 函数式编程：强调不可变]]></description>
+    <guid>http://localhost:1313/posts/2023/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[<h2 id="一架构设计基础">一、架构设计基础</h2>
+<h3 id="1-编程范式与架构设计">1. 编程范式与架构设计</h3>
+<ul>
+<li><strong>结构化编程</strong>：对程序控制权的直接转移进行限制和规范</li>
+<li><strong>面向对象编程</strong>：强调封装、继承和多态</li>
+<li><strong>函数式编程</strong>：强调不可变性和纯函数</li>
+</ul>
+<h3 id="2-设计原则">2. 设计原则</h3>
+<ul>
+<li><strong>SOLID原则</strong>
+<ul>
+<li>SRP（单一职责原则）</li>
+<li>OCP（开闭原则）</li>
+<li>LSP（里氏替换原则）</li>
+<li>ISP（接口隔离原则）</li>
+<li>DIP（依赖反转原则）</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-架构模式">3. 架构模式</h3>
+<ul>
+<li><strong>MVC/MVVM/MVP</strong>：视图层架构模式</li>
+<li><strong>DDD</strong>：领域驱动设计</li>
+<li><strong>微服务架构</strong>：服务独立部署与治理</li>
+</ul>
+<h2 id="二核心技术突破">二、核心技术突破</h2>
+<h3 id="1-tob领域专家">1. ToB领域专家</h3>
+<ul>
+<li>分布式事务：Seata/Saga实战（日均处理10w+事务）</li>
+<li>API治理：Apisix网关二次开发（含灰度发布）</li>
+<li>低代码平台：Vue3+Go搭建表单引擎+流程设计器</li>
+</ul>
+<h3 id="2-每日必修">2. 每日必修</h3>
+<ul>
+<li>算法：LeetCode每日1题（重点动态规划/图论）</li>
+<li>源码：Spring Cloud Alibaba核心模块精读</li>
+<li>性能：Arthas实战（生产环境问题诊断）</li>
+</ul>
+<h2 id="三职业发展路径">三、职业发展路径</h2>
+<h3 id="1-技术管理路线">1. 技术管理路线</h3>
+<ul>
+<li>短期（0-6月）：
+<ul>
+<li>组织代码评审</li>
+<li>攻克技术难题</li>
+<li>技术分享会</li>
+</ul>
+</li>
+<li>中期（6-18月）：
+<ul>
+<li>考取PMP证书</li>
+<li>搭建自动化流水线</li>
+</ul>
+</li>
+<li>长期（18-36月）：
+<ul>
+<li>制定技术路线图</li>
+<li>积累行业人脉</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-架构师路线">2. 架构师路线</h3>
+<ul>
+<li>核心能力：
+<ol>
+<li>技术选型（Kafka/Pulsar对比）</li>
+<li>容灾设计（双活方案）</li>
+<li>架构决策文档(ADR)</li>
+</ol>
+</li>
+<li>认证要求：
+<ul>
+<li>阿里云ACE认证（6个月内）</li>
+<li>AWS架构师认证（12个月）</li>
+</ul>
+</li>
+</ul>
+<h2 id="四学习资源与实践">四、学习资源与实践</h2>
+<h3 id="1-经典书籍">1. 经典书籍</h3>
+<ul>
+<li>《整洁架构之道》：架构设计核心原则</li>
+<li>《企业应用架构模式》：分层架构、MVC、DDD等模式</li>
+<li>《微服务设计》：分布式系统设计实践</li>
+</ul>
+<h3 id="2-在线课程">2. 在线课程</h3>
+<ul>
+<li>51CTO《系统架构方法论与实践》</li>
+<li>慕课网《分布式系统设计与实践》</li>
+<li>阿里云《中台架构实战》</li>
+</ul>
+<h3 id="3-实践项目">3. 实践项目</h3>
+<ul>
+<li>GitHub开源项目参与</li>
+<li>企业级应用架构设计</li>
+<li>微服务系统搭建</li>
+</ul>
+<h2 id="五差异化竞争策略">五、差异化竞争策略</h2>
+<h3 id="1-领域专精">1. 领域专精</h3>
+<ul>
+<li>医疗信息化：HL7/FHIR协议</li>
+<li>金融科技：分布式事务与高可用</li>
+<li>电商系统：高并发与秒杀设计</li>
+</ul>
+<h3 id="2-技术影响力">2. 技术影响力</h3>
+<ul>
+<li>GitHub运营：规范文档与开源贡献</li>
+<li>技术博客：每周更新架构设计文章</li>
+<li>技术分享：定期组织架构设计研讨会</li>
+</ul>
+<h2 id="六执行计划">六、执行计划</h2>
+<h3 id="1-每日计划">1. 每日计划</h3>
+<ul>
+<li>7:00-8:00：算法+行业资讯</li>
+<li>12:00-13:00：源码阅读</li>
+<li>20:00-22:00：项目实战/课程开发</li>
+<li>周六下午：GitHub维护</li>
+<li>周日上午：计划复盘</li>
+</ul>
+<h3 id="2-紧急行动项">2. 紧急行动项</h3>
+<ol>
+<li>注册阿里云架构师认证考试</li>
+<li>创建GitHub技术产品仓库</li>
+<li>制定每周技术分享主题</li>
+<li>搭建个人技术博客</li>
+<li>参与开源项目贡献</li>
+</ol>
+<h2 id="七抗风险措施">七、抗风险措施</h2>
+<h3 id="1-远程工作准备">1. 远程工作准备</h3>
+<ul>
+<li>掌握Jira/Confluence</li>
+<li>接海外项目（Upwork平台）</li>
+<li>英语会议能力</li>
+</ul>
+<h3 id="2-第二收入来源">2. 第二收入来源</h3>
+<ul>
+<li>IDEA插件开发</li>
+<li>技术咨询（架构优化服务）</li>
+<li>在线课程制作（ToB开发实战）</li>
+</ul>
+<h2 id="八学习路径建议">八、学习路径建议</h2>
+<h3 id="1-入门阶段0-6个月">1. 入门阶段（0-6个月）</h3>
+<ul>
+<li>阅读《大话软件架构》</li>
+<li>学习基础架构课程</li>
+<li>实践简单的MVC项目</li>
+</ul>
+<h3 id="2-进阶阶段6-18个月">2. 进阶阶段（6-18个月）</h3>
+<ul>
+<li>深入学习《微服务设计》</li>
+<li>参与实战课程</li>
+<li>搭建Spring Cloud微服务原型</li>
+</ul>
+<h3 id="3-深化阶段18-36个月">3. 深化阶段（18-36个月）</h3>
+<ul>
+<li>参与GitHub开源项目</li>
+<li>实践《整洁架构之道》原则</li>
+<li>设计复杂系统架构</li>
+</ul>]]></description>
 </item>
 <item>
     <title>crawlergo源码</title>
-    <link>https://heisenbergv.github.io/posts/2023/20230104/</link>
+    <link>http://localhost:1313/posts/2023/20230104/</link>
     <pubDate>Wed, 04 Jan 2023 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2023/20230104/</guid>
-    <description><![CDATA[目录 ├─cmd │ └─main.go # 程序主入口 └─pkg ├─config # 一些配置相关 ├─engine # chrome相关程序 ├─filter]]></description>
+    <guid>http://localhost:1313/posts/2023/20230104/</guid>
+    <description><![CDATA[<h2 id="目录">目录</h2>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>├─cmd
+│  └─main.go  # 程序主入口
+└─pkg
+    ├─config  # 一些配置相关
+    ├─engine  # chrome相关程序
+    ├─filter  # 去重相关
+    ├─js      # 一些注入的js
+    ├─logger  # 日志
+    ├─model   # url和请求相关的库
+    └─tools   # 一些通用类库
+        └─requests</code></pre></div>
+<h2 id="爬虫生命周期">爬虫生命周期</h2>
+<p></p>]]></description>
 </item>
 <item>
     <title>软件设计随想</title>
-    <link>https://heisenbergv.github.io/posts/2021/20211107-design/</link>
+    <link>http://localhost:1313/posts/2021/20211107-design/</link>
     <pubDate>Sun, 07 Nov 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20211107-design/</guid>
-    <description><![CDATA[在我看来软件设计主要做两件事一个是划分边界另一个是做权衡。 划分边界往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个]]></description>
+    <guid>http://localhost:1313/posts/2021/20211107-design/</guid>
+    <description><![CDATA[<p>在我看来软件设计主要做两件事一个是<code>划分边界</code>另一个是做<code>权衡</code>。</p>
+<p><code>划分边界</code>往小了说就是一个变量应该放到哪个模块（类或包），往大了说一个功能应属于哪个服务，有了边界还要考虑它们之间的依赖关系。<code>权衡</code>也有多种情况：比如功能实现上的优先级、扩展性的度、更细节点就是算法的时间与空间的抉择；还有限制上的平衡，比如一个函数的参数是个更宽泛的接口（基类）还是针对性的具体类型。</p>]]></description>
 </item>
 <item>
     <title>redis-单机场景</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210906-redis/</link>
+    <link>http://localhost:1313/posts/2021/20210906-redis/</link>
     <pubDate>Mon, 06 Sep 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210906-redis/</guid>
-    <description><![CDATA[我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等 概要 有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注]]></description>
+    <guid>http://localhost:1313/posts/2021/20210906-redis/</guid>
+    <description><![CDATA[<p>我把单机和集群分开总结，这篇主要是单机下的基础，优化方案等</p>
+<h2 id="概要">概要</h2>
+<p>有些细节直接看书就行，就不再重复了，一些常用的命令也不说了。重点说使用场景，注意事项，性能分析调优等。
+先简单介绍下最基本的数据结构:</p>]]></description>
 </item>
 <item>
     <title>vscode&#43;dlv 远程调试</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210813-dlv/</link>
+    <link>http://localhost:1313/posts/2021/20210813-dlv/</link>
     <pubDate>Fri, 13 Aug 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210813-dlv/</guid>
-    <description><![CDATA[dlv在服务器排查程序问题，没有可视化界面比较繁琐，利用vscode+dlv 远程调试，就和在本地调试一样简单 安装 在服务器和本地开发环境都要安]]></description>
+    <guid>http://localhost:1313/posts/2021/20210813-dlv/</guid>
+    <description><![CDATA[<p>dlv在服务器排查程序问题，没有可视化界面比较繁琐，利用vscode+dlv 远程调试，就和在本地调试一样简单</p>
+<h2 id="安装">安装</h2>
+<ol>
+<li>在服务器和本地开发环境都要安装dlv:   <code>go install github.com/go-delve/delve/cmd/dlv@latest</code>； 两个机器版本一定要一模一样</li>
+<li>vscode配置launch.json</li>
+</ol>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-json">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;remote debug&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;go&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;attach&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 这里设置remote 远程
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;mode&#34;</span><span class="p">:</span><span class="s2">&#34;remote&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 目标机器 端口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">2345</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 目标机器 ip
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;10.10.10.123&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 本地与目标一模一样的工程目录位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nt">&#34;substitutePath&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span> <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="s2">&#34;本地项目目录/hello&#34;</span><span class="p">,</span> <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="s2">&#34;/服务器项目目录/hello&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="运行">运行</h2>
+<ol>
+<li>代码编译增加 <code> -gcflags='all=-N -l'</code></li>
+<li>在服务器端的程序目录下（main.go所在位置)执行命令: <code>dlv --listen=:2345 --headless=true --api-version=2 --log attach 进程id</code></li>
+<li>本地vscode启动调试</li>
+<li>这样就能远程调试了</li>
+</ol>]]></description>
 </item>
 <item>
     <title>gin源码</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210721-gin/</link>
+    <link>http://localhost:1313/posts/2021/20210721-gin/</link>
     <pubDate>Wed, 21 Jul 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210721-gin/</guid>
-    <description><![CDATA[gin是go开发的一个开源高性能http框架，其主要是把go官方的net/http进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息]]></description>
+    <guid>http://localhost:1313/posts/2021/20210721-gin/</guid>
+    <description><![CDATA[<p>gin是go开发的一个开源高性能http框架，其主要是把go官方的<code>net/http</code>进行了扩展，前缀树实现了动态路由、支持了中间件、对请求信息进行封装方便用户层使用等。本文基于 <code>gin v1.7.2</code>版本</p>]]></description>
 </item>
 <item>
     <title>grpc-go</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210119-grpc/</link>
+    <link>http://localhost:1313/posts/2021/20210119-grpc/</link>
     <pubDate>Tue, 19 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210119-grpc/</guid>
-    <description><![CDATA[grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务]]></description>
+    <guid>http://localhost:1313/posts/2021/20210119-grpc/</guid>
+    <description><![CDATA[<h1 id="grpc-server">grpc Server</h1>
+<p>本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。</p>
+<h2 id="使用方式">使用方式</h2>
+<p>使用方式很简单，生成pb，注册建立服务，就可以等待请求了</p>]]></description>
 </item>
 <item>
     <title>计算机网络-传输层</title>
-    <link>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</link>
+    <link>http://localhost:1313/posts/2021/20210105-tcpudp/</link>
     <pubDate>Tue, 05 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2021/20210105-tcpudp/</guid>
-    <description><![CDATA[TCP/IP 模型 应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物]]></description>
+    <guid>http://localhost:1313/posts/2021/20210105-tcpudp/</guid>
+    <description><![CDATA[<h2 id="tcpip-模型">TCP/IP 模型</h2>
+<p>应用层将数据传递给传输层，传输层将数据分段，每段加入自己的首部数据，然后传递给下一层，之后的每层都会封装上自己层需要的首部，最后经过物理链路传递到指定主机，然后每层又向剥洋葱一样，一层层处理自己的首部数据，到达传输层，传输层最终交付给应用程序。
+</p>]]></description>
 </item>
 <item>
     <title>源码阅读 - go Context</title>
-    <link>https://heisenbergv.github.io/posts/2020/20200401-go-context/</link>
+    <link>http://localhost:1313/posts/2020/20200401-go-context/</link>
     <pubDate>Wed, 01 Apr 2020 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2020/20200401-go-context/</guid>
-    <description><![CDATA[Context有什么用 当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理]]></description>
+    <guid>http://localhost:1313/posts/2020/20200401-go-context/</guid>
+    <description><![CDATA[<h2 id="context有什么用">Context有什么用</h2>
+<p>当处理一个请求A，而这个请求需要在3秒内完成相应，A请求分别创建了B和C goroutine来处理逻辑，如果B或者C处理时间过长超过了3秒，那么继续执行显然是没必要且浪费资源。这时候就需要一个能终止他们的操作，而go没有提供类似 <code>goroutineID</code>这样的变量来记录goroutine状态。官方认为这样非常容易被滥用。所以Context就为此而来。</p>]]></description>
 </item>
 <item>
     <title>读CSAPP(4) - 虚拟内存</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190928-csapp4/</link>
+    <link>http://localhost:1313/posts/2019/20190928-csapp4/</link>
     <pubDate>Sat, 28 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190928-csapp4/</guid>
-    <description><![CDATA[虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。 进程运行过程不再加载全]]></description>
+    <guid>http://localhost:1313/posts/2019/20190928-csapp4/</guid>
+    <description><![CDATA[<p>虚拟内存系统解决了物理寻址的缺点。利用内存管理单元（MMU）和页表（Page Table）将虚拟地址转换为物理内存地址。
+进程运行过程不再加载全部数据，而是只保留当前运行需要的数据在内存中。为了让MMU更高效加入了TLB，缓存映射关系，还利用多级页表降低页表内存占用有了</p>]]></description>
 </item>
 <item>
     <title>读CSAPP(3) - 存储器层次结构</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190923-csapp3/</link>
+    <link>http://localhost:1313/posts/2019/20190923-csapp3/</link>
     <pubDate>Mon, 23 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190923-csapp3/</guid>
-    <description><![CDATA[了解硬件 随机访问存储器（Random-Access Memory，RAM） RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比D]]></description>
+    <guid>http://localhost:1313/posts/2019/20190923-csapp3/</guid>
+    <description><![CDATA[<h2 id="了解硬件">了解硬件</h2>
+<h3 id="随机访问存储器random-access-memoryram">随机访问存储器（Random-Access Memory，RAM）</h3>
+<p>RAM分两类，静态（SRAM）的和动态的（DRAM），SRAM要比DRAM更快，价格也更高。
+SRAM用于高速缓存存储器，可以在cpu芯片上，也可以在片下。DRAM用来作为主存以及
+图形系统的帧缓冲区。无论哪种RAM一旦断电，所有信息都会丢失。</p>]]></description>
 </item>
 <item>
     <title>Go Channel</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190917-go-channel/</link>
+    <link>http://localhost:1313/posts/2019/20190917-go-channel/</link>
     <pubDate>Tue, 17 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190917-go-channel/</guid>
-    <description><![CDATA[如何使用 channel在&lt;-左边 表示向channel发送数据 channel在&lt;-右边 表示从channel接收数据 close(channelName) 关闭一个cha]]></description>
+    <guid>http://localhost:1313/posts/2019/20190917-go-channel/</guid>
+    <description><![CDATA[<h2 id="如何使用">如何使用</h2>
+<ul>
+<li>channel在&lt;-左边 表示向channel发送数据</li>
+<li>channel在&lt;-右边 表示从channel接收数据</li>
+<li>close(channelName) 关闭一个channel</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//发送数据: 写</span>
+</span></span><span class="line"><span class="cl"><span class="nx">channel</span> <span class="o">&lt;-</span> <span class="s">&#34;struct&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//接收数据: 读</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">channel</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span></span></span></code></pre></div></div>
+<h2 id="channel的关闭">Channel的关闭</h2>
+<ul>
+<li>关闭一个未初始化(nil) 的 channel 会产生 panic</li>
+<li>重复关闭同一个 channel 会产生 panic</li>
+<li>向一个已关闭的 channel 中发送消息会产生 panic</li>
+<li>从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 状态，可以用它来判断 channel 是否关闭,close操作是对写入的关闭,但仍然可以读取,若消息均已读出，则会读到类型的初始值</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">channel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">channel</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">channel</span> <span class="o">&lt;-</span> <span class="s">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">close</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;channel is closed.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}(</span><span class="nx">channel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">channalFunc2</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">chStr</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">channel</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;channel is close!!!!!!.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;receive %s\n&#34;</span><span class="p">,</span> <span class="nx">chStr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="缓冲区">缓冲区</h2>
+<ul>
+<li>make创建通道时,指定通道的大小时,称为有缓冲通道,反之无缓冲区</li>
+<li>无缓冲区或者缓冲区用完,写入一次,就要等待对方读取一次,否则无法继续写入阻塞住,同理读取不出来也会阻塞住</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// ch &lt;- 3 //阻塞</span>
+</span></span><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">ch</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span></span></span></code></pre></div></div>
+<ul>
+<li>可以用len函数查看channel的已用大小, 用cap查看channel的缓存大小</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nb">cap</span><span class="p">(</span><span class="nx">ch</span><span class="p">))</span> <span class="c1">//2</span></span></span></code></pre></div></div>
+<h2 id="单向通道">单向通道</h2>
+<ul>
+<li>为了限制channel滥用,禁止其进行读取或者写入操作,让函数具有更高的单一原则,封装性</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">x</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">close</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">squarer</span><span class="p">(</span><span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">in</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">close</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">printer</span><span class="p">(</span><span class="nx">in</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">in</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">channalFunc3</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">naturals</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">squares</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//将读写函数分离</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//写 chan&lt;- , 读 &lt;-chan</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">naturals</span><span class="p">)</span>          <span class="c1">//写入</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">squarer</span><span class="p">(</span><span class="nx">squares</span><span class="p">,</span> <span class="nx">naturals</span><span class="p">)</span> <span class="c1">//将刚才写入的变成只读的,传参进去, 中间转换层</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printer</span><span class="p">(</span><span class="nx">squares</span><span class="p">)</span>              <span class="c1">//只读</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="作用">作用</h2>
+<ul>
+<li>同步: 依靠阻塞的特性 做多个goroutine之间的锁</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sema</span>  <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{},</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">rece2</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">raceFunc2</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sema</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">rece2</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">v</span> <span class="o">:=</span> <span class="nx">rece2</span>
+</span></span><span class="line"><span class="cl">	<span class="o">&lt;-</span><span class="nx">sema</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">go</span> <span class="nf">raceFunc2</span><span class="p">()</span></span></span></code></pre></div></div>
+<ul>
+<li>定时器</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nx">timer</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTimer</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;-</span><span class="nx">timer</span><span class="p">.</span><span class="nx">C</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//输出: 差两秒</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2019-06-24 16:03:34.011947 +0800 CST m=+0.000201381</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2019-06-24 16:03:36.015244 +0800 CST m=+2.003571991</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//延迟执行</span>
+</span></span><span class="line"><span class="cl"><span class="nx">time</span><span class="p">.</span><span class="nf">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//定时器，每隔1秒执行</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ticker</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTicker</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">tick</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;tick at&#34;</span><span class="p">,</span> <span class="nx">tick</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}()</span>
+</span></span><span class="line"><span class="cl">    </span></span></code></pre></div></div>
+<ul>
+<li>通信: Channel是goroutine之间通信的通道,用于goroutine之间发消息和接收消息</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Cake</span> <span class="kd">struct</span><span class="p">{</span> <span class="nx">state</span> <span class="kt">string</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">baker</span><span class="p">(</span><span class="nx">cooked</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">Cake</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">cake</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">Cake</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">cake</span><span class="p">.</span><span class="nx">state</span> <span class="p">=</span> <span class="s">&#34;cooked&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">cooked</span> <span class="o">&lt;-</span> <span class="nx">cake</span> <span class="c1">// baker never touches this cake again</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">icer</span><span class="p">(</span><span class="nx">iced</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">Cake</span><span class="p">,</span> <span class="nx">cooked</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="o">*</span><span class="nx">Cake</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">cake</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">cooked</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">cake</span><span class="p">.</span><span class="nx">state</span> <span class="p">=</span> <span class="s">&#34;iced&#34;</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">iced</span> <span class="o">&lt;-</span> <span class="nx">cake</span> <span class="c1">// icer never touches this cake again</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li>Select多路复用(I/O多路复用，I/O就是指的我们网络I/O,多路指多个TCP连接(或多个Channel)，复用指复用一个或少量线程。串起来理解就是很多个网络I/O复用一个或少量的线程来处理这些连接)
+<ul>
+<li>对channel的read, write,close, 超时事件等进行监听,</li>
+<li>同时触发事件会随机执行一个</li>
+<li>阻塞在多个channel上，对多个channel的读/写事件进行监控</li>
+</ul>
+</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">doWork</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;receive A &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;receive B &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ss&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;11111&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">channalFunc5</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">doWork</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">ch2</span> <span class="o">&lt;-</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="内部细节">内部细节</h2>
+<h3 id="数据结构">数据结构</h3>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">hchan</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">qcount</span>   <span class="kt">uint</span>           <span class="c1">// 当前队列中剩余元素个数</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">dataqsiz</span> <span class="kt">uint</span>           <span class="c1">// 环形队列长度，即可以存放的元素个数</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">buf</span>      <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span> <span class="c1">// 环形队列指针</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">elemsize</span> <span class="kt">uint16</span>         <span class="c1">// 每个元素的大小</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">closed</span>   <span class="kt">uint32</span>	        <span class="c1">// 标识关闭状态</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">elemtype</span> <span class="o">*</span><span class="nx">_type</span>         <span class="c1">// 元素类型</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sendx</span>    <span class="kt">uint</span>           <span class="c1">// 队列下标，指示元素写入时存放到队列中的位置</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">recvx</span>    <span class="kt">uint</span>           <span class="c1">// 队列下标，指示元素从队列的该位置读出</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">recvq</span>    <span class="nx">waitq</span>          <span class="c1">// 等待读消息的goroutine队列</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sendq</span>    <span class="nx">waitq</span>          <span class="c1">// 等待写消息的goroutine队列</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">lock</span> <span class="nx">mutex</span>              <span class="c1">// 互斥锁，chan不允许并发读写</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">waitq</span> <span class="nx">sudog</span><span class="p">{</span><span class="c1">//对G的封装</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li>channel 的主要组成有：
+<ul>
+<li>一个环形数组实现的循环队列, 用于存储消息元素</li>
+<li>recvq和sendq两个链表实现的 goroutine 等待队列, 用于存储阻塞在 recv 和 send 操作上的 goroutine</li>
+<li>一个互斥锁，用于各个属性变动的同步</li>
+</ul>
+</li>
+</ul>
+<h3 id="主要函数功能">主要函数功能</h3>
+<ul>
+<li>makechan: 开辟一快连续内存区域存储消息元素</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//伪代码</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">makechan</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">chantype</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">hchan</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">c</span> <span class="o">*</span><span class="nx">hchan</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">hchan</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nx">buf</span> <span class="p">=</span> <span class="nf">malloc</span><span class="p">(</span><span class="nx">元素类型大小</span><span class="o">*</span><span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nx">elemsize</span> <span class="p">=</span> <span class="nx">元素类型大小</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nx">elemtype</span> <span class="p">=</span> <span class="nx">元素类型</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">c</span><span class="p">.</span><span class="nx">dataqsiz</span> <span class="p">=</span> <span class="nx">size</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">c</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li>send  chan&lt;-
+<ul>
+<li>如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时直接从recvq取出G,并把数据写入，最后把该G唤醒</li>
+<li>如果缓冲区中有空余位置，将数据写入缓冲区</li>
+<li>如果缓冲区中没有空余位置，将待发送数据写入G，将当前G加入sendq，进入睡眠，等待被读goroutine唤醒；</li>
+</ul>
+</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">chansend</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">close</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//1.如果等待接收队列recvq不为空，说明缓冲区中没有数据或者没有缓冲区，此时</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//直接从recvq取出G,并把数据写入，最后把该G唤醒，结束发送过程</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">sg</span> <span class="o">:=</span> <span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sg</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="c1">//给此goroutine发消息</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sg</span><span class="p">.</span><span class="nf">ready</span><span class="p">()</span>  <span class="c1">//唤醒</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//2. 跳过2说明无接收方, 如果有缓冲区且不满的话则写入到缓冲区</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">qcount</span> <span class="p">&lt;</span> <span class="nx">dataqsiz</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">buf</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">qcount</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//3. 没空余位置或者没缓冲区, 将待发送数据写入到当前调用的G, 并加入sendq链表,进入休眠,等待被读方唤醒</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sendq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li>recv  &lt;-chan
+<ul>
+<li>sendq不为空 获取链表的头一个first_g
+<ul>
+<li>缓存无数据,将first_g消息复制给当前请求的g,并激活first_g</li>
+<li>缓存有数据, 缓存队列 出列消息给当前请求的g,并将first_g数据加入缓存队列,first_g激活</li>
+</ul>
+</li>
+<li>缓存队列有数据将数据出队 复制给当前请求的g</li>
+<li>缓存队列无数据将调用此chan的当前g加入recvq链表并设置休眠</li>
+</ul>
+</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">chanrecv</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">sg</span><span class="o">:=</span> <span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span> <span class="nx">sg</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">buff</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">buff</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">qcount</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">msg</span> <span class="o">:=</span> <span class="nx">buff</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">qcount</span><span class="o">--</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">g</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">g</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="nx">sg</span> <span class="o">:=</span> <span class="nf">get_current_g</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sg</span><span class="p">.</span><span class="nx">msg</span> <span class="p">=</span> <span class="nx">msg</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sg</span><span class="p">.</span><span class="nx">g</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">recvq</span><span class="p">.</span><span class="nf">enqueue</span><span class="p">(</span><span class="nx">sg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li>close: 设置关闭符号为1,唤醒recvq和sendq的g</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nb">close</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="kd">chan</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close of nil channel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">close</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="s">&#34;close of closed channel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">close</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">recvq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">sg</span><span class="o">:=</span><span class="nx">sendq</span><span class="p">.</span><span class="nf">dequeue</span><span class="p">();</span><span class="nx">sg</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">sg</span><span class="p">.</span><span class="nx">sleep</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="参考">参考</h2>
+<p><a href="https://books.studygolang.com/gopl-zh/" target="_blank" rel="noopener noreffer ">go语言圣经</a></p>]]></description>
 </item>
 <item>
     <title>Go Groutine</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190917-go-groutine/</link>
+    <link>http://localhost:1313/posts/2019/20190917-go-groutine/</link>
     <pubDate>Tue, 17 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190917-go-groutine/</guid>
-    <description><![CDATA[并发与并行 并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器) 并发(concurrency): 指在同一时刻只能]]></description>
+    <guid>http://localhost:1313/posts/2019/20190917-go-groutine/</guid>
+    <description><![CDATA[<h2 id="并发与并行">并发与并行</h2>
+<ul>
+<li>并行(parallel): 指在同一时刻,有多条指令在多个处理器上同时执行(靠机器)</li>
+<li>并发(concurrency): 指在同一时刻只能有一条指令执行,但多个进程指令被快速的轮换执行,宏观看起来是并行的,微观是cpu在不断的快速切换.(操作系统)</li>
+</ul>
+<h2 id="线程安全问题">线程安全问题</h2>
+<ul>
+<li>协作式调度: 当线程终止或阻塞是发生调度 =&gt; &ldquo;主动让出&rdquo;</li>
+<li>抢占式调度: 允许逻辑上将可继续运行的线程在运行过程中暂停的调度方式 =&gt; &ldquo;被迫让出&rdquo;</li>
+<li>脏数据原因: 抢占式调度被迫让出cpu控制权,一个行为可能有多个指令组合而成
+多指令在执行过程中被中断,导致未执行完整出现脏数据.</li>
+<li>举例:
+<ul>
+<li>i= 0, 线程1 执行 i++,线程 2 也执行 i++, 想要的结果是2</li>
+<li>当程序 1 将 i 值读取出来并运算后改为写入的时候,系统抢占式把控制权给个程序 2</li>
+<li>程序 2 完整的执行完了 i++,随后系统将控制权交回给程序 1,此时的程序 1 并不知道自己被打断了,也不知道 i 已经被修改,还把之前计算好的值写入,最后把之前的2给覆盖了结果变成了1.</li>
+<li>被打断是因为抢占式使用时间到了后被迫交还cpu</li>
+<li>值篡改是因为读取i和写入i是两个指令不是一个原子操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="coroutine协程特点">Coroutine(协程)特点</h2>
+<p>一种用户态的轻量级线程</p>]]></description>
 </item>
 <item>
     <title>读CSAPP(2) - 程序性能优化</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190909-csapp2/</link>
+    <link>http://localhost:1313/posts/2019/20190909-csapp2/</link>
     <pubDate>Mon, 09 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190909-csapp2/</guid>
-    <description><![CDATA[高效的程序需要做到 合适的数据结构与算法 编写出编译器能够有效优化以转换成高效可执行代码的源码。 将运算量特别大的计算，可以分成多部分，这些部分可]]></description>
+    <guid>http://localhost:1313/posts/2019/20190909-csapp2/</guid>
+    <description><![CDATA[<h2 id="高效的程序需要做到">高效的程序需要做到</h2>
+<ol>
+<li>合适的数据结构与算法</li>
+<li>编写出编译器能够有效优化以转换成高效可执行代码的源码。</li>
+<li>将运算量特别大的计算，可以分成多部分，这些部分可以在多核多处理器的某种组合上并行处理</li>
+</ol>
+<p>本篇主要以第二点进行讨论，编译器在优化的时候只会做最坏打算，做各种假设。为了保证程序的准确性，舍弃性能优化。</p>]]></description>
 </item>
 <item>
     <title>Go 竞态问题</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190903-go-race-condition/</link>
+    <link>http://localhost:1313/posts/2019/20190903-go-race-condition/</link>
     <pubDate>Tue, 03 Sep 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190903-go-race-condition/</guid>
-    <description><![CDATA[定义 单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源 多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源]]></description>
+    <guid>http://localhost:1313/posts/2019/20190903-go-race-condition/</guid>
+    <description><![CDATA[<h2 id="定义">定义</h2>
+<ul>
+<li>单处理器中低优先级的进程被高优先级的进程抢占，同时他们访问同一块共享资源</li>
+<li>多处理器中，CPU1的进程、CPU2的进程同时访问同一块共享资源</li>
+</ul>
+<h2 id="如何避免竞态条件">如何避免竞态条件</h2>
+<ul>
+<li>变量只读</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//下面两种获取map信息的方式</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//懒汉获取方式,有则获取无则加载: 会有读写错乱情况</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">loadmap</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">getmap2</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">v</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">maps</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">v</span> <span class="p">=</span> <span class="nf">loadmap</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">maps</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="p">=</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//预先加载好, 使getmap只读, 就不会存在竞态问题</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">maps</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;a&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;b&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;c&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">getmap</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">maps</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li>私有化变量</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//两个goroutine同时访问了变量a 引发竞态问题,导致结果不准确</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span> <span class="c1">//用于等待所有协程都完成</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">add</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">a</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">raceFunc1</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok: &#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li>Channel 靠通信同步数据而不是靠共享内存</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//使用channel 将a设置为goroutine的局部变量</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">add</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">a</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">a</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">a</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">raceFunc1</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ch</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">add</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">,</span> <span class="o">&lt;-</span><span class="nx">ch</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok: &#34;</span><span class="p">,</span> <span class="nx">v1</span><span class="o">+</span><span class="nx">v2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="题外话-空结构体">题外话: 空结构体</h2>
+<ul>
+<li>如何表达: struct{}是个 &lsquo;空结构体类型&rsquo;, 和结构体不一样; struct{}{}是空结构体的值</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">    <span class="c1">//定义方式:</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ss</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//未初始化的空结构体, go会默认初始化成 struct{}{}类型</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//并且 空结构体的 值 只有 struct{}{} 其他都不行</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">ss</span><span class="p">)</span> <span class="c1">// {}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span> <span class="p">=</span> <span class="kc">nil</span> <span class="c1">//error</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">ss</span> <span class="kd">struct</span><span class="p">{}</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">//error</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//比较</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span> <span class="c1">// 或者写成 var a struct{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">a</span> <span class="o">==</span> <span class="kd">struct</span><span class="p">{}{}</span> <span class="p">{</span> <span class="c1">//不能用 nil或者0等</span>
+</span></span><span class="line"><span class="cl">    	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;11111&#34;</span><span class="p">)</span> <span class="c1">// print</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;22222&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// {}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">b</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">)</span> <span class="c1">// true</span></span></span></code></pre></div></div>
+<ul>
+<li>空结构体的内存占用是0</li>
+</ul>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-go">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">:=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">println</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Sizeof</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span> <span class="c1">// 0</span></span></span></code></pre></div></div>
+<ul>
+<li>
+<p>用途</p>]]></description>
 </item>
 <item>
     <title>读CSAPP(1) - 信息的表示和处理</title>
-    <link>https://heisenbergv.github.io/posts/2019/20190827-csapp1/</link>
+    <link>http://localhost:1313/posts/2019/20190827-csapp1/</link>
     <pubDate>Tue, 27 Aug 2019 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2019/20190827-csapp1/</guid>
-    <description><![CDATA[计算机存的什么 计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。 每个字节都有一个唯]]></description>
+    <guid>http://localhost:1313/posts/2019/20190827-csapp1/</guid>
+    <description><![CDATA[<h2 id="计算机存的什么">计算机存的什么</h2>
+<p>计算机存储的是二进制，每一位存储的是0或1。大多数计算机使用1字节（也就是8位），作为最小可寻址的内存单位。
+每个字节都有一个唯一的数字来标识，也就是地址（address）。每个计算机都有一个字长（word size），也就是常说的64位操作系统，32位操作系统。字长决定了虚拟地址空间的大小，
+比如32位有4GB的内存空间，64位则是16EB（1TB = 1024GB，1 EB = 1,024 PB = 1,048,576 TB）。</p>]]></description>
 </item>
 </channel>
 </rss>

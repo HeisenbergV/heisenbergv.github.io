@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>产品AI化的一些体会 - zJxin</title><meta name="Description" content="Blog"><meta property="og:url" content="http://localhost:1313/posts/2026/a/">
+  <meta property="og:site_name" content="zJxin">
+  <meta property="og:title" content="产品AI化的一些体会">
+  <meta property="og:description" content="当前普通人很难参与模型的训练和研究工作，大模型的使用成本也很高。但出现了很多中小模型，虽然效果比不过大模型，但在受局限的场景下可以依靠工程能力做出不错的产品。比如方便调度各种中小模型的开源工具 ComfyUI，还有很多剪辑相关的本地部署产品。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="article:tag" content="AI">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="产品AI化的一些体会">
+  <meta name="twitter:description" content="当前普通人很难参与模型的训练和研究工作，大模型的使用成本也很高。但出现了很多中小模型，虽然效果比不过大模型，但在受局限的场景下可以依靠工程能力做出不错的产品。比如方便调度各种中小模型的开源工具 ComfyUI，还有很多剪辑相关的本地部署产品。">
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/2026/a/" /><link rel="prev" href="http://localhost:1313/posts/2025/20250527/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "产品AI化的一些体会",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/2026\/a\/"
+        },"genre": "posts","keywords": "AI","wordcount":  3027 ,
+        "url": "http:\/\/localhost:1313\/posts\/2026\/a\/","datePublished": "2026-03-27T00:00:00+00:00","dateModified": "2026-03-27T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zJxin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="auto" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="zJxin">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="zJxin">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">产品AI化的一些体会</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Coder</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-27">2026-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3027 字&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#中小模型">中小模型</a></li>
+    <li><a href="#ai-产品架构">AI 产品架构</a></li>
+    <li><a href="#落地实践工程重点">落地实践工程重点</a></li>
+    <li><a href="#开发过程">开发过程</a></li>
+    <li><a href="#是否需要-ai-化">是否需要 AI 化</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>当前普通人很难参与模型的训练和研究工作，大模型的使用成本也很高。但出现了很多中小模型，虽然效果比不过大模型，但在受局限的场景下可以依靠工程能力做出不错的产品。比如方便调度各种中小模型的开源工具 ComfyUI，还有很多剪辑相关的本地部署产品。</p>
+<p>大模型虽强，但成本和效率是短板，因此与中小模型不会互相取代，而是互相配合。最近我利用中小模型和 API 调用，再配合工程代码实现了 AI 自动剪辑解说视频，有一些体会记录下来。</p>
+<h2 id="中小模型">中小模型</h2>
+<p>之所以中小模型能够存在，核心主要有三点：</p>
+<ol>
+<li>
+<p><strong>性能敏感：端侧天然具备低延迟的不可替代优势</strong><br>
+大模型 API 的调用必须依赖网络传输，天然存在不可消除的延迟，同时受限于服务商的并发限制，高频调用时极易出现响应超时、速度下降。而中小模型完全在本地设备运行，无需网络交互，延迟可以控制在毫秒级，能够满足实时性要求极高的场景。</p>
+</li>
+<li>
+<p><strong>成本敏感：中小模型从根源上规避规模增长的成本陷阱</strong><br>
+大模型 API 普遍按 token 计费，用户量与使用频次越高，调用成本线性增长，甚至会出现「用户越多、亏损越多」。端侧/中小模型一旦完成部署，后续运行几乎没有额外边际成本，仅消耗本地算力，无论频次多高都不产生额外调用费用，成本可控。</p>
+<p>以 AI 视频剪辑为例：一条 10 分钟的视频，若全流程依赖大模型，从画面理解、文案生成、剪辑逻辑到字幕匹配，单次调用成本可能达到数元；若用中小模型完成约 90% 的基础处理，仅在文案创意等环节调用大模型 API，单次成本可压到几分钱，成本下降一个数量级，产品才有商业化空间。</p>
+</li>
+<li>
+<p><strong>隐私敏感：端侧处理实现「数据不出域」</strong><br>
+各行各业数据中，数据本身才是壁垒，技术实现已越来越不是唯一重点。涉及私人素材、商业机密、敏感信息时，将数据上传至第三方大模型 API，存在泄露、违规复用与合规风险。中小模型在本地完成处理，原始数据不必离开用户设备，从根源上缓解隐私与合规问题，这是很多 To B、强隐私场景的硬性要求。</p>
+</li>
+</ol>
+<p>在满足场景的前提下，中小模型往往是最优选择。</p>
+<h2 id="ai-产品架构">AI 产品架构</h2>
+<p>和过去的软件架构没有本质不同——以前怎样分层与调度，现在也怎样；只是扩展了能力，而非推倒重来，仍然符合「开闭原则」。在保持架构稳定的前提下，增加中小模型辅助业务，需要大模型时再调用 API 即可。</p>
+<p><strong>软件架构 / 模型 / 模型 API</strong> 是基础三角：让三者各司其职、优势互补，而不是简单堆砌能力。</p>
+<ul>
+<li>
+<p><strong>端侧/中小模型：产品的本地核心算力引擎</strong><br>
+承接高频、标准化、低延迟的核心 AI 能力，是体验的基本盘。例如视频剪辑中的画面识别、人声分离、字幕生成、素材分类：场景边界明确，不必依赖通用大模型的复杂推理，用针对性优化的中小模型即可达标，并兼顾速度与成本。ComfyUI 等开源调度工具降低了测试、调度与组合门槛，无需从零造推理框架，就能快速验证不同模型的适配效果。</p>
+</li>
+<li>
+<p><strong>工程架构：产品的骨架与调度中枢</strong><br>
+串联模型能力、API 能力与业务逻辑，形成稳定可用的产品。核心是模块化设计、模型与 API 的智能调度、性能与兼容性、异常与兜底，让用户无感使用 AI，而不是面对一堆零散模型与接口。</p>
+</li>
+<li>
+<p><strong>大模型 API：增量创意与复杂推理补位</strong><br>
+承接低频、需要强语义理解、创意与推理的环节，是体验的加分项而非基本盘。例如解说文案、标题与标签优化、剧情逻辑梳理：调用不必高频，但对理解与创意要求高，正是大模型优势所在。只在最关键处调用，既保效果，又把成本压住。</p>
+</li>
+</ul>
+<h2 id="落地实践工程重点">落地实践工程重点</h2>
+<p>这套范式的技术架构与传统互联网产品没有本质区别；能否稳定落地、少被卡脖子，取决于下面三个工程重点。</p>
+<ol>
+<li>
+<p><strong>代码架构：以「可插拔、可迭代」为设计原则</strong><br>
+避免与特定模型、特定 API 深度绑定。采用分层与模块化解耦：推理层、API 调用层、业务逻辑层各司其职。</p>
+<ul>
+<li><strong>模型推理层</strong>：统一负责加载、推理与结果输出；换模型时主要改适配层，业务逻辑尽量不动。</li>
+<li><strong>API 调用层</strong>：封装统一调用接口，支持多厂商切换与兜底，降低单点故障或涨价的影响。</li>
+<li><strong>业务逻辑层</strong>：只关注用户需求与流程，不必关心底层是本地模型还是 API。</li>
+</ul>
+<p>这样模型迭代、API 更换与需求调整都能快速响应，避免「牵一发而动全身」。</p>
+</li>
+<li>
+<p><strong>中小模型选择：不是越大越好，而是「适配场景、够用就好」</strong><br>
+「参数越大越好」在落地产品里往往不成立；最优模型是<strong>最适配当前场景</strong>、能满足效果，并兼顾速度与设备兼容性的那一个。判断维度包括：场景适配度、推理速度、设备兼容性、开源协议、微调难度等。例如人声分离：几十 GB 的大模型效果顶尖，而几 GB 甚至几百 MB 的轻量化模型往往已能覆盖大部分商用需求，且能在普通家用机上流畅运行，常常是更优选择。</p>
+<p>没有捷径：需要大量测试、对比与调参，迭代出最适合自己业务的模型组合——这也是产品壁垒的一部分。</p>
+</li>
+<li>
+<p><strong>大模型 API 调度：以「成本可控、稳定兜底」为目标</strong><br>
+不必盲目追求「最强」大模型，而要在效果、成本与稳定性之间取平衡。重点做好三件事：</p>
+<ul>
+<li><strong>智能路由</strong>：只有本地模型难以覆盖的场景才触发 API，减少无效、重复调用。</li>
+<li><strong>成本优化</strong>：prompt 压缩、批量调用、结果缓存等降低 token 消耗；在效果达标前提下，可多接入高性价比线路，把调用成本压下来。</li>
+<li><strong>故障兜底</strong>：多厂商备用与自动切换，主线路故障、超时或限流时能接续服务。</li>
+</ul>
+</li>
+</ol>
+<h2 id="开发过程">开发过程</h2>
+<p>在这套范式下，AI 产品的价值重心在转移：传统业务 CRUD 未必再是核心竞争力，真正的差异往往在<strong>模型选择、架构是否合理、以及迭代方法</strong>。</p>
+<p>同样的开源模型、同样的 API、同样的业务场景，不同团队做出产品可以天差地别；差距很大程度上在迭代节奏与方法。我总结了一套可复用的四步流程（其中模型选择与流程定型需要循环验证，避免一上来就做大量无效工程）：</p>
+<ol>
+<li>
+<p><strong>快速原型验证：最低成本跑通最小闭环</strong><br>
+第一步不等于写完美代码，而是用最快、最省的方式验证需求可行与技术可达。可用脚本、ComfyUI 等工具搭出最小闭环，例如 AI 剪辑的「素材导入 → 拆分 → 文案生成 → 合成」先跑通，再谈优化。目标是验证核心逻辑与真实需求是否成立，而不是一上来追求规范与极致性能，避免需求本身不成立却沉没大量时间。</p>
+</li>
+<li>
+<p><strong>选择调试模型：循环测试，找场景最优解</strong><br>
+原型跑通后进入选型与调参：对每个核心环节尝试不同开源模型，对比效果、速度、兼容性，迭代参数与流程。例如画面识别可能要试多种模型，才能在准确率与速度之间找到合适折中。</p>
+</li>
+<li>
+<p><strong>流程与选择定型：固化最优链路与标准</strong><br>
+与上一步循环：新模型可能推动流程调整，流程变化也可能要求换模型。多轮验证后要固化——哪些环节用本地模型、具体哪一款、参数标准；哪些环节走 API、触发阈值；顺序、异常如何处理。只有流程与标准可量化，再进入大规模工程实现，减少边做边改造成的浪费。</p>
+</li>
+<li>
+<p><strong>工程重新实现：从原型到可商用交付</strong><br>
+定型后用规范工程代码重写流程，补齐原型中未覆盖的性能、兼容性、异常兜底、交互与商业化配套，把「能跑」变成「稳定、好用、可卖」。</p>
+</li>
+</ol>
+<h2 id="是否需要-ai-化">是否需要 AI 化</h2>
+<p>不是所有产品、所有功能都需要 AI 化；为 AI 而 AI 只会堆成本与复杂度。接入前要能用下面四个问题拦住无效投入：</p>
+<ol>
+<li>
+<p><strong>代码确实做不到吗？</strong><br>
+若传统代码就能干净实现（如固定规则裁剪、格式转换），往往更快、更稳、成本为零，不必强上 AI。只有涉及语义理解、内容识别、创意生成等代码难以覆盖的场景，才值得引入。</p>
+</li>
+<li>
+<p><strong>代码能做到但工程量太大吗？</strong><br>
+若规则海量、场景无数，维护成本极高，而用模型能以更低成本达到更好效果（例如识别精彩片段），则 AI 是合理选项。</p>
+</li>
+<li>
+<p><strong>体验确实能更进一步吗？</strong><br>
+接入后要对用户有可感知收益：降门槛、提效率或实现以往做不到的能力。若只是噱头、操作更复杂，则没有价值。</p>
+</li>
+<li>
+<p><strong>需要噱头吗？</strong><br>
+商业上若处于融资、拉新窗口，可在不伤害核心体验前提下把 AI 当亮点；面向付费工具型用户时，稳定、好用、低成本更重要，应摒弃纯噱头，只保留能创造真实价值的 AI 能力。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-03-27</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">AI</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2025/20250527/" class="prev" rel="prev" title="AI相关概念的简介"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AI相关概念的简介</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.145.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/contrib/auto-render.min.js"></script><script src="/lib/katex/contrib/copy-tex.min.js"></script><script src="/lib/katex/contrib/mhchem.min.js"></script><script>window.config={"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
+</html>

@@ -1,16 +1,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Agent - 标签 - zJxin</title>
-        <link>https://heisenbergv.github.io/tags/agent/</link>
+        <link>http://localhost:1313/tags/agent/</link>
         <description>Agent - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/agent/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/agent/" rel="self" type="application/rss+xml" /><item>
     <title>AI相关概念的简介</title>
-    <link>https://heisenbergv.github.io/posts/2025/20250527/</link>
+    <link>http://localhost:1313/posts/2025/20250527/</link>
     <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/20250527/</guid>
-    <description><![CDATA[原始程序 最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范： ping 127.0.0.1 API服务化阶段 用代码简单增加个http服务，调用后台的系统命令]]></description>
+    <guid>http://localhost:1313/posts/2025/20250527/</guid>
+    <description><![CDATA[<p>最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ping 127.0.0.1</span></span></code></pre></div></div>
+<h2 id="api服务化阶段">API服务化阶段</h2>
+<p>用代码简单增加个http服务，调用后台的系统命令</p>]]></description>
 </item>
 </channel>
 </rss>

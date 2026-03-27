@@ -1,40 +1,59 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>AI - 标签 - zJxin</title>
-        <link>https://heisenbergv.github.io/tags/ai/</link>
+        <link>http://localhost:1313/tags/ai/</link>
         <description>AI - 标签 - zJxin</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>zuojxin@hotmail.com (zJxin)</managingEditor>
-            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Tue, 27 May 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://heisenbergv.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zuojxin@hotmail.com (zJxin)</webMaster><lastBuildDate>Fri, 27 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ai/" rel="self" type="application/rss+xml" /><item>
+    <title>产品AI化的一些体会</title>
+    <link>http://localhost:1313/posts/2026/a/</link>
+    <pubDate>Fri, 27 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>zJxin</author>
+    <guid>http://localhost:1313/posts/2026/a/</guid>
+    <description><![CDATA[<p>当前普通人很难参与模型的训练和研究工作，大模型的使用成本也很高。但出现了很多中小模型，虽然效果比不过大模型，但在受局限的场景下可以依靠工程能力做出不错的产品。比如方便调度各种中小模型的开源工具 ComfyUI，还有很多剪辑相关的本地部署产品。</p>]]></description>
+</item>
+<item>
     <title>AI相关概念的简介</title>
-    <link>https://heisenbergv.github.io/posts/2025/20250527/</link>
+    <link>http://localhost:1313/posts/2025/20250527/</link>
     <pubDate>Tue, 27 May 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/20250527/</guid>
-    <description><![CDATA[原始程序 最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范： ping 127.0.0.1 API服务化阶段 用代码简单增加个http服务，调用后台的系统命令]]></description>
+    <guid>http://localhost:1313/posts/2025/20250527/</guid>
+    <description><![CDATA[<p>最初的ping命令是一个典型的命令行工具，它遵循严格的参数规范：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ping 127.0.0.1</span></span></code></pre></div></div>
+<h2 id="api服务化阶段">API服务化阶段</h2>
+<p>用代码简单增加个http服务，调用后台的系统命令</p>]]></description>
 </item>
 <item>
     <title>LLM平台</title>
-    <link>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
+    <link>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</link>
     <pubDate>Mon, 07 Apr 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
-    <description><![CDATA[LLM应用开发平台是什么 LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规]]></description>
+    <guid>http://localhost:1313/posts/2025/llm%E5%B9%B3%E5%8F%B0/</guid>
+    <description><![CDATA[<p>LLM: LLM的全称是 ​​Large Language Model（大语言模型）​​，专指通过海量文本数据训练、能理解和生成自然语言的超大规模人工智能模型</p>
+<p>LLM平台（如Dify/FastGPT）: 本质上是通过工程化手段，把&quot;零散的Prompt技巧&quot;和&quot;业务需求&quot;组合成可复用的AI产品​​。可以理解为LLM平台 = 模型 + 代码 + 工程化&quot;全家桶&quot;​</p>]]></description>
 </item>
 <item>
     <title>AI生产</title>
-    <link>https://heisenbergv.github.io/posts/2025/20250324/</link>
+    <link>http://localhost:1313/posts/2025/20250324/</link>
     <pubDate>Mon, 24 Mar 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/20250324/</guid>
-    <description><![CDATA[AI的冲击 最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个]]></description>
+    <guid>http://localhost:1313/posts/2025/20250324/</guid>
+    <description><![CDATA[<p>最近我深刻感受到，AI对程序员的影响真是前所未有地强！为了应对这种变化，我把自己的工作模式记录下来，尽量抽象、通用一点，不盯着某个具体模型或工具。因为技术迭代太快了，盯着细节容易过时，但一个通用的流程，至少在未来一年应该不会落伍。</p>]]></description>
 </item>
 <item>
     <title>ai帮我做阅读</title>
-    <link>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</link>
+    <link>http://localhost:1313/posts/2025/%E4%B9%A6/</link>
     <pubDate>Sat, 04 Jan 2025 00:00:00 &#43;0000</pubDate>
     <author>zJxin</author>
-    <guid>https://heisenbergv.github.io/posts/2025/%E4%B9%A6/</guid>
-    <description><![CDATA[文学认知阶梯：从叙事魔法到元叙述智慧 这是一个四级文学认知训练体系，每阶精选3-5部关键作品，搭配专属阅读策略，助您系统解锁文学的深层密码。 第]]></description>
+    <guid>http://localhost:1313/posts/2025/%E4%B9%A6/</guid>
+    <description><![CDATA[<p>这是一个四级文学认知训练体系，每阶精选3-5部关键作品，搭配专属阅读策略，助您系统解锁文学的深层密码。</p>
+<h2 id="第一阶梯叙事魔法的初探">第一阶梯：叙事魔法的初探</h2>
+<p><strong>训练重点</strong>：捕捉文本的显性肌理，理解叙事的基本结构与魅力。</p>]]></description>
 </item>
 </channel>
 </rss>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>grpc-go - zJxin</title><meta name="Description" content="Blog"><meta property="og:url" content="https://heisenbergv.github.io/posts/2021/20210119-grpc/">
+        <title>grpc-go - zJxin</title><meta name="Description" content="Blog"><meta property="og:url" content="http://localhost:1313/posts/2021/20210119-grpc/">
   <meta property="og:site_name" content="zJxin">
   <meta property="og:title" content="grpc-go">
-  <meta property="og:description" content="grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务">
+  <meta property="og:description" content="grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。
+使用方式 使用方式很简单，生成pb，注册建立服务，就可以等待请求了">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -18,14 +19,15 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="grpc-go">
-  <meta name="twitter:description" content="grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。 使用方式 使用方式很简单，生成pb，注册建立服务">
+  <meta name="twitter:description" content="grpc Server 本文简单阅读源代码，了解grpc server的执行流程，从建立连接，到处理一条请求的过程。
+使用方式 使用方式很简单，生成pb，注册建立服务，就可以等待请求了">
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heisenbergv.github.io/posts/2021/20210119-grpc/" /><link rel="prev" href="https://heisenbergv.github.io/posts/2021/20210105-tcpudp/" /><link rel="next" href="https://heisenbergv.github.io/posts/read/20210303/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/2021/20210119-grpc/" /><link rel="prev" href="http://localhost:1313/posts/2021/20210105-tcpudp/" /><link rel="next" href="http://localhost:1313/posts/read/20210303/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -33,9 +35,9 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210119-grpc\/"
+            "@id": "http:\/\/localhost:1313\/posts\/2021\/20210119-grpc\/"
         },"genre": "posts","keywords": "grpc, 源码","wordcount":  3291 ,
-        "url": "https:\/\/heisenbergv.github.io\/posts\/2021\/20210119-grpc\/","datePublished": "2021-01-19T00:00:00+00:00","dateModified": "2021-01-19T00:00:00+00:00","publisher": {
+        "url": "http:\/\/localhost:1313\/posts\/2021\/20210119-grpc\/","datePublished": "2021-01-19T00:00:00+00:00","dateModified": "2021-01-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -108,8 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">grpc-go</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zJxin</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/coder/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Coder</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-19">2021-01-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3291 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-19">2021-01-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3291 字&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -170,13 +171,13 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">lis</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1:8888&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//1. 创建一个grpc服务器对象
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">gRpcServer</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">NewServer</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//2. 注册pb函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pb</span><span class="p">.</span><span class="nf">RegisterHelloServiceServer</span><span class="p">(</span><span class="nx">gRpcServer</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">Hello</span><span class="p">{})</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//3. 开启服务端
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//阻塞
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">gRpcServer</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">lis</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1. 创建一个grpc服务器对象</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">gRpcServer</span> <span class="o">:=</span> <span class="nx">grpc</span><span class="p">.</span><span class="nf">NewServer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//2. 注册pb函数</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pb</span><span class="p">.</span><span class="nf">RegisterHelloServiceServer</span><span class="p">(</span><span class="nx">gRpcServer</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">Hello</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//3. 开启服务端</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//阻塞</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">gRpcServer</span><span class="p">.</span><span class="nf">Serve</span><span class="p">(</span><span class="nx">lis</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h2 id="建立grpc-server流程">建立grpc server流程</h2>
 <h3 id="newserver">NewServer</h3>
@@ -230,16 +231,16 @@
         <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
         <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">ServiceDesc</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">ServiceName</span> <span class="kt">string</span> <span class="c1">//服务名称
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">HandlerType</span> <span class="kd">interface</span><span class="p">{}</span> <span class="c1">//结构体类型
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Methods</span>     <span class="p">[]</span><span class="nx">MethodDesc</span><span class="c1">//一元函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Streams</span>     <span class="p">[]</span><span class="nx">StreamDesc</span><span class="c1">//流函数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Metadata</span>    <span class="kd">interface</span><span class="p">{}</span><span class="c1">// 元数据
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ServiceName</span> <span class="kt">string</span> <span class="c1">//服务名称</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">HandlerType</span> <span class="kd">interface</span><span class="p">{}</span> <span class="c1">//结构体类型</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Methods</span>     <span class="p">[]</span><span class="nx">MethodDesc</span><span class="c1">//一元函数</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Streams</span>     <span class="p">[]</span><span class="nx">StreamDesc</span><span class="c1">//流函数</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Metadata</span>    <span class="kd">interface</span><span class="p">{}</span><span class="c1">// 元数据</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//注册服务函数
-</span></span></span><span class="line"><span class="cl"><span class="c1">//args: sd 文件描述, srv: 具体实现的结构体
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">RegisterService</span><span class="p">(</span><span class="nx">sd</span> <span class="o">*</span><span class="nx">ServiceDesc</span><span class="p">,</span> <span class="nx">ss</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//注册服务函数</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//args: sd 文件描述, srv: 具体实现的结构体</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">RegisterService</span><span class="p">(</span><span class="nx">sd</span> <span class="o">*</span><span class="nx">ServiceDesc</span><span class="p">,</span> <span class="nx">ss</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">ss</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">ht</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">TypeOf</span><span class="p">(</span><span class="nx">sd</span><span class="p">.</span><span class="nx">HandlerType</span><span class="p">).</span><span class="nf">Elem</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">st</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">TypeOf</span><span class="p">(</span><span class="nx">ss</span><span class="p">)</span>
@@ -250,8 +251,8 @@
 </span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nf">register</span><span class="p">(</span><span class="nx">sd</span><span class="p">,</span> <span class="nx">ss</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//利用反射将服务注册到字典
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">register</span><span class="p">(</span><span class="nx">sd</span> <span class="o">*</span><span class="nx">ServiceDesc</span><span class="p">,</span> <span class="nx">ss</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//利用反射将服务注册到字典</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">register</span><span class="p">(</span><span class="nx">sd</span> <span class="o">*</span><span class="nx">ServiceDesc</span><span class="p">,</span> <span class="nx">ss</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">s</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;RegisterService(%q)&#34;</span><span class="p">,</span> <span class="nx">sd</span><span class="p">.</span><span class="nx">ServiceName</span><span class="p">)</span>
@@ -285,15 +286,15 @@
         <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
         <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Serve</span><span class="p">(</span><span class="nx">lis</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Listener</span><span class="p">)</span> <span class="kt">error</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">rawConn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">lis</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">s</span><span class="p">.</span><span class="nf">handleRawConn</span><span class="p">(</span><span class="nx">rawConn</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h2 id="处理一个grpc请求的流程">处理一个grpc请求的流程</h2>
 <ol>
 <li>建立连接</li>
@@ -320,30 +321,30 @@
         <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Serve</span><span class="p">(</span><span class="nx">lis</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Listener</span><span class="p">)</span> <span class="kt">error</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//1. 建立连接
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">rawConn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">lis</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//1. 建立连接</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">rawConn</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">lis</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">//2. 创建goroutine处理连接
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="nx">s</span><span class="p">.</span><span class="nf">handleRawConn</span><span class="p">(</span><span class="nx">rawConn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//2. 创建goroutine处理连接</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">s</span><span class="p">.</span><span class="nf">handleRawConn</span><span class="p">(</span><span class="nx">rawConn</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">handleRawConn</span><span class="p">(</span><span class="nx">rawConn</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">conn</span><span class="p">,</span> <span class="nx">authInfo</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">useTransportAuthenticator</span><span class="p">(</span><span class="nx">rawConn</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 3. grpc基于http2，根据tcp连接信息 创建http2 传输结构
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">st</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">newHTTP2Transport</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span> <span class="nx">authInfo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 3. grpc基于http2，根据tcp连接信息 创建http2 传输结构</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">st</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">newHTTP2Transport</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span> <span class="nx">authInfo</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//4. 创建新的goroutine，将http2传输信息 进行处理
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">s</span><span class="p">.</span><span class="nf">serveStreams</span><span class="p">(</span><span class="nx">st</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//7. 移除连接
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">s</span><span class="p">.</span><span class="nf">removeConn</span><span class="p">(</span><span class="nx">st</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//4. 创建新的goroutine，将http2传输信息 进行处理</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">s</span><span class="p">.</span><span class="nf">serveStreams</span><span class="p">(</span><span class="nx">st</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//7. 移除连接</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">s</span><span class="p">.</span><span class="nf">removeConn</span><span class="p">(</span><span class="nx">st</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}()</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">serveStreams</span><span class="p">(</span><span class="nx">st</span> <span class="nx">transport</span><span class="p">.</span><span class="nx">ServerTransport</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//5. 经过http2_server.go:455中的处理，从tcp层读取数据进行解析，最后执行此处传递过去的函数指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">st</span><span class="p">.</span><span class="nf">HandleStreams</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">stream</span> <span class="o">*</span><span class="nx">transport</span><span class="p">.</span><span class="nx">Stream</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//5. 经过http2_server.go:455中的处理，从tcp层读取数据进行解析，最后执行此处传递过去的函数指针</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">st</span><span class="p">.</span><span class="nf">HandleStreams</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">stream</span> <span class="o">*</span><span class="nx">transport</span><span class="p">.</span><span class="nx">Stream</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">s</span><span class="p">.</span><span class="nx">opts</span><span class="p">.</span><span class="nx">numServerWorkers</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">data</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">serverWorkerData</span><span class="p">{</span><span class="nx">st</span><span class="p">:</span> <span class="nx">st</span><span class="p">,</span> <span class="nx">wg</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">wg</span><span class="p">,</span> <span class="nx">stream</span><span class="p">:</span> <span class="nx">stream</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">			<span class="k">select</span> <span class="p">{</span>
@@ -364,8 +365,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">handleStream</span><span class="p">(</span><span class="nx">t</span> <span class="nx">transport</span><span class="p">.</span><span class="nx">ServerTransport</span><span class="p">,</span> <span class="nx">stream</span> <span class="o">*</span><span class="nx">transport</span><span class="p">.</span><span class="nx">Stream</span><span class="p">,</span> <span class="nx">trInfo</span> <span class="o">*</span><span class="nx">traceInfo</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//6. 根据请求信息，找到指定函数。最后进行调用注册的应用层业务
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">srv</span><span class="p">,</span> <span class="nx">knownService</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">services</span><span class="p">[</span><span class="nx">service</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//6. 根据请求信息，找到指定函数。最后进行调用注册的应用层业务</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">srv</span><span class="p">,</span> <span class="nx">knownService</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">services</span><span class="p">[</span><span class="nx">service</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">knownService</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">md</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">srv</span><span class="p">.</span><span class="nx">methods</span><span class="p">[</span><span class="nx">method</span><span class="p">];</span> <span class="nx">ok</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">s</span><span class="p">.</span><span class="nf">processUnaryRPC</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">srv</span><span class="p">,</span> <span class="nx">md</span><span class="p">,</span> <span class="nx">trInfo</span><span class="p">)</span>
@@ -376,8 +377,8 @@
 </span></span><span class="line"><span class="cl">			<span class="k">return</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 此处可以进行自定义的路由
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">unknownDesc</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">opts</span><span class="p">.</span><span class="nx">unknownStreamDesc</span><span class="p">;</span> <span class="nx">unknownDesc</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 此处可以进行自定义的路由</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">unknownDesc</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">opts</span><span class="p">.</span><span class="nx">unknownStreamDesc</span><span class="p">;</span> <span class="nx">unknownDesc</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">s</span><span class="p">.</span><span class="nf">processStreamingRPC</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">unknownDesc</span><span class="p">,</span> <span class="nx">trInfo</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="k">return</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -402,16 +403,16 @@
         <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
         <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">decodeState</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">serverSide</span> <span class="kt">bool</span> <span class="c1">//用了http2的解析，就一定是true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">data</span> <span class="nx">parsedHeaderData</span><span class="c1">//请求过来的关键参数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">serverSide</span> <span class="kt">bool</span> <span class="c1">//用了http2的解析，就一定是true</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">data</span> <span class="nx">parsedHeaderData</span><span class="c1">//请求过来的关键参数</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">http2Server</span><span class="p">)</span> <span class="nf">HandleStreams</span><span class="p">(</span><span class="nx">handle</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Stream</span><span class="p">),</span> <span class="nx">traceCtx</span> <span class="kd">func</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="k">switch</span> <span class="nx">frame</span> <span class="o">:=</span> <span class="nx">frame</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="o">*</span><span class="nx">http2</span><span class="p">.</span><span class="nx">MetaHeadersFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">//1. 读取底层tcp数据，最后进行解析
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nf">operateHeaders</span><span class="p">(</span><span class="nx">frame</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">traceCtx</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//1. 读取底层tcp数据，最后进行解析</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">t</span><span class="p">.</span><span class="nf">operateHeaders</span><span class="p">(</span><span class="nx">frame</span><span class="p">,</span> <span class="nx">handle</span><span class="p">,</span> <span class="nx">traceCtx</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="nx">t</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">				<span class="k">break</span>
 </span></span><span class="line"><span class="cl">			<span class="p">}</span>
@@ -426,8 +427,8 @@
 </span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">*</span><span class="nx">http2</span><span class="p">.</span><span class="nx">WindowUpdateFrame</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">t</span><span class="p">.</span><span class="nf">handleWindowUpdate</span><span class="p">(</span><span class="nx">frame</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="o">*</span><span class="nx">http2</span><span class="p">.</span><span class="nx">GoAwayFrame</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">			<span class="c1">// TODO: Handle GoAway from the client appropriately.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// TODO: Handle GoAway from the client appropriately.</span>
+</span></span><span class="line"><span class="cl">		<span class="k">default</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">logger</span><span class="p">.</span><span class="nf">V</span><span class="p">(</span><span class="nx">logLevel</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">				<span class="nx">logger</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;transport: http2Server.HandleStreams found unhandled frame type %v.&#34;</span><span class="p">,</span> <span class="nx">frame</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">			<span class="p">}</span>
@@ -435,41 +436,41 @@
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//对解码后的报头进行操作
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">http2Server</span><span class="p">)</span> <span class="nf">operateHeaders</span><span class="p">(</span><span class="nx">frame</span> <span class="o">*</span><span class="nx">http2</span><span class="p">.</span><span class="nx">MetaHeadersFrame</span><span class="p">,</span> <span class="nx">handle</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Stream</span><span class="p">),</span> <span class="nx">traceCtx</span> <span class="kd">func</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">fatal</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//2. 解析头数据
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">h2code</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">state</span><span class="p">.</span><span class="nf">decodeHeader</span><span class="p">(</span><span class="nx">frame</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//对解码后的报头进行操作</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">http2Server</span><span class="p">)</span> <span class="nf">operateHeaders</span><span class="p">(</span><span class="nx">frame</span> <span class="o">*</span><span class="nx">http2</span><span class="p">.</span><span class="nx">MetaHeadersFrame</span><span class="p">,</span> <span class="nx">handle</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Stream</span><span class="p">),</span> <span class="nx">traceCtx</span> <span class="kd">func</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">fatal</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//2. 解析头数据</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">h2code</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">state</span><span class="p">.</span><span class="nf">decodeHeader</span><span class="p">(</span><span class="nx">frame</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//grpc层的数据
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">s</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Stream</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//grpc层的数据</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">s</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Stream</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">recvCompress</span><span class="p">:</span>   <span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">encoding</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">method</span><span class="p">:</span>         <span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">method</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">contentSubtype</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">contentSubtype</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//一个关键的ctx包含很多机制
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//一个关键的ctx包含很多机制</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">//3. 根据解析后的头数据，进行一系列的设置
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//4. 设置：超时的ctx
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">timeoutSet</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//3. 根据解析后的头数据，进行一系列的设置</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//4. 设置：超时的ctx</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">timeoutSet</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">cancel</span> <span class="p">=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">timeout</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">cancel</span> <span class="p">=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithCancel</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">ctx</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">//address
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">pr</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">peer</span><span class="p">.</span><span class="nx">Peer</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//address</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pr</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">peer</span><span class="p">.</span><span class="nx">Peer</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">Addr</span><span class="p">:</span> <span class="nx">t</span><span class="p">.</span><span class="nx">remoteAddr</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span> <span class="p">=</span> <span class="nx">peer</span><span class="p">.</span><span class="nf">NewContext</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">pr</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//5. 设置：metadata 存入context中
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">mdata</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//5. 设置：metadata 存入context中</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">mdata</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span> <span class="p">=</span> <span class="nx">metadata</span><span class="p">.</span><span class="nf">NewIncomingContext</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">mdata</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	<span class="c1">//6. 执行函数指针
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">handle</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//6. 执行函数指针</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">handle</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -486,8 +487,8 @@
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">d</span> <span class="o">*</span><span class="nx">decodeState</span><span class="p">)</span> <span class="nf">processHeaderField</span><span class="p">(</span><span class="nx">f</span> <span class="nx">hpack</span><span class="p">.</span><span class="nx">HeaderField</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="k">switch</span> <span class="nx">f</span><span class="p">.</span><span class="nx">Name</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s">&#34;content-type&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//如果类型 不包含 `application/grpc`  则抛异常，可以是`application/grpc;xxxx`等
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">contentSubtype</span><span class="p">,</span> <span class="nx">validContentType</span> <span class="o">:=</span> <span class="nx">grpcutil</span><span class="p">.</span><span class="nf">ContentSubtype</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//如果类型 不包含 `application/grpc`  则抛异常，可以是`application/grpc;xxxx`等</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">contentSubtype</span><span class="p">,</span> <span class="nx">validContentType</span> <span class="o">:=</span> <span class="nx">grpcutil</span><span class="p">.</span><span class="nf">ContentSubtype</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">!</span><span class="nx">validContentType</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">contentTypeErr</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;transport: received the unexpected content-type %q&#34;</span><span class="p">,</span> <span class="nx">f</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">			<span class="k">return</span>
@@ -496,18 +497,18 @@
 </span></span><span class="line"><span class="cl">		<span class="nx">d</span><span class="p">.</span><span class="nf">addMetadata</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">f</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">isGRPC</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s">&#34;:path&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//依靠它找到需要调用的函数 比如/pb.TspService/Hello
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">method</span> <span class="p">=</span> <span class="nx">f</span><span class="p">.</span><span class="nx">Value</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//依靠它找到需要调用的函数 比如/pb.TspService/Hello</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">method</span> <span class="p">=</span> <span class="nx">f</span><span class="p">.</span><span class="nx">Value</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s">&#34;grpc-timeout&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//如果有超时设置，会创建ctx context.WithTimeout(t.ctx, state.data.timeout)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">timeoutSet</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//如果有超时设置，会创建ctx context.WithTimeout(t.ctx, state.data.timeout)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">timeoutSet</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">		<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
 </span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">timeout</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nf">decodeTimeout</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Value</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="nx">d</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">grpcErr</span> <span class="p">=</span> <span class="nx">status</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="nx">codes</span><span class="p">.</span><span class="nx">Internal</span><span class="p">,</span> <span class="s">&#34;transport: malformed time-out: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="k">default</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//自定义的metadata在这里处理
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">d</span><span class="p">.</span><span class="nf">addMetadata</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//自定义的metadata在这里处理</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">d</span><span class="p">.</span><span class="nf">addMetadata</span><span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h2 id="解析请求数据的细节">解析请求数据的细节</h2>
@@ -532,8 +533,8 @@
         <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
         <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//最终解析在这里
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">_TspService_Hello_Handler</span><span class="p">(</span><span class="nx">srv</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">dec</span> <span class="kd">func</span><span class="p">(</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">interceptor</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">UnaryServerInterceptor</span><span class="p">)</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//最终解析在这里</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">_TspService_Hello_Handler</span><span class="p">(</span><span class="nx">srv</span> <span class="kd">interface</span><span class="p">{},</span> <span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">dec</span> <span class="kd">func</span><span class="p">(</span><span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span><span class="p">,</span> <span class="nx">interceptor</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">UnaryServerInterceptor</span><span class="p">)</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">in</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">HelloRequest</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">dec</span><span class="p">(</span><span class="nx">in</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
@@ -553,8 +554,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="nf">processUnaryRPC</span><span class="p">(</span><span class="nx">t</span> <span class="nx">transport</span><span class="p">.</span><span class="nx">ServerTransport</span><span class="p">,</span> <span class="nx">stream</span> <span class="o">*</span><span class="nx">transport</span><span class="p">.</span><span class="nx">Stream</span><span class="p">,</span> <span class="nx">info</span> <span class="o">*</span><span class="nx">serviceInfo</span><span class="p">,</span> <span class="nx">md</span> <span class="o">*</span><span class="nx">MethodDesc</span><span class="p">,</span> <span class="nx">trInfo</span> <span class="o">*</span><span class="nx">traceInfo</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">df</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//根据content-type 获取解析器，进行解析
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">getCodec</span><span class="p">(</span><span class="nx">stream</span><span class="p">.</span><span class="nf">ContentSubtype</span><span class="p">()).</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//根据content-type 获取解析器，进行解析</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">getCodec</span><span class="p">(</span><span class="nx">stream</span><span class="p">.</span><span class="nf">ContentSubtype</span><span class="p">()).</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="nx">status</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="nx">codes</span><span class="p">.</span><span class="nx">Internal</span><span class="p">,</span> <span class="s">&#34;grpc: error unmarshalling request: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">sh</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
@@ -578,15 +579,15 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">    <span class="nx">ctx</span> <span class="o">:=</span> <span class="nf">NewContextWithServerTransportStream</span><span class="p">(</span><span class="nx">stream</span><span class="p">.</span><span class="nf">Context</span><span class="p">(),</span> <span class="nx">stream</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//利用反射进行函数调用
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//info.serviceImpl函数， ctx函数的第一个参数（metadata等信息），df请求数据（protobuf的解析）
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//s.opts.unaryInt 拦截器
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">reply</span><span class="p">,</span> <span class="nx">appErr</span> <span class="o">:=</span> <span class="nx">md</span><span class="p">.</span><span class="nf">Handler</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">serviceImpl</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">,</span> <span class="nx">df</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">opts</span><span class="p">.</span><span class="nx">unaryInt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//利用反射进行函数调用</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//info.serviceImpl函数， ctx函数的第一个参数（metadata等信息），df请求数据（protobuf的解析）</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//s.opts.unaryInt 拦截器</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">reply</span><span class="p">,</span> <span class="nx">appErr</span> <span class="o">:=</span> <span class="nx">md</span><span class="p">.</span><span class="nf">Handler</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">serviceImpl</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">,</span> <span class="nx">df</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">opts</span><span class="p">.</span><span class="nx">unaryInt</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="nx">opts</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">transport</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span><span class="nx">Last</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">//发送结果给请求方
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">sendResponse</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">reply</span><span class="p">,</span> <span class="nx">cp</span><span class="p">,</span> <span class="nx">opts</span><span class="p">,</span> <span class="nx">comp</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//发送结果给请求方</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nf">sendResponse</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">reply</span><span class="p">,</span> <span class="nx">cp</span><span class="p">,</span> <span class="nx">opts</span><span class="p">,</span> <span class="nx">comp</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -595,15 +596,14 @@
 <h1 id="metadata">Metadata</h1>
 <p>Metadata是在一次 RPC 调用过程中关于这次调用的信息。 是 key-value的形式。其中 key 是 string 类型， value是[]string。</p>
 <blockquote>
-<p>Metadata 对于 gRPC 本身来说透明， 它使得 client 和 server 能为对方提供本次调用的信息。就像一次 http 请求的 RequestHeader 和 ResponseHeader，http header 的生命周期是一次 http 请求， Metadata 的生命周期则是一次 RPC 调用</p>
-</blockquote>
+<p>Metadata 对于 gRPC 本身来说透明， 它使得 client 和 server 能为对方提供本次调用的信息。就像一次 http 请求的 RequestHeader 和 ResponseHeader，http header 的生命周期是一次 http 请求， Metadata 的生命周期则是一次 RPC 调用</p></blockquote>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-go">
         <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
         <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//grpc的结构
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">MD</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span></span></span></code></pre></div></div>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">//grpc的结构</span>
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">MD</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">string</span></span></span></code></pre></div></div>
 <h3 id="使用">使用</h3>
 <ul>
 <li>发送方</li>
@@ -639,8 +639,7 @@ grpc服务端和客户端都提供了interceptor功能</p>
 <li>server：收到请求，进入具体执行函数之前，对请求做统一处理</li>
 </ul>
 <blockquote>
-<p>调用方式类似链表、调用一个后再调用下一个节点</p>
-</blockquote>
+<p>调用方式类似链表、调用一个后再调用下一个节点</p></blockquote>
 <h3 id="grpc源码">grpc源码</h3>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-go">
@@ -648,11 +647,11 @@ grpc服务端和客户端都提供了interceptor功能</p>
         <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
         <span class="copy" title="复制到剪贴板"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">NewServer</span><span class="p">(</span><span class="nx">opt</span> <span class="o">...</span><span class="nx">ServerOption</span><span class="p">)</span> <span class="o">*</span><span class="nx">Server</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//..
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">chainUnaryServerInterceptors</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//..</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">chainUnaryServerInterceptors</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="nf">chainStreamServerInterceptors</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//..
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="nx">s</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//..</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">s</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">chainUnaryServerInterceptors</span><span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">Server</span><span class="p">)</span> <span class="p">{</span>
@@ -697,12 +696,10 @@ grpc服务端和客户端都提供了interceptor功能</p>
     <div class="post-nav"><a href="/posts/2021/20210105-tcpudp/" class="prev" rel="prev" title="计算机网络-传输层"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计算机网络-传输层</a>
             <a href="/posts/read/20210303/" class="next" rel="next" title="提高读书效果">提高读书效果<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
-<div id="comments"><div id="gitalk" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk">Gitalk</a>.
-            </noscript></div></article></div>
+</article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.128.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.145.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">zJxin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND</a> </span></div>
         </div>
     </footer></div>
 
@@ -714,5 +711,5 @@ grpc服务端和客户端都提供了interceptor功能</p>
         <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/mhchem.min.js"></script><script>window.config={"comment":{"gitalk":{"admin":["heisenbergv"],"clientID":"70335a4af07c4a97b79b","clientSecret":"6c0684397ec265598fead8d27242c273d151bd1e","id":"2021-01-19T00:00:00Z","owner":"heisenbergv","repo":"heisenbergv.github.io","title":"grpc-go"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lunr/lunr.stemmer.support.min.js"></script><script src="/lib/lunr/lunr.zh.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/contrib/auto-render.min.js"></script><script src="/lib/katex/contrib/copy-tex.min.js"></script><script src="/lib/katex/contrib/mhchem.min.js"></script><script>window.config={"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
 </html>
